@@ -1,7 +1,13 @@
 #################
+## General
+#################
+*.tar
+*.sln
+*.phpproj
+
+#################
 ## Eclipse
 #################
-
 *.pydevproject
 .project
 .metadata
