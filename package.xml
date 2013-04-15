@@ -39,5 +39,6 @@
     <instruction type="pageMenu">xml/pagemenu.xml</instruction>
     <instruction type="objectType">xml/objectType.xml</instruction>
     <instruction type="aclOption">aclOption.xml</instruction>
+    <instruction type="acpMenu">acpMenu.xml</instruction>
   </instructions>
 </package>
