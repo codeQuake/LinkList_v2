@@ -15,7 +15,7 @@
     
     <type>
       <name>de.codequake.linklist.category</name>
-      <definitionname>com-woltlab.wcf.visitTracker.objectType</definitionname>
+      <definitionname>com.woltlab.wcf.visitTracker.objectType</definitionname>
     </type>
   
     <!--index page-->
