@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/object-type.xsd">
+  <import>
+    <!--category-->
+    <type>
+      <name>de.codequake.linklist.category</name>
+      <definitionname>com.woltlab.wcf.category</definitionname>
+      <classname>linklist\system\category\LinklistCategoryType</classname>
+    </type>
+    
+    <type>
+      <name>de.codequake.linklist.category</name>
+      <definitonname>com.woltlab.wcf.acl</definitonname>
+    </type>
+    
+    <type>
+      <name>de.codequake.linklist.category</name>
+      <defintionname>com-woltlab.wcf.visitTracker.objectType</defintionname>
+    </type>
+  
+    <!--index page-->
+    <type>
+      <name>de.codequake.linklist.IndexPage</name>
+      <definitionname>com.woltlab.wcf.user.dashboardContainer</definitionname>
+      <allowSidebar>1</allowSidebar>
+    </type>
+    <type>
+      <name>de.codequake.linklist.IndexPage</name>
+      <definitionname>com.woltlab.wcf.user.online.location</definitionname>
+      <controller>linklist\page\indexPage</controller>
+      <languagevariable>wcf.user.usersOnline.location.indexPage</languagevariable>
+    </type>
+
+
+  </import>
+</data>

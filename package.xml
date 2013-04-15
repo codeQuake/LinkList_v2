@@ -37,5 +37,6 @@
     
     <!--xml-->
     <instruction type="pageMenu">xml/pagemenu.xml</instruction>
+    <instruction type="objectType">xml/objectType.xml</instruction>
   </instructions>
 </package>
