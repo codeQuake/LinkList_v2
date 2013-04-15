@@ -10,7 +10,7 @@
     
     <type>
       <name>de.codequake.linklist.category</name>
-      <definitonname>com.woltlab.wcf.acl</definitonname>
+      <definitionname>com.woltlab.wcf.acl</definitionname>
     </type>
     
     <type>
