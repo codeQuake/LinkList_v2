@@ -38,7 +38,7 @@
     <!--xml-->
     <instruction type="pageMenu">xml/pagemenu.xml</instruction>
     <instruction type="objectType">xml/objectType.xml</instruction>
-    <instruction type="aclOption">aclOption.xml</instruction>
-    <instruction type="acpMenu">acpMenu.xml</instruction>
+    <instruction type="aclOption">xml/aclOption.xml</instruction>
+    <instruction type="acpMenu">xml/acpMenu.xml</instruction>
   </instructions>
 </package>
