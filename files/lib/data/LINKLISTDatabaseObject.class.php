@@ -4,7 +4,7 @@ use wcf\data\DatabaseObject;
 
 /**
 * @author Jens Krumsieck
-* @copyright 2013 Jens Krumsieck
+* @copyright 2013 codeQuake
 * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
 * @package de.codequake.linklist
 */

@@ -11,7 +11,7 @@ use wcf\system\WCF;
  * Linklist core.
  *
  * @author	Jens Krumsieck
- * @copyright	2013 Jens Krumsieck
+ * @copyright	2013 codeQuake
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.linklist
  */

@@ -7,7 +7,7 @@ use wcf\system\WCF;
  * Shows the index page.
  *
  * @author	Jens Krumsieck
- * @copyright	2013 Jens Krumsieck
+ * @copyright	2013 codeQuake
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.linklist
  */
