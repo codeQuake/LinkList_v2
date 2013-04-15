@@ -1,5 +1,5 @@
 <?php
-namespace linklist\data\page;
+namespace linklist\data\category;
 use cms\data\LINKLISTDatabaseObject;
 use wcf\system\WCF;
 
