@@ -3,7 +3,8 @@ namespace linklist\system\category;
 
 use wcf\system\category\AbstractCategoryType;
 /**
- * 
+ * category type
+ *
  * @author  Jens Krumsieck
  * @copyright   2013 codeQuake
  * @license GNU Lesser General Public License
