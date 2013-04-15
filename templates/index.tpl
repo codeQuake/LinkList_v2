@@ -7,23 +7,20 @@
 </head>
 
 <body id="tpl{$templateName|ucfirst}">
-{include file='header' sandbox=false}
+
+{include file='header' sidebarOrientation='right'}
 
 <header class="boxHeadline">
-	{if $__wcf->getPageMenu()->getLandingPage()->menuItem == 'linklist.pageMenu.index'}
-		<hgroup>
-			<h1>{PAGE_TITLE|language}</h1>
-			{hascontent}<h2>{content}{PAGE_DESCRIPTION|language}{/content}</h2>{/hascontent}
-		</hgroup>
-	{else}
-		<hgroup>
-			<h1>{lang}linklist.pageMenu.index{/lang}</h1>
-		</hgroup>
-	{/if}
+	<hgroup>
+		<h1>{PAGE_TITLE|language}</h1>
+		{hascontent}<h2>{content}{PAGE_DESCRIPTION|language}{/content}</h2>{/hascontent}
+	</hgroup>
 </header>
 
-{include file='userNotice'}
-
+<section id="dashboard">
+	{if $__boxContent|isset}{@$__boxContent}{/if}
+</section>
+{include file='categoryList'}
 
 
 {include file='footer' sandbox=false}

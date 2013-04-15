@@ -1,8 +1,11 @@
 <?php
 namespace linklist\page;
 use wcf\page\AbstractPage;
-use wcf\system\WCF;
 
+use linklist\data\category\LinklistCategoryNodeList;
+use wcf\system\dashboard\DashboardHandler;
+use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
+use wcf\system\WCF;
 /**
  * Shows the index page.
  *
@@ -12,8 +15,34 @@ use wcf\system\WCF;
  * @package	de.codequake.linklist
  */
 class IndexPage extends AbstractPage {
-	/**
-	 * @see	wcf\page\AbstractPage::$enableTracking
-	 */
-	public $enableTracking = true;
+    /**
+     * @see	wcf\page\AbstractPage::$enableTracking
+     */
+    public $enableTracking = true;
+    public $categoryList = null;
+    public $objectTypeName = 'de.codequake.linklist.category';
+      
+    /**
+     * @see wcf\page\IPage::readData()
+     */
+    public function readData() {
+        parent::readData();
+        $this->categoryList = new LinklistCategoryNodeList($this->objectTypeName);
+        $this->categoryList->setMaxDepth(0);
+  }
+    /**
+     * @see wcf\page\IPage::assignVariables()
+     */
+    public function assignVariables() {
+        parent::assignVariables();
+
+        //dashboard
+        DashboardHandler::getInstance()->loadBoxes('de.codequake.linklist.IndexPage', $this);
+
+        WCF::getTPL()->assign(array(
+            'categoryList' => $this->categoryList,
+            'sidebarCollapsed'	=> UserCollapsibleContentHandler::getInstance()->isCollapsed('com.woltlab.wcf.collapsibleSidebar', 'de.codequake.linklist.index'),
+            'sidebarName' => 'de.codequake.linklist.index'
+        ));
+    }
 }

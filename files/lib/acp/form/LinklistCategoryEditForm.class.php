@@ -3,7 +3,7 @@ namespace linklist\acp\form;
 
 use wcf\acp\form\AbstractCategoryEditForm;
 
-class LinklistCategoryEditForm extends AbstractCategoryAddForm {
+class LinklistCategoryEditForm extends AbstractCategoryEditForm {
     /**
     * @see wcf\acp\form\ACPForm::$activeMenuItem
     */

@@ -19,7 +19,7 @@ class LinklistCategoryNode extends ViewableCategoryNode{
     
     protected function fulfillsConditions(DatabaseObject $category) {
         if (parent::fulfillsConditions($category)) {
-            $category = new Category($category);
+            $category = new LinklistCategory($category);
 
             return $category->isAccessible();
           }
@@ -29,7 +29,7 @@ class LinklistCategoryNode extends ViewableCategoryNode{
     
     public function getChildCategories($depth = 0) {
         if($this->subCategories === null) {
-            $this->subCategories = new CategorynodeList($this->objectTypeName, $this->categoryID);
+            $this->subCategories = new LinklistCategoryNodeList($this->objectTypeName, $this->categoryID);
             if($depth > 0) $this->subCategories->setMaxDepth($depth);
         }
         return $this->subCategories;

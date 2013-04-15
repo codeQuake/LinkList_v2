@@ -2,10 +2,10 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/aclOption.xsd">
   <import>
     <categories>
-      <category name="user.category">
+      <category name="user.linklist.category">
         <objecttype>de.codequake.linklist.category</objecttype>
       </category>
-      <category name="mod.category">
+      <category name="mod.linklist.category">
         <objecttype>de.codequake.linklist.category</objecttype>
       </category>
     </categories>
@@ -14,17 +14,17 @@
     <options>
       <!--user.category-->
       <option name="canViewCategory">
-          <categoryname>user.category</categoryname>
+          <categoryname>user.linklist.category</categoryname>
           <objecttype>de.codequake.linklist.category</objecttype>
         </option>      
       <option name="canEnterCategory">
-          <categoryname>user.category</categoryname>
+          <categoryname>user.linklist.category</categoryname>
           <objecttype>de.codequake.linklist.category</objecttype>
         </option>
 
       <!--mod.category-->
       <option name="canManagePermissions">
-        <categoryname>mod.category</categoryname>
+        <categoryname>mod.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>
     </options>
