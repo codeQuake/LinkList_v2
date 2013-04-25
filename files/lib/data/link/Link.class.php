@@ -46,7 +46,78 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
          }       
 
         parent::__construct(null, $row, $object);
+    }
+    
+    public function getFormattedMessage() {
+        MessageParser::getInstance()->setOutputType('text/html');
+        return MessageParser::getInstance()->parse($this->message, $this->enableSmilies, $this->enableHtml, $this->enableBBCodes);
+      }
+      
+    public function getMessage() {
+        return $this->message;
+      }
+      
+   
+    public function __toString() {
+        return $this->getFormattedMessage();
+    }
+    
+    public function getCategory() {
+        if($this->category === null) {
+          $category = new Category($this->categoryID);
+          $this->category = new LinklistCategory($category);
+        }
+
+        return $this->category;
+    }
+    
+    public function getEditor() {
+        if ($this->editor === null) {
+          $this->editor = new ArticleEditor($this);
+        }
+
+        return $this->editor;
+    }
+    
+    public function getID() {
+        return $this->articleID;
+    }
+    
+    public function getTitle() {
+        return $this->subject;
+    }
+    
+    public function getTime() {
+         return $this->time;
+    }
+    
+    public function getUserID() {
+        return $this->userID;
+    }
+    
+    public function getUsername() {
+        return $this->username;
+    }
+    
+    public function getExcerpt($maxLength = 255, $highlight=false) {
+        if(!$highlight) MessageParser::getInstance()->setOutputType('text/plain');
+        $message = MessageParser::getInstance()->parse($this->message, false, false, true);
+        if(!$highlight) {
+          if (StringUtil::length($message) > $maxLength) {
+            $message = StringUtil::substring($message, 0, $maxLength).'&hellip;';
+          }
+        }
+        else {
+          if(StringUtil::length($message) > $maxLength) {
+            $message = StringUtil::substring($message, 0, $maxLength);
+          }
         }
     }
     
+      public function getLink() {
+        return LinkHandler::getInstance()->getLink('Link', array(
+                                                    'application'   =>  'linklist',
+                                                    'object'    =>  $this
+                                                ));
+      }
 }

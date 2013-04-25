@@ -15,7 +15,7 @@ use wcf\system\WCF;
  * @package de.codequake.linklist
  */
 
-class LinkAction extends AbstractDatabaseObjectAction implements IClipboardAction{
+class LinkAction extends AbstractDatabaseObjectAction{
     /**
      * @see wcf\data\AbstractDatabaseObjectAction::$className
      */
@@ -26,7 +26,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     
     public function create(){
         $object = call_user_func(array($this->className, 'create'), $this->parameters);
-        SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
+       // SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
         return $object;
 
     }

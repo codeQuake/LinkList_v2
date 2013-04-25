@@ -10,5 +10,5 @@ use wcf\data\DatabaseObjectEditor;
      
 class LinkEditor extends DatabaseObjectEditor{
 
-    protected static $baseClass = 'linklit\data\link\Link';
+    protected static $baseClass = 'linklist\data\link\Link';
 }

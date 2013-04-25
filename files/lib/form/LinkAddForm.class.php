@@ -26,10 +26,11 @@ class LinkAddForm extends MessageForm{
 
     public $action = 'add';
     public $templateName = 'linkAdd';
-    public $userID = 0;
+    public $username ='';
     public $categoryID = 0;
     public $category = null;
     public $categoryNodeList = null;
+    public $url;
     
     public $enableMultilingualism = true;
     
@@ -54,27 +55,35 @@ class LinkAddForm extends MessageForm{
     
     public function readData(){
         parent::readData();
-        // multilingualism
-        if (!empty($this->availableContentLanguages)) {
-            if (!$this->languageID) {
-            $language = LanguageFactory::getInstance()->getUserLanguage();
-            $this->languageID = $language->languageID;
-            }
-
-            if (!isset($this->availableContentLanguages[$this->languageID])) {
-                $languageIDs = array_keys($this->availableContentLanguages);
-                $this->languageID = array_shift($languageIDs);
-            }
-        }
         // read categories
         $this->categoryNodeList = new LinklistCategoryNodeList($this->objectTypeName);
+        
+        
+       // default values
+        if (!count($_POST)) {
+            $this->username = WCF::getSession()->getVar('username');
+
+            // multilingualism
+            if (!empty($this->availableContentLanguages)) {
+                if (!$this->languageID) {
+                    $language = LanguageFactory::getInstance()->getUserLanguage();
+                    $this->languageID = $language->languageID;
+                }
+
+                if (!isset($this->availableContentLanguages[$this->languageID])) {
+                    $languageIDs = array_keys($this->availableContentLanguages);
+                    $this->languageID = array_shift($languageIDs);
+                }
+             }
+        }
     }
     
     public function readFormParameters() {
         parent::readFormParameters();
 
         if(isset($_POST['username'])) $this->username = StringUtil::trim($_POST['username']);
-        if(isset($_POST['category'])) $this->categoryID = intval($_POST['category']);
+        if(isset($_POST['category'])) $this->categoryID = intval($_POST['category']);        
+        if(isset($_POST['url'])) $this->url = StringUtil::trim($_POST['url']);
       }
       
     
@@ -88,11 +97,12 @@ class LinkAddForm extends MessageForm{
     public function save(){
         parent::save();
         
-        $data = array(  'subject'   =>  $this->subject,
+        $data = array(  'url'   =>  'http://codequake.de/',
+                        'subject'   =>  $this->subject,
                         'categoryID'    =>  $this->categoryID,
-                        'message'   =>  $this->message,
-                        'userID'    =>  $this->userID,
-                        'username'  =>  $this->username,
+                        'message'   =>  $this->text,
+                        'userID'    =>  (WCF::getUser()->userID ?: null),
+                        'username'  =>  (WCF::getUser()->userID ? WCF::getUser()->username : $this->username),
                         'time'  =>  TIME_NOW,
                         'languageID'    =>  $this->languageID,
                         'enableSmilies' =>  $this->enableSmilies,
