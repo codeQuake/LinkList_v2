@@ -41,5 +41,8 @@
     <instruction type="aclOption">xml/aclOption.xml</instruction>
     <instruction type="acpMenu">xml/acpMenu.xml</instruction>
     <instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
+    
+    <!--others-->
+    <instruction type="sql">install.sql</instruction>
   </instructions>
 </package>
