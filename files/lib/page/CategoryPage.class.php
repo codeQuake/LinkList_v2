@@ -5,8 +5,6 @@ use wcf\page\SortablePage;
 use linklist\data\category\LinklistCategoryNodeList;
 use linklist\data\category\LinklistCategoryNode;
 use linklist\data\category\LinklistCategory;
-use wcf\system\dashboard\DashboardHandler;
-use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
 use wcf\system\WCF;
 /**
  * Shows the category page.

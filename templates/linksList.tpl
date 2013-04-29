@@ -40,7 +40,7 @@
                     {foreach from=$objects item=link}
                         <tr class="jsLinkRow">
                             <td class="columnTitle">
-                                <a href="{link application='linklist' controller='Link' id=$link->linkID}{/link}">{$link->subject}</a>
+                                <a href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
                             </td>
                             <td class="columnTime">
                                 {$link->time|datediff}
