@@ -22,6 +22,7 @@
 </section>
 {include file='categoryList'}
 
+{include file='linksList'}
 
 {include file='footer' sandbox=false}
 </body>

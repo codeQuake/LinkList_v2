@@ -1,6 +1,6 @@
 <?php
 namespace linklist\page;
-use wcf\page\AbstractPage;
+use wcf\page\SortablePage;
 
 use linklist\data\category\LinklistCategoryNodeList;
 use linklist\data\category\LinklistCategoryNode;
@@ -16,16 +16,25 @@ use wcf\system\WCF;
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.linklist
  */
-class CategoryPage extends AbstractPage {
+class CategoryPage extends SortablePage {
     /**
      * @see	wcf\page\AbstractPage::$enableTracking
      */
     public $enableTracking = true;
     public $categoryList = null;
-    public $categoryID;
-    public $category;
+    public $categoryID;    
     public $objectTypeName = 'de.codequake.linklist.category';
-      
+    public $category;
+    public $objectListClassName = 'linklist\data\link\LinkList';
+    public $defaultSortField = 'time';
+    public $validSortFields = array('title', 'time');
+    
+    
+    protected function initObjectList() {
+        parent::initObjectList();
+         $this->objectList->sqlConditionJoins .= 'WHERE categoryID = '.$this->categoryID;         
+         $this->objectList->sqlJoins .= 'WHERE categoryID = '.$this->categoryID;
+        }
     /**
      * @see wcf\page\IPage::readParameters()
      */
