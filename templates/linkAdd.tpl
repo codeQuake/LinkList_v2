@@ -75,10 +75,10 @@
                 <!--url-->
                 <dl>
                     <dt>
-                        <label for="subject">{lang}linklist.link.link{$action|ucfirst}.url{/lang}</label>
+                        <label for="url">{lang}linklist.link.link{$action|ucfirst}.url{/lang}</label>
                     </dt>
                     <dd>
-                        <input type="text" id="url" name="subject" value="{if $url|isset}{$url}{/if}" required="required" class="medium"/>
+                        <input type="text" id="url" name="url" value="{if $url|isset}{$url}{/if}" required="required" class="medium"/>
                         {if $errorField == 'url'}
                             <small class="innerError">
                             {if $errorType == 'empty'}{lang}wcf.global.form.error.empty{/lang}{/if}

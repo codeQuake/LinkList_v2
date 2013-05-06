@@ -121,7 +121,8 @@ class LinkAddForm extends MessageForm{
                         'languageID'    =>  $this->languageID,
                         'enableSmilies' =>  $this->enableSmilies,
                         'enableHtml'    =>  $this->enableHtml,
-                        'enableBBCodes' =>  $this->enableBBCodes);
+                        'enableBBCodes' =>  $this->enableBBCodes,
+                        'ipAddress'  =>  $_SERVER['REMOTE_ADDR']);
         $this->objectAction = new LinkAction(array(), 'create', $data);
         $resultvalues = $this->objectAction->executeAction();
         
