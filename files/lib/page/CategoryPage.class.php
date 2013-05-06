@@ -2,7 +2,7 @@
 namespace linklist\page;
 use wcf\page\SortablePage;
 
-use linklist\data\category\LinklistCategoryNodeList;
+use linklist\data\category\LinklistCategoryNodeTree;
 use linklist\data\category\LinklistCategoryNode;
 use linklist\data\category\LinklistCategory;
 use wcf\system\WCF;
@@ -46,7 +46,8 @@ class CategoryPage extends SortablePage {
      */
     public function readData() {
         parent::readData();
-        $this->categoryList = new LinklistCategoryNodeList($this->objectTypeName, $this->categoryID);
+        $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName, $this->categoryID);
+        $this->categoryList = $categoryTree->getIterator();
         $this->categoryList->setMaxDepth(0);
   }
     /**
