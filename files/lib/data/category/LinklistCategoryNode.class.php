@@ -29,7 +29,7 @@ class LinklistCategoryNode extends CategoryNode{
     
     public function getChildCategories($depth = 0) {
         if($this->subCategories === null) {
-            $this->subCategories = new LinklistCategoryNodeList($this->objectTypeName, $this->categoryID);
+            $this->subCategories = new LinklistCategoryNodeTree($this->objectTypeName, $this->categoryID);
             if($depth > 0) $this->subCategories->setMaxDepth($depth);
         }
         return $this->subCategories;

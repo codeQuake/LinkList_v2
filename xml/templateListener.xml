@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/templatelistener.xsd">
+  <import>
+    <templatelistener name="linklistCopyright">
+      <environment>user</environment>
+      <templatename>footer</templatename>
+      <eventname>copyright</eventname>
+      <templatecode><![CDATA[{if @$__linklist->isActiveApplication()}<address class="copyright marginTop"><a href="http://codequake.de" title="">Software: <strong>Linkliste {@PACKAGE_VERSION}</strong>, entwickelt von <strong>codeQuake</strong></a></address>{/if}]]></templatecode>
+    </templatelistener>
+  </import>
+</data>
