@@ -1,6 +1,6 @@
 <?php
 namespace linklist\data\category;
-use wcf\data\category\ViewableCategoryNodeList;
+use wcf\data\category\CategoryNodeTree;
 
 /**
  * List of category nodes
@@ -11,6 +11,6 @@ use wcf\data\category\ViewableCategoryNodeList;
  * @package de.codequake.linklist
  */
  
-class LinklistCategoryNodeList extends ViewableCategoryNodeList{
-    //TODO
+class LinklistCategoryNodeTree extends CategoryNodeTree{
+    protected $nodeClassName = 'linklist\data\category\LinklistCategoryNode';
 }

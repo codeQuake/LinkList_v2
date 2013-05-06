@@ -7,7 +7,7 @@
                 <div>
                     <hgroup class="containerHeadline">
                         <h1>
-                            <a href="{link application='linklist' controller='Category' id=$categoryItem->categoryID title=$categoryItem->title|language}{/link}">{$categoryItem->getTitle()}</a>
+                            <a href="{link application='linklist' controller='Category' id=$categoryItem->categoryID title=$categoryItem->getTitle()|language}{/link}">{$categoryItem->getTitle()}</a>
                         </h1>
                         {hascontent}
                             <h2 class="linkListCategoryDescription">
@@ -18,7 +18,7 @@
                             <ul class="subCategory">
                                 {implode from=$categoryItem->getChildCategories(0) item=subCategoryItem}
                                      <li data-category-id="{@$subCategoryItem->categoryID}">
-                                        <span class="icon icon16 icon-folderColored "></span>
+                                        <span class="icon icon16 icon-folder-close"></span>
                                             <a href="{link application='linklist' controller='Category' id=$subCategoryItem->categoryID title=$subCategoryItem->title|language}{/link}">{$subCategoryItem->title|language}</a>
                                 
                                      </li>

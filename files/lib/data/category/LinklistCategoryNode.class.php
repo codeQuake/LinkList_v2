@@ -1,6 +1,6 @@
 <?php
 namespace linklist\data\category;
-use wcf\data\category\ViewableCategoryNode;
+use wcf\data\category\CategoryNode;
 use wcf\data\DatabaseObject;
 
 /**
@@ -12,7 +12,7 @@ use wcf\data\DatabaseObject;
  * @package de.codequake.linklist
  */
  
-class LinklistCategoryNode extends ViewableCategoryNode{
+class LinklistCategoryNode extends CategoryNode{
 
     protected $subCategories = null;
     public $objectTypeName = 'de.codequake.linklist.category';

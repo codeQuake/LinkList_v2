@@ -120,4 +120,14 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
                                                     'object'    =>  $this
                                                 ));
       }
+      
+       public function isVisible() {
+            if($this->isActive == 0) {
+                return $this->getModeratorPermission('canSeeDeactivatedLink');
+            }
+            if($this->isDeleted == 1) {
+                return $this->getModeratorPermission('canSeeTrashedLink');
+            }
+            return $this->getPermission('canViewLink');
+        }
 }

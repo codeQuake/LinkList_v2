@@ -1,6 +1,6 @@
 <?php
 namespace linklist\data\category;
-use wcf\data\category\ViewableCategory;
+use wcf\data\category\AbstractDecoratedCategory;
 use wcf\system\category\CategoryPermissionHandler;
 use wcf\system\category\CategoryHandler;
 use wcf\system\exception\PermissionDeniedException;
@@ -16,7 +16,7 @@ use wcf\system\WCF;
  * @package de.codequake.linklist
  */
  
-class LinklistCategory extends ViewableCategory{
+class LinklistCategory extends AbstractDecoratedCategory{
      public static $objectTypeName = 'de.codequake.linklist.category';
      
      public function getPermission($permission = 'canViewCategory') {

@@ -2,7 +2,7 @@
 namespace linklist\page;
 use wcf\page\AbstractPage;
 
-use linklist\data\category\LinklistCategoryNodeList;
+use linklist\data\category\LinklistCategoryNodeTree;
 use wcf\system\dashboard\DashboardHandler;
 use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
 use wcf\system\WCF;
@@ -27,7 +27,8 @@ class IndexPage extends AbstractPage {
      */
     public function readData() {
         parent::readData();
-        $this->categoryList = new LinklistCategoryNodeList($this->objectTypeName);
+        $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
+        $this->categoryList = $categoryTree->getIterator();
         $this->categoryList->setMaxDepth(0);
   }
     /**
