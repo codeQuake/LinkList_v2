@@ -15,6 +15,8 @@ use wcf\system\language\LanguageFactory;
 use wcf\system\exception\NamedUserException;
 use wcf\system\exception\IllegalLinkException;
 
+use wcf\system\breadcrumb\Breadcrumb;
+
 /**
  * @author  Jens Krumsieck
  * @copyright   2013 codeQuake
@@ -55,6 +57,12 @@ class LinkAddForm extends MessageForm{
     
     public function readData(){
         parent::readData();
+        WCF::getBreadcrumbs()->add(new Breadcrumb(
+            WCF::getLanguage()->get('linklist.breadCrumbs.index'), 
+            LinkHandler::getInstance()->getLink('Index', array(
+                'application' => 'linklist'
+           ))
+        ));
         // read categories
         $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
         $this->categoryNodeList = $categoryTree->getIterator();
@@ -91,13 +99,19 @@ class LinkAddForm extends MessageForm{
         parent::assignVariables();
         WCF::getTPL()->assign(array('categoryNodeList'  =>  $this->categoryNodeList,
                                     'categoryID'    =>  $this->categoryID,
-                                    'username'  =>  $this->username));
+                                    'username'  =>  $this->username,
+                                    'action'    =>  $this->action));
+        
+
     }
-    
+    //TODO: Validate
     public function save(){
         parent::save();
+         if($this->languageID === null) {
+            $this->languageID = LanguageFactory::getInstance()->getDefaultLanguageID();
+        }
         
-        $data = array(  'url'   =>  'http://codequake.de/',
+        $data = array(  'url'   =>  $this->url,
                         'subject'   =>  $this->subject,
                         'categoryID'    =>  $this->categoryID,
                         'message'   =>  $this->text,
