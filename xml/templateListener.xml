@@ -5,7 +5,13 @@
       <environment>user</environment>
       <templatename>footer</templatename>
       <eventname>copyright</eventname>
-      <templatecode><![CDATA[{if @$__linklist->isActiveApplication()}<address class="copyright marginTop"><a href="http://codequake.de" title="">Software: <strong>Linkliste {@PACKAGE_VERSION}</strong>, entwickelt von <strong>codeQuake</strong></a></address>{/if}]]></templatecode>
+      <templatecode><![CDATA[{if $__linklist->isActiveApplication()}<address class="copyright marginTop"><a href="http://codequake.de" title="">Software: <strong>Linkliste {@PACKAGE_VERSION}</strong>, entwickelt von <strong>codeQuake</strong></a></address>{/if}]]></templatecode>
+    </templatelistener>
+    <templatelistener name="linklistStyles">
+      <environment>user</environment>
+      <templatename>headInclude</templatename>
+      <eventname>stylesheets</eventname>
+      <templatecode><![CDATA[<link rel="stylesheet/less" type="text/css" href="style/linklist.less" />]]></templatecode>
     </templatelistener>
   </import>
 </data>

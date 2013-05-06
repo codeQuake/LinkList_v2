@@ -1,7 +1,7 @@
 <?php
 namespace linklist\form;
 
-use linklist\data\category\LinklistCategoryNodeList;
+use linklist\data\category\LinklistCategoryNodeTree;
 use linklist\data\category\LinklistCategory;
 use linklist\data\link\LinkAction;
 
@@ -56,8 +56,8 @@ class LinkAddForm extends MessageForm{
     public function readData(){
         parent::readData();
         // read categories
-        $this->categoryNodeList = new LinklistCategoryNodeList($this->objectTypeName);
-        
+        $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
+        $this->categoryNodeList = $categoryTree->getIterator();
         
        // default values
         if (!count($_POST)) {
