@@ -29,11 +29,5 @@ class LINKLISTCore extends AbstractApplication {
 		}
 		
 		PageMenu::getInstance()->setActiveMenuItem('linklist.pageMenu.index');
-		WCF::getBreadcrumbs()->add(new Breadcrumb(
-			WCF::getLanguage()->get('linklist.breadCrumbs.index'), 
-			LinkHandler::getInstance()->getLink('Index', array(
-				'application' => 'linklist'
-			))
-		));
 	}
 }

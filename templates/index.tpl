@@ -12,8 +12,7 @@
 
 <header class="boxHeadline">
 	<hgroup>
-		<h1>{PAGE_TITLE|language}</h1>
-		{hascontent}<h2>{content}{PAGE_DESCRIPTION|language}{/content}</h2>{/hascontent}
+		<h1>{lang}linklist.page.index{/lang}</h1>
 	</hgroup>
 </header>
 
