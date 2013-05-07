@@ -2,6 +2,7 @@
 namespace linklist\data\category;
 use wcf\data\category\CategoryNode;
 use wcf\data\DatabaseObject;
+use linklist\data\link\ViewableLinkList;
 
 /**
  * Represents a category node
@@ -15,6 +16,7 @@ use wcf\data\DatabaseObject;
 class LinklistCategoryNode extends CategoryNode{
 
     protected $subCategories = null;
+    protected $links = null;
     public $objectTypeName = 'de.codequake.linklist.category';
     
     protected function fulfillsConditions(DatabaseObject $category) {
@@ -33,6 +35,15 @@ class LinklistCategoryNode extends CategoryNode{
             if($depth > 0) $this->subCategories->setMaxDepth($depth);
         }
         return $this->subCategories;
+    }
+    
+    public function getLinks(){
+        if($this->links === null){
+            $linksList = new ViewableLinkList();
+            $linkslist->readObjects();
+            $this->links = $linkslist->getObjects();
+        }
+        return $this->links;
     }
 
 }
