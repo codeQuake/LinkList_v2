@@ -21,7 +21,7 @@ class LinkPage extends AbstractPage{
     }
     
     public function readData(){
-        parent::readData();        
+        parent::readData();
         WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.page.index'), LinkHandler::getInstance()->getLink('Index')));
         //WCF::getBreadCrumbs()->add(new Breadcrumb());
         
