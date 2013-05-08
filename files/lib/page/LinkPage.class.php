@@ -16,14 +16,23 @@ class LinkPage extends AbstractPage{
     public function readParameters(){
         parent::readParameters();
         if(isset($_GET['id'])) $this->linkID = intval($_GET['id']);
-        $this->link = new Link($this->linkID);        
-        if($this->link === null) throw new IllegalLinkException();
     }
     
     public function readData(){
-        parent::readData();
+        parent::readData();        
+        $this->link = new Link($this->linkID);        
+        if($this->link === null) throw new IllegalLinkException();
         WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.page.index'), LinkHandler::getInstance()->getLink('Index')));
-        //WCF::getBreadCrumbs()->add(new Breadcrumb());
+        foreach($this->link->getCategory()->getParentCategories()    AS $categoryItem) {
+                                  WCF::getBreadcrumbs()->add(new Breadcrumb($categoryItem->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
+                                      'application' => 'linklist',
+                                      'object' => $categoryItem
+          ))));
+          }
+          WCF::getBreadcrumbs()->add(new Breadcrumb($this->link->getCategory()->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
+          'application' => 'linklist',
+          'object' => $this->link->getCategory()
+            ))));
         
     }
     public function assignVariables(){
