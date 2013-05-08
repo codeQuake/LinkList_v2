@@ -30,6 +30,12 @@
                                 <h2><small><a href="{link application='linklist' controller='Category' object=$link->getCategory()}{/link}">{$link->getCategory()->getTitle()|language}</a></small></h2>
                             </div>
                         </li>
+                        <li class="box24">
+                            <div class="sidebarBoxHeadline" style="margin-top: 10px;">
+                                <h1>{lang}linklist.link.sidebar.visits{/lang}</h1>
+                                <h2><small>{$link->visits}</small></h2>
+                            </div>
+                        </li>
                         
                     </ul>
                 </div>
