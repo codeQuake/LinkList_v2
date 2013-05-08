@@ -55,7 +55,6 @@
     </div>
     <div>
         <a class="button" href="{link controller='LinkVisit' object=$link}{/link}"><h1 style="font-size:120%;">{lang}linklist.link.sidebar.visit{/lang}</h1></a>
-
     </div>
  
 
