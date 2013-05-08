@@ -11,7 +11,7 @@
                         </h1>
                         {hascontent}
                             <h2 class="linklistCategoryDescription">
-                                {content}{$categoryItem->description|language}{/content} {$categoryItem->getLinks()}
+                                {content}{$categoryItem->description|language}{/content}
                             </h2>
                         {/hascontent}
                         {if $categoryItem->hasChildren()}

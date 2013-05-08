@@ -43,7 +43,8 @@ class IndexPage extends AbstractPage {
         WCF::getTPL()->assign(array(
             'categoryList' => $this->categoryList,
             'sidebarCollapsed'	=> UserCollapsibleContentHandler::getInstance()->isCollapsed('com.woltlab.wcf.collapsibleSidebar', 'de.codequake.linklist.index'),
-            'sidebarName' => 'de.codequake.linklist.index'
+            'sidebarName' => 'de.codequake.linklist.index',
+            'allowSpidersToIndexThisPage'   =>  true
         ));
     }
 }

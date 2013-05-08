@@ -6,6 +6,9 @@ use linklist\data\category\LinklistCategoryNodeTree;
 use linklist\data\category\LinklistCategoryNode;
 use linklist\data\category\LinklistCategory;
 use wcf\system\WCF;
+use wcf\system\category\CategoryHandler;
+use wcf\system\request\LinkHandler;
+use wcf\system\breadcrumb\Breadcrumb;
 /**
  * Shows the category page.
  *
@@ -49,6 +52,10 @@ class CategoryPage extends SortablePage {
         $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName, $this->categoryID);
         $this->categoryList = $categoryTree->getIterator();
         $this->categoryList->setMaxDepth(0);
+        $category= CategoryHandler::getInstance()->getCategory($this->categoryID);
+        if($category !== null) $this->category = new LinklistCategory($category);
+        if($this->category === null) throw new IllegalLinkException();
+        WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.page.index'), LinkHandler::getInstance()->getLink('Index')));
   }
     /**
      * @see wcf\page\IPage::assignVariables()
@@ -60,7 +67,8 @@ class CategoryPage extends SortablePage {
         WCF::getTPL()->assign(array(
             'categoryList' => $this->categoryList,
             'categoryID' => $this->categoryID,
-            'category' => $this->category
+            'category' => $this->category,
+            'allowSpidersToIndexThisPage'   =>  true
         ));
     }
 }
