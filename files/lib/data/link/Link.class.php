@@ -98,6 +98,15 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
     public function getUsername() {
         return $this->username;
     }
+    public function updateVisits(){
+        $visits = $this->visits + 1;
+        $sql = "UPDATE ".static::getDatabaseTableName()."
+                SET visits = ".$visits."
+                WHERE ".static::getDatabaseTableIndexName()." = ?";
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute(array($this->linkID));
+        
+    }
     
     public function getExcerpt($maxLength = 255, $highlight=false) {
         if(!$highlight) MessageParser::getInstance()->setOutputType('text/plain');
