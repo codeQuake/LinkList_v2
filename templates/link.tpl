@@ -18,20 +18,20 @@
                                 <h2><small>{$link->getTitle()|language}</small></h2>
                             </div>
                         </li>
-                        <li class="box24">
-                            <div class="sidebarBoxHeadline" style="margin-top: 10px;">
+                        <li class="box24" style="margin-top: 20px;">
+                            <div class="sidebarBoxHeadline">
                                 <h1>{lang}linklist.link.sidebar.author{/lang}</h1>
                                 <h2><small><a href="{link controller='User' id=$link->getUserID() title=$link->getUsername()}{/link}">{$link->getUsername()}</a></small></h2>
                             </div>
                         </li>
-                        <li class="box24">
-                            <div class="sidebarBoxHeadline" style="margin-top: 10px;">
+                        <li class="box24" style="margin-top: 20px;">
+                            <div class="sidebarBoxHeadline">
                                 <h1>{lang}linklist.link.sidebar.category{/lang}</h1>
                                 <h2><small><a href="{link application='linklist' controller='Category' object=$link->getCategory()}{/link}">{$link->getCategory()->getTitle()|language}</a></small></h2>
                             </div>
                         </li>
-                        <li class="box24">
-                            <div class="sidebarBoxHeadline" style="margin-top: 10px;">
+                        <li class="box24"  style="margin-top: 20px;">
+                            <div class="sidebarBoxHeadline">
                                 <h1>{lang}linklist.link.sidebar.visits{/lang}</h1>
                                 <h2><small>{$link->visits}</small></h2>
                             </div>
@@ -72,7 +72,7 @@
 					<section class="messageContent">
 						<div>
 							<div class="messageBody">
-								<div class="messageText"style="border: none;">
+								<div class="messageText" style="border: none;">
 									<div>
 										{@$link->getFormattedMessage()}
 									</div>
