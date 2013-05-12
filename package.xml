@@ -31,6 +31,9 @@
     <requiredpackage minversion="1.0.0 Alpha 1" file="requirements/com.woltlab.wcf.poll.tar">com.woltlab.wcf.poll</requiredpackage>
   </requiredpackages>
   <instructions type="install">
+    <!--lang-->
+    <instruction type="language">language/*.xml</instruction>
+    
     <!--tar-->
     <instruction type="file">files.tar</instruction>
     <instruction type="template">templates.tar</instruction>

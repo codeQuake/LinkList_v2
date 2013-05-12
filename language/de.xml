@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/language.xsd" languagename="Deutsch" countrycode="de" languagecode="de">
+  <category name="linklist.pageMenu">
+    <item name="linklist.pageMenu.index"><![CDATA[Links]]></item>
+  </category>
+  <category name="linklist.index">
+    <item name="linklist.index.title"><![CDATA[Links]]></item>
+  </category>
+  <category name="linklist.links">
+    <item name="linklist.links.list"><![CDATA[Links]]></item>
+    <item name="linklist.links.title"><![CDATA[Titel]]></item>
+    <item name="linklist.links.visit"><![CDATA[Besuche]]></item>
+    <item name="linklist.links.time"><![CDATA[Zeit]]></item>
+  </category>
+
+  <category name="linklist.link">
+    <item name="linklist.link.add"><![CDATA[Link hinzufügen]]></item>
+    <item name="linklist.link.sidebar.info"><![CDATA[Informationen]]></item>
+    <item name="linklist.link.sidebar.title"><![CDATA[Titel]]></item>
+    <item name="linklist.link.sidebar.author"><![CDATA[Hinzugefügt von]]></item>
+    <item name="linklist.link.sidebar.category"><![CDATA[Zugehörige Kategorie]]></item>
+    <item name="linklist.link.sidebar.visits"><![CDATA[Besuche]]></item>
+    <item name="linklist.link.sidebar.visit"><![CDATA[Seite besuchen]]></item>
+    <item name="linklist.link.tabs.link"><![CDATA[Link]]></item>
+  </category>
+</language>

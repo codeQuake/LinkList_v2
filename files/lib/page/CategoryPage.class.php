@@ -27,8 +27,13 @@ class CategoryPage extends SortablePage {
     public $objectTypeName = 'de.codequake.linklist.category';
     public $category;
     public $objectListClassName = 'linklist\data\link\LinkList';
-    public $defaultSortField = 'time';
+    
     public $validSortFields = array('title', 'time', 'visits');
+    
+    //build options
+    public $itemsPerPage = 10;
+    public $defaultSortField = 'time';
+    public $defaultSortOrder = 'DESC';
     
     
     protected function initObjectList() {
@@ -55,7 +60,7 @@ class CategoryPage extends SortablePage {
         $category= CategoryHandler::getInstance()->getCategory($this->categoryID);
         if($category !== null) $this->category = new LinklistCategory($category);
         if($this->category === null) throw new IllegalLinkException();
-        WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.page.index'), LinkHandler::getInstance()->getLink('Index')));
+        WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('Index')));
   }
     /**
      * @see wcf\page\IPage::assignVariables()
