@@ -28,7 +28,7 @@ class CategoryPage extends SortablePage {
     public $category;
     public $objectListClassName = 'linklist\data\link\LinkList';
     public $defaultSortField = 'time';
-    public $validSortFields = array('title', 'time');
+    public $validSortFields = array('title', 'time', 'visits');
     
     
     protected function initObjectList() {

@@ -31,6 +31,11 @@
                             {lang}linklist.links.time{/lang}
                         </a>
                     </th>
+                  <th>
+                       <a href="{link application='linklist' controller='Category' id=$categoryID} pageNo={@$pageNo}&sortField=visits&sortOrder={if $sortField== 'visits' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
+                             {lang}linklist.links.visits{/lang}
+                        </a>
+                    </th>
                     {event name='columnHeads'}
                 </tr>
             </thead>
@@ -45,13 +50,16 @@
                             <td class="columnTime">
                                 {$link->time|datediff}
                             </td>
+                            <td class="columnTime">
+                                {$link->visits}
+                            </td>
                             {event name='columns'}
                         </tr>
                     {/foreach}
                 {/content}{/hascontent}
             </tbody>
         </table>
-    </div>
+    </div>  
 
 <div class="contentNavigation">
     {@$pagesLinks}

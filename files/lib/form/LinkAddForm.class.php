@@ -12,9 +12,8 @@ use wcf\util\StringUtil;
 use wcf\util\HeaderUtil;
 use wcf\system\request\LinkHandler;
 use wcf\system\language\LanguageFactory;
-use wcf\system\exception\NamedUserException;
 use wcf\system\exception\IllegalLinkException;
-
+use wcf´\system\exception\UserInputException;
 use wcf\system\breadcrumb\Breadcrumb;
 
 /**
@@ -104,7 +103,27 @@ class LinkAddForm extends MessageForm{
         
 
     }
-    //TODO: Validate
+    
+    public function validate(){
+        parent::validate();
+        
+        //user
+        if (WCF::getUser()->userID == 0) {
+            if (empty($this->username)) {
+                throw new UserInputException('username');
+            }
+            if (!UserUtil::isValidUsername($this->username)) {
+                throw new UserInputException('username', 'notValid');
+            }
+            if (!UserUtil::isAvailableUsername($this->username)) {
+                throw new UserInputException('username', 'notAvailable');
+            }
+
+            WCF::getSession()->register('username', $this->username);
+        }
+        
+        //url TODO
+    }
     public function save(){
         parent::save();
          if($this->languageID === null) {
@@ -122,6 +141,7 @@ class LinkAddForm extends MessageForm{
                         'enableSmilies' =>  $this->enableSmilies,
                         'enableHtml'    =>  $this->enableHtml,
                         'enableBBCodes' =>  $this->enableBBCodes,
+                        'visits'    =>  0,
                         'ipAddress'  =>  $_SERVER['REMOTE_ADDR']);
         $this->objectAction = new LinkAction(array(), 'create', $data);
         $resultvalues = $this->objectAction->executeAction();
