@@ -9,7 +9,7 @@
   <category name="linklist.links">
     <item name="linklist.links.list"><![CDATA[Links]]></item>
     <item name="linklist.links.title"><![CDATA[Titel]]></item>
-    <item name="linklist.links.visit"><![CDATA[Besuche]]></item>
+    <item name="linklist.links.visits"><![CDATA[Besuche]]></item>
     <item name="linklist.links.time"><![CDATA[Zeit]]></item>
   </category>
 
