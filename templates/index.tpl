@@ -12,7 +12,7 @@
 
 <header class="boxHeadline">
 	<hgroup>
-		<h1>{lang}linklist.page.index{/lang}</h1>
+		<h1>{lang}linklist.index.title{/lang}</h1>
 	</hgroup>
 </header>
 
