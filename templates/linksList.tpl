@@ -48,7 +48,7 @@
                                 <a href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
                             </td>
                             <td class="columnTime">
-                                {$link->time|datediff}
+                                {$link->time|DateDiff}
                             </td>
                             <td class="columnTime">
                                 {$link->visits}
