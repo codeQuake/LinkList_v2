@@ -16,6 +16,7 @@
   <category name="linklist.link">
     <item name="linklist.link.add"><![CDATA[Link hinzufügen]]></item>
     <item name="linklist.link.linkEdit"><![CDATA[Link bearbeiten]]></item>
+    <item name="linklist.link.linkAdd"><![CDATA[Link hinzufügen]]></item>
     
     <item name="linklist.link.sidebar.info"><![CDATA[Informationen]]></item>
     <item name="linklist.link.sidebar.title"><![CDATA[Titel]]></item>
