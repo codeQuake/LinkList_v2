@@ -2,7 +2,7 @@
 namespace linklist\data\category;
 use wcf\data\category\CategoryNode;
 use wcf\data\DatabaseObject;
-use linklist\data\link\ViewableLinkList;
+use linklist\data\link\LinkList;
 
 /**
  * Represents a category node
@@ -39,9 +39,9 @@ class LinklistCategoryNode extends CategoryNode{
     
     public function getLinks(){
         if($this->links === null){
-            $linksList = new ViewableLinkList();
-            $linkslist->readObjects();
-            $this->links = $linkslist->getObjects();
+            $links = new LinkList();
+            $links->sqlConditionJoins = 'WHERE categoryID = '.$this->categoryID;
+            $this->links = $links->countObjects();
         }
         return $this->links;
     }
