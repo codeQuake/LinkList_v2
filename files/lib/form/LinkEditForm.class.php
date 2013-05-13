@@ -26,16 +26,31 @@ class LinkEditForm extends MessageForm {
 	
     public function readParameters(){
         parent::readParameters();
-        if($_REQUEST['id']) $this->linkID = intval($_REQUEST['id']);
+        if(isset($_GET['id'])) $this->linkID = intval($_GET['id']);
         $this->link = new Link($this->linkID);
-        if(!$this->link->linkID) throw new IllegalLinkException();
+        if($this->link->linkID == 0) throw new IllegalLinkException();
     }
 	public function readData() {
 		parent::readData();
 		$this->subject = $this->link->getTitle();
         $this->url = $this->link->url;
         $this->text = $this->link->message;
+        
+        WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('Index')));
+        foreach($this->link->getCategory()->getParentCategories()    AS $categoryItem) {
+                                  WCF::getBreadcrumbs()->add(new Breadcrumb($categoryItem->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
+                                      'application' => 'linklist',
+                                      'object' => $categoryItem
+          ))));
+          }
+        WCF::getBreadcrumbs()->add(new Breadcrumb($this->link->getCategory()->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
+          'application' => 'linklist',
+          'object' => $this->link->getCategory()
+            ))));
+        WCF::getBreadcrumbs()->add(new Breadcrumb($this->link->getTitle(), LinkHandler::getInstance()->getLink('Link', array('application'  => 'linklist',
+                                                                                                                             'object'   =>  $this->link))));
 	}
+    
 
 	public function assignVariables() {
 		parent::assignVariables();

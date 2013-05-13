@@ -21,7 +21,7 @@ class LinkPage extends AbstractPage{
     public function readData(){
         parent::readData();        
         $this->link = new Link($this->linkID);        
-        if($this->link === null) throw new IllegalLinkException();
+        if($this->link === null | $this->link->linkID == 0) throw new IllegalLinkException();
         WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('Index')));
         foreach($this->link->getCategory()->getParentCategories()    AS $categoryItem) {
                                   WCF::getBreadcrumbs()->add(new Breadcrumb($categoryItem->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
