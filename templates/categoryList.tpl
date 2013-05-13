@@ -6,12 +6,13 @@
                 <span class="icon icon32 icon-folder-close-alt"></span>
                 <div>
                     <hgroup class="containerHeadline">
-                        <h1>
+                      {$categoryItem->getLinks()}
+                      <h1>
                             <a href="{link application='linklist' controller='Category' id=$categoryItem->categoryID title=$categoryItem->getTitle()|language}{/link}">{$categoryItem->getTitle()}</a>
                         </h1>
                         {hascontent}
                             <h2 class="linklistCategoryDescription">
-                              {content}{$categoryItem->description|language}{/content}{$categoryItem->getLinks()}
+                              {content}{$categoryItem->description|language}{/content}
                             </h2>
                         {/hascontent}
                         {if $categoryItem->hasChildren()}
