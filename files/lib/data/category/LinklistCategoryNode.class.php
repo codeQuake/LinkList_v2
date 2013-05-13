@@ -17,6 +17,7 @@ class LinklistCategoryNode extends CategoryNode{
 
     protected $subCategories = null;
     protected $links = null;
+    protected $visits = null;
     public $objectTypeName = 'de.codequake.linklist.category';
     
     protected function fulfillsConditions(DatabaseObject $category) {
@@ -44,6 +45,20 @@ class LinklistCategoryNode extends CategoryNode{
             $this->links = $links->countObjects();
         }
         return $this->links;
+    }
+    
+    public function countVisits(){
+        if($this->visits === null){
+            $this->visits = 0;
+            $links = new Linklist();
+            $links->sqlJoins = 'WHERE categoryID = '.$this->categoryID;
+            $links->readObjects();
+            $linklist = $links->getObjects();
+            foreach ($linklist as $linkitem){
+                $this->visits = $this->visits + $linkitem->visits;
+            }
+        }
+        return $this->visits;
     }
 
 }

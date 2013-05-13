@@ -15,6 +15,8 @@
 
   <category name="linklist.link">
     <item name="linklist.link.add"><![CDATA[Link hinzufügen]]></item>
+    <item name="linklist.link.linkEdit"><![CDATA[Link bearbeiten]]></item>
+    
     <item name="linklist.link.sidebar.info"><![CDATA[Informationen]]></item>
     <item name="linklist.link.sidebar.title"><![CDATA[Titel]]></item>
     <item name="linklist.link.sidebar.author"><![CDATA[Hinzugefügt von]]></item>
@@ -22,5 +24,31 @@
     <item name="linklist.link.sidebar.visits"><![CDATA[Besuche]]></item>
     <item name="linklist.link.sidebar.visit"><![CDATA[Seite besuchen]]></item>
     <item name="linklist.link.tabs.link"><![CDATA[Link]]></item>
+    <item name="linklist.link.visit"><![CDATA[Seite besuchen]]></item>
+    <item name="linklist.link.edit"><![CDATA[Link bearbeiten]]></item>
+    
+    <item name="linklist.link.linkAdd.data"><![CDATA[Allgemeine Daten]]></item>
+    <item name="linklist.link.linkEdit.data"><![CDATA[Allgemeine Daten]]></item>
+    <item name="linklist.link.linkAdd.category"><![CDATA[Kategorie]]></item>
+    <item name="linklist.link.linkAdd.title"><![CDATA[Titel]]></item>
+    <item name="linklist.link.linkEdit.title"><![CDATA[Titel]]></item>
+    <item name="linklist.link.linkAdd.url"><![CDATA[URL-Adresse]]></item>
+    <item name=" linklist.link.linkEdit.url"><![CDATA[URL-Adresse]]></item>
+    <item name="linklist.link.linkAdd.text"><![CDATA[Nachricht]]></item>
+    <item name="linklist.link.linkEdit.text"><![CDATA[Nachricht]]></item>
+  </category>
+
+  <category name="linklist.acp.menu">
+    <item name="linklist.acp.menu.link.linklist.category"><![CDATA[Linkliste: Kategorien]]></item>
+    <item name="linklist.acp.menu.link.linklist.category.add"><![CDATA[Kategorie hinzufügen]]></item>
+    <item name="linklist.acp.menu.link.linklist.category.list"><![CDATA[Kategorien]]></item>
+  </category>
+
+  <category name="wcf.acl.option">
+    <item name="wcf.acl.option.category.de.codequake.linklist.category.user.linklist.category"><![CDATA[Benutzerrechte]]></item>
+    <item name="wcf.acl.option.category.de.codequake.linklist.category.mod.linklist.category"><![CDATA[Moderative Rechte]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canViewCategory"><![CDATA[Kann Kategorie sehen]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canEnterCategory"><![CDATA[Kann Kategorie betreten]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canManagePermissions"><![CDATA[Kann Zugriffsrechte bearbeiten]]></item>
   </category>
 </language>
