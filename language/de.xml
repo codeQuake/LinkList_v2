@@ -34,7 +34,7 @@
     <item name="linklist.link.linkAdd.title"><![CDATA[Titel]]></item>
     <item name="linklist.link.linkEdit.title"><![CDATA[Titel]]></item>
     <item name="linklist.link.linkAdd.url"><![CDATA[URL-Adresse]]></item>
-    <item name=" linklist.link.linkEdit.url"><![CDATA[URL-Adresse]]></item>
+    <item name="linklist.link.linkEdit.url"><![CDATA[URL-Adresse]]></item>
     <item name="linklist.link.linkAdd.text"><![CDATA[Nachricht]]></item>
     <item name="linklist.link.linkEdit.text"><![CDATA[Nachricht]]></item>
   </category>

@@ -37,8 +37,8 @@
 								</div>
 								<footer class="messageOptions contentOptions marginTop clearfix">
 									<div>
-										<a class="button" href="{link controller='LinkVisit' object=$link}{/link}"><h1>{lang}linklist.link.visit{/lang}</h1></a>
-										<a class="button" href="{link controller='LinkEdit' object=$link}{/link}"><h1>{lang}linklist.link.edit{/lang}</h1></a>
+										<a class="button" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><h1>{lang}linklist.link.visit{/lang}</h1></a>
+										<a class="button" href="{link application='linklist' controller='LinkEdit' object=$link}{/link}"><h1>{lang}linklist.link.edit{/lang}</h1></a>
 									</div>
 								</footer>
 							</div>
