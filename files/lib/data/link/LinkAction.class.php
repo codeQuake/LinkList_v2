@@ -21,6 +21,7 @@ class LinkAction extends AbstractDatabaseObjectAction{
      */
     protected $className = 'linklist\data\link\LinkEditor';
     
+    
     public $links = array();
     public $message = null;
     

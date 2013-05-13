@@ -10,6 +10,7 @@ use wcf\system\category\CategoryHandler;
 use wcf\form\MessageForm;
 use wcf\util\StringUtil;
 use wcf\util\HeaderUtil;
+use wcf\util\FileUtil;
 use wcf\system\request\LinkHandler;
 use wcf\system\language\LanguageFactory;
 use wcf\system\exception\IllegalLinkException;
@@ -99,7 +100,8 @@ class LinkAddForm extends MessageForm{
         WCF::getTPL()->assign(array('categoryNodeList'  =>  $this->categoryNodeList,
                                     'categoryID'    =>  $this->categoryID,
                                     'username'  =>  $this->username,
-                                    'action'    =>  $this->action));
+                                    'action'    =>  $this->action,
+                                    'url'   =>  $this->url));
         
 
     }
@@ -122,7 +124,10 @@ class LinkAddForm extends MessageForm{
             WCF::getSession()->register('username', $this->username);
         }
         
-        //url TODO
+        //url
+        /**if (!FileUtil::isURL($this->url)) {
+                throw new UserInputException('url', 'illegalURL');
+        }**/
     }
     public function save(){
         parent::save();
