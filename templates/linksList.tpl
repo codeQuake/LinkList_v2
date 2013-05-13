@@ -14,9 +14,9 @@
 
 {if $objects|count}
     <div class="tabularBox tabularBoxTitle marginTop">
-        <hgroup>
-            <h1>{lang}linklist.links.list{/lang} <span class="badge badgeInverse">{#$items}</span></h1>
-        </hgroup>
+        <header>
+            <h2>{lang}linklist.links.list{/lang} <span class="badge badgeInverse">{#$items}</span></h2>
+        </header>
 
         <table class="table">
             <thead>
@@ -26,16 +26,17 @@
                             {lang}linklist.links.title{/lang}
                         </a>
                     </th>
+                      <th>
+                       <a href="{link application='linklist' controller='Category' id=$categoryID} pageNo={@$pageNo}&sortField=visits&sortOrder={if $sortField== 'visits' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
+                             {lang}linklist.links.visits{/lang}
+                        </a>
+                    </th>
                     <th>
                         <a href="{link application='linklist' controller='Category' id=$categoryID} pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField== 'time' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
                             {lang}linklist.links.time{/lang}
                         </a>
                     </th>
-                  <th>
-                       <a href="{link application='linklist' controller='Category' id=$categoryID} pageNo={@$pageNo}&sortField=visits&sortOrder={if $sortField== 'visits' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
-                             {lang}linklist.links.visits{/lang}
-                        </a>
-                    </th>
+                    
                     {event name='columnHeads'}
                 </tr>
             </thead>
@@ -47,12 +48,13 @@
                             <td class="columnTitle">
                                 <a href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
                             </td>
+                          <td class="columnTime">
+                                {$link->visits}
+                            </td>
                             <td class="columnTime">
                                 {$link->time|DateDiff}
                             </td>
-                            <td class="columnTime">
-                                {$link->visits}
-                            </td>
+                            
                             {event name='columns'}
                         </tr>
                     {/foreach}
