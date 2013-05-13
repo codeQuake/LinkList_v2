@@ -5,6 +5,7 @@ use wcf\system\exception\IllegalLinkException;
 use wcf\system\breadcrumb\Breadcrumb;
 use wcf\system\request\LinkHandler;
 use wcf\page\AbstractPage;
+use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
 use wcf\system\WCF;
 
 class LinkPage extends AbstractPage{
@@ -38,7 +39,9 @@ class LinkPage extends AbstractPage{
     public function assignVariables(){
         parent::assignVariables();
         WCF::getTPL()->assign(array('link'  =>  $this->link,
-                                    'allowSpidersToIndexThisPage'   =>  true));
+                                    'allowSpidersToIndexThisPage'   =>  true,
+                                    'sidebarCollapsed'	=> UserCollapsibleContentHandler::getInstance()->isCollapsed('com.woltlab.wcf.collapsibleSidebar', 'de.codequake.linklist.link'),
+                                    'sidebarName' => 'de.codequake.linklist.link',));
     }
     
 

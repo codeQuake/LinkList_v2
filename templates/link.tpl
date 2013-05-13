@@ -8,7 +8,7 @@
 <body id="tpl{$templateName|ucfirst}">
     {include file='linkSidebar'}
 
-    {include file='header' sidebarOrientation='left'}
+    {include file='header' sidebarOrientation='right'}
     <header class="boxHeadline">
         <hgroup>
             <h1>{$link->getTitle()|language}</h1>
