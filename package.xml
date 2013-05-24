@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package name="de.codequake.linklist" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/package.xsd">
   <packageinformation>
-    <packagename>Linkliste (codename: Waterfall)</packagename>
+    <packagename>Linkliste (codename: Waterfall)</packagename> <!--codename: waterfall-->
     <packagedescription><![CDATA[Linklist for WCF 2.0]]></packagedescription>
     <isapplication>1</isapplication>
-    <version>2.0.0 dev 2</version>
+    <version>2.0.0 dev 3</version>
     <date>2013-04-12</date>
   </packageinformation>
   <authorinformation>
@@ -13,7 +13,7 @@
   </authorinformation>
 
   <requiredpackages>
-    <requiredpackage minversion="2.0.0 Alpha 1" file="requirements/com.woltlab.wcf.tar">com.woltlab.wcf</requiredpackage>
+    <requiredpackage minversion="2.0.0 Beta 1">com.woltlab.wcf</requiredpackage>
     <requiredpackage minversion="1.0.0 Alpha 1" file="requirements/com.woltlab.wcf.attachment.tar">com.woltlab.wcf.attachment</requiredpackage>
     <requiredpackage minversion="1.0.0 Alpha 1" file="requirements/com.woltlab.wcf.bbcode.tar">com.woltlab.wcf.bbcode</requiredpackage>
     <requiredpackage minversion="1.0.0 Alpha 1" file="requirements/com.woltlab.wcf.ckeditor.tar">com.woltlab.wcf.ckeditor</requiredpackage>
@@ -27,8 +27,6 @@
     <requiredpackage minversion="1.0.0 Alpha 1" file="requirements/com.woltlab.wcf.label.tar">com.woltlab.wcf.label</requiredpackage>
     <requiredpackage minversion="2.0.0 Alpha 1" file="requirements/com.woltlab.wcf.tagging.tar">com.woltlab.wcf.tagging</requiredpackage>
     <requiredpackage minversion="1.0.0 Alpha 1" file="requirements/com.woltlab.wcf.search.tar">com.woltlab.wcf.search</requiredpackage>
-    <requiredpackage minversion="1.0.0 Alpha 1" file="requirements/com.woltlab.wcf.conversation.tar">com.woltlab.wcf.conversation</requiredpackage>
-    <requiredpackage minversion="1.0.0 Alpha 1" file="requirements/com.woltlab.wcf.poll.tar">com.woltlab.wcf.poll</requiredpackage>
   </requiredpackages>
   <instructions type="install">
     <!--lang-->
