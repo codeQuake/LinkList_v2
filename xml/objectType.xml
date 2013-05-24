@@ -19,15 +19,15 @@
     </type>
     <!--index page-->
     <type>
-      <name>de.codequake.linklist.IndexPage</name>
+      <name>de.codequake.linklist.CategoryListPage</name>
       <definitionname>com.woltlab.wcf.user.dashboardContainer</definitionname>
       <allowSidebar>1</allowSidebar>
     </type>
     <type>
-      <name>de.codequake.linklist.IndexPage</name>
+      <name>de.codequake.linklist.CategoryListPage</name>
       <definitionname>com.woltlab.wcf.user.online.location</definitionname>
-      <controller>linklist\page\indexPage</controller>
-      <languagevariable>wcf.user.usersOnline.location.indexPage</languagevariable>
+      <controller>linklist\page\CategoryListPage</controller>
+      <languagevariable>wcf.user.usersOnline.location.categoryListPage</languagevariable>
     </type>
 
 

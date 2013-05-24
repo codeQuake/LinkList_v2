@@ -7,14 +7,14 @@ use wcf\system\dashboard\DashboardHandler;
 use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
 use wcf\system\WCF;
 /**
- * Shows the index page.
+ * Shows the categorylist
  *
  * @author	Jens Krumsieck
  * @copyright	2013 codeQuake
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.linklist
  */
-class IndexPage extends AbstractPage {
+class CategPage extends AbstractPage {
     /**
      * @see	wcf\page\AbstractPage::$enableTracking
      */
@@ -38,7 +38,7 @@ class IndexPage extends AbstractPage {
         parent::assignVariables();
 
         //dashboard
-        DashboardHandler::getInstance()->loadBoxes('de.codequake.linklist.IndexPage', $this);
+        DashboardHandler::getInstance()->loadBoxes('de.codequake.linklist.CategoryListPage', $this);
 
         WCF::getTPL()->assign(array(
             'categoryList' => $this->categoryList,
