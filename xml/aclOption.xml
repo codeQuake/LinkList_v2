@@ -8,6 +8,12 @@
       <category name="mod.linklist.category">
         <objecttype>de.codequake.linklist.category</objecttype>
       </category>
+      <category name="user.linklist.link">
+        <objecttype>de.codequake.linklist.category</objecttype>
+      </category>
+      <category name="mod.linklist.link">
+        <objecttype>de.codequake.linklist.category</objecttype>
+      </category>
     </categories>
     
 
@@ -21,11 +27,45 @@
           <categoryname>user.linklist.category</categoryname>
           <objecttype>de.codequake.linklist.category</objecttype>
         </option>
+      
 
       <!--mod.category-->
-      <option name="canManagePermissions">
-        <categoryname>mod.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
+     
+      <!--user.link-->
+      <option name="canViewLinks">
+        <categoryname>user.linklist.link</categoryname>
+        <objecttype>de.codequake.linklist.link</objecttype>
+      </option>
+
+      <option name="canAddLinks">
+        <categoryname>user.linklist.link</categoryname>
+        <objecttype>de.codequake.linklist.link</objecttype>
+      </option>
+
+      <option name="canEditOwnLinks">
+        <categoryname>user.linklist.link</categoryname>
+        <objecttype>de.codequake.linklist.link</objecttype>
+      </option>
+      
+      <!--mod.link-->
+      <option name="canEditLinks">
+        <categoryname>mod.linklist.link</categoryname>
+        <objecttype>de.codequake.linklist.link</objecttype>
+      </option>
+      
+      <option name="canDeleteLinks">
+        <categoryname>mod.linklist.link</categoryname>
+        <objecttype>de.codequake.linklist.link</objecttype>
+      </option>
+
+      <option name="canTrashLinks">
+        <categoryname>mod.linklist.link</categoryname>
+        <objecttype>de.codequake.linklist.link</objecttype>
+      </option>
+
+      <option name="canToggleLinks">
+        <categoryname>mod.linklist.link</categoryname>
+        <objecttype>de.codequake.linklist.link</objecttype>
       </option>
     </options>
   </import>
