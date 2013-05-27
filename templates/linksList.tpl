@@ -13,7 +13,7 @@
 </div>
 
 {if $objects|count}
-    <div class="tabularBox tabularBoxTitle marginTop">
+    <div class="tabularBox tabularBoxTitle marginTop jsClipboardContainer" data-type="de.codequake.linklist.link">
         <header>
             <h2>{lang}linklist.links.list{/lang} <span class="badge badgeInverse">{#$items}</span></h2>
         </header>
@@ -21,6 +21,9 @@
         <table class="table">
             <thead>
                 <tr>
+                  <th class="columnMark jsOnly"><label>
+                    <input type="checkbox" class="jsClipboardMarkAll" />
+                  </label></th>
                     <th class="columnTitle columnLink {if $sortField == 'subject'}active {@$sortOrder}{/if}">
                         <a href="{link application='linklist' controller='Category' id=$categoryID} pageNo={@$pageNo}&sortField=subject&sortOrder={if $sortField== 'subject' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
                             {lang}linklist.links.title{/lang}
@@ -44,7 +47,12 @@
             <tbody>
                 {hascontent}{content}
                     {foreach from=$objects item=link}
-                        <tr class="jsLinkRow">
+                        <tr class="jsClipboardObject link" data-article-id="{@$link->linkID}" data-category-id="{@$link->categoryID}">
+                          <td class="columnMark jsOnly">
+                            <label>
+                              <input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" />
+                            </label>
+                          </td>
                             <td class="columnTitle">
                                 <a href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
                             </td>

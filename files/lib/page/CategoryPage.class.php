@@ -6,8 +6,10 @@ use linklist\data\category\LinklistCategoryNodeTree;
 use linklist\data\category\LinklistCategoryNode;
 use linklist\data\category\LinklistCategory;
 use wcf\system\WCF;
+
 use wcf\system\category\CategoryHandler;
 use wcf\system\request\LinkHandler;
+use wcf\system\clipboard\ClipboardHandler;
 use wcf\system\breadcrumb\Breadcrumb;
 /**
  * Shows the category page.
@@ -73,6 +75,7 @@ class CategoryPage extends SortablePage {
             'categoryList' => $this->categoryList,
             'categoryID' => $this->categoryID,
             'category' => $this->category,
+            'hasMarkedItems' => ClipboardHandler::getInstance()->hasMarkedItems(ClipboardHandler::getInstance()->getObjectTypeID('de.codequake.linklist.link')),
             'allowSpidersToIndexThisPage'   =>  true
         ));
     }

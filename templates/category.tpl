@@ -4,6 +4,11 @@
 	<title>{$category->getTitle()|language} - {PAGE_TITLE|language}</title>
 	
 	{include file='headInclude' sandbox=false}
+		<script type="text/javascript">
+		//<![CDATA[
+		WCF.Clipboard.init('linklist\\page\\CategoryPage', {@$hasMarkedItems}, { });
+		//]]>
+		</script>
 </head>
 
 <body id="tpl{$templateName|ucfirst}">
