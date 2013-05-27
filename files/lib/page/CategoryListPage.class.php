@@ -14,8 +14,10 @@ use wcf\system\WCF;
  * @license	GNU Lesser General Public License <http://www.gnu.org/licenses/lgpl-3.0.txt>
  * @package	de.codequake.linklist
  */
-class CategPage extends AbstractPage {
-    /**
+class CategoryListPage extends AbstractPage {
+    
+    public $templateName = 'categoryListIndex';
+        /**
      * @see	wcf\page\AbstractPage::$enableTracking
      */
     public $enableTracking = true;
