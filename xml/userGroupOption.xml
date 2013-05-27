@@ -30,7 +30,8 @@
         <parent>admin.linklist</parent>
       </category>
     </categories>
-
+    
+    <!-- Categories-->
     <options>
       <option name="admin.linklist.category.canListCategory">
         <categoryname>admin.linklist.category</categoryname>
@@ -44,12 +45,14 @@
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
+      
       <option name="admin.linklist.category.canDeleteCategory">
         <categoryname>admin.linklist.category</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
+      
       <option name="admin.linklist.category.canEditCategory">
         <categoryname>admin.linklist.category</categoryname>
         <optiontype>boolean</optiontype>
@@ -63,12 +66,36 @@
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
+      
+      <!--Links-->
+      <option name="user.linklist.link.canView">
+        <categoryname>user.linklist.link</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>1</defaultvalue>
+        <admindefaultvalue>1</admindefaultvalue>
+      </option>
+      
       <option name="user.linklist.link.canAdd">
         <categoryname>user.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
+      
+      <option name="mod.linklist.link.canDelete">
+        <categoryname>mod.linklist.link</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>0</defaultvalue>
+        <admindefaultvalue>1</admindefaultvalue>
+      </option>
+      
+      <option name="mod.linklist.link.canEdit">
+        <categoryname>mod.linklist.link</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>0</defaultvalue>
+        <admindefaultvalue>1</admindefaultvalue>
+      </option>
+      
     </options>
   </import>
 </data>
