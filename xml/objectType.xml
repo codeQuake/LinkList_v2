@@ -32,7 +32,11 @@
       <name>de.codequake.linklist.link</name>
       <definitionname>com.woltlab.wcf.acl</definitionname>
     </type>
-    
 
+    <type>
+      <name>de.codequake.linklist.link</name>
+      <definitionname>com.woltlab.wcf.clipboardItem</definitionname>
+      <listclassname>linklist\data\link\LinkList</listclassname>
+    </type>
   </import>
 </data>
