@@ -12,11 +12,8 @@
       <name>de.codequake.linklist.category</name>
       <definitionname>com.woltlab.wcf.acl</definitionname>
     </type>
+  
     
-    <type>
-      <name>de.codequake.linklist.category</name>
-      <definitionname>com.woltlab.wcf.visitTracker.objectType</definitionname>
-    </type>
     <!--index page-->
     <type>
       <name>de.codequake.linklist.CategoryListPage</name>
@@ -29,7 +26,13 @@
       <controller>linklist\page\CategoryListPage</controller>
       <languagevariable>wcf.user.usersOnline.location.categoryListPage</languagevariable>
     </type>
-
+    
+    <!--link-->
+    <type>
+      <name>de.codequake.linklist.link</name>
+      <definitionname>com.woltlab.wcf.acl</definitionname>
+    </type>
+    
 
   </import>
 </data>
