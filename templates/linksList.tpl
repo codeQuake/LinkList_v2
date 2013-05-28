@@ -25,17 +25,17 @@
                     <input type="checkbox" class="jsClipboardMarkAll" />
                   </label></th>
                     <th class="columnTitle columnLink {if $sortField == 'subject'}active {@$sortOrder}{/if}">
-                        <a href="{link application='linklist' controller='Category' id=$categoryID} pageNo={@$pageNo}&sortField=subject&sortOrder={if $sortField== 'subject' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
+                        <a href="{link application='linklist' controller='Category' id=$categoryID}pageNo={@$pageNo}&sortField=subject&sortOrder={if $sortField== 'subject' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
                             {lang}linklist.links.title{/lang}
                         </a>
                     </th>
                       <th>
-                       <a href="{link application='linklist' controller='Category' id=$categoryID} pageNo={@$pageNo}&sortField=visits&sortOrder={if $sortField== 'visits' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
+                       <a href="{link application='linklist' controller='Category' id=$categoryID}pageNo={@$pageNo}&sortField=visits&sortOrder={if $sortField== 'visits' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
                              {lang}linklist.links.visits{/lang}
                         </a>
                     </th>
                     <th>
-                        <a href="{link application='linklist' controller='Category' id=$categoryID} pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField== 'time' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
+                        <a href="{link application='linklist' controller='Category' id=$categoryID}pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField== 'time' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
                             {lang}linklist.links.time{/lang}
                         </a>
                     </th>
@@ -48,7 +48,7 @@
                 {hascontent}{content}
                     {foreach from=$objects item=link}
                         <tr class="jsLinkRow jsClipboardObject link">
-                          <td class="columnMark jsOnly">
+                          <td class="columnMark">
                               <input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" />
                           </td>
                             <td class="columnTitle">
