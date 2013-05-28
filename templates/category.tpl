@@ -5,9 +5,9 @@
 	
 	{include file='headInclude' sandbox=false}
 		<script type="text/javascript">
-		//<![CDATA[
-		WCF.Clipboard.init('linklist\\page\\CategoryPage', {@$hasMarkedItems}, { });
-		//]]>
+			//<![CDATA[
+				WCF.Clipboard.init('linklist\\page\\CategoryPage', {@$hasMarkedItems}, { });
+			//]]>
 		</script>
 </head>
 

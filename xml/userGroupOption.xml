@@ -60,7 +60,7 @@
         <admindefaultvalue>1</admindefaultvalue>
       </option>
     
-      <option name="user.linklist.category.canEnter">
+      <option name="user.linklist.category.canEnterCategory">
         <categoryname>user.linklist.category</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
@@ -68,49 +68,49 @@
       </option>
       
       <!--Links-->
-      <option name="user.linklist.link.canView">
+      <option name="user.linklist.link.canViewLink">
         <categoryname>user.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>1</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
       
-      <option name="user.linklist.link.canAdd">
+      <option name="user.linklist.link.canAddLink">
         <categoryname>user.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
       
-      <option name="user.linklist.link.canEditOwn">
+      <option name="user.linklist.link.canEditOwnLink">
         <categoryname>user.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
       
-      <option name="mod.linklist.link.canDelete">
+      <option name="mod.linklist.link.canDeleteLink">
         <categoryname>mod.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
       
-      <option name="mod.linklist.link.canEdit">
+      <option name="mod.linklist.link.canEditLink">
         <categoryname>mod.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
 
-      <option name="mod.linklist.link.canTrash">
+      <option name="mod.linklist.link.canTrashLink">
         <categoryname>mod.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
       
-      <option name="mod.linklist.link.canToggle">
+      <option name="mod.linklist.link.canToggleLink">
         <categoryname>mod.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>

@@ -3,10 +3,12 @@ namespace linklist\data\link;
 
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\search\SearchIndexManager;
+use wcf\system\exception\PermissionDeniedException;
 use wcf\data\IClipboardAction;
 use wcf\system\clipboard\ClipboardHandler;
 use wcf\util\StringUtil;
 use wcf\system\WCF;
+use linklist\data\link\LinkList;
 
 /** 
  * @author  Jens Krumsieck
@@ -20,6 +22,10 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
      * @see wcf\data\AbstractDatabaseObjectAction::$className
      */
     protected $className = 'linklist\data\link\LinkEditor';
+    protected $permissionsCreate = array('user.linklist.link.canAddLink');
+    protected $permissionsDelete = array('mod.linklist.link.canDeleteLink');
+    protected $permissionsTrash = array('mod.linklist.link.canTrashLink');    
+    //protected $permissionsEnable = array('mod.linklist.link.canToggleLink');
     
     
     public $links = array();
@@ -39,14 +45,57 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     protected function unmarkItems() {
         ClipboardHandler::getInstance()->unmark(array_keys($this->links), ClipboardHandler::getInstance()->getObjectTypeID('de.codequake.linklist.link'));
     }
-    
+    //trash
+    public function trash() {        
+        foreach ($this->links as $link) {
+            $editor = new LinkEditor($link);
+            $editor->update(array(
+                'isDeleted' => 1,
+                'deleteTime' => TIME_NOW
+            ));
+        }
+
+        $this->unmarkItems();
+    }
+     public function validateTrash() {
+         $this->loadLinks();
+         foreach ($this->links as $link) {
+                if ($link->isDeleted) {
+                    throw new PermissionDeniedException();
+                }
+            }
+     }
+     
+     //toggle
+     public function enable(){
+        foreach ($this->links as $link) {
+            $editor = new LinkEditor($link);
+            $editor->update(array(
+                'isActive' => 1
+            ));
+        }
+
+        $this->unmarkItems();
+     }
+     public function validateEnable(){
+        $this->loadlinks();
+        foreach ($this->links as $link){
+            if($link->isActive){
+              throw new PermissionDeniedException();
+            }
+        }
+     }
+     //delete
+     public function delete(){
+        parent::delete();
+     }
     //getLinks
      protected function loadLinks() {
         if (empty($this->objectIDs)) {
             throw new UserInputException("objectIDs");
         }
 
-        $list = newLinkList();
+        $list = new LinkList();
         $list->getConditionBuilder()->add("link.linkID IN (?)", array($this->objectIDs));
         $list->sqlLimit = 0;
         $list->readObjects();

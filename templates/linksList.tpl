@@ -13,15 +13,15 @@
 </div>
 
 {if $objects|count}
-    <div class="tabularBox tabularBoxTitle marginTop jsClipboardContainer" data-type="de.codequake.linklist.link">
+    <div class="tabularBox tabularBoxTitle marginTop jsClipboardContainer">
         <header>
             <h2>{lang}linklist.links.list{/lang} <span class="badge badgeInverse">{#$items}</span></h2>
         </header>
 
-        <table class="table">
+        <table class="table jsClipboardContainer" data-type="de.codequake.linklist.link">
             <thead>
                 <tr>
-                  <th class="columnMark jsOnly"><label>
+                  <th class="columnMark"><label>
                     <input type="checkbox" class="jsClipboardMarkAll" />
                   </label></th>
                     <th class="columnTitle columnLink {if $sortField == 'subject'}active {@$sortOrder}{/if}">
@@ -47,11 +47,9 @@
             <tbody>
                 {hascontent}{content}
                     {foreach from=$objects item=link}
-                        <tr class="jsClipboardObject link" data-article-id="{@$link->linkID}" data-category-id="{@$link->categoryID}">
+                        <tr class="jsLinkRow jsClipboardObject link">
                           <td class="columnMark jsOnly">
-                            <label>
                               <input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" />
-                            </label>
                           </td>
                             <td class="columnTitle">
                                 <a href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
@@ -82,6 +80,8 @@
                 {/content}
             </ul>
         </nav>
-        {/hascontent}
+  {/hascontent}
+
+  <div class="jsClipboardEditor" data-types="[ 'de.codequake.linklist.link' ]"></div>
 </div>
 {/if}
