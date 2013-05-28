@@ -13,28 +13,30 @@
 </div>
 
 {if $objects|count}
-    <div class="tabularBox tabularBoxTitle marginTop jsClipboardContainer">
+    <div class="tabularBox tabularBoxTitle messageGroupList  shadow marginTop jsClipboardContainer" data-type="de.codequake.linklist.link">
         <header>
             <h2>{lang}linklist.links.list{/lang} <span class="badge badgeInverse">{#$items}</span></h2>
         </header>
 
-        <table class="table jsClipboardContainer" data-type="de.codequake.linklist.link">
+        <table class="table">
             <thead>
                 <tr>
                   <th class="columnMark"><label>
-                    <input type="checkbox" class="jsClipboardMarkAll" />
+                    <label>
+                      <input type="checkbox" class="jsClipboardMarkAll" />
+                    </label>
                   </label></th>
-                    <th class="columnTitle columnLink {if $sortField == 'subject'}active {@$sortOrder}{/if}">
+                    <th class="columnTitle columnLink {if $sortField == 'subject'}active {@$sortOrder}{/if}" colspan="2">
                         <a href="{link application='linklist' controller='Category' id=$categoryID}pageNo={@$pageNo}&sortField=subject&sortOrder={if $sortField== 'subject' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
                             {lang}linklist.links.title{/lang}
                         </a>
                     </th>
-                      <th>
+                      <th class="columnDigits columnVisits">
                        <a href="{link application='linklist' controller='Category' id=$categoryID}pageNo={@$pageNo}&sortField=visits&sortOrder={if $sortField== 'visits' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
                              {lang}linklist.links.visits{/lang}
                         </a>
                     </th>
-                    <th>
+                    <th class="columnText columnTime">
                         <a href="{link application='linklist' controller='Category' id=$categoryID}pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField== 'time' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
                             {lang}linklist.links.time{/lang}
                         </a>
@@ -47,17 +49,20 @@
             <tbody>
                 {hascontent}{content}
                     {foreach from=$objects item=link}
-                        <tr class="jsLinkRow jsClipboardObject link">
+                        <tr class="jsClipboardObject link" data-element-id="{@$link->linkID}">
                           <td class="columnMark">
                               <input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" />
                           </td>
-                            <td class="columnTitle">
+                          <td class="columnIcon">
+                            <span class="icon icon32 {if $link->isDeleted}icon-trash{elseif !$link->isActive && !$link->isDeleted}icon-off{else}icon-link{/if}"></span>
+                          </td>
+                            <td class="columnTitle columnLink">
                                 <a href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
                             </td>
-                          <td class="columnTime">
+                          <td class="columnDigits columnVisits">
                                 {$link->visits}
                             </td>
-                            <td class="columnTime">
+                            <td class="columnText columnTime">
                                 {$link->time|DateDiff}
                             </td>
                             
