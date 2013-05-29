@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/templatelistener.xsd">
   <import>
+    <!--user-->
     <templatelistener name="linklistCopyright">
       <environment>user</environment>
       <templatename>footer</templatename>
@@ -12,6 +13,13 @@
       <templatename>headInclude</templatename>
       <eventname>stylesheets</eventname>
       <templatecode><![CDATA[<link rel="stylesheet/less" type="text/css" href="style/linklist.less" />]]></templatecode>
+    </templatelistener>
+    
+    <templatelistener name="logo">
+      <environment>user</environment>
+      <templatename>header</templatename>
+      <eventname>headerLogo</eventname>
+      <templatecode><![CDATA[{include file='__logo' application='linklist'}]]></templatecode>
     </templatelistener>
   </import>
 </data>
