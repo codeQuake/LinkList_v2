@@ -6,7 +6,7 @@
 </head>
 
 <body id="tpl{$templateName|ucfirst}">
-    {include file='linkSidebar'}
+    {include file='linkSidebar' application='linklist'}
 
     {include file='header' sidebarOrientation='right'}
     <header class="boxHeadline">

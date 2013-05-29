@@ -19,7 +19,7 @@
 <section id="dashboard">
 	{if $__boxContent|isset}{@$__boxContent}{/if}
 </section>
-{include file='categoryList'}
+{include file='categoryList' application='linklist'}
 
 
 {include file='footer' sandbox=false}
