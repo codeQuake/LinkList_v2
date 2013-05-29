@@ -20,7 +20,14 @@ enableBBCodes	TINYINT(1) NOT NULL DEFAULT 1,
 ipAddress VARCHAR(39) NOT NULL DEFAULT ''
 );
 
+DROP TABLE IF EXISTS linklist1_category_stats;
+CREATE TABLE linklist1_category_stats(
+categoryID INT(10),
+links INT(10) DEFAULT 0,
+visits INT(10) DEFAULT 0
+);
 
+ALTER TABLE linklist1_category_stats ADD FOREIGN KEY (categoryID) REFERENCES wcf1_category (categoryID) ON DELETE CASCADE;
 ALTER TABLE linklist1_link ADD FOREIGN KEY (categoryID) REFERENCES wcf1_category (categoryID) ON DELETE CASCADE;
 ALTER TABLE linklist1_link ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE SET NULL;
 ALTER TABLE linklist1_link ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;

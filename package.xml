@@ -4,7 +4,7 @@
     <packagename>Linkliste (codename: Waterfall)</packagename> <!--codename: waterfall-->
     <packagedescription><![CDATA[Linklist for WCF 2.0]]></packagedescription>
     <isapplication>1</isapplication>
-    <version>2.0.0 dev 3</version>
+    <version>2.0.0 Alpha 1</version>
     <date>2013-04-12</date>
   </packageinformation>
   <authorinformation>
@@ -29,26 +29,11 @@
     <instruction type="aclOption">xml/aclOption.xml</instruction>
     <instruction type="acpMenu">xml/acpMenu.xml</instruction>
     <instruction type="templateListener">xml/templateListener.xml</instruction>
+    <instruction type="eventListener">xml/eventListener.xml</instruction>
     <instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
     <instruction type="clipboardAction">xml/clipboardAction.xml</instruction>
     
     <!--others-->
     <instruction type="sql">install.sql</instruction>
-  </instructions>
-  <instructions type="update" fromversion="1.0.0 dev *">
-    <!--lang-->
-    <instruction type="language">language/*.xml</instruction>
-
-    <!--tar-->
-    <instruction type="file">files.tar</instruction>
-    <instruction type="template">templates.tar</instruction>
-
-    <!--xml-->
-    <instruction type="pageMenu">xml/pagemenu.xml</instruction>
-    <instruction type="objectType">xml/objectType.xml</instruction>
-    <instruction type="aclOption">xml/aclOption.xml</instruction>
-    <instruction type="acpMenu">xml/acpMenu.xml</instruction>
-    <instruction type="templateListener">xml/templateListener.xml</instruction>
-    <instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
   </instructions>
 </package>

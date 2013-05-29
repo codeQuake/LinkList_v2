@@ -2,8 +2,7 @@
 namespace linklist\data\category;
 use wcf\data\category\CategoryNode;
 use wcf\data\DatabaseObject;
-use linklist\data\link\LinkList;
-
+use linklist\data\category\LinklistCategoryCache;
 /**
  * Represents a category node
  *
@@ -37,28 +36,12 @@ class LinklistCategoryNode extends CategoryNode{
         }
         return $this->subCategories;
     }
-    
-    public function getLinks(){
-        if($this->links === null){
-            $links = new LinkList();
-            $links->sqlConditionJoins = 'WHERE categoryID = '.$this->categoryID;
-            $this->links = $links->countObjects();
-        }
-        return $this->links;
+    public function getVisits() {
+        return LinklistCategoryCache::getInstance()->getVisits($this->categoryID);
     }
-    
-    public function countVisits(){
-        if($this->visits === null){
-            $this->visits = 0;
-            $links = new Linklist();
-            $links->sqlJoins = 'WHERE categoryID = '.$this->categoryID;
-            $links->readObjects();
-            $linklist = $links->getObjects();
-            foreach ($linklist as $linkitem){
-                $this->visits = $this->visits + $linkitem->visits;
-            }
-        }
-        return $this->visits;
+    public function getLinks() {
+        return LinklistCategoryCache::getInstance()->getLinks($this->categoryID);
     }
+
 
 }

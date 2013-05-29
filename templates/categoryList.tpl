@@ -20,7 +20,7 @@
                         <dt>{lang}linklist.links.list{/lang}</dt>
                         <dd>{$categoryItem->getLinks()}</dd>
                         <dt>{lang}linklist.links.visits{/lang}</dt>
-                        <dd>{$categoryItem->countVisits()}</dd>
+                        <dd>{$categoryItem->getVisits()}</dd>
                       </dl>
                       </div>
                         {if $categoryItem->hasChildren()}

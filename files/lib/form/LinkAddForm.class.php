@@ -4,6 +4,9 @@ namespace linklist\form;
 use linklist\data\category\LinklistCategoryNodeTree;
 use linklist\data\category\LinklistCategory;
 use linklist\data\link\LinkAction;
+use linklist\data\link\LinkList;
+use linklist\system\cache\builder\CategoryCacheBuilder;
+
 
 use wcf\system\WCF;
 use wcf\system\category\CategoryHandler;
@@ -152,6 +155,16 @@ class LinkAddForm extends MessageForm{
         $resultvalues = $this->objectAction->executeAction();
         
         $this->link = $resultvalues['returnValues'];
+            //update links
+            $links = new LinkList();
+            $links->sqlConditionJoins = 'WHERE categoryID = '.$this->link->categoryID;
+            $sql = "UPDATE linklist".WCF_N."_category_stats SET  links = ".$links->countObjects()." WHERE categoryID = ".$this->link->categoryID;
+            $statement = WCF::getDB()->prepareStatement($sql);
+            $statement->execute();
+            
+            CategoryCacheBuilder::getInstance()->reset();
+            
+            
         $this->saved();
         
         HeaderUtil::redirect(LinkHandler::getInstance()->getLink('Link', array(
