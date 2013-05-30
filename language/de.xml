@@ -54,7 +54,7 @@
   </category>
 
   <category name="wcf.user.profile">
-    <item name="wcf.user.profile.recentActivity.link"><![CDATA[hat einen neuen <a href="{link controller=Link object=$link}{/link}">Link</a> hinzugefügt.]]></item>
+    <item name="wcf.user.profile.recentActivity.link"><![CDATA[hat den Link <a href="{link controller=Link object=$link}{/link}">{$link->getTitle()}</a> hinzugefügt.]]></item>
   </category>
 
   <category name="wcf.user.recentActivity">
