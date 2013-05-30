@@ -121,6 +121,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
             $message = StringUtil::substring($message, 0, $maxLength);
           }
         }
+        return $message;
     }
     
       public function getLink() {

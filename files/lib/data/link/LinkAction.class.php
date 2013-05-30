@@ -1,6 +1,7 @@
 <?php
 namespace linklist\data\link;
 
+use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\search\SearchIndexManager;
 use wcf\system\exception\PermissionDeniedException;
@@ -33,6 +34,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     
     public function create(){
         $object = call_user_func(array($this->className, 'create'), $this->parameters);
+        UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
        return $object;
 
     }

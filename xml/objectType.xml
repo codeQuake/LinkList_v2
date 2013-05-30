@@ -38,5 +38,11 @@
       <definitionname>com.woltlab.wcf.clipboardItem</definitionname>
       <listclassname><![CDATA[linklist\data\link\LinkList]]></listclassname>
     </type>
+
+    <type>
+      <name>de.codequake.linklist.link.recentActivityEvent</name>
+      <definitionname>com.woltlab.wcf.user.recentActivityEvent</definitionname>
+      <classname>linklist\system\user\activity\event\LinkUserActivityEvent</classname>
+    </type>
   </import>
 </data>

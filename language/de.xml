@@ -52,4 +52,12 @@
     <item name="wcf.acl.option.de.codequake.linklist.category.canEnterCategory"><![CDATA[Kann Kategorie betreten]]></item>
     <item name="wcf.acl.option.de.codequake.linklist.category.canManagePermissions"><![CDATA[Kann Zugriffsrechte bearbeiten]]></item>
   </category>
+
+  <category name="wcf.user.profile">
+    <item name="wcf.user.profile.recentActivity.link"><![CDATA[hat einen neuen <a href="{link controller=Link object=$link}{/link}">Link</a> hinzugefügt.]]></item>
+  </category>
+
+  <category name="wcf.user.recentActivity">
+    <item name="wcf.user.recentActivity.de.codequake.linklist.link.recentActivityEvent"><![CDATA[Link]]></item>
+  </category>
 </language>
