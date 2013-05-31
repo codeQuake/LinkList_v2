@@ -6,7 +6,7 @@ $package = $this->installation->getPackage();
 
 //default values
 DashboardHandler::setDefaultValues('de.codequake.linklist.CategoryListPage', array(
-
+    'com.woltlab.wcf.user.recentActivitySidebar' => 1
 ));
 
 //install date
