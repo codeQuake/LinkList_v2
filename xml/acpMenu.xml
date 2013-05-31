@@ -2,18 +2,19 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/acpMenu.xsd">
   <import>
     <acpmenuitem name="linklist.acp.menu.link.linklist.category">
-      <parent>wcf.acp.menu.link.content</parent>
+      <parent>wcf.acp.menu.link.community</parent>
     </acpmenuitem>
 
-    <acpmenuitem name="linklist.acp.menu.link.linklist.category.add">
-      <parent>linklist.acp.menu.link.linklist.category</parent>
-      <controller><![CDATA[linklist\acp\form\LinklistCategoryAddForm]]></controller>
-      <permissions>admin.linklist.category.canAddCategory</permissions>
-    </acpmenuitem>
     <acpmenuitem name="linklist.acp.menu.link.linklist.category.list">
       <parent>linklist.acp.menu.link.linklist.category</parent>
       <controller><![CDATA[linklist\acp\form\LinklistCategoryListPage]]></controller>
       <permissions>admin.linklist.category.canListCategory</permissions>
+    </acpmenuitem>
+    
+    <acpmenuitem name="linklist.acp.menu.link.linklist.category.add">
+      <parent>linklist.acp.menu.link.linklist.category</parent>
+      <controller><![CDATA[linklist\acp\form\LinklistCategoryAddForm]]></controller>
+      <permissions>admin.linklist.category.canAddCategory</permissions>
     </acpmenuitem>
   </import>
 </data>

@@ -40,9 +40,9 @@
   </category>
 
   <category name="linklist.acp.menu">
-    <item name="linklist.acp.menu.link.linklist.category"><![CDATA[Linkliste: Kategorien]]></item>
+    <item name="linklist.acp.menu.link.linklist.category"><![CDATA[Linkliste]]></item>
     <item name="linklist.acp.menu.link.linklist.category.add"><![CDATA[Kategorie hinzufügen]]></item>
-    <item name="linklist.acp.menu.link.linklist.category.list"><![CDATA[Kategorien]]></item>
+    <item name="linklist.acp.menu.link.linklist.category.list"><![CDATA[Kategorien auflisten]]></item>
   </category>
 
   <category name="wcf.acl.option">
