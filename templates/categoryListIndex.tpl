@@ -7,6 +7,9 @@
 </head>
 
 <body id="tpl{$templateName|ucfirst}">
+{capture assign='sidebar'}
+	{@$__boxSidebar}
+{/capture}
 
 {include file='header' sidebarOrientation='right'}
 
@@ -16,9 +19,6 @@
 	</hgroup>
 </header>
 
-<section id="dashboard">
-	{if $__boxContent|isset}{@$__boxContent}{/if}
-</section>
 
 {include file='categoryList' application='linklist'}
 

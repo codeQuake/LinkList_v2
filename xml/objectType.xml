@@ -14,11 +14,12 @@
     </type>
   
     
-    <!--index page-->
+    <!--caategoryListPage-->
     <type>
       <name>de.codequake.linklist.CategoryListPage</name>
       <definitionname>com.woltlab.wcf.user.dashboardContainer</definitionname>
       <allowSidebar>1</allowSidebar>
+      <allowcontent>0</allowcontent>
     </type>
     <type>
       <name>de.codequake.linklist.CategoryListPage</name>
