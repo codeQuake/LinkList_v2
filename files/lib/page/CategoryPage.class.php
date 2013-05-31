@@ -62,7 +62,7 @@ class CategoryPage extends SortablePage {
         $category= CategoryHandler::getInstance()->getCategory($this->categoryID);
         if($category !== null) $this->category = new LinklistCategory($category);
         if($this->category === null) throw new IllegalLinkException();
-        WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('Index')));
+        WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList',array('application' => 'linklist'))));
   }
     /**
      * @see wcf\page\IPage::assignVariables()
