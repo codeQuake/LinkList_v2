@@ -1,6 +1,6 @@
 <?php
 namespace wcf\system\cache\builder;
-use wcf\data\user\profile\menu\item\LinkMenuItemList;
+use wcf\data\link\menu\item\LinkMenuItemList;
 
 class LinkMenuCacheBuilder extends AbstractCacheBuilder {
 

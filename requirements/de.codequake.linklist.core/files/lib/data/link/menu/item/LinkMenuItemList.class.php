@@ -1,5 +1,5 @@
 <?php
-namespace wcf\data\link\item;
+namespace wcf\data\link\menu\item;
 use wcf\data\DatabaseObjectList;
 
 
