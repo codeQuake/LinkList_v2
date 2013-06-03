@@ -22,8 +22,16 @@
 						{lang}linklist.link.tabs.link{/lang}
 					</a>
 				</li>
+				<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
+					<a title="link" href="{@$__wcf->getAnchor('comment')}">
+						{lang}linklist.link.tabs.link.comment{/lang}
+					</a>
+				</li>
 			</ul>
 		</nav>
+		<div id="comment" class="container tabMenuContent shadow ui-tabs-panel ui-widget-content ui-corner-bottom" data-menu-item="comment">
+			{include file='linkCommentList' application='linklist'}
+		</div>
 		<div id="link" class="container tabMenuContent shadow ui-tabs-panel ui-widget-content ui-corner-bottom" data-menu-item="link">
 			<article id="wcf{$link->linkID}" class="message dividers marginTop">
 				<div>

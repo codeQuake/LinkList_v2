@@ -14,7 +14,7 @@
     </type>
   
     
-    <!--caategoryListPage-->
+    <!--categoryListPage-->
     <type>
       <name>de.codequake.linklist.CategoryListPage</name>
       <definitionname>com.woltlab.wcf.user.dashboardContainer</definitionname>
@@ -33,7 +33,11 @@
       <name>de.codequake.linklist.link</name>
       <definitionname>com.woltlab.wcf.acl</definitionname>
     </type>
-
+    <type>
+      <name>de.codequake.linklist.linkComment</name>
+      <definitionname>com.woltlab.wcf.comment.commentableContent</definitionname>
+      <classname>linklist\system\comment\manager\LinkCommentManager</classname>
+    </type>
     <type>
       <name>de.codequake.linklist.link</name>
       <definitionname>com.woltlab.wcf.clipboardItem</definitionname>

@@ -32,6 +32,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
      */
     protected static $databaseTableName = 'link';
     protected static $databaseTableIndexName = 'linkID';
+    public $commentList;
     
     public function __construct($id, $row = null, $object = null){
         if ($id !== null) {
@@ -53,6 +54,17 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
         return MessageParser::getInstance()->parse($this->message, $this->enableSmilies, $this->enableHtml, $this->enableBBCodes);
       }
       
+     public function getCommentList() {
+        if($this->commentList === null) {
+            $objectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.linklist.linkComment');
+            $objectType = CommentHandler::getInstance()->getObjectType($objectTypeID);
+            $commentManager = $objectType->getProcessor();
+
+            $this->commentList = CommentHandler::getInstance()->getCommentList($commentManager, $objectTypeID, $this-linkID);
+        }
+        return $this->commentList;
+    }
+      
     public function getMessage() {
         return $this->message;
       }
@@ -73,14 +85,14 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
     
     public function getEditor() {
         if ($this->editor === null) {
-          $this->editor = new ArticleEditor($this);
+          $this->editor = new LinkEditor($this);
         }
 
         return $this->editor;
     }
     
     public function getID() {
-        return $this->articleID;
+        return $this->linkID;
     }
     
     public function getTitle() {
