@@ -29,9 +29,6 @@
 				</li>
 			</ul>
 		</nav>
-		<div id="comment" class="container tabMenuContent shadow ui-tabs-panel ui-widget-content ui-corner-bottom" data-menu-item="comment">
-			{include file='linkCommentList' application='linklist'}
-		</div>
 		<div id="link" class="container tabMenuContent shadow ui-tabs-panel ui-widget-content ui-corner-bottom" data-menu-item="link">
 			<article id="wcf{$link->linkID}" class="message dividers marginTop">
 				<div>
@@ -54,6 +51,10 @@
 					</section>
 				</div>
 			</article>
+		</div>
+		
+		<div id="comment" class="container tabMenuContent shadow ui-tabs-panel ui-widget-content ui-corner-bottom" data-menu-item="comment">
+			{include file='linkCommentList' application='linklist'}
 		</div>
 	</section>
  
