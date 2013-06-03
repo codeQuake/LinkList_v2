@@ -1,0 +1,30 @@
+<package name="com.woltnet.wiki.core" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/package.xsd">
+  <packageinformation>
+    <packagename><![CDATA[LinklistCore]]></packagename>
+    <packagedescription><![CDATA[Core functions]]></packagedescription>
+    <isapplication>0</isapplication>
+    <isunique>1</isunique>
+    <version>1.0.0 Alpha 1</version>
+    <date>2013-06-02</date>
+  </packageinformation>
+
+  <authorinformation>
+    <author><![CDATA[Jens Krumsieck]]></author>
+    <authorurl><![CDATA[http://codeQuake.de]]></authorurl>
+  </authorinformation>
+
+  <requiredpackages>
+    <requiredpackage minversion="2.0.0 Alpha 1">com.woltlab.wcf</requiredpackage>
+  </requiredpackages>
+
+  <instructions type="install">
+    <!-- files -->
+    <instruction type="file">files.tar</instruction>
+    <instruction type="sql">install.sql</instruction>
+    <instruction type="template">templates.tar</instruction>
+
+    <!-- config -->
+    <instruction type="coreObject">xml/coreObject.xml</instruction>
+    <instruction type="packageInstallationPlugin">xml/packageInstallationPlugin.xml</instruction>
+  </instructions>
+</package>
