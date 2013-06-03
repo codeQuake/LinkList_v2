@@ -5,6 +5,7 @@ use linklist\data\link\Link;
 use wcf\data\comment\Comment;
 use wcf\data\comment\response\CommentResponse;
 use wcf\system\comment\manager\AbstractCommentManager;
+use wcf\system\WCF;
 
 class LinkCommentManager extends AbstractCommentManager{
     public $link = null;
@@ -19,7 +20,7 @@ class LinkCommentManager extends AbstractCommentManager{
             $this->link = new Link($objectID);
         }
 
-        return $this->link->getCategory()->getPermission('canWriteComment'); //is this valid?
+        return $this->link->getCategory()->getPermission('canWriteComment'); 
         
     }
     
@@ -36,9 +37,9 @@ class LinkCommentManager extends AbstractCommentManager{
             $this->link = new Link($objectID);
         }
         if($comment->userID == WCF::getUser()->userID) {
-                return $this->link->getCategory()->getPermission('canEditOwnComment'); //valid?
+                return $this->link->getCategory()->getPermission('canEditOwnComment'); 
             }
-        return $this->link->getCategory()->getPermission('canEditComment'); //is this valid?
+        return $this->link->getCategory()->getPermission('canEditComment'); 
     }
     
     public function canEditCommentResponse(CommentResponse $response){
@@ -54,9 +55,9 @@ class LinkCommentManager extends AbstractCommentManager{
             $this->link = new Link($objectID);
         }
         if($response->getComment()->userID == WCF::getUser()->userID) {
-                return $this->link->getCategory()->getPermission('canEditOwnComment'); //valid?
+                return $this->link->getCategory()->getPermission('canEditOwnComment'); 
             }
-        return $this->link->getCategory()->getPermission('canEditComment'); //is this valid?
+        return $this->link->getCategory()->getPermission('canEditComment'); 
     }
     
     public function canDeleteComment(Comment $comment){
@@ -72,9 +73,9 @@ class LinkCommentManager extends AbstractCommentManager{
             $this->link = new Link($objectID);
         }
         if($comment->userID == WCF::getUser()->userID) {
-                return $this->link->getCategory()->getPermission('canDeleteOwnComment'); //valid?
+                return $this->link->getCategory()->getPermission('canDeleteOwnComment'); 
             }
-        return $this->link->getCategory()->getPermission('canDeleteComment'); //is this valid?
+        return $this->link->getCategory()->getPermission('canDeleteComment'); 
     }
     
     public function canDeleteCommentResponse(CommentResponse $respose){
@@ -90,9 +91,9 @@ class LinkCommentManager extends AbstractCommentManager{
             $this->link = new Link($objectID);
         }
         if($response->getComment()->userID == WCF::getUser()->userID) {
-                return $this->link->getCategory()->getPermission('canEditOwnComment'); //valid?
+                return $this->link->getCategory()->getPermission('canEditOwnComment'); 
             }
-        return $this->link->getCategory()->getPermission('canEditComment'); //is this valid?
+        return $this->link->getCategory()->getPermission('canEditComment'); 
     }
     
     
