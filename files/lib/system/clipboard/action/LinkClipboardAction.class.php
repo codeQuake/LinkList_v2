@@ -37,12 +37,14 @@ class LinkClipboardAction extends AbstractClipboardAction{
                 $item->addParameter('className', $this->getClassName());
                 $item->setName('de.codequake.linklist.link.enable');
             break;
+            
             case 'disable':
                 $item->addParameter('objectIDs', array_keys($this->links));
                 $item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.disable.confirmMessage', array('count' => $item->getCount())));
                 $item->addParameter('className', $this->getClassName());
                 $item->setName('de.codequake.linklist.link.disable');
             break;
+            
             case 'delete':
                 $item->addParameter('objectIDs', array_keys($this->links));
                 $item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.delete.confirmMessage', array('count' => $item->getCount())));
@@ -73,6 +75,28 @@ class LinkClipboardAction extends AbstractClipboardAction{
         return $linkIDs;
     }
     
+    protected function validateEnable(){
+        $linkIDs = array();
+        foreach ($this->links as $link) {
+            if (!$link->isActive && $link->canToggle()) {
+                $linkIDs[] = $link->linkID;
+            }
+        }
+
+        return $linkIDs;
+    }
+    
+    protected function validateDisable(){
+        $linkIDs = array();
+        foreach ($this->links as $link) {
+            if ($link->isActive && $link->canToggle()) {
+                $linkIDs[] = $link->linkID;
+            }
+        }
+
+        return $linkIDs;
+    }
+    
     protected function validateRestore(){
         $linkIDs = array();
         foreach ($this->links as $link) {
@@ -96,26 +120,6 @@ class LinkClipboardAction extends AbstractClipboardAction{
         return $linkIDs;
     }
     
-    protected function validateEnable(){
-        $linkIDs = array();
-        foreach ($this->links as $link) {
-            if (!$link->isActive && $link->canToggle()) {
-                $linkIDs[] = $link->linkID;
-            }
-        }
 
-        return $linkIDs;
-    }
-    
-    protected function validateDisable(){
-    $linkIDs = array();
-        foreach ($this->links as $link) {
-            if ($link->isActive && $link->canToggle()) {
-                $linkIDs[] = $link->linkID;
-            }
-        }
-
-        return $linkIDs;
-    }
 
 }

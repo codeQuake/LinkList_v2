@@ -70,6 +70,15 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
      }
      
      //toggle
+     public function validateEnable(){
+        $this->loadlinks();
+        foreach ($this->links as $link){
+            if($link->isActive){
+              throw new PermissionDeniedException();
+            }
+        }
+     }
+     
      public function enable(){
         foreach ($this->links as $link) {
             $editor = new LinkEditor($link);
@@ -98,14 +107,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
         $this->unmarkItems();
      }
-     public function validateEnable(){
-        $this->loadlinks();
-        foreach ($this->links as $link){
-            if($link->isActive){
-              throw new PermissionDeniedException();
-            }
-        }
-     }
+     
      
      //restore
      public function validateRestore(){
