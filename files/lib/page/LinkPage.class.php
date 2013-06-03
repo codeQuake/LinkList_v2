@@ -7,16 +7,15 @@ use wcf\system\request\LinkHandler;
 use wcf\page\AbstractPage;
 use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
 use wcf\system\WCF;
-use wcf\system\comment\CommentHandler;
+use wcf\system\menu\link\LinkMenu;
 
 class LinkPage extends AbstractPage{
 
     public $enableTracking = true; 
     public $linkID;
-    public $commentList;
-    public $commentManager;
-    public $objectTypeID;
+    public $linkContent;
     public $link = null;
+    
     
     public function readParameters(){
         parent::readParameters();
@@ -39,24 +38,20 @@ class LinkPage extends AbstractPage{
           'object' => $this->link->getCategory()
             ))));
             
-        $this->objectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.linklist.linkComment');
-        $objectType = CommentHandler::getInstance()->getObjectType($this->objectTypeID);
-        $this->commentManager = $objectType->getProcessor();
-
-        $this->commentList = CommentHandler::getInstance()->getCommentList($this->commentManager, $this->objectTypeID, $this->linkID);
+            
+            $activeMenuItem = LinkMenu::getInstance()->getActiveMenuItem();
+            $contentManager = $activeMenuItem->getContentManager();
+            $this->linkContent = $contentManager->getContent($this->linkID);
+        
         
     }
     public function assignVariables(){
         parent::assignVariables();
         WCF::getTPL()->assign(array('link'  =>  $this->link,
+                                    'linkContent'   => $this->linkContent,
                                     'allowSpidersToIndexThisPage'   =>  true,
                                     'sidebarCollapsed'=> UserCollapsibleContentHandler::getInstance()->isCollapsed('com.woltlab.wcf.collapsibleSidebar', 'de.codequake.linklist.link'),
-                                    'sidebarName' => 'de.codequake.linklist.link',
-                                    'commentList' => $this->commentList,
-                                    'commentObjectTypeID'=> $this->objectTypeID,
-                                    'commentCanAdd' => $this->commentManager->canAdd($this->linkID),
-                                    'lastCommentTime' => $this->commentList->getMinCommentTime(),
-                                    'commentsPerPage' => $this->commentManager->getCommentsPerPage()));
+                                    'sidebarName' => 'de.codequake.linklist.link'));
     }
     
 

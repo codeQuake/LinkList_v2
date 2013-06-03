@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <import>
+    <linkmenuitem name="overview">
+      <classname>linklist\system\menu\link\content\ShowLinkMenuContent</classname>
+      <showorder>1</showorder>
+    </linkmenuitem>
+
+    <linkmenuitem name="comment">
+      <classname>linklist\system\menu\link\content\CommentLinkMenuContent</classname>
+      <showorder>2</showorder>
+    </linkmenuitem>
+  </import>
+</data>

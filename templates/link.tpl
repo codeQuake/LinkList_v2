@@ -14,49 +14,23 @@
             <h1>{$link->getTitle()|language}</h1>
         </hgroup>
     </header>
-    <section id="linkContent">
-		<nav class="tabMenu">
-			<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-				<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
-					<a title="link" href="{@$__wcf->getAnchor('link')}">
-						{lang}linklist.link.tabs.link{/lang}
-					</a>
-				</li>
-				<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
-					<a title="link" href="{@$__wcf->getAnchor('comment')}">
-						{lang}linklist.link.tabs.link.comment{/lang}
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<div id="link" class="container tabMenuContent shadow ui-tabs-panel ui-widget-content ui-corner-bottom" data-menu-item="link">
-			<article id="wcf{$link->linkID}" class="message dividers marginTop">
-				<div>
-					<section class="messageContent">
-						<div>
-							<div class="messageBody">
-								<div class="messageText" style="border: none;">
-									<div>
-										{@$link->getFormattedMessage()}
-									</div>
-								</div>
-								<footer class="messageOptions contentOptions marginTop clearfix">
-									<div>
-										<a class="button" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><h1>{lang}linklist.link.visit{/lang}</h1></a>
-										<a class="button" href="{link application='linklist' controller='LinkEdit' object=$link}{/link}"><h1>{lang}linklist.link.edit{/lang}</h1></a>
-									</div>
-								</footer>
-							</div>
-						</div>
-					</section>
-				</div>
-			</article>
-		</div>
-		
-		<div id="comment" class="container tabMenuContent shadow ui-tabs-panel ui-widget-content ui-corner-bottom" data-menu-item="comment">
-			{include file='linkCommentList' application='linklist'}
-		</div>
-	</section>
+    	<section id="linkContent" class="marginTop tabMenuContainer" data-active="{$__wcf->getLinkMenu()->getActiveMenuItem()->getIdentifier()}">
+			<nav class="tabMenu">
+				<ul>
+				{foreach from=$__wcf->getLinkMenu()->getMenuItems() item=menuItem}
+					<li>
+						<a href="{$__wcf->getAnchor($menuItem->getIdentifier())}" title="{lang}{@$menuItem->menuItem}{/lang}">{lang}linklist.link.menu.{@$menuItem->menuItem}{/lang}
+						</a>
+					</li>
+				{/foreach}
+				</ul>
+			</nav>
+
+			{foreach from=$__wcf->getLinkMenu()->getMenuItems() item=menuItem}
+				<div id="{$menuItem->getIdentifier()}" class="container containerPadding tabMenuContent shadow" data-menu-item="{$menuItem->menuItem}">{if $menuItem === $__wcf->getLinkMenu()->getActiveMenuItem()} {@$linkContent}
+				{/if}</div>
+			{/foreach}
+		</section>
  
 
 {include file='footer' sandbox=false}
