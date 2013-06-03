@@ -26,7 +26,8 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     protected $permissionsCreate = array('user.linklist.link.canAddLink');
     protected $permissionsDelete = array('mod.linklist.link.canDeleteLink');
     protected $permissionsTrash = array('mod.linklist.link.canTrashLink');    
-    //protected $permissionsEnable = array('mod.linklist.link.canToggleLink');
+    protected $permissionsEnable = array('mod.linklist.link.canToggleLink');
+    protected $permissionsDisable = array('mod.linklist.link.canToggleLink');
     
     
     public $links = array();
@@ -79,6 +80,24 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
         $this->unmarkItems();
      }
+     public function validateDisable(){
+        $this->loadlinks();
+        foreach ($this->links as $link){
+            if(!$link->isActive){
+              throw new PermissionDeniedException();
+            }
+        }
+     }
+     public function disable(){
+        foreach ($this->links as $link) {
+            $editor = new LinkEditor($link);
+            $editor->update(array(
+                'isActive' => 0
+            ));
+        }
+
+        $this->unmarkItems();
+     }
      public function validateEnable(){
         $this->loadlinks();
         foreach ($this->links as $link){
@@ -86,6 +105,26 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
               throw new PermissionDeniedException();
             }
         }
+     }
+     
+     //restore
+     public function validateRestore(){
+        $this->loadLinks();
+        foreach($this->links as $link){
+            if(!$link->isDeleted){
+                throw new PermissionDeniedException();
+            }
+        }
+     }
+     public function  restore(){
+        foreach($this->links as $link){
+            $editor = new LinkEditor($link);
+            $editor->update(array(
+                'isDeleted' =>  0,
+                'deleteTime'    =>  null
+            ));
+        }
+        $this->unmarkItems();
      }
      //delete
      public function delete(){

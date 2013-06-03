@@ -145,11 +145,34 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
       
        public function isVisible() {
             if($this->isActive == 0) {
-                return $this->getModeratorPermission('canSeeDeactivatedLink');
+                return $this->getPermission('canSeeDeactivatedLink');
             }
             if($this->isDeleted == 1) {
-                return $this->getModeratorPermission('canSeeTrashedLink');
+                return $this->getPermission('canSeeTrashedLink');
             }
             return $this->getPermission('canViewLink');
         }
+        
+        public function canTrash(){
+            $aclOption = $this->getCategory()->getPermission('canTrashLink');
+            $isOwn =  $this->userID && $this->userID == WCF::getUser()->userID;
+            $canTrash = $aclOption || ($isOwn && $this->getCategory()->getPermission('canDeleteOwnLink'));
+            if($canTrash) return true;
+            else return false;
+        }
+        
+        public function canDelete(){
+            $aclOption = $this->getCategory()->getPermission('canDeleteLink');
+            $isOwn =  $this->userID && $this->userID == WCF::getUser()->userID;
+            $canDelete = $aclOption || ($isOwn && $this->getCategory()->getPermission('canDeleteOwnLink'));
+            if($canDelete) return true;
+            else return false;
+        }
+        
+        public function canToggle(){
+            $aclOption = $this->getCategory()->getPermission('canToggleLink');
+            if($aclOption) return true;
+            else return false;
+        }
+
 }

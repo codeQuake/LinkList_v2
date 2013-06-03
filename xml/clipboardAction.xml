@@ -9,10 +9,18 @@
         <page><![CDATA[linklist\page\LinkPage]]></page>
       </pages>
     </action>
-
-    <action name="trash">
+    <action name="disable">
       <actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
       <showorder>2</showorder>
+      <pages>
+        <page><![CDATA[linklist\page\CategoryPage]]></page>
+        <page><![CDATA[linklist\page\LinkPage]]></page>
+      </pages>
+    </action>
+    
+    <action name="trash">
+      <actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
+      <showorder>3</showorder>
       <pages>
         <page><![CDATA[linklist\page\CategoryPage]]></page>
         <page><![CDATA[linklist\page\LinkPage]]></page>
@@ -22,7 +30,7 @@
 
     <action name="delete">
       <actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
-      <showorder>3</showorder>
+      <showorder>4</showorder>
       <pages>
         <page><![CDATA[linklist\page\CategoryPage]]></page>
         <page><![CDATA[linklist\page\LinkPage]]></page>
@@ -31,7 +39,7 @@
 
     <action name="restore">
       <actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
-      <showorder>4</showorder>
+      <showorder>5</showorder>
       <pages>
         <page><![CDATA[linklist\page\CategoryPage]]></page>
         <page><![CDATA[linklist\page\LinkPage]]></page>

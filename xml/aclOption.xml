@@ -32,17 +32,21 @@
       <!--mod.category-->
      
       <!--user.category-->
-      <option name="canViewLinks">
+      <option name="canViewLink">
         <categoryname>user.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>
 
-      <option name="canAddLinks">
+      <option name="canAddLink">
         <categoryname>user.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>
 
-      <option name="canEditOwnLinks">
+      <option name="canEditOwnLink">
+        <categoryname>user.linklist.category</categoryname>
+        <objecttype>de.codequake.linklist.category</objecttype>
+      </option>
+      <option name="canDeleteOwnLink">
         <categoryname>user.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>
@@ -60,22 +64,22 @@
       </option>
       
       <!--mod.link-->
-      <option name="canEditLinks">
+      <option name="canEditLink">
         <categoryname>mod.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>
       
-      <option name="canDeleteLinks">
+      <option name="canDeleteLink">
         <categoryname>mod.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>
 
-      <option name="canTrashLinks">
+      <option name="canTrashLink">
         <categoryname>mod.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>
 
-      <option name="canToggleLinks">
+      <option name="canToggleLink">
         <categoryname>mod.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>

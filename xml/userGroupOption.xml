@@ -67,7 +67,7 @@
         <admindefaultvalue>1</admindefaultvalue>
       </option>
       
-      <!--Links-->
+      <!--Link-->
       <option name="user.linklist.link.canViewLink">
         <categoryname>user.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
@@ -81,8 +81,14 @@
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
-      
+
       <option name="user.linklist.link.canEditOwnLink">
+        <categoryname>user.linklist.link</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>0</defaultvalue>
+        <admindefaultvalue>1</admindefaultvalue>
+      </option>
+      <option name="user.linklist.link.canDeleteOwnLink">
         <categoryname>user.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>

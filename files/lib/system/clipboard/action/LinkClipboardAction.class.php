@@ -7,8 +7,8 @@ use wcf\system\clipboard\action\AbstractClipboardAction;
 class LinkClipboardAction extends AbstractClipboardAction{
 
     public $links = null;
-    protected $actionClassActions = array('trash', 'restore', 'delete', 'enable');
-    protected $supportedActions = array('trash', 'delete', 'restore', 'enable');
+    protected $actionClassActions = array('trash', 'restore', 'delete', 'enable', 'disable');
+    protected $supportedActions = array('trash', 'delete', 'restore', 'enable', 'disable');
     
     public function execute(array $objects, ClipboardAction $action) {
         $item = parent::execute($objects, $action);
@@ -37,6 +37,12 @@ class LinkClipboardAction extends AbstractClipboardAction{
                 $item->addParameter('className', $this->getClassName());
                 $item->setName('de.codequake.linklist.link.enable');
             break;
+            case 'disable':
+                $item->addParameter('objectIDs', array_keys($this->links));
+                $item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.disable.confirmMessage', array('count' => $item->getCount())));
+                $item->addParameter('className', $this->getClassName());
+                $item->setName('de.codequake.linklist.link.disable');
+            break;
             case 'delete':
                 $item->addParameter('objectIDs', array_keys($this->links));
                 $item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.delete.confirmMessage', array('count' => $item->getCount())));
@@ -56,6 +62,60 @@ class LinkClipboardAction extends AbstractClipboardAction{
         return 'linklist\data\link\LinkAction';
     }
    
+    protected function validateTrash() {
+        $linkIDs = array();
+        foreach ($this->links as $link) {
+            if (!$link->isDeleted && $link->canTrash()) {
+                $linkIDs[] = $link->linkID;
+            }
+        }
 
+        return $linkIDs;
+    }
+    
+    protected function validateRestore(){
+        $linkIDs = array();
+        foreach ($this->links as $link) {
+        //if you can trash, you can restore
+            if ($link->isDeleted && $link->canTrash()) {
+                $linkIDs[] = $link->linkID;
+            }
+        }
+
+        return $linkIDs;
+    }
+    
+    protected function validateDelete(){
+        $linkIDs = array();
+        foreach ($this->links as $link) {
+            if ($link->canDelete()) {
+                $linkIDs[] = $link->linkID;
+            }
+        }
+
+        return $linkIDs;
+    }
+    
+    protected function validateEnable(){
+        $linkIDs = array();
+        foreach ($this->links as $link) {
+            if (!$link->isActive && $link->canToggle()) {
+                $linkIDs[] = $link->linkID;
+            }
+        }
+
+        return $linkIDs;
+    }
+    
+    protected function validateDisable(){
+    $linkIDs = array();
+        foreach ($this->links as $link) {
+            if ($link->isActive && $link->canToggle()) {
+                $linkIDs[] = $link->linkID;
+            }
+        }
+
+        return $linkIDs;
+    }
 
 }
