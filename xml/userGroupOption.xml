@@ -123,20 +123,32 @@
         <admindefaultvalue>1</admindefaultvalue>
       </option>
 
-      <option name="user.linklist.link.write.canWriteComment">
+      <option name="user.linklist.link.canWriteComment">
         <categoryname>user.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
-      <option name="user.linklist.link.write.canEditOwnComment">
+      <option name="user.linklist.link.canEditOwnComment">
         <categoryname>user.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>
       </option>
-      <option name="user.linklist.link.write.canDeleteOwnComment">
+      <option name="mod.linklist.link.canEditComment">
+        <categoryname>mod.linklist.link</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>0</defaultvalue>
+        <admindefaultvalue>1</admindefaultvalue>
+      </option>
+      <option name="user.linklist.link.canDeleteOwnComment">
         <categoryname>user.linklist.link</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>0</defaultvalue>
+        <admindefaultvalue>1</admindefaultvalue>
+      </option>
+      <option name="mod.linklist.link.canDeleteComment">
+        <categoryname>mod.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>0</defaultvalue>
         <admindefaultvalue>1</admindefaultvalue>

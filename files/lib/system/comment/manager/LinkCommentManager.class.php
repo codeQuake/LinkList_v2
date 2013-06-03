@@ -19,7 +19,7 @@ class LinkCommentManager extends AbstractCommentManager{
         if($this->link === null) {
             $this->link = new Link($objectID);
         }
-
+        
         return $this->link->getCategory()->getPermission('canWriteComment'); 
         
     }
@@ -106,7 +106,7 @@ class LinkCommentManager extends AbstractCommentManager{
             return $this->link->getCategory()->getPermission('canWriteComment');
         }
 
-        return $this->link->getCategory()->getPermission('canViewLinks');
+        return $this->link->getCategory()->getPermission('canViewLink');
     }
     
     //TODO
