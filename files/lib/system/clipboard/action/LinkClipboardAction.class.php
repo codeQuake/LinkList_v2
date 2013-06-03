@@ -6,15 +6,19 @@ use wcf\system\clipboard\action\AbstractClipboardAction;
 
 class LinkClipboardAction extends AbstractClipboardAction{
 
-    public $links = null;
+    protected $links = array();
     protected $actionClassActions = array('trash', 'restore', 'delete', 'enable', 'disable');
     protected $supportedActions = array('trash', 'delete', 'restore', 'enable', 'disable');
     
     public function execute(array $objects, ClipboardAction $action) {
+        if (empty($this->links)) {
+            $this->links = $objects;
+        }
+
         $item = parent::execute($objects, $action);
-        if ($item === null) return null;
-        
-        $this->links = $objects;
+        if ($item === null) {
+            return null;
+        }
         switch ($action->actionName)
         {
             case 'trash':
