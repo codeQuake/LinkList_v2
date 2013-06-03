@@ -46,6 +46,18 @@
         <categoryname>user.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>
+      <option name="canWriteComment">
+        <categoryname>user.linklist.category</categoryname>
+        <objecttype>de.codequake.linklist.category</objecttype>
+      </option>
+      <option name="canEditOwnComment">
+        <categoryname>user.linklist.category</categoryname>
+        <objecttype>de.codequake.linklist.category</objecttype>
+      </option>
+      <option name="canDeleteOwnComment">
+        <categoryname>user.linklist.category</categoryname>
+        <objecttype>de.codequake.linklist.category</objecttype>
+      </option>
       
       <!--mod.link-->
       <option name="canEditLinks">
