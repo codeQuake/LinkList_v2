@@ -1,4 +1,4 @@
-<package name="com.woltnet.wiki.core" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/package.xsd">
+<package name="de.codequake.linklist.core" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/package.xsd">
   <packageinformation>
     <packagename><![CDATA[LinklistCore]]></packagename>
     <packagedescription><![CDATA[Core functions]]></packagedescription>
