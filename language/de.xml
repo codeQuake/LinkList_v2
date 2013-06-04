@@ -44,6 +44,10 @@
     <item name="linklist.acp.menu.link.linklist.category.add"><![CDATA[Kategorie hinzufügen]]></item>
     <item name="linklist.acp.menu.link.linklist.category.list"><![CDATA[Kategorien auflisten]]></item>
   </category>
+  <category name="linklist.link.menu">
+    <item name="linklist.link.menu.show"><![CDATA[Link]]></item>
+    <item name="linklist.link.menu.comment"><![CDATA[Kommentare]]></item>
+  </category>
 
   <category name="wcf.acl.option">
     <item name="wcf.acl.option.category.de.codequake.linklist.category.user.linklist.category"><![CDATA[Benutzerrechte]]></item>
@@ -51,6 +55,19 @@
     <item name="wcf.acl.option.de.codequake.linklist.category.canViewCategory"><![CDATA[Kann Kategorie sehen]]></item>
     <item name="wcf.acl.option.de.codequake.linklist.category.canEnterCategory"><![CDATA[Kann Kategorie betreten]]></item>
     <item name="wcf.acl.option.de.codequake.linklist.category.canManagePermissions"><![CDATA[Kann Zugriffsrechte bearbeiten]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canViewLink"><![CDATA[Kann Links sehen]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canAddLink"><![CDATA[Kann Links hinzufügen]]></item>>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canEditOwnLink"><![CDATA[Kann eigene Links bearbeiten]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canDeleteOwnLink"><![CDATA[Kann eigene Links löschen]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canWriteComment"><![CDATA[Kann Kommentare schreiben]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canEditOwnComment"><![CDATA[Kann eigene Kommentare bearbeiten]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canDeleteOwnComment"><![CDATA[Kann eigene Kommentare löschen]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canEditComment"><![CDATA[Kann Kommentare bearbeiten]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canDeleteComment"><![CDATA[Kann Kommentare löschen]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canEditLink"><![CDATA[Kann Links bearbeiten]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canDeleteLink"><![CDATA[Kann Links löschen]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canTrashLink"><![CDATA[Kann Links in den Papierkorb verschieben]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canToggleLink"><![CDATA[Kann Links (de-)aktivieren]]></item>
   </category>
 
   <category name="wcf.user.profile">
@@ -59,5 +76,19 @@
 
   <category name="wcf.user.recentActivity">
     <item name="wcf.user.recentActivity.de.codequake.linklist.link.recentActivityEvent"><![CDATA[Link]]></item>
+  </category>
+
+  <category name="wcf.clipboard">
+    <item name="wcf.clipboard.label.de.codequake.linklist.link.marked"><![CDATA[{if $count == 1}Ein Link{else}{#$count} Links{/if} markiert]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.enable"><![CDATA[(Links aktivieren {#$count})]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.disable"><![CDATA[Links deaktivieren {#$count})]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.trash"><![CDATA[Links in den Papierkorb verschieben {#$count})]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.restore"><![CDATA[Gelöschte Links wiederherstellen {#$count})]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.delete"><![CDATA[Links entgültig löschen {#$count})]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.enable.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich aktivieren?]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.disable.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich deaktivieren?]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.trash.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich in den Papierkorb verschieben?]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.restore.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen gelöschten Link{else} diese {#$count} gelöschten Links{/if} wirklich wiederherstellen?]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.delete.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich entgültig löschen?]]></item>
   </category>
 </language>
