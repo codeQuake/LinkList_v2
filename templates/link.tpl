@@ -3,6 +3,15 @@
 <head>
     <title>{$link->getTitle()|language} - {PAGE_TITLE}</title>    
 	{include file='headInclude' sandbox=false}
+	<script type="text/javascript">
+	//<![CDATA[
+		$(function() {
+					new LINKLIST.Link.TabMenu({@$link->linkID});
+
+					WCF.TabMenu.init();
+		});
+	//]]>
+	</script>
 </head>
 
 <body id="tpl{$templateName|ucfirst}">
@@ -19,7 +28,8 @@
 				<ul>
 				{foreach from=$__wcf->getLinkMenu()->getMenuItems() item=menuItem}
 					<li>
-						<a href="{$__wcf->getAnchor($menuItem->getIdentifier())}" title="{lang}{@$menuItem->menuItem}{/lang}">{lang}linklist.link.menu.{@$menuItem->menuItem}{/lang}
+						<a href="{$__wcf->getAnchor($menuItem->getIdentifier())}" title="{lang}{@$menuItem->menuItem}{/lang}">
+							{lang}linklist.link.menu.{@$menuItem->menuItem}{/lang}
 						</a>
 					</li>
 				{/foreach}

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <data>
   <import>
-    <linkmenuitem name="overview">
+    <linkmenuitem name="show">
       <classname>linklist\system\menu\link\content\ShowLinkMenuContent</classname>
       <showorder>1</showorder>
     </linkmenuitem>

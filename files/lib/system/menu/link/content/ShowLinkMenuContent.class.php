@@ -16,7 +16,8 @@ class ShowLinkMenuContent extends SingletonFactory implements ILinkMenuContent{
         EventHandler::getInstance()->fireAction($this, 'didInit');
     }
     
-    public function getContent(){
+    public function getContent($linkID){
+        $this->linkID= $linkID;
         $this->link = new Link($this->linkID);
         WCF::getTPL()->assign(array('link' =>   $this->link));
                                     

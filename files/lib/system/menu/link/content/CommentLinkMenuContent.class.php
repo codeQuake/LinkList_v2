@@ -28,7 +28,8 @@ class CommentLinkMenuContent extends SingletonFactory implements ILinkMenuConten
         $this->commentList = CommentHandler::getInstance()->getCommentList($this->commentManager, $this->objectTypeID, $this->linkID);
     }
     
-    public function getContent(){
+    public function getContent($linkID){
+        $this->linkID = $linkID;
         $this->link = new Link($this->linkID);
         $this->readData();
         WCF::getTPL()->assign(array('link' =>   $this->link,
