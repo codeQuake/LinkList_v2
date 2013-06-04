@@ -1,10 +1,16 @@
 {capture assign='sidebar'}
         <aside class="sidebar">
+		<fieldset>
+			<legend class="invisible">{lang}linklist.link.sidebar.image{/lang}</legend>
+			<div class="userAvatar">
+				<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><img src="http://api.webthumbnail.org?width=150&height=150&screen=1280&format=png&url={$link->url}" alt="Captured by webthumbnail.org" /></a>
+			</div>
+		</fieldset>
             <fieldset class="linklistLinkSidebar">
                 <legend>{lang}linklist.link.sidebar.info{/lang}</legend>
                 <div>
                     <ul class="sidebarBoxList">
-                        <li class="box24">
+                        <li class="box24" style="margin-top: 20px;">
                             <div class="sidebarBoxHeadline">
                                 <h1>{lang}linklist.link.sidebar.title{/lang}</h1>
                                 <h2><small>{$link->getTitle()|language}</small></h2>
