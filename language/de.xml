@@ -80,11 +80,11 @@
 
   <category name="wcf.clipboard">
     <item name="wcf.clipboard.label.de.codequake.linklist.link.marked"><![CDATA[{if $count == 1}Ein Link{else}{#$count} Links{/if} markiert]]></item>
-    <item name="wcf.clipboard.item.de.codequake.linklist.link.enable"><![CDATA[(Links aktivieren {#$count})]]></item>
-    <item name="wcf.clipboard.item.de.codequake.linklist.link.disable"><![CDATA[Links deaktivieren {#$count})]]></item>
-    <item name="wcf.clipboard.item.de.codequake.linklist.link.trash"><![CDATA[Links in den Papierkorb verschieben {#$count})]]></item>
-    <item name="wcf.clipboard.item.de.codequake.linklist.link.restore"><![CDATA[Gelöschte Links wiederherstellen {#$count})]]></item>
-    <item name="wcf.clipboard.item.de.codequake.linklist.link.delete"><![CDATA[Links entgültig löschen {#$count})]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.enable"><![CDATA[Links aktivieren ({#$count})]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.disable"><![CDATA[Links deaktivieren ({#$count})]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.trash"><![CDATA[Links in den Papierkorb verschieben ({#$count})]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.restore"><![CDATA[Gelöschte Links wiederherstellen ({#$count})]]></item>
+    <item name="wcf.clipboard.item.de.codequake.linklist.link.delete"><![CDATA[Links entgültig löschen ({#$count})]]></item>
     <item name="wcf.clipboard.item.de.codequake.linklist.link.enable.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich aktivieren?]]></item>
     <item name="wcf.clipboard.item.de.codequake.linklist.link.disable.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich deaktivieren?]]></item>
     <item name="wcf.clipboard.item.de.codequake.linklist.link.trash.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich in den Papierkorb verschieben?]]></item>
