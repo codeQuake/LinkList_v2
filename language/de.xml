@@ -73,7 +73,7 @@
   <category name="wcf.user.profile">
     <item name="wcf.user.profile.recentActivity.link"><![CDATA[hat den Link &raquo;<a href="{link controller=Link application='linklist' object=$link}{/link}">{$link->getTitle()}</a>&laquo; hinzugefügt.]]></item>
     <item name="wcf.user.profile.recentActivity.linkComment"><![CDATA[hat den Link &raquo;<a href="{link controller=Link application='linklist' object=$link}{/link}">{$link->getTitle()}</a>&laquo; kommentiert.]]></item>
-    <item name="wcf.user.profile.recentActivity.linkCommentResponse"><![CDATA[hat auf den Kommentar von <a href="{link controller=User application='linklist' object=$author}{$author->username}{/link}"></a> zum Link &raquo;<a href="{link controller=Link application='linklist' object=$link}#comment{/link}">{$link->getTitle()}</a>&laquo; geantwortet.]]></item>
+    <item name="wcf.user.profile.recentActivity.linkCommentResponse"><![CDATA[hat auf den Kommentar von <a href="{link controller=User application='linklist' object=$author}{/link}">{$author->username}</a> zum Link &raquo;<a href="{link controller=Link application='linklist' object=$link}#comment{/link}">{$link->getTitle()}</a>&laquo; geantwortet.]]></item>
   </category>
 
   <category name="wcf.user.recentActivity">
