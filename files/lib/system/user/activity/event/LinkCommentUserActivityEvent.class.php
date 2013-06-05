@@ -7,7 +7,7 @@ use wcf\system\WCF;
 use wcf\data\comment\CommentList;
 use linklist\data\link\LinkList;
 
-class LinkCommentuserActivityEvent extends SingletonFactory implements IUserActivityEvent{
+class LinkCommentUserActivityEvent extends SingletonFactory implements IUserActivityEvent{
     public function prepare(array $events){
         $objectIDs = array();
         foreach ($events as $event) {
