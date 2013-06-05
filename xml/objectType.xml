@@ -49,5 +49,10 @@
       <definitionname>com.woltlab.wcf.user.recentActivityEvent</definitionname>
       <classname>linklist\system\user\activity\event\LinkUserActivityEvent</classname>
     </type>
+    <type>
+      <name>com.woltnet.wiki.linkComment.recentActivityEvent</name>
+      <definitionname>com.woltlab.wcf.user.recentActivityEvent</definitionname>
+      <classname>linklist\system\user\activity\event\LinkCommentUserActivityEvent</classname>
+    </type>
   </import>
 </data>
