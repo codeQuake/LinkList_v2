@@ -14,7 +14,6 @@ use linklist\data\category\LinklistCategoryCache;
  
 class LinklistCategoryNode extends CategoryNode{
 
-    protected $subCategories = null;
     protected $links = null;
     protected $visits = null;
     public $objectTypeName = 'de.codequake.linklist.category';
@@ -29,19 +28,20 @@ class LinklistCategoryNode extends CategoryNode{
         return false;
     }
     
-    public function getChildCategories($depth = 0) {
-        if($this->subCategories === null) {
-            $this->subCategories = new LinklistCategoryNodeTree($this->objectTypeName, $this->categoryID);
-            if($depth > 0) $this->subCategories->setMaxDepth($depth);
-        }
-        return $this->subCategories;
-    }
+   
     public function getVisits() {
-        return LinklistCategoryCache::getInstance()->getVisits($this->categoryID);
+        $visits = LinklistCategoryCache::getInstance()->getVisits($this->categoryID);
+        foreach($this->getChildCategories() as $subCategory) {
+            $visits = $visits + LinklistCategoryCache::getInstance()->getVisits($subCategory->categoryID);
+        }
+        return $visits;
     }
     public function getLinks() {
-        return LinklistCategoryCache::getInstance()->getLinks($this->categoryID);
+        $links = LinklistCategoryCache::getInstance()->getLinks($this->categoryID);
+        foreach($this->getChildCategories() as $subCategory) {
+            $links = $links + LinklistCategoryCache::getInstance()->getLinks($subCategory->categoryID);
+        }
+        return  $links;
     }
-
 
 }
