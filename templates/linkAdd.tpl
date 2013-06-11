@@ -3,6 +3,14 @@
 <head>
     <title>{lang}linklist.link.link{$action|ucfirst}{/lang} - {PAGE_TITLE|language}</title>
     {include file='headInclude'}
+	<script type="text/javascript">
+		//<![CDATA[
+		$(function() {
+			WCF.Message.Submit.registerButton('text', $('#messageContainer > .formSubmit > input[type=submit]'));
+			new WCF.Message.FormGuard();
+		});
+		//]]>
+	</script>
 </head>
 <body id="tpl{$templateName|ucfirst}">
     {include file='header'}
@@ -16,7 +24,7 @@
         <p class="error">{lang}wcf.global.form.error{/lang}</p>
     {/if}
 
-    <form method="post" action="{if $action=='add'}{link controller='LinkAdd' application='linklist'}{/link}{else}{link controller='LinkEdit' object=$link application='linklist'}{/link}{/if}" id="link{$action|ucfirst}Form">
+    <form id="messageContainer" class="jsFormGuard" method="post" action="{if $action=='add'}{link controller='LinkAdd' application='linklist'}{/link}{else}{link controller='LinkEdit' object=$link application='linklist'}{/link}{/if}" id="link{$action|ucfirst}Form">
         {if $linkID|isset}<input type="hidden" name="linkID" value="{$linkID}" />{/if}
         <div class="container containerPadding marginTop shadow">
             <fieldset>
@@ -105,7 +113,8 @@
                 </dd>
             
             </fieldset>
-            {include file='messageFormTabs' attachmentHandler=null}
+			{if $useCaptcha}{include file='recaptcha'}{/if}
+            {include file='messageFormTabs' wysiwygContainerID='text' attachmentHandler=null}
              <div class="formSubmit">
                  <input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
             </div>

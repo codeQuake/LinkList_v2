@@ -35,7 +35,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     
     public function create(){
         $object = call_user_func(array($this->className, 'create'), $this->parameters);
-        UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
+        if($object->userID) UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
        return $object;
 
     }

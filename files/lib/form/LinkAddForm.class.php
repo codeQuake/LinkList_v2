@@ -13,6 +13,7 @@ use wcf\system\category\CategoryHandler;
 use wcf\form\MessageForm;
 use wcf\util\StringUtil;
 use wcf\util\HeaderUtil;
+use wcf\util\UserUtil;
 use wcf\util\FileUtil;
 use wcf\system\request\LinkHandler;
 use wcf\system\language\LanguageFactory;
@@ -54,7 +55,7 @@ class LinkAddForm extends MessageForm{
             if ($this->category === null || !$this->category->categoryID) {
                 throw new IllegalLinkException();
             }
-            $this->category->checkPermission(array('canViewCategory', 'canEnterCategory'));
+            $this->category->checkPermission(array('canViewCategory', 'canEnterCategory', 'canAddLink'));
         }
     }
     
@@ -142,8 +143,8 @@ class LinkAddForm extends MessageForm{
                         'subject'   =>  $this->subject,
                         'categoryID'    =>  $this->categoryID,
                         'message'   =>  $this->text,
-                        'userID'    =>  (WCF::getUser()->userID ?: null),
-                        'username'  =>  (WCF::getUser()->userID ? WCF::getUser()->username : $this->username),
+                        'userID' => (WCF::getUser()->userID ?: null),
+                        'username' => (WCF::getUser()->userID ? WCF::getUser()->username : $this->username),
                         'time'  =>  TIME_NOW,
                         'languageID'    =>  $this->languageID,
                         'enableSmilies' =>  $this->enableSmilies,
