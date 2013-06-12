@@ -13,6 +13,7 @@ use wcf\system\clipboard\ClipboardHandler;
 use wcf\util\StringUtil;
 use wcf\system\WCF;
 use linklist\data\link\LinkList;
+use linklist\data\link\LinkEditor;
 
 /** 
  * @author  Jens Krumsieck
@@ -41,6 +42,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         if($object->userID){
             UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
             UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $object->linkID, $object->userID);
+            LinkEditor::updateLinkCounter(array($object->userID => 1));
         }
         $this->refreshStats($object);
        return $object;

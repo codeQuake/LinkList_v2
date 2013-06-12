@@ -72,6 +72,10 @@
     <item name="wcf.acl.option.de.codequake.linklist.category.canToggleLink"><![CDATA[Kann Links (de-)aktivieren]]></item>
   </category>
 
+  <category name="wcf.user">
+    <item name="wcf.user.searchLinks">Links von „{$username}“ suchen</item>
+  </category>
+  
   <category name="wcf.user.profile">
     <item name="wcf.user.profile.recentActivity.link"><![CDATA[hat den Link &raquo;<a href="{link controller=Link application='linklist' object=$link}{/link}">{$link->getTitle()}</a>&laquo; hinzugefügt.]]></item>
     <item name="wcf.user.profile.recentActivity.linkComment"><![CDATA[hat den Link &raquo;<a href="{link controller=Link application='linklist' object=$link}{/link}">{$link->getTitle()}</a>&laquo; kommentiert.]]></item>
