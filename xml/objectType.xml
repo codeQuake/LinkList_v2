@@ -66,7 +66,7 @@
       </type>
 
       <type>
-        <name>cde.codequake.linklist.activityPointEvent.link</name>
+        <name>de.codequake.linklist.activityPointEvent.link</name>
         <definitionname>com.woltlab.wcf.user.activityPointEvent</definitionname>
         <points>5</points>
         <classname>linklist\system\user\activity\point\LinkUserActivityPointObjectProcessor</classname>
