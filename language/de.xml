@@ -81,7 +81,14 @@
     <item name="wcf.user.recentActivity.de.codequake.linklist.linkComment.recentActivityEvent"><![CDATA[Link-Kommentar]]></item>
     <item name="wcf.user.recentActivity.de.codequake.linklist.linkComment.response.recentActivityEvent"><![CDATA[Link-Antwort]]></item>
   </category>
+  
+  <category name="wcf.user.activityPoint">
+    <item name="wcf.user.activityPoint.objectType.de.codequake.linklist.activityPointEvent.link"><![CDATA[Links]]></item>
+  </category>
 
+  <category name="wcf.dashboard">
+    <item name="wcf.dashboard.objectType.de.codequake.linklist.CategoryListPage"><![CDATA[Linkliste]]></item>
+  </category>
   <category name="wcf.clipboard">
     <item name="wcf.clipboard.label.de.codequake.linklist.link.marked"><![CDATA[{if $count == 1}Ein Link{else}{#$count} Links{/if} markiert]]></item>
     <item name="wcf.clipboard.item.de.codequake.linklist.link.enable"><![CDATA[Links aktivieren ({#$count})]]></item>
