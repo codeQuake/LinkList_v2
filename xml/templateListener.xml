@@ -28,5 +28,33 @@
       <eventname>javascriptInclude</eventname>
       <templatecode><![CDATA[{include file='__jsInclude' application='linklist'}]]></templatecode>
     </templatelistener>
+
+    <templatelistener name="linkMembersList">
+      <environment>user</environment>
+      <templatename>membersList</templatename>
+      <eventname>sortField</eventname>
+      <templatecode><![CDATA[<option value="linklistLinks"{if $sortField == 'linklistLinks'} selected="selected"{/if}>{lang}linklist.link.links{/lang}</option>]]></templatecode>
+    </templatelistener>
+    
+    <templatelistener name="linkDashboardBoxStatsSidebar">
+      <environment>user</environment>
+      <templatename>dashboardBoxStatsSidebar</templatename>
+      <eventname>stats</eventname>
+      <templatecode><![CDATA[{include file='__dashboardBoxStatsSidebar' application='linklist'}]]></templatecode>
+    </templatelistener>
+    
+    <templatelistener name="linkUserInformationStatistics">
+      <environment>user</environment>
+      <templatename>userInformationStatistics</templatename>
+      <eventname>statistics</eventname>
+     <templatecode><![CDATA[{include file='__userStats' application='linklist'}]]></templatecode>
+    </templatelistener>
+    
+    <templatelistener name="linkUserStatistics">
+      <environment>user</environment>
+      <templatename>userSidebar</templatename>
+      <eventname>statistics</eventname>
+      <templatecode><![CDATA[{include file='__userStats' application='linklist'}]]></templatecode>
+    </templatelistener>
   </import>
 </data>

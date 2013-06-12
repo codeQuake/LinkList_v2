@@ -7,5 +7,15 @@
       <listenerclassname>linklist\system\event\listener\CategoryAddListener</listenerclassname>
       <environment>admin</environment>
     </eventlistener>
+    <eventlistener>
+      <eventclassname>wcf\page\MembersListPage</eventclassname>
+      <eventname>readParameters</eventname>
+      <listenerclassname>linklist\system\event\listener\LinksMembersListPageListener</listenerclassname>
+    </eventlistener>
+    <eventlistener>
+      <eventclassname>wcf\system\dashboard\box\StatsSidebarDashboardBox</eventclassname>
+      <eventname>init</eventname>
+      <listenerclassname>linklist\system\event\listener\StatsSidebarDashboardBoxListener</listenerclassname>
+    </eventlistener>
   </import>
 </data>
