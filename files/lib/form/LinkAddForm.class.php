@@ -156,14 +156,7 @@ class LinkAddForm extends MessageForm{
         $resultvalues = $this->objectAction->executeAction();
         
         $this->link = $resultvalues['returnValues'];
-            //update links
-            $links = new LinkList();
-            $links->sqlConditionJoins = 'WHERE categoryID = '.$this->link->categoryID;
-            $sql = "UPDATE linklist".WCF_N."_category_stats SET  links = ".$links->countObjects()." WHERE categoryID = ".$this->link->categoryID;
-            $statement = WCF::getDB()->prepareStatement($sql);
-            $statement->execute();
             
-            CategoryCacheBuilder::getInstance()->reset();
             
             
         $this->saved();

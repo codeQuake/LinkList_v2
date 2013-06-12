@@ -3,6 +3,8 @@ namespace linklist\data\link;
 
 use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\system\user\activity\point\UserActivityPointHandler;
+use linklist\system\cache\builder\CategoryCacheBuilder;
+use wcf\system\database\util\PreparedStatementConditionBuilder;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\search\SearchIndexManager;
 use wcf\system\exception\PermissionDeniedException;
@@ -37,11 +39,11 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     public function create(){
         $object = call_user_func(array($this->className, 'create'), $this->parameters);
         if($object->userID){
-        UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
-        UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $object->linkID, $object->userID);
+            UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
+            UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $object->linkID, $object->userID);
         }
+        $this->refreshStats($object);
        return $object;
-
     }
     
     //unmark
@@ -141,10 +143,23 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             }
         }
      }
-     public function delete(){
+     public function delete(){     
+        $linkIDs = array();
+        foreach($this->links as $link){
+            $linkIDs[] = $link->linkID;            
+        }
+        // remove activity points        
+        UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $linkIDs);
+
+        //delete
         parent::delete();
-        // remove activity points
-        UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $this->links->linkID);
+        
+        foreach($this->links as $link){
+            //clear stats
+            $this->refreshStats($link);
+        }
+        
+        
      }
      
     //getLinks
@@ -166,4 +181,15 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             throw new UserInputException("objectIDs");
         }
     }
+    
+    protected function refreshStats($link){        
+        //update links
+         $links = new LinkList();
+         $links->sqlConditionJoins = 'WHERE categoryID = '.$link->categoryID;
+         $sql = "UPDATE linklist".WCF_N."_category_stats SET  links = ".$links->countObjects()." WHERE categoryID = ".$link->categoryID;
+         $statement = WCF::getDB()->prepareStatement($sql);
+         $statement->execute();
+         CategoryCacheBuilder::getInstance()->reset();
+    }
+    
 }
