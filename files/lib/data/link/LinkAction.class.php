@@ -2,6 +2,7 @@
 namespace linklist\data\link;
 
 use wcf\system\user\activity\event\UserActivityEventHandler;
+use wcf\system\user\activity\point\UserActivityPointHandler;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\search\SearchIndexManager;
 use wcf\system\exception\PermissionDeniedException;
@@ -35,7 +36,10 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     
     public function create(){
         $object = call_user_func(array($this->className, 'create'), $this->parameters);
-        if($object->userID) UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
+        if($object->userID){
+        UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
+        UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $object->linkID, $object->userID);
+        }
        return $object;
 
     }
@@ -128,10 +132,21 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         }
         $this->unmarkItems();
      }
-     //delete
+     //delete     
+     public function validateDelete(){
+        $this-loadLinks();
+        foreach($this->links as $link){
+            if($link->isDeleted){
+                throw new PermissionDeniedException();
+            }
+        }
+     }
      public function delete(){
         parent::delete();
+        // remove activity points
+        UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $this->links->linkID);
      }
+     
     //getLinks
      protected function loadLinks() {
         if (empty($this->objectIDs)) {
