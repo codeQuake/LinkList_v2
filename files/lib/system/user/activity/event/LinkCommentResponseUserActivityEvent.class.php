@@ -7,6 +7,7 @@ use wcf\system\WCF;
 use wcf\data\comment\CommentList;
 use wcf\data\comment\response\CommentResponseList;
 use linklist\data\link\LinkList;
+use wcf\data\user\User;
 
 class LinkCommentResponseUserActivityEvent extends SingletonFactory implements IUserActivityEvent{
     public function prepare(array $events){
@@ -18,14 +19,14 @@ class LinkCommentResponseUserActivityEvent extends SingletonFactory implements I
         //comments responses
         $responseList = new CommentResponseList();
         $responseList->getConditionBuilder()->add("comment_response.responseID IN (?)", array (
-        $objectIDs ));
+                                                        $objectIDs ));
         $responseList->readObjects();
         $responses = $responseList->getObjects();
         
         //comments
         $commentIDs = array();
         foreach($responses as $response){
-            $commentIDs = $response->commentID;
+            $commentIDs[] = $response->commentID;
         }
         $commentList = new CommentList();
         $commentList->getConditionBuilder()->add("comment.commentID IN (?)", array($commentIDs));
@@ -50,12 +51,12 @@ class LinkCommentResponseUserActivityEvent extends SingletonFactory implements I
                 $response = $responses[$event->objectID];
                 if(isset($comments[$response->commentID])) {
                     $comment = $comments[$response->commentID];
-                    if(isset($links[$comment->objectID]) && isset($links[$comment->userID])){
+                    if(isset($links[$comment->objectID])){
                         $text = WCF::getLanguage()->getDynamicVariable('wcf.user.profile.recentActivity.linkCommentResponse', array(
-                            'author' => $links[$comment->userID],
+                            'author' => new User($comment->userID),
                             'link' => $links[$comment->objectID]));
                         $event->setTitle($text);
-                        $event->setDescription($comment->getFormattedMessage());
+                        $event->setDescription($response->getFormattedMessage());
                         $event->setIsAccessible();
                     }
                 }

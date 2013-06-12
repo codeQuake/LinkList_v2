@@ -134,7 +134,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
      }
      //delete     
      public function validateDelete(){
-        $this-loadLinks();
+        $this->loadLinks();
         foreach($this->links as $link){
             if($link->isDeleted){
                 throw new PermissionDeniedException();
