@@ -4,6 +4,7 @@ namespace linklist\system\search;
 use wcf\system\search\AbstractSearchableObjectType;
 use linklist\data\link\SearchResultLinkList;
 use linklist\data\category\LinklistCategoryNodeTree;
+use linklist\system\event\listener\SearchListener;
 use wcf\form\IForm;
 use wcf\util\ArrayUtil;
 use wcf\system\database\util\PreparedStatementConditionBuilder;
@@ -17,7 +18,6 @@ class LinkSearch extends AbstractSearchableObjectType{
     public $categoryIDs =array();
     public $categories = array();
     public $selectedCategories = array();
-    public $findLinks = 1;
     public $objectTypeName = 'de.codequake.linklist.category';
     
     public function cacheObjects(array $objectIDs, array $additionalData = null){
@@ -35,8 +35,7 @@ class LinkSearch extends AbstractSearchableObjectType{
     }
     
     public function getAdditionalData(){
-        return array('categoryIDs' => $this->categoryIDs,
-                    'findLinks' => $this->findLinks);
+        return array('categoryIDs' => $this->categoryIDs);
     }
     
     public function getTableName(){
@@ -78,7 +77,6 @@ class LinkSearch extends AbstractSearchableObjectType{
         
         WCF::getTPL()->assign(array('linkIDs' => $this->linkIDs,
                                     'selectAllCategories' => count($this->categoryIDs) == 0 || $this->categoryIDs[0] == '*',
-                                    'findLinks' => $this->findLinks,
                                     'nodeList' => $nodeList));
     }
     
@@ -90,8 +88,6 @@ class LinkSearch extends AbstractSearchableObjectType{
         
         //new pewpew
         if(isset($_POST['categoryIDs']) && is_array($_POST['categoryIDs'])) $this->categoryIDs = ArrayUtil::toIntegerArray($_POST['categoryIDs']);
-        
-        if(isset($_POST['findLinks'])) $this->findLinks = intval($_POST['findLinks']);
         
         
     }

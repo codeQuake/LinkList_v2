@@ -64,11 +64,5 @@
       <templatecode><![CDATA[{include file='__searchAreaSettings' application='linklist'}]]></templatecode>
     </templatelistener>
 
-    <templatelistener name="linkSearchDisplayOptions">
-      <environment>user</environment>
-      <templatename>search</templatename>
-      <eventname>displayOptions</eventname>
-      <templatecode><![CDATA[{include file='__searchDisplayOptions' application='linklist'}]]></templatecode>
-    </templatelistener>
   </import>
 </data>
