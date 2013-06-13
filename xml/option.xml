@@ -3,7 +3,7 @@
   <import>
     <options>
       <option name="module_linklist_comments">
-        <categoryname>module.community</categoryname>
+        <categoryname>module.content</categoryname>
         <optiontype>boolean</optiontype>
         <defaulvalue>1</defaulvalue>
       </option>

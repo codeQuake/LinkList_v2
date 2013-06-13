@@ -13,6 +13,11 @@
     <item name="linklist.links.time"><![CDATA[Zeit]]></item>
   </category>
 
+  <category name="linklist.category">
+    <item name="linklist.category.search.all"><![CDATA[Alle Kategorien durchsuchen]]></item>
+    <item name="linklist.category.search"><![CDATA[Aktuelle Kategorie durchsuchen]]></item>
+  </category>
+
   <category name="linklist.link">
     <item name="linklist.link.add"><![CDATA[Link hinzufügen]]></item>
     <item name="linklist.link.linkEdit"><![CDATA[Link bearbeiten]]></item>
@@ -49,6 +54,9 @@
   <category name="linklist.link.menu">
     <item name="linklist.link.menu.show"><![CDATA[Link]]></item>
     <item name="linklist.link.menu.comment"><![CDATA[Kommentare]]></item>
+  </category>
+  <category name="wcf.acp.option">
+    <item name="wcf.acp.option.module_linklist_comments"><![CDATA[Kommentarsystem - Linkliste]]></item>
   </category>
 
   <category name="wcf.acl.option">
@@ -107,5 +115,9 @@
     <item name="wcf.clipboard.item.de.codequake.linklist.link.trash.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich in den Papierkorb verschieben?]]></item>
     <item name="wcf.clipboard.item.de.codequake.linklist.link.restore.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen gelöschten Link{else} diese {#$count} gelöschten Links{/if} wirklich wiederherstellen?]]></item>
     <item name="wcf.clipboard.item.de.codequake.linklist.link.delete.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich entgültig löschen?]]></item>
+  </category>
+
+  <category name="wcf.search">
+    <item name="wcf.search.type.de.codequake.linklist.link"><![CDATA[Links]]></item>
   </category>
 </language>
