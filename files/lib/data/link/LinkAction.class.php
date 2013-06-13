@@ -45,7 +45,18 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             LinkEditor::updateLinkCounter(array($object->userID => 1));
         }
         $this->refreshStats($object);
+        SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
        return $object;
+    }
+    public function update(){
+        parent::update();
+        $objectIDs = array();
+        foreach ($this->objects as $object) {
+           $objectIDs[] = $object->linkID;
+        }
+        if (!empty($objectIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $objectIDs);
+        if (!empty($objectIDs)) SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
+       
     }
     
     //unmark
@@ -155,13 +166,13 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
         //delete
         parent::delete();
-        
+        $linkIDs = array();
         foreach($this->links as $link){
             //clear stats
             $this->refreshStats($link);
+            $linkIDs[] = $link->linkID;
         }
-        
-        
+        if (!empty($linkIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $linkIDs);
      }
      
     //getLinks

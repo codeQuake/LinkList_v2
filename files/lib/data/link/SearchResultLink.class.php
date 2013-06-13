@@ -8,7 +8,7 @@ class SearchResultLink extends ViewableLink implements ISearchResultObject{
     public $link = null;
 
     public function getFormattedMessage(){
-        return SeachResultTextParser::getInstance()->parse($this->getDecoratedObject()->getFormattedMessage());
+        return SearchResultTextParser::getInstance()->parse($this->getDecoratedObject()->getFormattedMessage());
     }
     
     public function getSubject(){

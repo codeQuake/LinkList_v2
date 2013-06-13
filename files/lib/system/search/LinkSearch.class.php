@@ -2,8 +2,8 @@
 namespace linklist\system\search;
 
 use wcf\system\search\AbstractSearchableObjectType;
-use linklist\data\SearchResultLinkList;
-use linklist\data\category\LinklisrCategoryNodeTree;
+use linklist\data\link\SearchResultLinkList;
+use linklist\data\category\LinklistCategoryNodeTree;
 use wcf\form\IForm;
 use wcf\util\ArrayUtil;
 use wcf\system\database\util\PreparedStatementConditionBuilder;
@@ -79,7 +79,7 @@ class LinkSearch extends AbstractSearchableObjectType{
         WCF::getTPL()->assign(array('linkIDS' => $his->linkIDs,
                                     'selectAllCategories' => count($this->categoryIDs) == 0 || $this->categoryIDs[0] == '*',
                                     'findLinks' => $this->findLinks(),
-                                    'categoryList' => $nodeList));
+                                    'nodeList' => $nodeList));
     }
     
     public function readFormParameters(IForm $form = null){
