@@ -103,6 +103,9 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
          return $this->time;
     }
     
+    public function getUserProfile(){
+        return new UserProfile(new User($this->userID));
+    }
     public function getUserID() {
         return $this->userID;
     }

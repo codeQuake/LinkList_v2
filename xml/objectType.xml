@@ -64,12 +64,18 @@
         <definitionname>com.woltlab.wcf.user.recentActivityEvent</definitionname>
         <classname>linklist\system\user\activity\event\LinkCommentResponseUserActivityEvent</classname>
       </type>
-
+       <!--Activity Points-->
       <type>
         <name>de.codequake.linklist.activityPointEvent.link</name>
         <definitionname>com.woltlab.wcf.user.activityPointEvent</definitionname>
         <points>5</points>
         <classname>linklist\system\user\activity\point\LinkUserActivityPointObjectProcessor</classname>
       </type>
-  </import>
+      <!--Search-->
+      <type>
+        <name>de.codequake.linklist.link</name>
+        <definitionname>com.woltlab.wcf.searchableObjectType</definitionname>
+        <classname>linklist\system\search\LinkSearch</classname>
+      </type>
+      </import>
 </data>
