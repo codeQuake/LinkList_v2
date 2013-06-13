@@ -45,6 +45,10 @@
 
     <item name="linklist.link.links"><![CDATA[Links]]></item>
   </category>
+  
+  <category name="linklist.search">
+    <item name="linklist.search.categories.all"><![CDATA[Alle Kategorien]]></item>
+  </category>
 
   <category name="linklist.acp.menu">
     <item name="linklist.acp.menu.link.linklist.category"><![CDATA[Linkliste]]></item>
