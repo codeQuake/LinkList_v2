@@ -16,6 +16,8 @@ class LinklistCategoryNode extends CategoryNode{
 
     protected $links = null;
     protected $visits = null;
+    public $parentNode = null;
+    
     public $objectTypeName = 'de.codequake.linklist.category';
     
     protected function fulfillsConditions(DatabaseObject $category) {
@@ -28,7 +30,6 @@ class LinklistCategoryNode extends CategoryNode{
         return false;
     }
     
-   
     public function getVisits() {
         $visits = LinklistCategoryCache::getInstance()->getVisits($this->categoryID);
         foreach($this->getChildCategories() as $subCategory) {
@@ -43,5 +44,7 @@ class LinklistCategoryNode extends CategoryNode{
         }
         return  $links;
     }
+    
+    
 
 }

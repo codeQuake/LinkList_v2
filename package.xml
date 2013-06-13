@@ -25,6 +25,7 @@
     <instruction type="template">templates.tar</instruction>
     
     <!--xml-->
+    <instruction type="sitemap">xml/sitemap.xml</instruction>
     <instruction type="linkMenu">xml/linkMenu.xml</instruction>
     <instruction type="pageMenu">xml/pagemenu.xml</instruction>
     <instruction type="objectType">xml/objectType.xml</instruction>

@@ -8,7 +8,7 @@
             <option value="-">--------------------</option>
             <!--loop throug cat's-->
             {foreach from=$nodeList item=$categoryNode}
-                <option value="{@$categoryNode->categoryID}">{$categoryNode->title|language}</option>
+                <option value="{@$categoryNode->categoryID}">{section name=i loop=$nodeList->getDepth()}&nbsp;&raquo;&raquo;&nbsp;{/section}{$categoryNode->title|language}</option>
             {/foreach}
         </select>
         <small>{lang}wcf.global.multiSelect{/lang}</small>
