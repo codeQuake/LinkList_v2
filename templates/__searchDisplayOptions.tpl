@@ -1,0 +1,1 @@
+<label><input type="checkbox" name="findLinks" value="1"{if $findLinks} checked="checked"{/if} /> {lang}linklist.search.findLinks{/lang}</label>
