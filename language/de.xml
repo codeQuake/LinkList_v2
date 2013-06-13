@@ -14,7 +14,7 @@
   </category>
 
   <category name="linklist.category">
-    <item name="linklist.category.search.all"><![CDATA[Alle Kategorien durchsuchen]]></item>
+    <item name="linklist.category.searchAll"><![CDATA[Alle Kategorien durchsuchen]]></item>
     <item name="linklist.category.search"><![CDATA[Aktuelle Kategorie durchsuchen]]></item>
   </category>
 
@@ -119,5 +119,6 @@
 
   <category name="wcf.search">
     <item name="wcf.search.type.de.codequake.linklist.link"><![CDATA[Links]]></item>
+    <item name="wcf.search.object.de.codequake.linklist.link"><![CDATA[Link]]></item>
   </category>
 </language>
