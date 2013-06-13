@@ -159,10 +159,12 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
      public function delete(){     
         $linkIDs = array();
         foreach($this->links as $link){
-            $linkIDs[] = $link->linkID;            
+            $linkIDs[] = $link->linkID;   
+            LinkEditor::updateLinkCounter(array($link->userID => -1));
         }
         // remove activity points        
         UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $linkIDs);
+        
 
         //delete
         parent::delete();

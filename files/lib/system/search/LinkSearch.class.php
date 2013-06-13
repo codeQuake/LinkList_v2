@@ -18,7 +18,7 @@ class LinkSearch extends AbstractSearchableObjectType{
     public $categories = array();
     public $selectedCategories = array();
     public $findLinks = 1;
-    public $objectTypeName = 'de.codequake.linklist';
+    public $objectTypeName = 'de.codequake.linklist.category';
     
     public function cacheObjects(array $objectIDs, array $additionalData = null){
         $linklist = new SearchResultLinkList();
@@ -76,9 +76,9 @@ class LinkSearch extends AbstractSearchableObjectType{
             
         }
         
-        WCF::getTPL()->assign(array('linkIDS' => $his->linkIDs,
+        WCF::getTPL()->assign(array('linkIDs' => $this->linkIDs,
                                     'selectAllCategories' => count($this->categoryIDs) == 0 || $this->categoryIDs[0] == '*',
-                                    'findLinks' => $this->findLinks(),
+                                    'findLinks' => $this->findLinks,
                                     'nodeList' => $nodeList));
     }
     

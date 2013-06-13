@@ -56,5 +56,12 @@
       <eventname>statistics</eventname>
       <templatecode><![CDATA[{include file='__userStats' application='linklist'}]]></templatecode>
     </templatelistener>
+
+    <templatelistener name="linkSearchAreaSettings">
+      <environment>user</environment>
+      <templatename>searchArea</templatename>
+      <eventname>settings</eventname>
+      <templatecode><![CDATA[{include file='__searchAreaSettings' application='linklist'}]]></templatecode>
+    </templatelistener>
   </import>
 </data>
