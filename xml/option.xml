@@ -2,6 +2,11 @@
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/maelstrom/option.xsd">
   <import>
     <options>
+      <option name="module_linklist_comments">
+        <categoryname>module.community</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaulvalue>1</defaulvalue>
+      </option>
       <option name="linklist_install_date">
         <categoryname>general</categoryname>
         <optiontype>integer</optiontype>

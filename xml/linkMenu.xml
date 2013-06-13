@@ -9,6 +9,7 @@
     <linkmenuitem name="comment">
       <classname>linklist\system\menu\link\content\CommentLinkMenuContent</classname>
       <showorder>2</showorder>
+      <options>module_linklist_comments</options>
     </linkmenuitem>
   </import>
 </data>
