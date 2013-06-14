@@ -1,7 +1,8 @@
 <?php
 namespace linklist\page;
 use wcf\page\AbstractPage;
-
+use wcf\system\cache\builder\UserStatsCacheBuilder;
+use linklist\system\cache\builder\LinklistStatsCacheBuilder;
 use linklist\data\category\LinklistCategoryNodeTree;
 use wcf\system\dashboard\DashboardHandler;
 use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
@@ -20,6 +21,7 @@ class CategoryListPage extends AbstractPage {
         /**
      * @see	wcf\page\AbstractPage::$enableTracking
      */
+    public $stats = array();
     public $enableTracking = true;
     public $categoryList = null;
     public $objectTypeName = 'de.codequake.linklist.category';
@@ -32,6 +34,8 @@ class CategoryListPage extends AbstractPage {
         $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
         $this->categoryList = $categoryTree->getIterator();
         $this->categoryList->setMaxDepth(0);
+        $this->stats = array_merge(StatsCacheBuilder::getInstance()->getData(),
+                                    UserStatsCacheBuilder::getInstance()->getData());
   }
     /**
      * @see wcf\page\IPage::assignVariables()
@@ -46,7 +50,8 @@ class CategoryListPage extends AbstractPage {
             'categoryList' => $this->categoryList,
             'sidebarCollapsed'	=> UserCollapsibleContentHandler::getInstance()->isCollapsed('com.woltlab.wcf.collapsibleSidebar', 'de.codequake.linklist.CategoryListPage'),
             'sidebarName' => 'de.codequake.linklist.CategoryListPage',
-            'allowSpidersToIndexThisPage'   =>  true
+            'allowSpidersToIndexThisPage'   =>  true,
+            'stats' => $this->stats
         ));
     }
 }

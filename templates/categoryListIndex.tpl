@@ -22,7 +22,19 @@
 
 {include file='categoryList' application='linklist'}
 
-
+<div class="container marginTop">
+	<ul class="containerList infoBoxList">
+		<li class="box32 statsInfoBox">
+			<span class="icon icon32 icon-bar-chart"></span>
+			<div>
+				<div class="containerHeadline">
+					<h3>{lang}linklist.index.stats{/lang}</h3>
+					<p>{lang}linklist.index.stats.detail{/lang}</p>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
 {include file='footer' sandbox=false}
 </body>
 </html>

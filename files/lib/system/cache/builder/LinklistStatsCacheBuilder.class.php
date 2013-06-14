@@ -20,7 +20,7 @@ class LinklistStatsCacheBuilder extends AbstractCacheBuilder {
 
         $days = ceil((TIME_NOW - LINKLIST_INSTALL_DATE) / 86400);
         if ($days <= 0) $days = 1;
-        $data['postsPerDay'] = $data['links'] / $days;
+        $data['linksPerDay'] = $data['links'] / $days;
         return $data;
     }
 }
