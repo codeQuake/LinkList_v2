@@ -34,7 +34,7 @@ class CategoryListPage extends AbstractPage {
         $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
         $this->categoryList = $categoryTree->getIterator();
         $this->categoryList->setMaxDepth(0);
-        $this->stats = array_merge(StatsCacheBuilder::getInstance()->getData(),
+        $this->stats = array_merge(LinklistStatsCacheBuilder::getInstance()->getData(),
                                     UserStatsCacheBuilder::getInstance()->getData());
   }
     /**

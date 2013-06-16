@@ -4,6 +4,7 @@ namespace linklist\data\link;
 use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\system\user\activity\point\UserActivityPointHandler;
 use linklist\system\cache\builder\CategoryCacheBuilder;
+use linklist\system\cache\builder\LinklistStatsCacheBuilder;
 use wcf\system\database\util\PreparedStatementConditionBuilder;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\search\SearchIndexManager;
@@ -45,6 +46,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             LinkEditor::updateLinkCounter(array($object->userID => 1));
         }
         $this->refreshStats($object);
+        LinklistStatsCacheBuilder::getInstance()->reset();
         SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
        return $object;
     }
@@ -165,7 +167,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         // remove activity points        
         UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $linkIDs);
         
-
+        
         //delete
         parent::delete();
         $linkIDs = array();
@@ -175,6 +177,9 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             $linkIDs[] = $link->linkID;
         }
         if (!empty($linkIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $linkIDs);
+        
+        //reset cache        
+        LinklistStatsCacheBuilder::getInstance()->reset();
      }
      
     //getLinks
