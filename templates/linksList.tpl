@@ -1,3 +1,4 @@
+{if $__wcf->session->getPermission('user.linklist.link.canAddLink')}
 <div class="contentNavigation">
     {pages print=true assign=pagesLinks controller="Category" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
     {hascontent}
@@ -11,6 +12,7 @@
         </nav>
         {/hascontent}
 </div>
+{/if}
 
 {if $objects|count}
     <div class="tabularBox tabularBoxTitle messageGroupList  shadow marginTop jsClipboardContainer" data-type="de.codequake.linklist.link">

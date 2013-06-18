@@ -11,6 +11,9 @@ use wcf\system\category\CategoryHandler;
 use wcf\system\request\LinkHandler;
 use wcf\system\clipboard\ClipboardHandler;
 use wcf\system\breadcrumb\Breadcrumb;
+
+use wcf\system\exception\IllegalLinkException;
+use wcf\system\exception\PermissionDeniedException;
 /**
  * Shows the category page.
  *
@@ -56,12 +59,15 @@ class CategoryPage extends SortablePage {
      */
     public function readData() {
         parent::readData();
+        
         $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName, $this->categoryID);
         $this->categoryList = $categoryTree->getIterator();
         $this->categoryList->setMaxDepth(0);
         $category= CategoryHandler::getInstance()->getCategory($this->categoryID);
         if($category !== null) $this->category = new LinklistCategory($category);
         if($this->category === null) throw new IllegalLinkException();
+        if(!$this->category->getPermission('canEnterCategory')) throw new PermissionDeniedException();
+        
         WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList',array('application' => 'linklist'))));
   }
     /**
