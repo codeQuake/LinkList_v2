@@ -23,6 +23,7 @@ class LinklistImportForm extends AbstractForm{
     public $fileUpload ='';
     public $data;
     public $fileName;
+    public $neededPermissions = array('admin.linklist.data.canImport');
     
     public function readFormParameters(){
         parent::readFormParameters();
@@ -133,7 +134,7 @@ class LinklistImportForm extends AbstractForm{
     }
     
     protected static function readArchive($tar){
-        $xml = 'LinkListData.xml';
+        $xml = 'linkListData.xml';
         if($tar->getIndexByFileName($xml) === false){
             throw new SystemException("Unable to find required file '".$xml."' in the import archive");
         }

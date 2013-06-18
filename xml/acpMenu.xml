@@ -15,6 +15,12 @@
       <parent>linklist.acp.menu.link.linklist.category</parent>
       <controller><![CDATA[linklist\acp\form\LinklistCategoryAddForm]]></controller>
       <permissions>admin.linklist.category.canAddCategory</permissions>
+    </acpmenuitem
+    
+    <acpmenuitem name="linklist.acp.menu.link.linklist.category.data.import">
+      <parent>linklist.acp.menu.link.linklist.category</parent>
+      <controller><![CDATA[linklist\acp\form\LinklistImportForm]]></controller>
+      <permissions>admin.linklist.data.canImport</permissions>
     </acpmenuitem>
   </import>
 </data>
