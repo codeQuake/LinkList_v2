@@ -20,7 +20,7 @@
                         <li class="box24" style="margin-top: 20px;">
                             <div class="sidebarBoxHeadline">
                                 <h1>{lang}linklist.link.sidebar.author{/lang}</h1>
-                                <h2><small><a href="{link controller='User' id=$link->getUserID() title=$link->getUsername()}{/link}">{$link->getUsername()}</a></small></h2>
+                                <h2><small>{if $link->getUserID()}<a href="{link controller='User' id=$link->getUserID() title=$link->getUsername()}{/link}">{$link->getUsername()}</a>{else}{$link->getUsername()}{/if}</small></h2>
                             </div>
                         </li>
                         <li class="box24" style="margin-top: 20px;">
