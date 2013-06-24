@@ -29,6 +29,14 @@ class LinkEditForm extends MessageForm {
         if(isset($_GET['id'])) $this->linkID = intval($_GET['id']);
         $this->link = new Link($this->linkID);
         if($this->link->linkID == 0) throw new IllegalLinkException();
+        
+        //can edit & own
+        if($this->link->userID == WCF::getUser()->userID) {
+            $this->link->getCategory()->checkPermission(array('canViewCategory', 'canEnterCategory', 'canEditOwnLink'));
+        }
+        else {            
+            $this->link->getCategory()->checkPermission(array('canViewCategory', 'canEnterCategory', 'canEditLink'));
+        }
     }
 	public function readData() {
 		parent::readData();

@@ -148,12 +148,12 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
       
        public function isVisible() {
             if($this->isActive == 0) {
-                return $this->getPermission('canSeeDeactivatedLink');
+                return $this->getCategory()->getPermission('canSeeDeactivatedLink');
             }
             if($this->isDeleted == 1) {
-                return $this->getPermission('canSeeTrashedLink');
+                return $this->getCategory()->getPermission('canSeeTrashedLink');
             }
-            return $this->getPermission('canViewLink');
+            return $this->getCategory()->getPermission('canViewLink');
         }
         
         public function canTrash(){

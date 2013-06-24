@@ -36,12 +36,18 @@
         <categoryname>user.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>
-
+      <option name="canSeeDeactivatedLink">
+        <categoryname>user.linklist.category</categoryname>
+        <objecttype>de.codequake.linklist.category</objecttype>
+      </option>
       <option name="canAddLink">
         <categoryname>user.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>
       </option>
-
+      <option name="canAddActiveLink">
+        <categoryname>user.linklist.category</categoryname>
+        <objecttype>de.codequake.linklist.category</objecttype>
+      </option>
       <option name="canEditOwnLink">
         <categoryname>user.linklist.category</categoryname>
         <objecttype>de.codequake.linklist.category</objecttype>

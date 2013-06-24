@@ -19,7 +19,6 @@
         <header>
             <h2>{lang}linklist.links.list{/lang} <span class="badge badgeInverse">{#$items}</span></h2>
         </header>
-
         <table class="table">
             <thead>
                 <tr>
@@ -49,8 +48,9 @@
             </thead>
 
             <tbody>
-                {hascontent}{content}
+					
                     {foreach from=$objects item=link}
+					{if $link->isVisible()}
                         <tr class="jsClipboardObject link" data-element-id="{@$link->linkID}">
                           <td class="columnMark">
                               <input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" />
@@ -70,8 +70,9 @@
                             
                             {event name='columns'}
                         </tr>
+						{/if}
                     {/foreach}
-                {/content}{/hascontent}
+					
             </tbody>
         </table>
     </div>  

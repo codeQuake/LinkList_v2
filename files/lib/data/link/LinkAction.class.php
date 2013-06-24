@@ -48,6 +48,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         $this->refreshStats($object);
         LinklistStatsCacheBuilder::getInstance()->reset();
         SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
+        $this->handleActivation($object);
        return $object;
     }
     public function update(){
@@ -210,6 +211,16 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
          $statement = WCF::getDB()->prepareStatement($sql);
          $statement->execute();
          CategoryCacheBuilder::getInstance()->reset();
+    }
+    
+    protected function handleActivation($link){
+        //handles activation for links
+        if($link->getCategory()->getPermission('canAddActiveLink')){
+            $editor = new LinkEditor($link);
+            $editor->update(array(
+                'isActive' => 1
+            ));
+        }
     }
     
 }

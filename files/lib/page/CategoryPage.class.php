@@ -43,8 +43,15 @@ class CategoryPage extends SortablePage {
     
     protected function initObjectList() {
         parent::initObjectList();
-         $this->objectList->sqlConditionJoins .= 'WHERE categoryID = '.$this->categoryID;         
-         $this->objectList->sqlJoins .= 'WHERE categoryID = '.$this->categoryID;
+        $category= CategoryHandler::getInstance()->getCategory($this->categoryID);
+        if($category !== null) $this->category = new LinklistCategory($category);
+        if($this->category === null) throw new IllegalLinkException();
+        if(!$this->category->getPermission('canEnterCategory')) throw new PermissionDeniedException();
+        
+         $this->objectList->sqlConditionJoins .= ' WHERE categoryID = '.$this->categoryID;         
+         $this->objectList->sqlJoins .= ' WHERE categoryID = '.$this->categoryID;
+         if(!$this->category->getPermission('canSeeDeactivatedLink')) $this->objectList->sqlConditionJoins .= ' && isActive = 1';
+         if(!$this->category->getPermission('canTrashLink')) $this->objectList->sqlConditionJoins .= ' && isDeleted = 0';
         }
     /**
      * @see wcf\page\IPage::readParameters()
@@ -63,10 +70,6 @@ class CategoryPage extends SortablePage {
         $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName, $this->categoryID);
         $this->categoryList = $categoryTree->getIterator();
         $this->categoryList->setMaxDepth(0);
-        $category= CategoryHandler::getInstance()->getCategory($this->categoryID);
-        if($category !== null) $this->category = new LinklistCategory($category);
-        if($this->category === null) throw new IllegalLinkException();
-        if(!$this->category->getPermission('canEnterCategory')) throw new PermissionDeniedException();
         
         WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList',array('application' => 'linklist'))));
   }
