@@ -27,7 +27,7 @@
                       <input type="checkbox" class="jsClipboardMarkAll" />
                     </label>
                   </label></th>
-                    <th class="columnText columnSubject {if $sortField == 'subject'}active {@$sortOrder}{/if}" colspan="2">
+                    <th class="columnTitle columnSubject {if $sortField == 'subject'}active {@$sortOrder}{/if}" colspan="2">
                         <a href="{link application='linklist' controller='Category' id=$categoryID}pageNo={@$pageNo}&sortField=subject&sortOrder={if $sortField== 'subject' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
                             {lang}linklist.links.title{/lang}
                         </a>
@@ -51,7 +51,7 @@
 					
                     {foreach from=$objects item=link}
 					{if $link->isVisible()}
-                        <tr id="link{$link->linkID}" class="jsClipboardObject link {if $link->isDeleted}messageDeleted{/if} {if !$link->isActive}messageDisabled{/if}" {if $link->isDeleted}data-is-deleted="1"{/if} {if !$link->isActive}data-isActive="0"{/if} data-element-id="{@$link->linkID}">
+                        <tr id="link{$link->linkID}" class="jsClipboardObject linklistLink {if $link->isDeleted}messageDeleted{/if} {if !$link->isActive}messageDisabled{/if}" {if $link->isDeleted}data-is-deleted="1"{/if} {if !$link->isActive}data-isActive="0"{/if} data-element-id="{@$link->linkID}">
                           <td class="columnMark">
                               <input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" />
                           </td>
@@ -60,7 +60,7 @@
                           </td>
                             <td class="columnText columnSubject">
 								<h3>
-									<a data-object-id="{@$link->linkID}" data-link-id="{@$link->linkID}" class="messageGroupLink" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
+									<a data-link-id="{@$link->linkID}" class="linklistLinkLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
 								</h3>
                             </td>
                           <td class="columnDigits columnVisits">

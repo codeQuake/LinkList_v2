@@ -1,1 +1,1 @@
-<script type="text/javascript" src="{@$__wcf->getPath('linklist')}js/LINKLIST.js"></script>
+<script type="text/javascript" src="{@$__wcf->getPath('linklist')}js/LINKLIST.js?v={@$__wcfVersion}"></script>

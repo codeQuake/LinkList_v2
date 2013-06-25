@@ -14,6 +14,7 @@ use wcf\system\clipboard\ClipboardHandler;
 use wcf\util\StringUtil;
 use wcf\system\WCF;
 use linklist\data\link\LinkList;
+use linklist\data\link\ViewableLinkList;
 use linklist\data\link\LinkEditor;
 
 /** 
@@ -201,6 +202,18 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         if (empty($this->links)) {
             throw new UserInputException("objectIDs");
         }
+    }
+    
+    public function getLinkPreview(){
+        $linkID = reset($this->objectIDs);
+        $list = new ViewableLinkList();
+        $list->getConditionBuilder()->add("link.linkID = ?", array($linkID));
+        $list->readObjects();
+        $links = $list->getObjects();
+        
+        WCF::getTPL()->assign(array('link' => reset($links)));
+        return array('template' => WCF::getTPL()->fetch('linkPreview', 'linklist'),
+                    'linkID' => $linkID));
     }
     
     protected function refreshStats($link){        
