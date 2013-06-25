@@ -20,7 +20,7 @@
     <acpmenuitem name="linklist.acp.menu.link.linklist.category.data.import">
       <parent>linklist.acp.menu.link.linklist.category</parent>
       <controller><![CDATA[linklist\acp\form\LinklistImportForm]]></controller>
-      <permissions>admin.linklist.data.canImport</permissions>
+      <permissions>admin.linklist.data.canImportData</permissions>
     </acpmenuitem>
   </import>
 </data>
