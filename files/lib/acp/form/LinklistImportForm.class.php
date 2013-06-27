@@ -23,7 +23,7 @@ class LinklistImportForm extends AbstractForm{
     public $fileUpload ='';
     public $data;
     public $fileName;
-    public $neededPermissions = array('admin.linklist.data.canImport');
+    public $neededPermissions = array('admin.linklist.data.canImportData');
     
     public function readFormParameters(){
         parent::readFormParameters();

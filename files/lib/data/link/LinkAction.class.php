@@ -213,7 +213,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         
         WCF::getTPL()->assign(array('link' => reset($links)));
         return array('template' => WCF::getTPL()->fetch('linkPreview', 'linklist'),
-                    'linkID' => $linkID));
+                    'linkID' => $linkID);
     }
     
     protected function refreshStats($link){        
