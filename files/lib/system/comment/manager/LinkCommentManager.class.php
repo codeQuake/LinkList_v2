@@ -8,92 +8,92 @@ use wcf\system\comment\manager\AbstractCommentManager;
 use wcf\system\WCF;
 
 class LinkCommentManager extends AbstractCommentManager{
+
+    protected $permissionAdd = 'user.linklist.link.canWriteComment';
+    protected $permissionCanModerate = 'mod.linklist.link.canModerateComment';
+    protected $permissionDelete = 'user.linklist.link.canDeleteOwnComment';
+    protected $permissionEdit = 'user.linklist.link.canEditOwnComment';
+    protected $permissionModDelete = 'mod.linklist.link.canDeleteComment';
+    protected $permssionModEdit = 'mod.linklist.link.canEditComment';
+    
     public $link = null;
     
     
     public function canAdd($objectID){
-        if(!$this->isAccessible($objectID)) {
+        if (!$this->isAccessible($objectID, true)) {
             return false;
         }
-
         if($this->link === null) {
-            $this->link = new Link($objectID);
+            $this->link = new Link($comment->objectID);
         }
-        
-        return $this->link->getCategory()->getPermission('canWriteComment'); 
-        
+        $aclOption = $this->link->getCategory()->getPermission('canWriteComment');
+        $canAdd = $aclOption || parent::canAdd($objectID);
+       
+        if($canAdd) return true;
+        else return false;
     }
     
     public function canEditComment(Comment $comment){
-        //guests are unable to edit comments
-        if (!WCF::getUser()->userID) {
+        if (!$this->isAccessible($comment->objectID, true)) {
             return false;
         }
-        if(!$this->isAccessible($comment->objectID)) {
-            return false;
-        }
-        
         if($this->link === null) {
-            $this->link = new Link($objectID);
+            $this->link = new Link($comment->objectID);
         }
-        if($comment->userID == WCF::getUser()->userID) {
-                return $this->link->getCategory()->getPermission('canEditOwnComment'); 
-            }
-        return $this->link->getCategory()->getPermission('canEditComment'); 
+        $aclOption = $this->link->getCategory()->getPermission('canEditComment');
+        $isOwn =  $this->link->userID && $this->link->userID == WCF::getUser()->userID;
+        $canEdit = $aclOption || ($isOwn && $this->link->getCategory()->getPermission('canEditOwnComment')) || parent::canEditComment($comment);
+         
+        if($canEdit) return true; 
+        else return false;
     }
     
     public function canEditCommentResponse(CommentResponse $response){
-        //guests are unable to edit comment responses
-        if (!WCF::getUser()->userID) {
+       if (!$this->isAccessible($response->getComment()->objectID, true)) {
             return false;
         }
-        if(!$this->isAccessible($response->objectID)) {
-            return false;
-        }
-        
         if($this->link === null) {
-            $this->link = new Link($objectID);
+            $this->link = new Link($response()->getComment()->objectID);
         }
-        if($response->getComment()->userID == WCF::getUser()->userID) {
-                return $this->link->getCategory()->getPermission('canEditOwnComment'); 
-            }
-        return $this->link->getCategory()->getPermission('canEditComment'); 
-    }
+        $aclOption = $this->link->getCategory()->getPermission('canEditComment');
+        $isOwn =  $this->link->userID && $this->link->userID == WCF::getUser()->userID;
+        $canEdit = $aclOption || ($isOwn && $this->link->getCategory()->getPermission('canEditOwnComment')) || parent::canEditCommentResponse($response);
+        
+        if($canEdit) return true;
+        else return false;
+        }
     
     public function canDeleteComment(Comment $comment){
-        //guests are unable to delete comments
-        if (!WCF::getUser()->userID) {
-            return false;
-        }
         if(!$this->isAccessible($comment->objectID)) {
             return false;
         }
         
         if($this->link === null) {
-            $this->link = new Link($objectID);
+            $this->link = new Link($comment->objectID);
         }
-        if($comment->userID == WCF::getUser()->userID) {
-                return $this->link->getCategory()->getPermission('canDeleteOwnComment'); 
-            }
-        return $this->link->getCategory()->getPermission('canDeleteComment'); 
+        
+        $aclOption = $this->link->getCategory()->getPermission('canDeleteComment');
+        $isOwn =  $this->link->userID && $this->link->userID == WCF::getUser()->userID;
+        $canDelete = $aclOption || ($isOwn && $this->link->getCategory()->getPermission('canDeleteOwnComment')) || parent::canDeleteComment($comment);
+        
+        if($canDelete) return true;
+        else return false;
     }
     
     public function canDeleteCommentResponse(CommentResponse $respose){
-        //guests are unable to delete comment responses
-        if (!WCF::getUser()->userID) {
-            return false;
-        }
-        if(!$this->isAccessible($response->objectID)) {
+       if(!$this->isAccessible($response->objectID)) {
             return false;
         }
         
         if($this->link === null) {
-            $this->link = new Link($objectID);
+            $this->link = new Link($response->getComment()->objectID);
         }
-        if($response->getComment()->userID == WCF::getUser()->userID) {
-                return $this->link->getCategory()->getPermission('canEditOwnComment'); 
-            }
-        return $this->link->getCategory()->getPermission('canEditComment'); 
+        $aclOption = $this->link->getCategory()->getPermission('canDeleteComment');
+        $isOwn =  $this->link->userID && $this->link->userID == WCF::getUser()->userID;
+        $canDelete = $aclOption || ($isOwn && $this->link->getCategory()->getPermission('canDeleteOwnComment')) || parent::canDeleteCommentResponse($response);
+        
+        if($canDelete) return true;
+        else return false; 
     }
     
     
@@ -109,17 +109,15 @@ class LinkCommentManager extends AbstractCommentManager{
         return $this->link->getCategory()->getPermission('canViewLink');
     }
     
-    //TODO
     public function getLink($objectTypeID, $objectID) {
-        return "";
+        return LinkHandler::getInstance()->getLink('Link', array('id' => $objectID, 'application' => 'linklist'));
     }
     public function getTitle($objectTypeID, $objectID, $isResponse = false) {
-        return "";
+        if ($isResponse) return WCF::getLanguage()->get('linklist.link.commentResponse');
+        return WCF::getLanguage()->getDynamicVariable('linklist.link.comment');
     }
     
-    public function updateCounter($objectID, $value) {
-
-    }
+    public function updateCounter($objectID, $value) { }
     
       
       
