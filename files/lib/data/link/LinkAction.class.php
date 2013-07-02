@@ -3,6 +3,7 @@ namespace linklist\data\link;
 
 use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\system\user\activity\point\UserActivityPointHandler;
+use wcf\system\moderation\queue\ModerationQueueActivationManager;
 use linklist\system\cache\builder\CategoryCacheBuilder;
 use linklist\system\cache\builder\LinklistStatsCacheBuilder;
 use wcf\system\database\util\PreparedStatementConditionBuilder;
@@ -16,6 +17,7 @@ use wcf\system\WCF;
 use linklist\data\link\LinkList;
 use linklist\data\link\ViewableLinkList;
 use linklist\data\link\LinkEditor;
+use linklist\system\log\modification\LinkModificationLogHandler;
 
 /** 
  * @author  Jens Krumsieck
@@ -53,10 +55,25 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
        return $object;
     }
     public function update(){
-        parent::update();
+        parent::update();       
         $objectIDs = array();
         foreach ($this->objects as $object) {
            $objectIDs[] = $object->linkID;
+            // moderated content
+            if (isset($this->parameters['data']['isDisabled'])) {
+                    if ($this->parameters['data']['isDisabled']) {
+                        $this->addModeratedContent($object->linkID);
+                }
+                    else {
+                        $this->removeModeratedContent($object->linkID);
+                    }
+                }
+
+                // edit
+                if (isset($this->parameters['isEdit'])) {
+                    $reason = (isset($this->parameters['data']['editReason'])) ? $this->parameters['data']['editReason'] : '';
+                    //LinkModificationLogHandler::getInstance()->edit($object->getDecoratedObject(), $reason);
+                }
         }
         if (!empty($objectIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $objectIDs);
         if (!empty($objectIDs)) SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
@@ -79,6 +96,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
                 'isDeleted' => 1,
                 'deleteTime' => TIME_NOW
             ));
+            //LinkModificationLogHandler::getInstance()->trash($link->getDecoratedObject(), $reason);
         }
 
         $this->unmarkItems();
@@ -108,6 +126,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             $editor->update(array(
                 'isActive' => 1
             ));
+            $this->removeModeratedContent($link->linkID);
         }
 
         $this->unmarkItems();
@@ -126,6 +145,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             $editor->update(array(
                 'isActive' => 0
             ));
+            $this->addModeratedContent($link->linkID);
         }
 
         $this->unmarkItems();
@@ -148,6 +168,8 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
                 'isDeleted' =>  0,
                 'deleteTime'    =>  null
             ));
+            //LinkModificationLogHandler::getInstance()->restore($link->getDecoratedObject());
+            
         }
         $this->unmarkItems();
      }
@@ -165,6 +187,8 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         foreach($this->links as $link){
             $linkIDs[] = $link->linkID;   
             LinkEditor::updateLinkCounter(array($link->userID => -1));
+            $this->removeModeratedContent($link->linkID);
+            //LinkModificationLogHandler::getInstance()->delete($link->getDecoratedObject(), $reason);
         }
         // remove activity points        
         UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $linkIDs);
@@ -234,6 +258,15 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
                 'isActive' => 1
             ));
         }
+        else{
+           $this->addModeratedContent($link->linkID);
+        }
+    }
+    protected function removeModeratedContent($linkID){
+        ModerationQueueActivationManager::getInstance()->removeModeratedContent('de.codequake.linklist.link', array($linkID));
+    }
+    protected function addModeratedContent($linkID) {
+        ModerationQueueActivationManager::getInstance()->addModeratedContent('de.codequake.linklist.link', $linkID);
     }
     
 }

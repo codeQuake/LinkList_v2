@@ -77,5 +77,16 @@
         <definitionname>com.woltlab.wcf.searchableObjectType</definitionname>
         <classname>linklist\system\search\LinkSearch</classname>
       </type>
-      </import>
+      <!--moderation-->
+      <type>
+        <name>de.codequake.linklist.link</name>
+        <definitionname>com.woltlab.wcf.modifiableContent</definitionname>
+      </type>
+      <type>
+        <name>de.codequake.linklist.link</name>
+        <definitionname>com.woltlab.wcf.moderation.activation</definitionname>
+        <classname>linklist\system\moderation\queue\activation\LinkModerationQueueActivationHandler</classname>
+      </type>
+
+    </import>
 </data>

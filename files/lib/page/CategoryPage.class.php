@@ -5,6 +5,7 @@ use wcf\page\SortablePage;
 use linklist\data\category\LinklistCategoryNodeTree;
 use linklist\data\category\LinklistCategoryNode;
 use linklist\data\category\LinklistCategory;
+use linklist\data\link\CategoryLinkList;
 use wcf\system\WCF;
 
 use wcf\system\category\CategoryHandler;
@@ -31,7 +32,7 @@ class CategoryPage extends SortablePage {
     public $categoryID;    
     public $objectTypeName = 'de.codequake.linklist.category';
     public $category;
-    public $objectListClassName = 'linklist\data\link\LinkList';
+    public $objectListClassName = 'linklist\data\link\CategoryLinkList';
     
     public $validSortFields = array('title', 'time', 'visits');
     
@@ -42,16 +43,11 @@ class CategoryPage extends SortablePage {
     
     
     protected function initObjectList() {
-        parent::initObjectList();
         $category= CategoryHandler::getInstance()->getCategory($this->categoryID);
         if($category !== null) $this->category = new LinklistCategory($category);
         if($this->category === null) throw new IllegalLinkException();
         if(!$this->category->getPermission('canEnterCategory')) throw new PermissionDeniedException();
-        
-         $this->objectList->sqlConditionJoins .= ' WHERE categoryID = '.$this->categoryID;         
-         $this->objectList->sqlJoins .= ' WHERE categoryID = '.$this->categoryID;
-         if(!$this->category->getPermission('canSeeDeactivatedLink')) $this->objectList->sqlConditionJoins .= ' && isActive = 1';
-         if(!$this->category->getPermission('canTrashLink')) $this->objectList->sqlConditionJoins .= ' && isDeleted = 0';
+        $this->objectList = new CategoryLinkList($this->category, $this->categoryID);
         }
     /**
      * @see wcf\page\IPage::readParameters()
