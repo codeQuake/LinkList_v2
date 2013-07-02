@@ -168,7 +168,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
                 'isDeleted' =>  0,
                 'deleteTime'    =>  null
             ));
-            LinkModificationLogHandler::getInstance()->restore($link));
+            LinkModificationLogHandler::getInstance()->restore($link);
             
         }
         $this->unmarkItems();
