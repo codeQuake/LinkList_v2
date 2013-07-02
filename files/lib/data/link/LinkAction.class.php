@@ -72,7 +72,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
                 // edit
                 if (isset($this->parameters['isEdit'])) {
                     $reason = (isset($this->parameters['data']['editReason'])) ? $this->parameters['data']['editReason'] : '';
-                    //LinkModificationLogHandler::getInstance()->edit($object->getDecoratedObject(), $reason);
+                    LinkModificationLogHandler::getInstance()->edit($object, "");
                 }
         }
         if (!empty($objectIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $objectIDs);
@@ -96,7 +96,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
                 'isDeleted' => 1,
                 'deleteTime' => TIME_NOW
             ));
-            //LinkModificationLogHandler::getInstance()->trash($link->getDecoratedObject(), $reason);
+            LinkModificationLogHandler::getInstance()->trash($link, "");
         }
 
         $this->unmarkItems();
@@ -168,7 +168,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
                 'isDeleted' =>  0,
                 'deleteTime'    =>  null
             ));
-            //LinkModificationLogHandler::getInstance()->restore($link->getDecoratedObject());
+            LinkModificationLogHandler::getInstance()->restore($link));
             
         }
         $this->unmarkItems();
@@ -188,7 +188,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             $linkIDs[] = $link->linkID;   
             LinkEditor::updateLinkCounter(array($link->userID => -1));
             $this->removeModeratedContent($link->linkID);
-            //LinkModificationLogHandler::getInstance()->delete($link->getDecoratedObject(), $reason);
+            LinkModificationLogHandler::getInstance()->delete($link, "");
         }
         // remove activity points        
         UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $linkIDs);
