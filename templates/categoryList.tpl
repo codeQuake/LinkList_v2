@@ -3,7 +3,7 @@
     {foreach from=$categoryList item=categoryItem}
     <li class="linklistCategoryContainer container linklistNodeTop" data-category-id="{@$categoryItem->categoryID}">
       <div class="linklistCategoryNode1 linklistCategory box32">
-        <span class="icon icon32 icon-folder-close-alt"></span>
+        <span class="icon icon32 icon-globe"></span>
         <div>
           <div class="containerHeadline">
             <h1>
@@ -19,7 +19,7 @@
             <ul class="subCategory">
               {implode from=$categoryItem->getChildCategories() item=subCategoryItem}
               <li data-category-id="{@$subCategoryItem->categoryID}">
-                <span class="icon icon16 icon-folder-close-alt"></span>
+                <span class="icon icon16 icon-globe"></span>
                 <a href="{link application='linklist' controller='Category' id=$subCategoryItem->categoryID title=$subCategoryItem->title|language}{/link}">{$subCategoryItem->title|language}</a>
 
               </li>

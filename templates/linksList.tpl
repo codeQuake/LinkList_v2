@@ -15,69 +15,43 @@
 {/if}
 
 {if $objects|count}
-    <div class="tabularBox tabularBoxTitle messageGroupList  shadow marginTop jsClipboardContainer" data-type="de.codequake.linklist.link">
-        <header>
-            <h2>{lang}linklist.links.list{/lang} <span class="badge badgeInverse">{#$items}</span></h2>
-        </header>
-        <table class="table">
-            <thead>
-                <tr>
-                  <th class="columnMark"><label>
-                    <label>
-                      <input type="checkbox" class="jsClipboardMarkAll" />
-                    </label>
-                  </label></th>
-                    <th class="columnTitle columnSubject {if $sortField == 'subject'}active {@$sortOrder}{/if}" colspan="2">
-                        <a href="{link application='linklist' controller='Category' id=$categoryID}pageNo={@$pageNo}&sortField=subject&sortOrder={if $sortField== 'subject' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
-                            {lang}linklist.links.title{/lang}
-                        </a>
-                    </th>
-                      <th class="columnDigits columnVisits">
-                       <a href="{link application='linklist' controller='Category' id=$categoryID}pageNo={@$pageNo}&sortField=visits&sortOrder={if $sortField== 'visits' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
-                             {lang}linklist.links.visits{/lang}
-                        </a>
-                    </th>
-                    <th class="columnText columnTime">
-                        <a href="{link application='linklist' controller='Category' id=$categoryID}pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField== 'time' && $sortOrder=='ASC'}DESC{else}ASC{/if}{/link}">
-                            {lang}linklist.links.time{/lang}
-                        </a>
-                    </th>
-                    
-                    {event name='columnHeads'}
-                </tr>
-            </thead>
 
-            <tbody>
+<div class="container marginTop shadow jsClipboardContainer" data-type="de.codequake.linklist.link">
+	<ol class="linklist containerList" data-type="de.codequake.linklist.link">
+		{foreach from=$objects item=link}
+			<li id="link{$link->linkID}" class="jsClipboardObject linklistLink {if $link->isDeleted}linkDeleted{/if} {if !$link->isActive}linkDisabled{/if}" {if $link->isDeleted}data-is-deleted="1"{/if} {if !$link->isActive}data-is-active="0"{/if} ">
+				<input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" style="float:left;"/>
+				<div class="box128">					
+					<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><img src="http://api.webthumbnail.org?width=128&height=128&screen=1280&format=png&url={$link->url}" alt="Captured by webthumbnail.org" /></a>
+					<div class="details">
+						<div class="containerHeadline">
+						<h3>
+							<a data-link-id="{@$link->linkID}" class="linklistLinkLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
+						</h3>
+						</div>
+						<dl class="plain inlineDataList">
+							<dt>{lang}linklist.link.author{/lang}</dt>
+							<dd>{$link->username} ({$link->time|DateDiff})</dd>
+						</dl>
+						<dl class="plain inlineDataList">
+							<dt>{lang}linklist.links.visits{/lang}</dt>
+							<dd>{$link->visits}</dd>
+						</dl>
+						<div class="box24">{@$link->getExcerpt()}</div>
+						<nav class="jsMobileNavigation buttonGroupNavigation">
+						<ul class="buttonList" data-link-id="{$link->linkID}">
+							<li>
+								<a class="button" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><span class="icon-globe icon icon16"></span>
+								<span>{lang}linklist.link.visit{/lang}</span></a>
+							</li>
+						</ul>
+					</nav>
+					</div>
 					
-                    {foreach from=$objects item=link}
-					{if $link->isVisible()}
-                        <tr id="link{$link->linkID}" class="jsClipboardObject linklistLink {if $link->isDeleted}messageDeleted{/if} {if !$link->isActive}messageDisabled{/if}" {if $link->isDeleted}data-is-deleted="1"{/if} {if !$link->isActive}data-isActive="0"{/if} data-element-id="{@$link->linkID}">
-                          <td class="columnMark">
-                              <input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" />
-                          </td>
-                          <td class="columnIcon">
-                            <span class="icon icon32 {if $link->isDeleted}icon-trash{elseif !$link->isActive && !$link->isDeleted}icon-off{else}icon-link{/if}"></span>
-                          </td>
-                            <td class="columnText columnSubject">
-								<h3>
-									<a data-link-id="{@$link->linkID}" class="linklistLinkLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
-								</h3>
-                            </td>
-                          <td class="columnDigits columnVisits">
-                                {$link->visits}
-                            </td>
-                            <td class="columnText columnTime">
-                                {$link->time|DateDiff}
-                            </td>
-                            
-                            {event name='columns'}
-                        </tr>
-						{/if}
-                    {/foreach}
-					
-            </tbody>
-        </table>
-    </div>  
+			</li>
+		{/foreach}
+	</ol>
+</div>
 
 <div class="contentNavigation">
     {@$pagesLinks}
@@ -93,5 +67,6 @@
   {/hascontent}
 
   <div class="jsClipboardEditor" data-types="[ 'de.codequake.linklist.link' ]"></div>
-</div>
+</div
+
 {/if}
