@@ -6,13 +6,13 @@
         <span class="icon icon32 icon-globe"></span>
         <div>
           <div class="containerHeadline">
-            <h1>
+            <h3>
               <a href="{link application='linklist' controller='Category' id=$categoryItem->categoryID title=$categoryItem->getTitle()|language}{/link}">{$categoryItem->getTitle()}</a>
-            </h1>
+            </h3>
             {hascontent}
-            <h2 class="linklistCategoryDescription">
+            <span class="linklistCategoryDescription">
               {content}{$categoryItem->description|language}{/content}
-            </h2>
+            </span>
             {/hascontent}
             
             {if $categoryItem->hasChildren()}

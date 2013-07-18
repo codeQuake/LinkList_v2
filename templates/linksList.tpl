@@ -73,6 +73,6 @@
   {/hascontent}
 
   <div class="jsClipboardEditor" data-types="[ 'de.codequake.linklist.link' ]"></div>
-</div
+</div>
 
 {/if}
