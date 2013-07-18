@@ -39,13 +39,19 @@
 						</dl>
 						<div class="box24">{@$link->getExcerpt()}</div>
 						<nav class="jsMobileNavigation buttonGroupNavigation">
-						<ul class="buttonList" data-link-id="{$link->linkID}">
-							<li>
-								<a class="button" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><span class="icon-globe icon icon16"></span>
-								<span>{lang}linklist.link.visit{/lang}</span></a>
-							</li>
-						</ul>
-					</nav>
+							<ul class="buttonList" data-link-id="{$link->linkID}">
+								{if $link->isDeleted}<li><span class="icon icon16 icon-trash" title="{lang}linklist.link.deleted{/lang}"></span></li>{/if}
+								{if !$link->isActive}<li><span class="icon icon16 icon-off" title="{lang}linklist.link.disabled{/lang}"></span></li>{/if}
+							</ul>
+						</nav>
+						<nav class="buttonGroupNavigation linkNavigation">
+							<ul class="buttonGroup smallButtons">
+								<li>
+									<a class="button" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><span class="icon-link icon icon16"></span>
+									<span>{lang}linklist.link.visit{/lang}</span></a>
+								</li>
+							</ul>
+						</nav>
 					</div>
 					
 			</li>
