@@ -1,3 +1,7 @@
+<header class="boxHeadline boxSubHeadline">
+	<h2>{lang}linklist.link.comments{/lang} <span class="badge">{@$commentList->countObjects()}</span></h2>
+</header>
+<div class="container  marginTop">
 {include file='__commentJavaScript' commentContainerID='linkCommentList'}
 
 {if $commentCanAdd}
@@ -18,3 +22,4 @@
     {/hascontent}
 
 {/if}
+</div>
