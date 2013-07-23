@@ -20,7 +20,7 @@ LINKLIST.Link.Like = WCF.Like.extend({
 	 * @see	WCF.Like._buildWidget()
 	 */
     _buildWidget: function(containerID, likeButton, dislikeButton, badge, summary) {
-        this._containers[containerID].find('.messageOptions').append(badge);
+        this._containers[containerID].find('.boxHeadline > hgroup> h1').append(badge);
 		
         if (this._canLike) {
             likeButton.appendTo(this._containers[containerID].find('.smallButtons:eq(0)'));
