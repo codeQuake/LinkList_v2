@@ -17,6 +17,7 @@ use wcf\system\bbcode\MessageParser;
 use wcf\util\StringUtil;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\request\LinkHandler;
+use wcf\system\like\LikeHandler;
 use wcf\system\comment\CommentHandler;
 
 /**
@@ -185,5 +186,14 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
             if($aclOption) return true;
             else return false;
         }
-
+        
+        public function countLikes(){
+            if (MODULE_LIKE) {
+                $linkIDs = array();
+                $linkIDs[] = $this->linkID;
+                $objectType = LikeHandler::getInstance()->getObjectType('de.codequake.linklist.likeableLink');
+                LikeHandler::getInstance()->loadLikeObjects($objectType, $linkIDs);
+                return LikeHandler::getInstance()->getLikeObjects($objectType);
+            }
+        }
 }
