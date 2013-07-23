@@ -5,6 +5,8 @@ use wcf\system\exception\IllegalLinkException;
 use wcf\system\breadcrumb\Breadcrumb;
 use wcf\system\request\LinkHandler;
 use wcf\system\comment\CommentHandler;
+
+use wcf\system\like\LikeHandler;
 use wcf\page\AbstractPage;
 use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
 use wcf\system\WCF;
@@ -19,6 +21,7 @@ class LinkPage extends AbstractPage{
     public $commentManager = null;
     public $commentList = null;
     public $objectType = 0;
+    public $likeData = array();
     
     
     public function readParameters(){
@@ -49,6 +52,15 @@ class LinkPage extends AbstractPage{
             $this->commentManager = $objectType->getProcessor();
 
             $this->commentList = CommentHandler::getInstance()->getCommentList($this->commentManager, $this->objectTypeID, $this->linkID);
+            
+            // fetch likes
+		    if (MODULE_LIKE) {
+                $linkIDs = array();
+                $linkIDs[] = $this->link->linkID;
+			    $objectType = LikeHandler::getInstance()->getObjectType('de.codequake.linklist.likeableLink');
+			    LikeHandler::getInstance()->loadLikeObjects($objectType, $linkIDs);
+			    $this->likeData = LikeHandler::getInstance()->getLikeObjects($objectType);
+		    }
     }
     public function assignVariables(){
         parent::assignVariables();
@@ -58,6 +70,7 @@ class LinkPage extends AbstractPage{
                                     'sidebarName' => 'de.codequake.linklist.link',
                                     'commentList' => $this->commentList,
                                     'commentObjectTypeID'=> $this->objectTypeID,
+                                    'likeData' => $this->likeData,
                                     'commentCanAdd' => $this->commentManager->canAdd($this->linkID),
                                     'lastCommentTime' => $this->commentList->getMinCommentTime(),
                                     'commentsPerPage' => $this->commentManager->getCommentsPerPage()));

@@ -87,6 +87,11 @@
         <definitionname>com.woltlab.wcf.moderation.activation</definitionname>
         <classname>linklist\system\moderation\queue\activation\LinkModerationQueueActivationHandler</classname>
       </type>
-
+      <!--Like-->
+      <type>
+        <name>de.codequake.linklist.likeableLink</name>
+        <definitionname>com.woltlab.wcf.like.likeableObject</definitionname>
+        <classname>linklist\data\link\LikeableLinkProvider</classname>
+      </type>
     </import>
 </data>

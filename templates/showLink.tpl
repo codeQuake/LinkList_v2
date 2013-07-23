@@ -1,4 +1,4 @@
-<div class="container marginTop containerPadding link">
+<article class="container marginTop containerPadding link" data-object-id="{$link->linkID}" data-link-id="{$link->linkID}" data-object-type="de.codequake.linklist.likeableLink" data-like-liked="{if $likeData[$link->linkID]|isset}{@$likeData[$link->linkID]->liked}{/if}" data-like-likes="{if $likeData[$link->linkID]|isset}{@$likeData[$link->linkID]->likes}{else}0{/if}" data-like-dislikes="{if $likeData[$link->linkID]|isset}{@$likeData[$link->linkID]->dislikes}{else}0{/if}" data-like-users='{if $likeData[$link->linkID]|isset}{ {implode from=$likeData[$link->linkID]->getUsers() item=likeUser}"{@$likeUser->userID}": { "username": "{$likeUser->username|encodeJSON}" }{/implode} }{else}{ }{/if}'>
   {@$link->getFormattedMessage()}
   <footer class="messageOptions marginTop">
     <nav class="buttonGroupNavigation">
@@ -15,11 +15,8 @@
             <span>{lang}linklist.link.edit{/lang}</span>
           </a>
         </li>
-        <li>
-          <a class="button small">test</a>
-        </li>
       </ul>
     </nav>
     
 </footer>
-</div>
+</article>
