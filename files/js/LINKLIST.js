@@ -58,7 +58,7 @@ LINKLIST.Link.Preview = WCF.Popover.extend({
 	 * @see	WCF.Popover.init()
 	 */
     init: function() {
-        this._super('.LinklistLink');
+        this._super('.linklistLink');
 		
         this._proxy = new WCF.Action.Proxy({
             showLoadingOverlay: false
