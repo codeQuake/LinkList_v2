@@ -53,6 +53,7 @@ class LinkPage extends AbstractPage{
 
             $this->commentList = CommentHandler::getInstance()->getCommentList($this->commentManager, $this->objectTypeID, $this->linkID);
             
+            
             // fetch likes
 		    if (MODULE_LIKE) {
                 $linkIDs = array();
