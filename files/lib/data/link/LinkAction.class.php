@@ -227,9 +227,21 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             throw new UserInputException("objectIDs");
         }
     }
-    
+    public function validateLinkPreview() {
+         $objectIDs = array();
+        foreach ($this->objects as $object) {
+           $objectIDs[] = $object->linkID;
+        }
+		if (count($objectIDs) != 1) {
+			throw new UserInputException('objectIDs');
+		}
+	}
     public function getLinkPreview(){
-        $linkID = reset($this->objectIDs);
+        $objectIDs = array();
+        foreach ($this->objects as $object) {
+           $objectIDs[] = $object->linkID;
+        }
+        $linkID = reset($objectIDs);
         $list = new ViewableLinkList();
         $list->getConditionBuilder()->add("link.linkID = ?", array($linkID));
         $list->readObjects();

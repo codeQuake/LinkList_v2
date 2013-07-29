@@ -41,7 +41,7 @@ LINKLIST.Link.Like = WCF.Like.extend({
     _addWidget: function(containerID, widget) {}
 });
 
-LINKLIST.Link.LinkPreview = WCF.Popover.extend({
+LINKLIST.Link.Preview = WCF.Popover.extend({
     /**
 	 * action proxy
 	 * @var	WCF.Action.Proxy
@@ -57,9 +57,9 @@ LINKLIST.Link.LinkPreview = WCF.Popover.extend({
     /**
 	 * @see	WCF.Popover.init()
 	 */
-    init: function () {
-        this._super('.linklistLinkLink');
-
+    init: function() {
+        this._super('.LinklistLink');
+		
         this._proxy = new WCF.Action.Proxy({
             showLoadingOverlay: false
         });
@@ -69,26 +69,20 @@ LINKLIST.Link.LinkPreview = WCF.Popover.extend({
 	 * @see	WCF.Popover._loadContent()
 	 */
     _loadContent: function () {
-        var $element = $('#' + this._activeElementID);
-        var $linkID = $element.data('linkID');
+        var $link = $('#' + this._activeElementID);
 
-        if (this._links[$linkID]) {
-            this._insertContent(this._activeElementID, this._links[$linkID], true);
-        }
-        else {
             this._proxy.setOption('data', {
                 actionName: 'getLinkPreview',
                 className: 'wcf\\data\\link\\LinkAction',
-                objectIDs: [$linkID]
+                objectIDs: [$link.data('$linkID')]
             });
 
             var $elementID = this._activeElementID;
             var self = this;
             this._proxy.setOption('success', function (data, textStatus, jqXHR) {
-                self._links[$linkID] = data.returnValues.template;
                 self._insertContent($elementID, data.returnValues.template, true);
             });
             this._proxy.sendRequest();
-        }
-    }
+        
+    
 });
