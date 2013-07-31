@@ -1,6 +1,6 @@
 {if $__wcf->session->getPermission('user.linklist.link.canAddLink')}
 <div class="contentNavigation">
-    {pages print=true assign=pagesLinks controller="Category" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
+    {pages print=true assign=pagesLinks controller="Category" application="linklist" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
     {hascontent}
         <nav>
             <ul>
