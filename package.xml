@@ -26,6 +26,7 @@
     
     <!--xml-->
     <instruction type="sitemap">xml/sitemap.xml</instruction>
+    <instruction type="dashboardBox">dashboardBox.xml</instruction>
     <instruction type="pageMenu">xml/pagemenu.xml</instruction>
     <instruction type="objectType">xml/objectType.xml</instruction>
     <instruction type="option">xml/option.xml</instruction>
@@ -51,6 +52,7 @@
 
     <!--xml-->
     <instruction type="pageMenu">xml/pagemenu.xml</instruction>
+    <instruction type="dashboardBox">dashboardBox.xml</instruction>
     <instruction type="objectType">xml/objectType.xml</instruction>
     <instruction type="option">xml/option.xml</instruction>
     <instruction type="aclOption">xml/aclOption.xml</instruction>

@@ -57,9 +57,9 @@ LINKLIST.Link.Preview = WCF.Popover.extend({
     /**
 	 * @see	WCF.Popover.init()
 	 */
-    init: function() {
+    init: function () {
         this._super('.linklistLink');
-		
+
         this._proxy = new WCF.Action.Proxy({
             showLoadingOverlay: false
         });
@@ -71,18 +71,19 @@ LINKLIST.Link.Preview = WCF.Popover.extend({
     _loadContent: function () {
         var $link = $('#' + this._activeElementID);
 
-            this._proxy.setOption('data', {
-                actionName: 'getLinkPreview',
-                className: 'wcf\\data\\link\\LinkAction',
-                objectIDs: [$link.data('$linkID')]
-            });
+        this._proxy.setOption('data', {
+            actionName: 'getLinkPreview',
+            className: 'wcf\\data\\link\\LinkAction',
+            objectIDs: [$link.data('$linkID')]
+        });
 
-            var $elementID = this._activeElementID;
-            var self = this;
-            this._proxy.setOption('success', function (data, textStatus, jqXHR) {
-                self._insertContent($elementID, data.returnValues.template, true);
-            });
-            this._proxy.sendRequest();
-        
-    
+        var $elementID = this._activeElementID;
+        var self = this;
+        this._proxy.setOption('success', function (data, textStatus, jqXHR) {
+            self._insertContent($elementID, data.returnValues.template, true);
+        });
+        this._proxy.sendRequest();
+
+
+    }
 });
