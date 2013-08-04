@@ -1,18 +1,16 @@
-{if $__wcf->session->getPermission('user.linklist.link.canAddLink')}
+
 <div class="contentNavigation">
     {pages print=true assign=pagesLinks controller="Category" application="linklist" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
-    {hascontent}
+	{if $__wcf->session->getPermission('user.linklist.link.canAddLink')}
         <nav>
             <ul>
-                {content}
                     <li><a href="{link application='linklist' controller='LinkAdd' id=$categoryID}{/link}" title="{lang}linklist.link.add{/lang}" class="button"><span class="icon icon16 icon-plus"></span> <span>{lang}linklist.link.add{/lang}</span></a></li>
                     {event name='contentNavigationButtonsTop'}
-                {/content}
             </ul>
         </nav>
-        {/hascontent}
+		{/if}
 </div>
-{/if}
+
 
 {if $objects|count}
 
