@@ -275,7 +275,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     protected function addModeratedContent($linkID) {
         ModerationQueueActivationManager::getInstance()->addModeratedContent('de.codequake.linklist.link', $linkID);
     }
-    public function publish($link){
+    protected function publish($link){
         if($link->userID){
             UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $link->linkID, $link->languageID, $link->userID, $link->time);
             UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $link->linkID, $link->userID);

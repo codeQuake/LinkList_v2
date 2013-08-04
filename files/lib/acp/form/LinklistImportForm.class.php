@@ -99,7 +99,7 @@ class LinklistImportForm extends AbstractForm{
                         'ipAddress'  =>  $linkData['ipAddress']);
                 $objectAction = new LinkAction(array(), 'create', $create);
                 $returnValues = $objectAction->executeAction();
-                $objectAction->publish(new Link($returnValues['returnValues']->linkID));
+                
                 //count visits
                 $visits = 0;
                 $links = new Linklist();
