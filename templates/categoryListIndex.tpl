@@ -22,8 +22,11 @@
 
 {include file='categoryList' application='linklist'}
 
+{hascontent}
 <div class="container marginTop">
 	<ul class="containerList infoBoxList">
+		{if LINKLIST_INDEX_STATS}
+		{content}
 		<li class="box32 statsInfoBox">
 			<span class="icon icon32 icon-bar-chart"></span>
 			<div>
@@ -33,8 +36,11 @@
 				</div>
 			</div>
 		</li>
+		{/content}
+		{/if}
 	</ul>
 </div>
+{hascontent}
 {include file='footer' sandbox=false}
 </body>
 </html>

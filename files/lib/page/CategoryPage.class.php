@@ -36,10 +36,10 @@ class CategoryPage extends SortablePage {
     
     public $validSortFields = array('title', 'time', 'visits');
     
-    //build options
-    public $itemsPerPage = 10;
-    public $defaultSortField = 'time';
-    public $defaultSortOrder = 'DESC';
+    
+    public $itemsPerPage = LINKLIST_LINKS_PER_PAGE;
+    public $defaultSortField = LINKLIST_DEFAULT_SORT_FIELD;
+    public $defaultSortOrder = LINKLIST_DEFAULT_SORT_ORDER;
     
     
     protected function initObjectList() {

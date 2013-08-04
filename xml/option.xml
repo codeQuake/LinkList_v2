@@ -1,6 +1,24 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/maelstrom/option.xsd">
   <import>
+    <categories>
+      <category name="linklist"> </category>
+      <category name="dashboard.sidebar.linklist">
+        <parent>dashboard.sidebar</parent>
+      </category>
+      <category name="linklist.index">
+        <parent>linklist</parent>
+      </category>
+      <category name="linklist.index.general">
+        <parent>linklist.index</parent>
+      </category>
+      <category name="linklist.category">
+        <parent>linklist</parent>
+      </category>
+      <category name="linklist.category.link>">
+        <parent>linklist.category</parent>
+      </category>
+    </categories>
     <options>
       <option name="module_linklist_comments">
         <categoryname>module.content</categoryname>
@@ -11,6 +29,45 @@
         <categoryname>general</categoryname>
         <optiontype>integer</optiontype>
         <hidden>1</hidden>
+      </option>
+      <option name="linklist_latest_limit">
+        <categoryname>dashboard.sidebar.linklist</categoryname>
+        <optiontype>integer</optiontype>
+        <defaultvalue>5</defaultvalue>
+      </option>
+      <option name="linklist_most_limit">
+        <categoryname>dashboard.sidebar.linklist</categoryname>
+        <optiontype>integer</optiontype>
+        <defaultvalue>5</defaultvalue>
+      </option>
+      <option name="linklist_index_stats">
+        <categoryname>linklist.index.general</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>1</defaultvalue>
+      </option>
+      <option name="linklist_links_per_page">
+        <categoryname>linklist.category.links</categoryname>
+        <optiontype>integer</optiontype>
+        <defaultvalue>20</defaultvalue>
+      </option>
+      <option name="linklist_default_sort_field">
+        <categoryname>linklist.category.links</categoryname>
+        <optiontype>select</optiontype>
+        <defaultvalue>time</defaultvalue>
+        <selectoptions>
+          <![CDATA[title:linklist.links.title
+time:linklist.links.time
+visits:linklist.links.visits]]>
+        </selectoptions>
+      </option>
+      <option name="linklist_default_sort_order">
+        <categoryname>linklist.category.links</categoryname>
+        <optiontype>select</optiontype>
+        <defaultvalue>DESC</defaultvalue>
+        <selectoptions>
+          <![CDATA[ASC:wcf.global.sortOrder.ascending
+DESC:wcf.global.sortOrder.descending]]>
+        </selectoptions>
       </option>
     </options>
   </import>
