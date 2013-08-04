@@ -6,8 +6,6 @@ use linklist\data\category\LinklistCategory;
 use linklist\data\link\LinkAction;
 use linklist\data\link\LinkList;
 use linklist\system\cache\builder\CategoryCacheBuilder;
-
-
 use wcf\system\WCF;
 use wcf\system\category\CategoryHandler;
 use wcf\form\MessageForm;
@@ -15,6 +13,7 @@ use wcf\util\StringUtil;
 use wcf\util\HeaderUtil;
 use wcf\util\UserUtil;
 use wcf\util\FileUtil;
+use wcf\util\ArrayUtil;
 use wcf\system\request\LinkHandler;
 use wcf\system\language\LanguageFactory;
 use wcf\system\exception\IllegalLinkException;
@@ -153,12 +152,13 @@ class LinkAddForm extends MessageForm{
                         'enableHtml'    =>  $this->enableHtml,
                         'enableBBCodes' =>  $this->enableBBCodes,
                         'visits'    =>  0,
-                        'tags' => array(),
                         'ipAddress'  =>  $_SERVER['REMOTE_ADDR']);
+        $linkData = array('data' => $data,
+                          'tags' => array());
         if (MODULE_TAGGING) {
-			$data['tags'] = $this->tags;
+			$linkData['tags'] = $this->tags;
 		}
-        $this->objectAction = new LinkAction(array(), 'create', $data);
+        $this->objectAction = new LinkAction(array(), 'create', $linkData);
         $resultvalues = $this->objectAction->executeAction();
         
         $this->link = $resultvalues['returnValues'];

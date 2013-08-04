@@ -2,10 +2,12 @@
 namespace linklist\form;
 use linklist\data\link\LinkAction;
 use linklist\data\link\Link;
+use wcf\system\tagging\TagEngine;
 use wcf\form\MessageForm;
 use wcf\util\StringUtil;
 use wcf\util\HeaderUtil;
 use wcf\util\FileUtil;
+use wcf\util\ArrayUtil;
 use wcf\system\request\LinkHandler;
 use wcf\system\language\LanguageFactory;
 use wcf\system\exception\IllegalLinkException;
@@ -20,6 +22,7 @@ class LinkEditForm extends MessageForm {
     public $action = 'edit';
     public $linkID;
     public $link;
+    public $tags = array();
     public $url;
 
 	public $showSignatureSetting = false;
@@ -57,7 +60,15 @@ class LinkEditForm extends MessageForm {
             ))));
         WCF::getBreadcrumbs()->add(new Breadcrumb($this->link->getTitle(), LinkHandler::getInstance()->getLink('Link', array('application'  => 'linklist',
                                                                                                                              'object'   =>  $this->link))));
-	}
+                                                                                                                             
+          // tagging
+            if (MODULE_TAGGING) {
+            	$tags = TagEngine::getInstance()->getObjectTags('de.codequake.linklist.link', $this->link->linkID, array($this->link->languageID));
+                foreach ($tags as $tag) {
+                	$this->tags[] = $tag->name;
+                }
+            }
+    }
     
 
 	public function assignVariables() {
@@ -66,13 +77,15 @@ class LinkEditForm extends MessageForm {
 		WCF::getTPL()->assign(array(
 			                        'action'    =>  $this->action,
                                     'url'   =>  $this->url,
-                                    'link'  =>  $this->link
+                                    'link'  =>  $this->link,
+                                    'tags'      => $this->tags
 		));
 	}
 	
     public function readFormParameters() {
         parent::readFormParameters();       
         if(isset($_POST['url'])) $this->url = StringUtil::trim($_POST['url']);
+        if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
       }
 	public function save() {
 		parent::save();
@@ -86,13 +99,18 @@ class LinkEditForm extends MessageForm {
 				'enableSmilies' => $this->enableSmilies,
                 'enableHtml'    =>  $this->enableHtml,
                 'enableBBCodes' =>  $this->enableBBCodes
-			)
+			),
+           'tags' => $this->tags,
+           'isEdit' => 1
 		));
 		$this->objectAction->executeAction();
 		$this->link = new Link($this->linkID);
 		$this->saved();
 		
-		// show success message
-		WCF::getTPL()->assign('success', true);
+		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('Link', array(
+                                                                'application' => 'linklist',
+                                                                'object' => $this->link
+                                                                )));
+        exit;
 	}
 }

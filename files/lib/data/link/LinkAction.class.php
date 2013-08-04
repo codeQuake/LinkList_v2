@@ -1,6 +1,6 @@
 <?php
 namespace linklist\data\link;
-
+use wcf\system\language\LanguageFactory;
 use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\system\user\activity\point\UserActivityPointHandler;
 use wcf\system\moderation\queue\ModerationQueueActivationManager;
@@ -43,9 +43,9 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     public $message = null;
     
     public function create(){
-        $object = call_user_func(array($this->className, 'create'), $this->parameters);
+        $object = call_user_func(array($this->className, 'create'), $this->parameters['data']);
         if (!empty($this->parameters['tags'])) {
-            TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $this->parameters['tags'], $languageID);
+            TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $this->parameters['tags'], $object->languageID);
         }
         $this->handleActivation($object);
        return $object;
@@ -68,13 +68,18 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
                 // edit
                 if (isset($this->parameters['isEdit'])) {
                     $reason = (isset($this->parameters['data']['editReason'])) ? $this->parameters['data']['editReason'] : '';
-                    LinkModificationLogHandler::getInstance()->edit($object, "");
+                    LinkModificationLogHandler::getInstance()->edit($object->getDecoratedObject(), "");
                 }
             // update tags
+            $tags = array();
+            if (isset($this->parameters['tags'])) {
+                $tags = $this->parameters['tags'];
+                unset($this->parameters['tags']);
+            }
             if (!empty($tags)) {
 
                 $languageID = (!isset($this->parameters['data']['languageID']) || ($this->parameters['data']['languageID'] === null)) ? LanguageFactory::getInstance()->getDefaultLanguageID() : $this->parameters['data']['languageID'];
-                TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->threadID, $tags, $languageID);
+                TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $tags, $languageID);
             }
         }
         if (!empty($objectIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $objectIDs);

@@ -22,8 +22,9 @@
 
 {include file='categoryList' application='linklist'}
 
-{hascontent}
+
 <div class="container marginTop">
+{hascontent}
 	<ul class="containerList infoBoxList">
 		{if LINKLIST_INDEX_STATS}
 		{content}
@@ -39,8 +40,9 @@
 		{/content}
 		{/if}
 	</ul>
+{/hascontent}
 </div>
-{hascontent}
+
 {include file='footer' sandbox=false}
 </body>
 </html>
