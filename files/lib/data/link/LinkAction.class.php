@@ -43,14 +43,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     
     public function create(){
         $object = call_user_func(array($this->className, 'create'), $this->parameters);
-        if($object->userID){
-            UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
-            UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $object->linkID, $object->userID);
-            LinkEditor::updateLinkCounter(array($object->userID => 1));
-        }
-        $this->refreshStats($object);
-        LinklistStatsCacheBuilder::getInstance()->reset();
-        SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
+        
         $this->handleActivation($object);
        return $object;
     }
@@ -127,6 +120,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
                 'isActive' => 1
             ));
             $this->removeModeratedContent($link->linkID);
+            $this->publish($link);
         }
 
         $this->unmarkItems();
@@ -269,6 +263,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             $editor->update(array(
                 'isActive' => 1
             ));
+            $this->publish($link);
         }
         else{
            $this->addModeratedContent($link->linkID);
@@ -279,6 +274,17 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     }
     protected function addModeratedContent($linkID) {
         ModerationQueueActivationManager::getInstance()->addModeratedContent('de.codequake.linklist.link', $linkID);
+    }
+    protected function publish($link){
+        if($link->userID){
+            UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $link->linkID, $link->languageID, $link->userID, $link->time);
+            UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $link->linkID, $link->userID);
+            LinkEditor::updateLinkCounter(array($link->userID => 1));
+        }
+
+        $this->refreshStats($link);
+        LinklistStatsCacheBuilder::getInstance()->reset();
+        SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $link->linkID, $link->message, $link->subject, $link->time, $link->userID, $link->username, $link->languageID);
     }
     
 }
