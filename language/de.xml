@@ -98,6 +98,8 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="wcf.acl.option.de.codequake.linklist.category.canDeleteLink"><![CDATA[Kann Links löschen]]></item>
     <item name="wcf.acl.option.de.codequake.linklist.category.canTrashLink"><![CDATA[Kann Links in den Papierkorb verschieben]]></item>
     <item name="wcf.acl.option.de.codequake.linklist.category.canToggleLink"><![CDATA[Kann Links (de-)aktivieren]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canSeeDeactivatedLink"><![CDATA[Kann deaktivierte Links sehen]]></item>
+    <item name="wcf.acl.option.de.codequake.linklist.category.canAddActiveLink"><![CDATA[Kann Links ohne Freischaltung hinzufügen]]></item>
   </category>
 
   <category name="wcf.user">
@@ -146,5 +148,39 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 
   <category name="wcf.page">
     <item name="wcf.page.sitemap.linklist"><![CDATA[Linkliste]]></item>
+  </category>
+
+  <category name="wcf.acp.group.option">
+    <item name="wcf.acp.group.option.category.user.linklist"><![CDATA[Linkliste]]></item>
+    <item name="wcf.acp.group.option.category.mod.linklist"><![CDATA[Linkliste]]></item>
+    <item name="wcf.acp.group.option.category.admin.linklist"><![CDATA[Linkliste]]></item>
+    <item name="wcf.acp.group.option.user.linklist.category.canEnterCategory"><![CDATA[Kann Kategorien betreten]]></item>
+    <item name="wcf.acp.group.option.user.linklist.category.canViewCategory"><![CDATA[Kann Kategorien sehen]]></item>
+    <item name="wcf.acp.group.option.category.user.linklist.category"><![CDATA[Kategorien]]></item>
+    <item name="wcf.acp.group.option.category.user.linklist.link"><![CDATA[Links]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canViewLink"><![CDATA[Kann Links sehen]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canSeeDeactivatedLink"><![CDATA[Kann deaktivierte Links sehen]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canAddLink"><![CDATA[Kann Links hinzufügen]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canAddActiveLink"><![CDATA[Kann Links ohne Freischaltung hinzufügen]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canEditOwnLink"><![CDATA[Kann eigene Links bearbeiten]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canDeleteOwnLink"><![CDATA[Kann eigene Links löschen]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canWriteComment"><![CDATA[Kann Links kommentieren]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canEditOwnComment"><![CDATA[Kann eigene Kommentare bearbeiten]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canDeleteOwnComment"><![CDATA[Kann eigene Kommentare löschen]]></item>
+    <item name="wcf.acp.group.option.category.mod.linklist.link"><![CDATA[Links]]></item>
+    <item name="wcf.acp.group.option.mod.linklist.link.canDeleteLink"><![CDATA[Kann Links entgültig löschen]]></item>
+    <item name="wcf.acp.group.option.mod.linklist.link.canEditLink"><![CDATA[Kann Links bearbeiten]]></item>
+    <item name="wcf.acp.group.option.mod.linklist.link.canTrashLink"><![CDATA[Kann Links in den Papierkorb verschieben]]></item>
+    <item name="wcf.acp.group.option.mod.linklist.link.canToggleLink"><![CDATA[Kann Links (de)-aktivieren]]></item>
+    <item name="wcf.acp.group.option.mod.linklist.link.canEditComment"><![CDATA[Kann Kommentare bearbeiten]]></item>
+    <item name="wcf.acp.group.option.mod.linklist.link.canModerateComment"><![CDATA[Moderationsrecht für Kommentare]]></item>
+    <item name="wcf.acp.group.option.mod.linklist.link.canDeleteComment"><![CDATA[Kann Kommentare löschen]]></item>
+    <item name="wcf.acp.group.option.category.admin.linklist.category"><![CDATA[Kategorien]]></item>
+    <item name="wcf.acp.group.option.category.admin.linklist.data"><![CDATA[Daten]]></item>
+    <item name="wcf.acp.group.option.admin.linklist.category.canListCategory"><![CDATA[Kann Kategorien auflisten]]></item>
+    <item name="wcf.acp.group.option.admin.linklist.category.canAddCategory"><![CDATA[Kann Kategorien hinzufügen]]></item>
+    <item name="wcf.acp.group.option.admin.linklist.category.canDeleteCategory"><![CDATA[Kann Kategorien löschen]]></item>
+    <item name="wcf.acp.group.option.admin.linklist.category.canEditCategory"><![CDATA[Kann Kategorien bearbeiten]]></item>
+    <item name="wcf.acp.group.option.admin.linklist.data.canImportData"><![CDATA[Kann Daten importieren]]></item>
   </category>
 </language>
