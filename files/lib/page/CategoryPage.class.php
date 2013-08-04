@@ -68,7 +68,14 @@ class CategoryPage extends SortablePage {
         $this->categoryList->setMaxDepth(0);
         
         WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList',array('application' => 'linklist'))));
-  }
+        foreach($this->category->getParentCategories()    as $categoryItem) {
+                                  WCF::getBreadcrumbs()->add(new Breadcrumb($categoryItem->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
+                                      'application' => 'linklist',
+                                      'object' => $categoryItem
+          ))));
+          }
+    }
+  
     /**
      * @see wcf\page\IPage::assignVariables()
      */
