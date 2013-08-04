@@ -27,7 +27,12 @@ class LinklistCategory extends AbstractDecoratedCategory{
         if (isset($this->permissions[$permission])) {
             return $this->permissions[$permission];
         }
-        return WCF::getSession()->getPermission(('user.linklist.category.'.$permission || 'user.linklist.link.'.$permission));
+        
+        if(strpos($permission, 'Category') !== false){
+        return WCF::getSession()->getPermission('user.linklist.category.'.$permission);
+        }
+        
+        return WCF::getSession()->getPermission('user.linklist.link.'.$permission);
      }
         
      public function checkPermission(array $permissions = array('canViewCategory')) {
