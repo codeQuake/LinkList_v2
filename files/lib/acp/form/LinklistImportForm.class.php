@@ -94,6 +94,7 @@ class LinklistImportForm extends AbstractForm{
                         'enableHtml'    =>  $linkData['enableHtml'],
                         'enableBBCodes' =>  $linkData['enableBBCodes'],
                         'visits'    =>  $linkData['visits'],
+                        'isActive'  => 1,
                         'ipAddress'  =>  $linkData['ipAddress']);
                 $objectAction = new LinkAction(array(), 'create', $create);
                 $returnValues = $objectAction->executeAction();
