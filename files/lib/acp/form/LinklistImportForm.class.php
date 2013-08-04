@@ -4,6 +4,7 @@ use linklist\system\cache\builder\CategoryCacheBuilder;
 use linklist\system\cache\builder\LinklistStatsCacheBuilder;
 use linklist\data\link\LinkAction;
 use linklist\data\link\LinkList;
+use linklist\data\link\Link;
 use wcf\system\language\LanguageFactory;
 use wcf\form\AbstractForm;
 use wcf\util\StringUtil;
@@ -94,10 +95,11 @@ class LinklistImportForm extends AbstractForm{
                         'enableHtml'    =>  $linkData['enableHtml'],
                         'enableBBCodes' =>  $linkData['enableBBCodes'],
                         'visits'    =>  $linkData['visits'],
-                        'isActive'  => 1,
+                        'isActive' => 1,
                         'ipAddress'  =>  $linkData['ipAddress']);
                 $objectAction = new LinkAction(array(), 'create', $create);
                 $returnValues = $objectAction->executeAction();
+                $objectAction->publish(new Link($returnValues['returnValues']->linkID));
                 //count visits
                 $visits = 0;
                 $links = new Linklist();
