@@ -37,6 +37,13 @@
 							<dd>{$link->visits}</dd>
 						</dl>
 						<div class="box24">{@$link->getExcerpt()}</div>
+						{if $link->getTags()|count}
+						<ul class="tagList">
+								{foreach from=$link->getTags() item=tag}
+									<li><a href="{link controller='Tagged' object=$tag}objectType=de.codequake.linklist.link{/link}" class="badge tag jsTooltip" title="{lang}wcf.tagging.taggedObjects.de.codequake.linklist.link{/lang}">{$tag->name}</a></li>
+								{/foreach}
+						</ul>
+						{/if}
 						<nav class="jsMobileNavigation buttonGroupNavigation">
 							<ul class="buttonList" data-link-id="{$link->linkID}">
 								{if $link->isDeleted}<li><span class="icon icon16 icon-trash" title="{lang}linklist.link.deleted{/lang}"></span></li>{/if}

@@ -39,4 +39,9 @@ class TaggedLinkList extends ViewableLinkList{
             $this->objectIDs[] = $row['objectID'];
         }
     }
+    
+    public function readObjects() {
+        if ($this->objectIDs === null) $this->readObjectIDs();
+        parent::readObjects();
+        }
 }

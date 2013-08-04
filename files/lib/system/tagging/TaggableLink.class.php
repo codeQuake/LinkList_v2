@@ -11,7 +11,7 @@ class TaggableLink implements ITaggable{
     }
     
     public function getTemplateName() {
-        return 'linkslist';
+        return 'tagLinkList';
     }
     
     public function getApplication() {

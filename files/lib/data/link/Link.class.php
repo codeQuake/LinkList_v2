@@ -10,6 +10,7 @@ use wcf\data\IMessage;
 use wcf\data\object\type\ObjectTypeCache;
 use wcf\data\category\Category;
 use wcf\data\user\User;
+use wcf\system\tagging\TagEngine;
 use wcf\data\user\UserProfile;
 use wcf\system\language\LanguageFactory;
 use wcf\system\request\IRouteController;
@@ -195,5 +196,14 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
                 LikeHandler::getInstance()->loadLikeObjects($objectType, $linkIDs);
                 return LikeHandler::getInstance()->getLikeObjects($objectType);
             }
+        }
+        
+        public function getTags(){
+            $tags = TagEngine::getInstance()->getObjectTags(
+				'de.codequake.linklist.link',
+				$this->linkID,
+				array(($this->languageID === null ? LanguageFactory::getInstance()->getDefaultLanguageID() : ""))
+			);
+            return $tags;
         }
 }

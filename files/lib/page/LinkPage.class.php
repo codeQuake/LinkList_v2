@@ -67,11 +67,7 @@ class LinkPage extends AbstractPage{
             
             // get tags
 		if (MODULE_TAGGING ) {
-			$this->tags = TagEngine::getInstance()->getObjectTags(
-				'de.codequake.linklist.link',
-				$this->link->linkID,
-				array(($this->link->languageID === null ? LanguageFactory::getInstance()->getDefaultLanguageID() : ""))
-			);
+			$this->tags = $this->link->getTags();
 		}
     }
     public function assignVariables(){
