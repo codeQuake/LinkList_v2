@@ -8,13 +8,14 @@
             <span>{lang}linklist.link.visit{/lang}</span>
           </a>
         </li>
-        <!-- TODO: Abfrage-->
+        {if $link->getCategory()->getPermission('canEditLink') || ($link->getCategory()->getPermission('canEditOwnLink') && $link->userID = $this->userID)}
         <li>
           <a class="button small" href="{link application='linklist' controller='LinkEdit' object=$link}{/link}">
             <span class="icon icon16 icon-pencil"></span>
             <span>{lang}linklist.link.edit{/lang}</span>
           </a>
         </li>
+        {/if}
       </ul>
     </nav>
 
