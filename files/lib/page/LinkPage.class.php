@@ -6,6 +6,7 @@ use wcf\system\breadcrumb\Breadcrumb;
 use wcf\system\request\LinkHandler;
 use wcf\system\comment\CommentHandler;
 
+use wcf\system\tagging\TagEngine;
 use wcf\system\like\LikeHandler;
 use wcf\page\AbstractPage;
 use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
@@ -22,6 +23,7 @@ class LinkPage extends AbstractPage{
     public $commentList = null;
     public $objectType = 0;
     public $likeData = array();
+    public $tags = array();
     
     
     public function readParameters(){
@@ -62,6 +64,15 @@ class LinkPage extends AbstractPage{
 			    LikeHandler::getInstance()->loadLikeObjects($objectType, $linkIDs);
 			    $this->likeData = LikeHandler::getInstance()->getLikeObjects($objectType);
 		    }
+            
+            // get tags
+		if (MODULE_TAGGING ) {
+			$this->tags = TagEngine::getInstance()->getObjectTags(
+				'de.codequake.linklist.link',
+				$this->link->linkID,
+				array(($this->link->languageID === null ? LanguageFactory::getInstance()->getDefaultLanguageID() : ""))
+			);
+		}
     }
     public function assignVariables(){
         parent::assignVariables();
@@ -72,6 +83,7 @@ class LinkPage extends AbstractPage{
                                     'commentList' => $this->commentList,
                                     'commentObjectTypeID'=> $this->objectTypeID,
                                     'likeData' => $this->likeData,
+                                    'tags' => $this->tags,
                                     'commentCanAdd' => $this->commentManager->canAdd($this->linkID),
                                     'lastCommentTime' => $this->commentList->getMinCommentTime(),
                                     'commentsPerPage' => $this->commentManager->getCommentsPerPage()));

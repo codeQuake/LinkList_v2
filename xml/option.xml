@@ -18,6 +18,9 @@
       <category name="linklist.category.link>">
         <parent>linklist.category</parent>
       </category>
+      <category name="linklist.links">
+        <parent>linklist</parent>
+      </category>
     </categories>
     <options>
       <option name="module_linklist_comments">

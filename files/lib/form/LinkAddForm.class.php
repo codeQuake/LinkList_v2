@@ -37,7 +37,7 @@ class LinkAddForm extends MessageForm{
     public $category = null;
     public $categoryNodeList = null;
     public $url;
-    
+    public $tags = array();
     public $enableMultilingualism = true;
     
     protected $link = null;
@@ -96,6 +96,7 @@ class LinkAddForm extends MessageForm{
         if(isset($_POST['username'])) $this->username = StringUtil::trim($_POST['username']);
         if(isset($_POST['category'])) $this->categoryID = intval($_POST['category']);        
         if(isset($_POST['url'])) $this->url = StringUtil::trim($_POST['url']);
+        if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
       }
       
     
@@ -105,6 +106,7 @@ class LinkAddForm extends MessageForm{
                                     'categoryID'    =>  $this->categoryID,
                                     'username'  =>  $this->username,
                                     'action'    =>  $this->action,
+                                    'tags'      => $this->tags,
                                     'url'   =>  $this->url));
         
 
@@ -151,7 +153,11 @@ class LinkAddForm extends MessageForm{
                         'enableHtml'    =>  $this->enableHtml,
                         'enableBBCodes' =>  $this->enableBBCodes,
                         'visits'    =>  0,
+                        'tags' => array(),
                         'ipAddress'  =>  $_SERVER['REMOTE_ADDR']);
+        if (MODULE_TAGGING) {
+			$data['tags'] = $this->tags;
+		}
         $this->objectAction = new LinkAction(array(), 'create', $data);
         $resultvalues = $this->objectAction->executeAction();
         

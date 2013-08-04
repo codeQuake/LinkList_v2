@@ -8,6 +8,7 @@ use linklist\system\cache\builder\CategoryCacheBuilder;
 use linklist\system\cache\builder\LinklistStatsCacheBuilder;
 use wcf\system\database\util\PreparedStatementConditionBuilder;
 use wcf\data\AbstractDatabaseObjectAction;
+use wcf\system\tagging\TagEngine;
 use wcf\system\search\SearchIndexManager;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\data\IClipboardAction;
@@ -43,7 +44,9 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     
     public function create(){
         $object = call_user_func(array($this->className, 'create'), $this->parameters);
-        
+        if (!empty($this->parameters['tags'])) {
+            TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $this->parameters['tags'], $languageID);
+        }
         $this->handleActivation($object);
        return $object;
     }
@@ -67,10 +70,17 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
                     $reason = (isset($this->parameters['data']['editReason'])) ? $this->parameters['data']['editReason'] : '';
                     LinkModificationLogHandler::getInstance()->edit($object, "");
                 }
+            // update tags
+            if (!empty($tags)) {
+
+                $languageID = (!isset($this->parameters['data']['languageID']) || ($this->parameters['data']['languageID'] === null)) ? LanguageFactory::getInstance()->getDefaultLanguageID() : $this->parameters['data']['languageID'];
+                TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->threadID, $tags, $languageID);
+            }
         }
         if (!empty($objectIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $objectIDs);
         if (!empty($objectIDs)) SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
        
+        
     }
     
     //unmark
@@ -195,6 +205,8 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             //clear stats
             $this->refreshStats($link);
             $linkIDs[] = $link->linkID;
+            // remove tags
+            TagEngine::getInstance()->deleteObjectTags('de.codequake.linklist.link', $link->linkID);
         }
         if (!empty($linkIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $linkIDs);
         

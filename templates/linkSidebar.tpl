@@ -47,8 +47,33 @@
                     </ul>
                 </div>
             </fieldset>
-
-            <fieldset class="LinklistSidebarButton">
+			{hascontent}
+			<fieldset class="linklistLinkSidebar">
+				<legend></legend>
+				{if $tags|count}
+				{content}
+				<ul class="sidebarBoxList">
+					<li class="box24 tags">
+						<span class="icon icon32 icon-tags"></span>
+			
+						<div>
+							<div class="containerHeadline">
+								<h3>{lang}wcf.tagging.tags{/lang}</h3>
+							</div>
+							
+							<ul class="tagList">
+								{foreach from=$tags item=tag}
+									<li><a href="{link controller='Tagged' object=$tag}objectType=de.codequake.linklist.link{/link}" class="badge tag jsTooltip" title="{lang}wcf.tagging.taggedObjects.de.codequake.linklist.link{/lang}">{$tag->name}</a></li>
+								{/foreach}
+							</ul>
+						</div>
+					</li>
+				</ul>
+				{/content}
+				{/if}
+			</fieldset>
+			{/hascontent}
+            <fieldset class="linklistSidebarButton">
                     <legend></legend>
                 <div>
                     <a class="button visitButton" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><h3 style="font-size:120%;">{lang}linklist.link.sidebar.visit{/lang}</h3></a>

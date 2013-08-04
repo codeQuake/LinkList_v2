@@ -93,5 +93,11 @@
         <definitionname>com.woltlab.wcf.like.likeableObject</definitionname>
         <classname>linklist\data\link\LikeableLinkProvider</classname>
       </type>
+      <!-- Tagging -->
+      <type>
+        <name>de.codequake.linklist.link</name>
+        <definitionname>com.woltlab.wcf.tagging.taggableObject</definitionname>
+        <classname>linklist\system\tagging\TaggableLink</classname>
+      </type>
     </import>
 </data>
