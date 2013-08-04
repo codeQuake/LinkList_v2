@@ -1,7 +1,7 @@
 
 <div class="contentNavigation">
     {pages print=true assign=pagesLinks controller="Category" application="linklist" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
-	{if $__wcf->session->getPermission('user.linklist.link.canAddLink')}
+	{if $category->getPermission('canAddLink')}
         <nav>
             <ul>
                     <li><a href="{link application='linklist' controller='LinkAdd' id=$categoryID}{/link}" title="{lang}linklist.link.add{/lang}" class="button"><span class="icon icon16 icon-plus"></span> <span>{lang}linklist.link.add{/lang}</span></a></li>

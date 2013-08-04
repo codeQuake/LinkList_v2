@@ -27,9 +27,7 @@
           <categoryname>user.linklist.category</categoryname>
           <objecttype>de.codequake.linklist.category</objecttype>
         </option>
-      
 
-      <!--mod.category-->
      
       <!--user.category-->
       <option name="canViewLink">
