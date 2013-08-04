@@ -5,5 +5,9 @@
 			<classname><![CDATA[linklist\system\dashboard\box\LatestLinksDashboardBox]]></classname>
 			<boxtype>sidebar</boxtype>
 		</dashboardbox>
+    <dashboardbox name="de.codequake.linklist.mostVisitedLinks">
+      <classname><![CDATA[linklist\system\dashboard\box\MostVisitedLinksDashboardBox]]></classname>
+      <boxtype>sidebar</boxtype>
+    </dashboardbox>
 	</import>
 </data>

@@ -123,6 +123,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
   <category name="wcf.dashboard">
     <item name="wcf.dashboard.objectType.de.codequake.linklist.CategoryListPage"><![CDATA[Linkliste]]></item>
     <item name="wcf.dashboard.box.de.codequake.linklist.latestLinks"><![CDATA[Neuste Links]]></item>
+    <item name="wcf.dashboard.box.de.codequake.linklist.mostVisitedLinks"><![CDATA[Meistbesuchte Links]]></item>
   </category>
   <category name="wcf.clipboard">
     <item name="wcf.clipboard.label.de.codequake.linklist.link.marked"><![CDATA[{if $count == 1}Ein Link{else}{#$count} Links{/if} markiert]]></item>

@@ -7,7 +7,8 @@ $package = $this->installation->getPackage();
 //default values
 DashboardHandler::setDefaultValues('de.codequake.linklist.CategoryListPage', array(
     'de.codequake.linklist.latestLinks' => 1,
-    'com.woltlab.wcf.user.recentActivitySidebar' => 2
+    'de.codequake.linklist.mostVisitedLinks' => 2,
+    'com.woltlab.wcf.user.recentActivitySidebar' => 3
 ));
 
 //install date
