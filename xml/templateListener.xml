@@ -28,6 +28,13 @@
       <eventname>javascriptInclude</eventname>
       <templatecode><![CDATA[{include file='__jsInclude' application='linklist'}]]></templatecode>
     </templatelistener>
+    
+    <templatelistener name="linkJavascriptInit">
+      <environment>user</environment>
+      <templatename>headInclude</templatename>
+      <eventname>javascriptInit</eventname>
+      <templatecode><![CDATA[{include file='__javascriptInit' application='linklist'}]]></templatecode>
+    </templatelistener>
 
     <templatelistener name="linkMembersList">
       <environment>user</environment>
