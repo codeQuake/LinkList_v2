@@ -87,6 +87,11 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="wcf.acp.option.linklist_default_sort_field.description"><![CDATA[Standard-Sortierung für die Liste der Links]]></item>
     <item name="wcf.acp.option.linklist_default_sort_order"><![CDATA[Sortierungsreihenfolge]]></item>
     <item name="wcf.acp.option.linklist_default_sort_order.description"><![CDATA[Standard-Reihenfolge für die Liste der Links.]]></item>
+    <item name="wcf.acp.option.category.dashboard.sidebar.linklist"><![CDATA[Linkliste]]></item>
+    <item name="wcf.acp.option.linklist_latest_limit"><![CDATA[Anzahl der neusten Links]]></item>
+    <item name="wcf.acp.option.linklist_latest_limit.description"><![CDATA[Die Anzahl der Links in der Box mit den neusten Links.]]></item>
+    <item name="wcf.acp.option.linklist_most_limit"><![CDATA[Anzahl der meistbesuchten Links]]></item>
+    <item name="wcf.acp.option.linklist_most_limit.description"><![CDATA[Die Anzahl der Links in der Box mit den meistbesuchten Links.]]></item>
   </category>
 
   <category name="wcf.acl.option">
