@@ -83,7 +83,7 @@ class LinklistImportForm extends AbstractForm{
                 $user = User::getUserByUsername($linkData['username']);
                 if($user->userID) $userID =  $user->userID;
                 
-                $create = array(  'url'   =>  $linkData['url'],
+                $data = array(  'url'   =>  $linkData['url'],
                         'subject'   =>  $linkData['subject'],
                         'categoryID'    =>  $oldCategoryIDs[$linkData['categoryID']],
                         'message'   =>  $linkData['message'],
@@ -97,6 +97,7 @@ class LinklistImportForm extends AbstractForm{
                         'visits'    =>  $linkData['visits'],
                         'isActive' => 1,
                         'ipAddress'  =>  $linkData['ipAddress']);
+                $create = array('data' => $data);
                 $objectAction = new LinkAction(array(), 'create', $create);
                 $returnValues = $objectAction->executeAction();
                 
