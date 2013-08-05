@@ -197,6 +197,15 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
                 return LikeHandler::getInstance()->getLikeObjects($objectType);
             }
         }
+        public function hasLikes(){
+            if (MODULE_LIKE) {
+                if ($this->cumulativeLikes == 0){
+                    return false;
+                }
+                else return true;
+            }
+            return false;
+        }
         
         public function getTags(){
             $tags = TagEngine::getInstance()->getObjectTags(
