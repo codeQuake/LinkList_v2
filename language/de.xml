@@ -165,7 +165,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="wcf.page.sitemap.linklist"><![CDATA[Linkliste]]></item>
   </category>
 
-  <category name="wcf.acp.group.option">
+  <category name="wcf.acp.group">
     <item name="wcf.acp.group.option.category.user.linklist"><![CDATA[Linkliste]]></item>
     <item name="wcf.acp.group.option.category.mod.linklist"><![CDATA[Linkliste]]></item>
     <item name="wcf.acp.group.option.category.admin.linklist"><![CDATA[Linkliste]]></item>

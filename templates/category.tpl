@@ -4,7 +4,7 @@
 	<title>{$category->getTitle()|language} - {PAGE_TITLE|language}</title>
 	
 	{include file='headInclude' sandbox=false}
-		<script type="text/javascript">
+		<script data-relocate="true" type="text/javascript">
 			//<![CDATA[
 				WCF.Clipboard.init('linklist\\page\\CategoryPage', {@$hasMarkedItems}, { });
 			//]]>
