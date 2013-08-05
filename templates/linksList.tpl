@@ -17,7 +17,7 @@
 <div class="container marginTop shadow jsClipboardContainer" data-type="de.codequake.linklist.link">
 	<ol class="linklist containerList" data-type="de.codequake.linklist.link">
 		{foreach from=$objects item=link}
-			<li id="link{$link->linkID}" class="jsClipboardObject linklistLink {if $link->isDeleted}linkDeleted{/if} {if !$link->isActive}linkDisabled{/if}" {if $link->isDeleted}data-is-deleted="1"{/if} {if !$link->isActive}data-is-active="0"{/if} ">
+			<li id="link{$link->linkID}" class="jsClipboardObject link {if $link->isDeleted}linkDeleted{/if} {if !$link->isActive}linkDisabled{/if}" {if $link->isDeleted}data-is-deleted="1"{/if} {if !$link->isActive}data-is-active="0"{/if}>
 				<input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" style="float:left;"/>
 				<div class="box128">					
 					<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><img src="http://api.webthumbnail.org?width=128&height=128&screen=1280&format=png&url={$link->url}" alt="Captured by webthumbnail.org" /></a>

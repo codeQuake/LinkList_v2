@@ -15,7 +15,7 @@
       <category name="linklist.category">
         <parent>linklist</parent>
       </category>
-      <category name="linklist.category.link>">
+      <category name="linklist.category.links">
         <parent>linklist.category</parent>
       </category>
       <category name="linklist.links">

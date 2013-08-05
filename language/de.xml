@@ -77,6 +77,16 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
   </category>
   <category name="wcf.acp.option">
     <item name="wcf.acp.option.module_linklist_comments"><![CDATA[Kommentarsystem - Linkliste]]></item>
+    <item name="wcf.acp.option.category.linklist"><![CDATA[Linkliste]]></item>
+    <item name="wcf.acp.option.category.linklist.index"><![CDATA[Startseite]]></item>
+    <item name="wcf.acp.option.category.linklist.index.general"><![CDATA[Allgemeine Einstellungen]]></item>
+    <item name="wcf.acp.option.category.linklist.category"><![CDATA[Kategorien]]></item>
+    <item name="wcf.acp.option.category.linklist.category.links"><![CDATA[Links]]></item>
+    <item name="wcf.acp.option.linklist_links_per_page"><![CDATA[Anzahl der Links pro Seite]]></item>
+    <item name="wcf.acp.option.linklist_default_sort_field"><![CDATA[Sortierung]]></item>
+    <item name="wcf.acp.option.linklist_default_sort_field.description"><![CDATA[Standard-Sortierung für die Liste der Links]]></item>
+    <item name="wcf.acp.option.linklist_default_sort_order"><![CDATA[Sortierungsreihenfolge]]></item>
+    <item name="wcf.acp.option.linklist_default_sort_order.description"><![CDATA[Standard-Reihenfolge für die Liste der Links.]]></item>
   </category>
 
   <category name="wcf.acl.option">
@@ -107,9 +117,9 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
   </category>
   
   <category name="wcf.user.profile">
-    <item name="wcf.user.profile.recentActivity.link"><![CDATA[hat den Link &raquo;<a href="{link controller=Link application='linklist' object=$link}{/link}">{$link->getTitle()}</a>&laquo; hinzugefügt.]]></item>
-    <item name="wcf.user.profile.recentActivity.linkComment"><![CDATA[hat den Link &raquo;<a href="{link controller=Link application='linklist' object=$link}{/link}">{$link->getTitle()}</a>&laquo; kommentiert.]]></item>
-    <item name="wcf.user.profile.recentActivity.linkCommentResponse"><![CDATA[hat auf den Kommentar von <a href="{link controller=User application='linklist' object=$author}{/link}">{$author->username}</a> zum Link &raquo;<a href="{link controller=Link application='linklist' object=$link}#comment{/link}">{$link->getTitle()}</a>&laquo; geantwortet.]]></item>
+    <item name="wcf.user.profile.recentActivity.link"><![CDATA[hat den Link &raquo;<a class="linklistLink" data-link-id="{$link->linkID}" href="{link controller=Link application='linklist' object=$link}{/link}">{$link->getTitle()}</a>&laquo; hinzugefügt.]]></item>
+    <item name="wcf.user.profile.recentActivity.linkComment"><![CDATA[hat den Link &raquo;<a class="linklistLink" data-link-id="{$link->linkID}" href="{link controller=Link application='linklist' object=$link}{/link}">{$link->getTitle()}</a>&laquo; kommentiert.]]></item>
+    <item name="wcf.user.profile.recentActivity.linkCommentResponse"><![CDATA[hat auf den Kommentar von <a class="userLink" data-user-id="{$autor->userID}"href="{link controller=User application='linklist' object=$author}{/link}">{$author->username}</a> zum Link &raquo;<a class="linklistLink" data-link-id="{$link->linkID}" href="{link controller=Link application='linklist' object=$link}#comment{/link}">{$link->getTitle()}</a>&laquo; geantwortet.]]></item>
   </category>
 
   <category name="wcf.user.recentActivity">
@@ -182,5 +192,10 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="wcf.acp.group.option.admin.linklist.category.canDeleteCategory"><![CDATA[Kann Kategorien löschen]]></item>
     <item name="wcf.acp.group.option.admin.linklist.category.canEditCategory"><![CDATA[Kann Kategorien bearbeiten]]></item>
     <item name="wcf.acp.group.option.admin.linklist.data.canImportData"><![CDATA[Kann Daten importieren]]></item>
+  </category>
+
+  <category name="wcf.tagging">
+    <item name="wcf.tagging.taggedObjects.de.codequake.linklist.link"><![CDATA[Links mit dem Tag „{$tag->name}“]]></item>
+    <item name="wcf.tagging.objectType.de.codequake.linklist.link"><![CDATA[Links]]></item>
   </category>
 </language>
