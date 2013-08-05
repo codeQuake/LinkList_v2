@@ -47,6 +47,9 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         if (!empty($this->parameters['tags'])) {
             TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $this->parameters['tags'], $object->languageID);
         }
+        LinklistStatsCacheBuilder::getInstance()->reset();
+        SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
+    
         $this->handleActivation($object);
        return $object;
     }
@@ -291,8 +294,6 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         }
 
         $this->refreshStats($link);
-        LinklistStatsCacheBuilder::getInstance()->reset();
-        SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $link->linkID, $link->message, $link->subject, $link->time, $link->userID, $link->username, $link->languageID);
-    }
+        }
     
 }
