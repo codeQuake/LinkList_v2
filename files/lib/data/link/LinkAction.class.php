@@ -37,10 +37,10 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     protected $permissionsTrash = array('mod.linklist.link.canTrashLink');    
     protected $permissionsEnable = array('mod.linklist.link.canToggleLink');
     protected $permissionsDisable = array('mod.linklist.link.canToggleLink');
-    
+    protected $allowGuestAccess = array('getPostPreview');
     
     public $links = array();
-    public $message = null;
+    public $link = null;
     
     public function create(){
         $object = call_user_func(array($this->className, 'create'), $this->parameters['data']);
@@ -238,30 +238,21 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             throw new UserInputException("objectIDs");
         }
     }
-    public function validateLinkPreview() {
-         $objectIDs = array();
-        foreach ($this->objects as $object) {
-           $objectIDs[] = $object->linkID;
-        }
-		if (count($objectIDs) != 1) {
-			throw new UserInputException('objectIDs');
-		}
-	}
+    
     public function getLinkPreview(){
-        $objectIDs = array();
-        foreach ($this->objects as $object) {
-           $objectIDs[] = $object->linkID;
-        }
-        $linkID = reset($objectIDs);
-        $list = new ViewableLinkList();
-        $list->getConditionBuilder()->add("link.linkID = ?", array($linkID));
-        $list->readObjects();
-        $links = $list->getObjects();
-        
-        WCF::getTPL()->assign(array('link' => reset($links)));
-        return array('template' => WCF::getTPL()->fetch('linkPreview', 'linklist'),
-                    'linkID' => $linkID);
+            $list = new ViewableLinkList();
+            $list->getConditionBuilder()->add("link.linkID = ?", array($this->link->linkID));
+            $list->readObjects();
+            $links = $list->getObjects();
+            WCF::getTPL()->assign(array('link' => reset($links)));
+            return array('template' => WCF::getTPL()->fetch('linkPreview', 'linklist'));
     }
+    public function validateGetLinkPreview(){
+        $this->link = $this->getSingleObject();
+        // check if board may be entered and thread can be read
+        $this->link->getCategory()->checkPermission(array('canViewCategory', 'canEnterCategory', 'canViewLink'));
+    }
+    
     
     protected function refreshStats($link){        
         //update links

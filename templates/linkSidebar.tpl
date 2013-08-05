@@ -24,7 +24,7 @@
 							</a>
 							<div class="sidebarBoxHeadline">
                                 <h3>{lang}linklist.link.sidebar.author{/lang}</h3>
-                                <small>{if $link->getUserID()}<a href="{link controller='User' id=$link->getUserID() title=$link->getUsername()}{/link}">{$link->getUsername()}</a>{else}{$link->getUsername()}{/if}</small>
+                                <small>{if $link->getUserID()}<a class="userLink" data-user-id="{$link->getUserID()}" href="{link controller='User' id=$link->getUserID() title=$link->getUsername()}{/link}">{$link->getUsername()}</a>{else}{$link->getUsername()}{/if}</small>
                             </div>
                         </li>
                         <li class="box24">

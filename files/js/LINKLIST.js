@@ -63,6 +63,7 @@ LINKLIST.Link.Preview = WCF.Popover.extend({
         this._proxy = new WCF.Action.Proxy({
             showLoadingOverlay: false
         });
+        WCF.DOMNodeInsertedHandler.addCallback('LINKLIST.Link.Preview', $.proxy(this._initContainers, this));
     },
 
     /**
@@ -73,8 +74,8 @@ LINKLIST.Link.Preview = WCF.Popover.extend({
 
         this._proxy.setOption('data', {
             actionName: 'getLinkPreview',
-            className: 'wcf\\data\\link\\LinkAction',
-            objectIDs: [$link.data('$linkID')]
+            className: 'linklist\\data\\link\\LinkAction',
+            objectIDs: [$link.data('linkID')]
         });
 
         var $elementID = this._activeElementID;

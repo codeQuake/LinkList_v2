@@ -24,13 +24,13 @@
 					<div class="details">
 						<div class="containerHeadline">
 						<h3>
-							<a data-link-id="{@$link->linkID}" class="linklistLinkLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a> 
+							<a data-link-id="{@$link->linkID}" class="linklistLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a> 
 							{if MODULE_LIKE && $__wcf->getSession()->getPermission('user.like.canViewLike') && $link->countLikes()[$link->linkID]|isset}<span class="likesBadge badge jsTooltip {if $link->cumulativeLikes > 0}green{elseif $link->cumulativeLikes < 0}red{/if}" title="{lang likes=$link->countLikes()[$link->linkID]->likes dislikes=$link->countLikes()[$link->linkID]->dislikes}wcf.like.tooltip{/lang}">{if $link->cumulativeLikes > 0}+{elseif $link->cumulativeLikes == 0}&plusmn;{/if}{#$link->cumulativeLikes}</span>{/if}
 						</h3>
 						</div>
 						<dl class="plain inlineDataList">
 							<dt>{lang}linklist.link.author{/lang}</dt>
-							<dd>{$link->username} ({$link->time|DateDiff})</dd>
+							<dd><a class="userLink" data-user-id="{$link->userID}" href="{link controller='User' object=$link->getUserProfile()}{/link}">{$link->username}</a> ({$link->time|DateDiff})</dd>
 						</dl>
 						<dl class="plain inlineDataList">
 							<dt>{lang}linklist.links.visits{/lang}</dt>
