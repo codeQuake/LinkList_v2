@@ -295,5 +295,21 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
         $this->refreshStats($link);
         }
+        
+   public function import(){
+        $link = call_user_func(array($this->className, 'create'), $this->parameters['data']);
+        if (!empty($this->parameters['tags'])) {
+            TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $link->linkID, $this->parameters['tags'], $link->languageID);
+        }
+        LinklistStatsCacheBuilder::getInstance()->reset();
+        SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $link->linkID, $link->message, $link->subject, $link->time, $link->userID, $link->username, $link->languageID);
+        if($link->userID){
+            UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $link->linkID, $link->languageID, $link->userID, $link->time);
+            UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $link->linkID, $link->userID);
+            LinkEditor::updateLinkCounter(array($link->userID => 1));
+        }
+        $this->refreshStats($link);
+       return $link;
+   }
     
 }

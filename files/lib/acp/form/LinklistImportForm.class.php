@@ -98,7 +98,7 @@ class LinklistImportForm extends AbstractForm{
                         'isActive' => 1,
                         'ipAddress'  =>  $linkData['ipAddress']);
                 $create = array('data' => $data);
-                $objectAction = new LinkAction(array(), 'create', $create);
+                $objectAction = new LinkAction(array(), 'import', $create);
                 $returnValues = $objectAction->executeAction();
                 
                 //count visits
