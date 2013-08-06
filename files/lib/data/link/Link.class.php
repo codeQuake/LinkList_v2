@@ -194,7 +194,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
                 $linkIDs[] = $this->linkID;
                 $objectType = LikeHandler::getInstance()->getObjectType('de.codequake.linklist.likeableLink');
                 LikeHandler::getInstance()->loadLikeObjects($objectType, $linkIDs);
-                return LikeHandler::getInstance()->getLikeObjects($objectType);
+                return LikeHandler::getInstance()->getLikeObject($objectType, $this->linkID);
             }
         }
         public function hasLikes(){
