@@ -287,7 +287,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         ModerationQueueActivationManager::getInstance()->addModeratedContent('de.codequake.linklist.link', $linkID);
     }
     protected function publish($link){
-        if($link->userID){
+        if($link->userID !== null){
             UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $link->linkID, $link->languageID, $link->userID, $link->time);
             UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $link->linkID, $link->userID);
             LinkEditor::updateLinkCounter(array($link->userID => 1));
@@ -303,7 +303,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         }
         LinklistStatsCacheBuilder::getInstance()->reset();
         SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $link->linkID, $link->message, $link->subject, $link->time, $link->userID, $link->username, $link->languageID);
-        if($link->userID){
+        if($link->userID !== null) {
             UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $link->linkID, $link->languageID, $link->userID, $link->time);
             UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $link->linkID, $link->userID);
             LinkEditor::updateLinkCounter(array($link->userID => 1));
