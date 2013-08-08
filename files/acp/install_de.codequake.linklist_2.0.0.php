@@ -10,6 +10,9 @@ DashboardHandler::setDefaultValues('de.codequake.linklist.CategoryListPage', arr
     'de.codequake.linklist.mostVisitedLinks' => 2,
     'com.woltlab.wcf.user.recentActivitySidebar' => 3
 ));
+DashboardHandler::setDefaultValues('de.codequake.linklist.CategoryPage', array(
+    'de.codequake.linklist.mostVisitedLinks' => 2,
+));
 
 //install date
 $sql = "UPDATE	wcf".WCF_N."_option

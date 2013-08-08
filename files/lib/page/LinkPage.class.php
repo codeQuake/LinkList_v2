@@ -57,7 +57,7 @@ class LinkPage extends AbstractPage{
             
             
             // fetch likes
-		    if (MODULE_LIKE) {
+		    if (MODULE_LIKE && LINKLIST_ENABLE_LIKES) {
                 $linkIDs = array();
                 $linkIDs[] = $this->link->linkID;
 			    $objectType = LikeHandler::getInstance()->getObjectType('de.codequake.linklist.likeableLink');
@@ -66,7 +66,7 @@ class LinkPage extends AbstractPage{
 		    }
             
             // get tags
-		if (MODULE_TAGGING ) {
+		if (MODULE_TAGGING && LINKLIST_ENABLE_TAGS) {
 			$this->tags = $this->link->getTags();
 		}
     }
