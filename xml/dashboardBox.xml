@@ -9,5 +9,9 @@
       <classname><![CDATA[linklist\system\dashboard\box\MostVisitedLinksDashboardBox]]></classname>
       <boxtype>sidebar</boxtype>
     </dashboardbox>
+    <dashboardbox name="de.codequake.linklist.tagCloud">
+      <classname><![CDATA[linklist\system\dashboard\box\LinksTagCloudDashboardBox]]></classname>
+      <boxtype>sidebar</boxtype>
+    </dashboardbox>
 	</import>
 </data>

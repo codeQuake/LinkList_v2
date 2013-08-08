@@ -7,6 +7,8 @@ use linklist\data\category\LinklistCategoryNode;
 use linklist\data\category\LinklistCategory;
 use linklist\data\link\CategoryLinkList;
 use wcf\system\WCF;
+use wcf\system\dashboard\DashboardHandler;
+use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
 
 use wcf\system\category\CategoryHandler;
 use wcf\system\request\LinkHandler;
@@ -81,12 +83,15 @@ class CategoryPage extends SortablePage {
      */
     public function assignVariables() {
         parent::assignVariables();
-
+        //dashboard
+        DashboardHandler::getInstance()->loadBoxes('de.codequake.linklist.CategoryPage', $this);
 
         WCF::getTPL()->assign(array(
             'categoryList' => $this->categoryList,
             'categoryID' => $this->categoryID,
             'category' => $this->category,
+            'sidebarCollapsed'	=> UserCollapsibleContentHandler::getInstance()->isCollapsed('com.woltlab.wcf.collapsibleSidebar', 'de.codequake.linklist.CategoryPage'),
+            'sidebarName' => 'de.codequake.linklist.CategoryPage',
             'hasMarkedItems' => ClipboardHandler::getInstance()->hasMarkedItems(ClipboardHandler::getInstance()->getObjectTypeID('de.codequake.linklist.link')),
             'allowSpidersToIndexThisPage'   =>  true
         ));

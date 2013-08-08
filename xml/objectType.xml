@@ -14,9 +14,15 @@
     </type>
   
     
-    <!--categoryListPage-->
+    <!--categoryListPage/categorypage-->
     <type>
       <name>de.codequake.linklist.CategoryListPage</name>
+      <definitionname>com.woltlab.wcf.user.dashboardContainer</definitionname>
+      <allowcontent>1</allowcontent>
+      <allowsidebar>1</allowsidebar>
+    </type>
+    <type>
+      <name>de.codequake.linklist.CategoryPage</name>
       <definitionname>com.woltlab.wcf.user.dashboardContainer</definitionname>
       <allowcontent>0</allowcontent>
       <allowsidebar>1</allowsidebar>
@@ -27,7 +33,12 @@
       <controller>linklist\page\CategoryListPage</controller>
       <languagevariable>wcf.user.usersOnline.location.categoryListPage</languagevariable>
     </type>
-    
+    <type>
+      <name>de.codequake.linklist.CategoryPage</name>
+      <definitionname>com.woltlab.wcf.user.online.location</definitionname>
+      <controller>linklist\page\CategoryPage</controller>
+      <languagevariable>wcf.user.usersOnline.location.categoryPage</languagevariable>
+    </type>
     
     <!--link-->
     
