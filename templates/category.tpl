@@ -13,6 +13,7 @@
 
 <body id="tpl{$templateName|ucfirst}">
 {capture assign='sidebar'}
+	{include file='categoryDisplayOptions' application='linklist'}
 	{@$__boxSidebar}
 {/capture}
 

@@ -36,7 +36,7 @@ class CategoryPage extends SortablePage {
     public $category;
     public $objectListClassName = 'linklist\data\link\CategoryLinkList';
     
-    public $validSortFields = array('title', 'time', 'visits');
+    public $validSortFields = array('subject', 'time', 'visits');
     
     
     public $itemsPerPage = LINKLIST_LINKS_PER_PAGE;
