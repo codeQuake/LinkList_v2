@@ -18,7 +18,9 @@
 		<h1>{lang}linklist.index.title{/lang}</h1>
 	</hgroup>
 </header>
-
+<section id="dashboard">
+	{if $__boxContent|isset}{@$__boxContent}{/if}
+</section>
 
 {include file='categoryList' application='linklist'}
 

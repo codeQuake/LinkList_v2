@@ -18,7 +18,7 @@
     <type>
       <name>de.codequake.linklist.CategoryListPage</name>
       <definitionname>com.woltlab.wcf.user.dashboardContainer</definitionname>
-      <allowcontent>0</allowcontent>
+      <allowcontent>1</allowcontent>
       <allowsidebar>1</allowsidebar>
     </type>
     <type>
