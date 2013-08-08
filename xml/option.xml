@@ -54,12 +54,12 @@
       <option name="linklist_enable_likes">
         <categoryname>linklist.links.general</categoryname>
         <optiontype>boolean</optiontype>
-        <defaulvalue>1</defaulvalue>
+        <defaultvalue>1</defaultvalue>
       </option>
       <option name="linklist_enable_tags">
         <categoryname>linklist.links.general</categoryname>
         <optiontype>boolean</optiontype>
-        <defaulvalue>1</defaulvalue>
+        <defaultvalue>1</defaultvalue>
       </option>
       <option name="linklist_links_per_page">
         <categoryname>linklist.category.links</categoryname>
