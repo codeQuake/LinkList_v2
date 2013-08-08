@@ -13,5 +13,9 @@
       <classname><![CDATA[linklist\system\dashboard\box\LinksTagCloudDashboardBox]]></classname>
       <boxtype>sidebar</boxtype>
     </dashboardbox>
+    <dashboardbox name="de.codequake.linklist.randomLink">
+      <classname><![CDATA[linklist\system\dashboard\box\RandomLinkDashboardBox]]></classname>
+      <boxtype>content</boxtype>
+    </dashboardbox>
 	</import>
 </data>

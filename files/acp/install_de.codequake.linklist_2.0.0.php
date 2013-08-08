@@ -8,7 +8,8 @@ $package = $this->installation->getPackage();
 DashboardHandler::setDefaultValues('de.codequake.linklist.CategoryListPage', array(
     'de.codequake.linklist.latestLinks' => 1,
     'de.codequake.linklist.mostVisitedLinks' => 2,
-    'com.woltlab.wcf.user.recentActivitySidebar' => 3
+    'com.woltlab.wcf.user.recentActivitySidebar' => 3,
+    'de.codequake.linklist.randomLink' => 1
 ));
 DashboardHandler::setDefaultValues('de.codequake.linklist.CategoryPage', array(
     'de.codequake.linklist.mostVisitedLinks' => 2,
