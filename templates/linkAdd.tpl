@@ -97,7 +97,7 @@
                 {if $action == 'add'}
                  {include file='messageFormMultilingualism'}
                 {/if}
-				{if MODULE_TAGGING}{include file='tagInput'}{/if}
+				{if MODULE_TAGGING && LINKLIST_ENABLE_TAGS}{include file='tagInput'}{/if}
             </fieldset>
 
              <fieldset>

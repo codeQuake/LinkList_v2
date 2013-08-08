@@ -51,7 +51,7 @@
 			<fieldset class="linklistLinkSidebar">
 				<legend>{lang}wcf.tagging.tags{/lang}</legend>
 				{content}
-				{if $tags|count}				
+				{if $tags|count && MODULE_TAGGING && LINKLIST_ENABLE_TAGS}				
 				<ul class="sidebarBoxList">
 					<li class="box24 tags">
 							<ul class="tagList">

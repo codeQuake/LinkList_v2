@@ -21,6 +21,9 @@
       <category name="linklist.links">
         <parent>linklist</parent>
       </category>
+      <category name="linklist.links.general">
+        <parent>linklist.links</parent>
+      </category>
     </categories>
     <options>
       <option name="module_linklist_comments">
@@ -47,6 +50,16 @@
         <categoryname>linklist.index.general</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>1</defaultvalue>
+      </option>
+      <option name="linklist_enable_likes">
+        <categoryname>linklist.links.general</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaulvalue>1</defaulvalue>
+      </option>
+      <option name="linklist_enable_tags">
+        <categoryname>linklist.links.general</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaulvalue>1</defaulvalue>
       </option>
       <option name="linklist_links_per_page">
         <categoryname>linklist.category.links</categoryname>
