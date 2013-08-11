@@ -164,6 +164,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 
   <category name="wcf.dashboard">
     <item name="wcf.dashboard.objectType.de.codequake.linklist.CategoryListPage"><![CDATA[Linkliste]]></item>
+    <item name="wcf.dashboard.objectType.de.codequake.linklist.CategoryPage"><![CDATA[Linkliste: Kategorie]]></item>
     <item name="wcf.dashboard.box.de.codequake.linklist.latestLinks"><![CDATA[Neuste Links]]></item>
     <item name="wcf.dashboard.box.de.codequake.linklist.mostVisitedLinks"><![CDATA[Meistbesuchte Links]]></item>
     <item name ="wcf.dashboard.box.de.codequake.linklist.randomLink"><![CDATA[Zufälliger Link]]></item>
