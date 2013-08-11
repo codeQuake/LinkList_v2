@@ -14,7 +14,7 @@
     </type>
   
     
-    <!--categoryListPage/categorypage-->
+    <!--dashboard-->
     <type>
       <name>de.codequake.linklist.CategoryListPage</name>
       <definitionname>com.woltlab.wcf.user.dashboardContainer</definitionname>
@@ -27,17 +27,31 @@
       <allowcontent>0</allowcontent>
       <allowsidebar>1</allowsidebar>
     </type>
+    
+    <!--WIO Locations-->
     <type>
       <name>de.codequake.linklist.CategoryListPage</name>
       <definitionname>com.woltlab.wcf.user.online.location</definitionname>
       <controller>linklist\page\CategoryListPage</controller>
-      <languagevariable>wcf.user.usersOnline.location.categoryListPage</languagevariable>
+      <languagevariable>linklist.user.usersOnline.location.categoryListPage</languagevariable>
     </type>
     <type>
       <name>de.codequake.linklist.CategoryPage</name>
       <definitionname>com.woltlab.wcf.user.online.location</definitionname>
       <controller>linklist\page\CategoryPage</controller>
-      <languagevariable>wcf.user.usersOnline.location.categoryPage</languagevariable>
+      <languagevariable>linklist.user.usersOnline.location.categoryPage</languagevariable>
+    </type>
+    <type>
+      <name>de.codequake.linklist.LinkPage</name>
+      <definitionname>com.woltlab.wcf.user.online.location</definitionname>
+      <controller>linklist\page\LinkPage</controller>
+      <languagevariable>linklist.user.usersOnline.location.linkPage</languagevariable>
+    </type>
+    <type>
+      <name>de.codequake.linklist.LinkAddForm</name>
+      <definitionname>com.woltlab.wcf.user.online.location</definitionname>
+      <controller>linklist\form\LinkAddForm</controller>
+      <languagevariable>linklist.user.usersOnline.location.linkAddForm</languagevariable>
     </type>
     
     <!--link-->

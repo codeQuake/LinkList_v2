@@ -154,6 +154,13 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
   <category name="wcf.user.activityPoint">
     <item name="wcf.user.activityPoint.objectType.de.codequake.linklist.activityPointEvent.link"><![CDATA[Links]]></item>
   </category>
+  
+  <category name="linklist.user">
+    <item name="linklist.user.usersOnline.location.categoryListPage"><![CDATA[Linkliste]]></item>
+    <item name="linklist.user.usersOnline.location.categoryPage"><![CDATA[<a href="{link controller='Category' application='linklist' object=$category}{/link}">Kategorie „{$category->title|language}“</a>]]></item>
+    <item name="linklist.user.usersOnline.location.linkPage"><![CDATA[<a href="{link controller='Link' application='linklist' object=$link}{/link}" class="linklistLink" data-link-id="{@$link->linkID}">Link „{$link->getTitle()}“</a>]]></item>
+    <item name="linklist.user.usersOnline.location.linkAddForm"><![CDATA[Link hinzufügen]]></item>
+  </category>
 
   <category name="wcf.dashboard">
     <item name="wcf.dashboard.objectType.de.codequake.linklist.CategoryListPage"><![CDATA[Linkliste]]></item>
