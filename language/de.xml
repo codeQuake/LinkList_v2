@@ -92,7 +92,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="wcf.acp.option.linklist_enable_likes.description"><![CDATA[Like-System für Links aktivieren.]]></item>
     <item name="wcf.acp.option.linklist_enable_tags"><![CDATA[Tagging von Links aktivieren
 ]]></item>
-    <item name="wcf.acp.option.linklist_enable_tags"><![CDATA[Benutzer können Links Tags zuweisen, die in Tag-Wolken zusammengefasst werden.]]></item>
+    <item name="wcf.acp.option.linklist_enable_tags.description"><![CDATA[Benutzer können Links Tags zuweisen, die in Tag-Wolken zusammengefasst werden.]]></item>
     <item name="wcf.acp.option.linklist_default_sort_field"><![CDATA[Sortierung]]></item>
     <item name="wcf.acp.option.linklist_default_sort_field.description"><![CDATA[Standard-Sortierung für die Liste der Links]]></item>
     <item name="wcf.acp.option.linklist_default_sort_order"><![CDATA[Sortierungsreihenfolge]]></item>
