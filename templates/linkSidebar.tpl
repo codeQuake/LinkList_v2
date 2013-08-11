@@ -47,6 +47,13 @@
                     </ul>
                 </div>
             </fieldset>
+			<fieldset class="linklistLinkSidebar">
+				<legend>{lang}wcf.message.share{/lang}</legend>
+					<ul class="sidebarBoxList">
+						<li class="box24"><input type="text" readonly="readonly" class="long" onClick="this.select()" value="{link controller='Link' application='linklist' object=$link}{/link}" /></li>
+						<li class="box24">{include file='shareButtons'}</li>
+					</ul>
+			</fieldset>
 			{hascontent}
 			<fieldset class="linklistLinkSidebar">
 				<legend>{lang}wcf.tagging.tags{/lang}</legend>
