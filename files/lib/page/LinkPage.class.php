@@ -85,5 +85,19 @@ class LinkPage extends AbstractPage{
                                     'commentsPerPage' => $this->commentManager->getCommentsPerPage()));
     }
     
+    
+    public function getParentObjectType() {
+       return 'de.codequake.linklist.category';
+    }
+    public function getParentObjectID() {
+        if ($this->link) return $this->link->categoryID;
+        return 0;
+    }
+    public function getObjectType() {
+        return 'de.codequake.linklist.link';
+    }
+    public function getObjectID() {
+        return $this->link->linkID;
+    }
 
 }

@@ -96,4 +96,12 @@ class CategoryPage extends SortablePage {
             'allowSpidersToIndexThisPage'   =>  true
         ));
     }
+    
+    public function getObjectType() {
+        return 'de.codequake.linklist.category';
+    }
+
+    public function getObjectID() {
+        return $this->categoryID;
+    }
 }

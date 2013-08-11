@@ -38,12 +38,14 @@
     <type>
       <name>de.codequake.linklist.CategoryPage</name>
       <definitionname>com.woltlab.wcf.user.online.location</definitionname>
+      <classname>linklist\system\user\online\location\CategoryLocation</classname>
       <controller>linklist\page\CategoryPage</controller>
       <languagevariable>linklist.user.usersOnline.location.categoryPage</languagevariable>
     </type>
     <type>
       <name>de.codequake.linklist.LinkPage</name>
       <definitionname>com.woltlab.wcf.user.online.location</definitionname>
+      <classname>linklist\system\user\online\location\LinkLocation</classname>
       <controller>linklist\page\LinkPage</controller>
       <languagevariable>linklist.user.usersOnline.location.linkPage</languagevariable>
     </type>
