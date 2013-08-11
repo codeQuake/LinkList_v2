@@ -3,6 +3,7 @@
 <head>
     <title>{$link->getTitle()|language} - {PAGE_TITLE}</title>    
 	{include file='headInclude' sandbox=false}
+	<link rel="canonical" href="{link application='linklist' controller='Link' object=$link}{/link}" />
 	
 </head>
 

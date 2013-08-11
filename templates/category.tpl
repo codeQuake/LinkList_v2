@@ -9,6 +9,7 @@
 				WCF.Clipboard.init('linklist\\page\\CategoryPage', {@$hasMarkedItems}, { });
 			//]]>
 		</script>
+	<link rel="canonical" href="{link application='linklist' controller='Category' object=$category}{if $pageNo > 1}pageNo={@$pageNo}&{/if}sortField={@$sortField}&sortOrder={@$sortOrder}{/link}" />
 </head>
 
 <body id="tpl{$templateName|ucfirst}">

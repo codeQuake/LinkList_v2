@@ -12,7 +12,7 @@
 						</div>
 						<dl class="plain inlineDataList">
 							<dt>{lang}linklist.link.author{/lang}</dt>
-							<dd><a class="userLink" data-user-id="{$randomLink->userID}" href="{link controller='User' object=$randomLink->getUserProfile()}{/link}">{$randomLink->username}</a> ({$randomLink->time|DateDiff})</dd>
+							<dd>{if $randomLink->getUserProfile()->userID != 0}<a class="userLink" data-user-id="{$randomLink->userID}" href="{link controller='User' object=$randomLink->getUserProfile()}{/link}">{$randomLink->username}</a>{else}{$randomLink->username}{/if} ({$randomLink->time|DateDiff})</dd>
 						</dl>
 						<dl class="plain inlineDataList">
 							<dt>{lang}linklist.links.visits{/lang}</dt>

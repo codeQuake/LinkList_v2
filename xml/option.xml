@@ -36,6 +36,16 @@
         <optiontype>integer</optiontype>
         <hidden>1</hidden>
       </option>
+      <option name="linklist_users_online_record">
+        <categoryname>general</categoryname>
+        <optiontype>integer</optiontype>
+        <hidden>1</hidden>
+      </option>
+      <option name="linklist_users_online_record_time">
+        <categoryname>general</categoryname>
+        <optiontype>integer</optiontype>
+        <hidden>1</hidden>
+      </option>
       <option name="linklist_latest_limit">
         <categoryname>dashboard.sidebar.linklist</categoryname>
         <optiontype>integer</optiontype>
@@ -47,6 +57,21 @@
         <defaultvalue>5</defaultvalue>
       </option>
       <option name="linklist_index_stats">
+        <categoryname>linklist.index.general</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>1</defaultvalue>
+      </option>
+      <option name="linklist_index_wio">
+        <categoryname>linklist.index.general</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>1</defaultvalue>
+      </option>
+      <option name="linklist_index_wio_noguests">
+        <categoryname>linklist.index.general</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>1</defaultvalue>
+      </option>
+      <option name="linklist_index_wio_legend">
         <categoryname>linklist.index.general</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>1</defaultvalue>

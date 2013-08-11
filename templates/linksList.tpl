@@ -30,7 +30,7 @@
 						</div>
 						<dl class="plain inlineDataList">
 							<dt>{lang}linklist.link.author{/lang}</dt>
-							<dd><a class="userLink" data-user-id="{$link->userID}" href="{link controller='User' object=$link->getUserProfile()}{/link}">{$link->username}</a> ({$link->time|DateDiff})</dd>
+							<dd>{if $link->getUserProfile()->userID != 0}<a class="userLink" data-user-id="{$link->userID}" href="{link controller='User' object=$link->getUserProfile()}{/link}">{$link->username}</a>{else}{$link->username}{/if} ({$link->time|DateDiff})</dd>
 						</dl>
 						<dl class="plain inlineDataList">
 							<dt>{lang}linklist.links.visits{/lang}</dt>
