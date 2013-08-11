@@ -20,6 +20,8 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
   <category name="linklist.category">
     <item name="linklist.category.searchAll"><![CDATA[Alle Kategorien durchsuchen]]></item>
     <item name="linklist.category.search"><![CDATA[Aktuelle Kategorie durchsuchen]]></item>
+    <item name="linklist.category.displayOptions"><![CDATA[Darstellung]]></item>
+    <item name="linklist.category.sortBy"><![CDATA[Sortierung]]></item>
   </category>
 
   <category name="linklist.link">
