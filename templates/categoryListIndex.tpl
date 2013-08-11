@@ -31,9 +31,6 @@
 	<ul class="containerList infoBoxList">
 		{content}
 		{if LINKLIST_INDEX_WIO}
-
-		{/if}
-		{if MODULE_USERS_ONLINE && LINKLIST_INDEX_STATS && $usersOnlineList->stats[total]}
 		<li class="box32 usersOnlineInfoBox">
 			<span class="icon icon32 icon-user"></span>
 			<div>
@@ -59,6 +56,8 @@
 			</div>
 		</li>
 		{/if}
+		{if MODULE_USERS_ONLINE && LINKLIST_INDEX_STATS && $usersOnlineList->stats[total]}
+		
 		<li class="box32 statsInfoBox">
 			<span class="icon icon32 icon-bar-chart"></span>
 			<div>

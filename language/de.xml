@@ -6,6 +6,7 @@
   <category name="linklist.index">
     <item name="linklist.index.title"><![CDATA[Links]]></item>
     <item name="linklist.index.stats"><![CDATA[Statistik]]></item>
+    <item name="linklist.index.usersOnline.record"><![CDATA[{if LINKLIST_USERS_ONLINE_RECORD > 0}- Rekord: {#LINKLIST_USERS_ONLINE_RECORD} Benutzer ({@LINKLIST_USERS_ONLINE_RECORD_TIME|time}){/if}]]></item>
     <item name="linklist.index.stats.detail"><![CDATA[{#$stats[members]} Mitglied{if $stats[members] != 1}er{/if} - {#$stats[links]} {if $stats[links] == 1}Link{else}Links{/if} ({#$stats.linksPerDay} {if $stats[linksPerDay] == 1}Link{else}Links{/if} pro Tag)<br />
 Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[newestMember]}{/link}" class="userLink" data-user-id="{@$stats[newestMember]->userID}">{$stats[newestMember]->username}</a>.]]></item>
   </category>

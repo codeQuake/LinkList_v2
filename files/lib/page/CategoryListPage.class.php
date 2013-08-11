@@ -3,6 +3,7 @@ namespace linklist\page;
 use wcf\page\AbstractPage;
 use wcf\system\cache\builder\UserStatsCacheBuilder;
 use wcf\data\user\online\UsersOnlineList;
+use wcf\data\option\OptionAction;
 use linklist\system\cache\builder\LinklistStatsCacheBuilder;
 use linklist\data\category\LinklistCategoryNodeTree;
 use wcf\system\dashboard\DashboardHandler;
