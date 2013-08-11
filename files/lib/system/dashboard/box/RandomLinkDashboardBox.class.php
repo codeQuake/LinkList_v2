@@ -21,10 +21,12 @@ class RandomLinkDashboardBox extends AbstractSidebarDashboardBox{
      }
      
      protected function render(){
+        if($this->link->linkID != 0){
             WCF::getTPL()->assign(array(
             'randomLink' => $this->link
             ));
             return WCF::getTPL()->fetch('dashboardBoxRandomLink', 'linklist');
+            }
      }
     
 }
