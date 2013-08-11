@@ -4,7 +4,7 @@
 			<fieldset>
 			<legend class="invisible">{lang}linklist.link.sidebar.image{/lang}</legend>
 			<div class="userAvatar">
-				<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><img src="http://api.webthumbnail.org?width=150&height=150&screen=1280&format=png&url={$link->url}" alt="Captured by webthumbnail.org" /></a>
+				<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}">{@$link->getImage()}</a>
 			</div>
 		</fieldset>
             <fieldset class="linklistLinkSidebar">

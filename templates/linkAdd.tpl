@@ -24,7 +24,7 @@
         <p class="error">{lang}wcf.global.form.error{/lang}</p>
     {/if}
 
-    <form id="messageContainer" class="jsFormGuard" method="post" action="{if $action=='add'}{link controller='LinkAdd' application='linklist'}{/link}{else}{link controller='LinkEdit' object=$link application='linklist'}{/link}{/if}" id="link{$action|ucfirst}Form">
+    <form id="messageContainer" class="jsFormGuard" method="post" action="{if $action=='add'}{link controller='LinkAdd' application='linklist'}{/link}{else}{link controller='LinkEdit' object=$link application='linklist'}{/link}{/if}" id="link{$action|ucfirst}Form" enctype="multipart/form-data">
         {if $linkID|isset}<input type="hidden" name="linkID" value="{$linkID}" />{/if}
         <div class="container containerPadding marginTop shadow">
             <fieldset>
@@ -94,6 +94,32 @@
                         {/if}
                     </dd>
                 </dl>
+				<!--image-->
+				<dl>
+					<dt></dt>
+					<dd>
+					<label><input type="radio" name="imageType" value="none" {if $imageType == 'none'}checked="checked" {/if}/> {lang}linklist.link.image.screenshotService{/lang}</label>
+					<small>{lang}linklist.link.image.screenshotService.description{/lang}</small>
+					</dd>
+				</dl>
+				<dl>
+					<dt></dt>
+					<dd>
+					<label><input type="radio" name="imageType" value="upload" {if $imageType == 'upload'}checked="checked"{/if} />{lang}linklist.link.image.upload{/lang}</label>
+					<small><input type="file" name="image" /></small>
+					</dd>
+				</dl>
+				<dl>
+					<dt></dt>
+					<dd>
+					<label><input type="radio" name="imageType" value="link" {if $imageType == 'link'}checked="checked"{/if} />{lang}linklist.link.image.link{/lang}</label>
+					<small>
+						{lang}linklist.link.image.link.description{/lang}<br/>
+						<input type="text" name="image" {if$imageType == 'link'}value="{$image}"{/if} class="medium" />
+						
+					</small>
+					</dd>
+				</dl>
                 {if $action == 'add'}
                  {include file='messageFormMultilingualism'}
                 {/if}
@@ -121,7 +147,6 @@
             </div>
         </div>
     </form>
-
     {include file='footer'}
     {include file='wysiwyg'}
 </body>

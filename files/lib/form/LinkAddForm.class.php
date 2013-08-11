@@ -38,6 +38,8 @@ class LinkAddForm extends MessageForm{
     public $url;
     public $tags = array();
     public $enableMultilingualism = true;
+    public $image = null;
+    public $imageType = 'none';
     
     protected $link = null;
     
@@ -96,6 +98,17 @@ class LinkAddForm extends MessageForm{
         if(isset($_POST['category'])) $this->categoryID = intval($_POST['category']);        
         if(isset($_POST['url'])) $this->url = StringUtil::trim($_POST['url']);
         if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
+        if(isset($_POST['imageType'])) $this->imageType = StringUtil::trim($_POST['imageType']);
+        
+        switch ($this->imageType){
+            case 'upload':
+            if(isset($_FILES['image'])) $this->image = $_FILES['image'];
+            
+            break;
+            case 'link': 
+            if(isset($_POST['image'])) $this->image = StringUtil::trim($_POST['image']);
+            break;
+        }
       }
       
     
@@ -106,6 +119,8 @@ class LinkAddForm extends MessageForm{
                                     'username'  =>  $this->username,
                                     'action'    =>  $this->action,
                                     'tags'      => $this->tags,
+                                    'imageType' => $this->imageType,
+                                    'image' => $this->image,
                                     'url'   =>  $this->url));
         
 
@@ -129,6 +144,8 @@ class LinkAddForm extends MessageForm{
             WCF::getSession()->register('username', $this->username);
         }
         
+        
+        
         //url
         /**if (!FileUtil::isURL($this->url)) {
                 throw new UserInputException('url', 'illegalURL');
@@ -138,6 +155,25 @@ class LinkAddForm extends MessageForm{
         parent::save();
          if($this->languageID === null) {
             $this->languageID = LanguageFactory::getInstance()->getDefaultLanguageID();
+        }
+        switch ($this->imageType){
+            case 'upload':
+                switch($this->image['type']){
+                    case 'image/jpeg':
+                        $i = 'jpg';
+                        break;
+                    case 'image/gif':
+                        $i = 'gif';
+                        break;
+                    case 'image/png':
+                        $i = 'png';
+                        break;
+                }
+                $imagePath = LINKLIST_DIR.'images/'.$this->image['name'].md5(time()).'.'.$i;
+                move_uploaded_file($this->image['tmp_name'], $imagePath);
+                $this->image = RELATIVE_LINKLIST_DIR.'images/'.$this->image['name'].md5(time()).'.'.$i;
+                //todo: shrink!
+            break;
         }
         
         $data = array(  'url'   =>  $this->url,
@@ -150,6 +186,7 @@ class LinkAddForm extends MessageForm{
                         'languageID'    =>  $this->languageID,
                         'enableSmilies' =>  $this->enableSmilies,
                         'enableHtml'    =>  $this->enableHtml,
+                        'image' =>$this->image,
                         'enableBBCodes' =>  $this->enableBBCodes,
                         'visits'    =>  0,
                         'ipAddress'  =>  $_SERVER['REMOTE_ADDR']);
