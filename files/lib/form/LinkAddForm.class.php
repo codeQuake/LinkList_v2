@@ -217,7 +217,7 @@ class LinkAddForm extends MessageForm{
         exit;
     }
     
-    //
+    
     protected function shrink($filename, $size){
         $imageData = getimagesize($filename);
         if ($imageData[0] > $size || $imageData[1] > $size){
