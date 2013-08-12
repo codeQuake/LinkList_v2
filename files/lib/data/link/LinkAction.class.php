@@ -37,7 +37,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     protected $permissionsTrash = array('mod.linklist.link.canTrashLink');    
     protected $permissionsEnable = array('mod.linklist.link.canToggleLink');
     protected $permissionsDisable = array('mod.linklist.link.canToggleLink');
-    protected $allowGuestAccess = array('getPostPreview');
+    protected $allowGuestAccess = array('getLinkPreview');
     
     public $links = array();
     public $link = null;
