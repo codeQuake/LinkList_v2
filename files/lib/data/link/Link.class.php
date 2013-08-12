@@ -71,14 +71,15 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
         return $this->message;
       }
       
-    public function getImage(){
-        if($this->image !== null)
+    public function getImage($size = 150){
+        if($this->image !== null && $this->image != '')
         {
-            return '<img src="'.$this->image.'" alt="'.$this->getTitle().'" />';
+            return '<img src="'.$this->image.'" alt="'.$this->getTitle().'" style="max-width: 100%; max-height: 100%;" />';
         }
-        return '<img src="http://api.webthumbnail.org?width=150&height=150&screen=1280&format=png&url='.$this->url.'" alt="Captured by webthumbnail.org" />';
+        return '<img src="http://api.webthumbnail.org?width='.$size.'&height='.$size.'&screen=1280&format=png&url='.$this->url.'" alt="Captured by webthumbnail.org" />';
         
     }
+    
       
    
     public function __toString() {

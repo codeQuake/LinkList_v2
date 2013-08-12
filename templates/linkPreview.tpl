@@ -1,6 +1,6 @@
 {assign var="user" value=$link->getUserProfile()}
     <div class="box128"> 
-	<a href="{link controller='Link' application='linklist' object=$link application='linklist'}{/link}" class="framed"><img src="http://api.webthumbnail.org?width=128&height=128&screen=1280&format=png&url={$link->url}" alt="Captured by webthumbnail.org" /></a> 
+	<div style="height: 128px; width: 128px;"><a href="{link controller='Link' application='linklist' object=$link application='linklist'}{/link}" class="framed">{@$link->getImage(128)}</a></div>
 
         <div>
             <div class="containerHeadline">

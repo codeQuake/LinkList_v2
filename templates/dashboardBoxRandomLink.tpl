@@ -1,8 +1,11 @@
 <div class="container  shadow " data-type="de.codequake.linklist.link">
 	<ol class="linklist containerList" data-type="de.codequake.linklist.link">
 			<li id="link{$randomLink->linkID}" class=" link {if $randomLink->isDeleted}linkDeleted{/if} {if !$randomLink->isActive}linkDisabled{/if}" {if $randomLink->isDeleted}data-is-deleted="1"{/if} {if !$randomLink->isActive}data-is-active="0"{/if}>
-				<div class="box128">					
-					<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$randomLink}{/link}"><img src="http://api.webthumbnail.org?width=128&height=128&screen=1280&format=png&url={$randomLink->url}" alt="Captured by webthumbnail.org" /></a>
+				<div class="box128">
+          <div style="height: 128px; width: 128px;">
+            <a class="framed" href="{link application='linklist' controller='LinkVisit' object=$randomLink}{/link}">{@$randomLink->getImage(128)}</a>
+          </div>
+          
 					<div class="details">
 						<div class="containerHeadline">
 						<h3>

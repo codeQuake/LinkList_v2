@@ -15,6 +15,7 @@ use wcf\util\UserUtil;
 use wcf\util\FileUtil;
 use wcf\util\ArrayUtil;
 use wcf\system\request\LinkHandler;
+use wcf\system\image\ImageHandler;
 use wcf\system\language\LanguageFactory;
 use wcf\system\exception\IllegalLinkException;
 use wcf´\system\exception\UserInputException;
@@ -170,9 +171,14 @@ class LinkAddForm extends MessageForm{
                         break;
                 }
                 $imagePath = LINKLIST_DIR.'images/'.$this->image['name'].md5(time()).'.'.$i;
+                
+                //shrink if neccessary
+                $image = $this->shrink($this->image['tmp_name'], 150);
                 move_uploaded_file($this->image['tmp_name'], $imagePath);
                 $this->image = RELATIVE_LINKLIST_DIR.'images/'.$this->image['name'].md5(time()).'.'.$i;
-                //todo: shrink!
+                
+                
+                
             break;
         }
         
@@ -211,5 +217,29 @@ class LinkAddForm extends MessageForm{
         exit;
     }
     
+    //
+    protected function shrink($filename, $size){
+        $imageData = getimagesize($filename);
+        if ($imageData[0] > $size || $imageData[1] > $size){
+            try {
+				$obtainDimensions = true;
+				if (MAX_AVATAR_WIDTH / $imageData[0] < 150 / $imageData[1]) {
+					if (round($imageData[1] * ($size / $imageData[0])) < 48) $obtainDimensions = false;
+				}
+				else {
+					if (round($imageData[0] * ($size / $imageData[1])) < 48) $obtainDimensions = false;
+				}
+				
+				$adapter = ImageHandler::getInstance()->getAdapter();
+				$adapter->loadFile($filename);
+				$thumbnail = $adapter->createThumbnail($size, $size, $obtainDimensions);
+				$adapter->writeImage($thumbnail, $filename);
+			}
+			catch (SystemException $e) {
+				throw new UserInputException('image', 'tooLarge');
+			}
+        }
+        return $filename;
+    }
     
 }
