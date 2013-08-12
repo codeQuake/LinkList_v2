@@ -34,7 +34,11 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="linklist.link.deleted"><![CDATA[Dieser Link wurde gelöscht.]]></item>
     <item name="linklist.link.disabled"><![CDATA[Dieser Link wurde deaktiviert.]]></item>
     <item name="linklist.link.comments"><![CDATA[Kommentare]]></item>
-    
+    <item name="linklist.link.image.screenshotService"><![CDATA[Onlinedienst verwenden]]></item>
+    <item name="linklist.link.image.screenshotService.description"><![CDATA[<b>Empfohlen:</b> Für die Vorschaubilder der Links wird der Onlinedienst <a href="http://webthumbnail.org/">webthumbnail.org</a> verwendet.]]></item>
+    <item name="linklist.link.image.upload"><![CDATA[Vorschaubild hochladen]]></item>
+    <item name="linklist.link.image.link"><![CDATA[Vorschaubild verlinken]]></item>
+    <item name="linklist.link.image.link.description"><![CDATA[Das Vorschaubild ist unter folgender URL zu finden:]]></item>
     <item name="linklist.link.sidebar.info"><![CDATA[Informationen]]></item>
     <item name="linklist.link.sidebar.title"><![CDATA[Titel]]></item>
     <item name="linklist.link.sidebar.author"><![CDATA[Hinzugefügt von]]></item>
