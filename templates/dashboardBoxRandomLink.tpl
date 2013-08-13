@@ -1,4 +1,4 @@
-<div class="container  shadow " data-type="de.codequake.linklist.link">
+<div class="container marginTop shadow " data-type="de.codequake.linklist.link">
 	<ol class="linklist containerList" data-type="de.codequake.linklist.link">
 			<li id="link{$randomLink->linkID}" class=" link {if $randomLink->isDeleted}linkDeleted{/if} {if !$randomLink->isActive}linkDisabled{/if}" {if $randomLink->isDeleted}data-is-deleted="1"{/if} {if !$randomLink->isActive}data-is-active="0"{/if}>
 				<div class="box128">

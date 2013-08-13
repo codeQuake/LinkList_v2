@@ -3,10 +3,10 @@ namespace linklist\system\dashboard\box;
 use wcf\data\dashboard\box\DashboardBox;
 use wcf\page\IPage;
 use linklist\data\link\Link;
-use wcf\system\dashboard\box\AbstractSidebarDashboardBox;
+use wcf\system\dashboard\box\AbstractContentDashboardBox;
 use wcf\system\WCF;
 
-class RandomLinkDashboardBox extends AbstractSidebarDashboardBox{
+class RandomLinkDashboardBox extends AbstractContentDashboardBox{
     
     public $link = array();
     
