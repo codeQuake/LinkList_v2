@@ -97,34 +97,28 @@
 				<!--image-->
 				{if LINKLIST_ENABLE_OWN_PREVIEW && $__wcf->getSession()->getPermission('user.linklist.link.canAddOwnPreview')}
 				<dl>
-					<dt></dt>
+					<dt><label for="image">{lang}linklist.link.image{/lang}</label></dt>
 					<dd>
-					<label><input type="radio" name="imageType" value="none" {if $imageType == 'none'}checked="checked" {/if}/> {lang}linklist.link.image.screenshotService{/lang}</label>
-					<small>{lang}linklist.link.image.screenshotService.description{/lang}</small>
-					</dd>
-				</dl>
-				<dl>
-					<dt></dt>
-					<dd>
-					<label><input type="radio" name="imageType" value="upload" {if $imageType == 'upload'}checked="checked"{/if} />{lang}linklist.link.image.upload{/lang}</label>
-					<small><input type="file" name="image" /></small>
-					</dd>
-				</dl>
-				<dl>
-					<dt></dt>
-					<dd>
-					<label><input type="radio" name="imageType" value="link" {if $imageType == 'link'}checked="checked"{/if} />{lang}linklist.link.image.link{/lang}</label>
-					<small>
-						{lang}linklist.link.image.link.description{/lang}<br/>
-						<input type="text" name="image" {if$imageType == 'link'}value="{$image}"{/if} class="medium" />
 						
-					</small>
-					</dd>
-				</dl>
-				{if $errorField == 'image'}
-                            <small class="innerError">{lang}wcf.global.form.error.$errorType{/lang}
+							<label><input type="radio" name="imageType" value="none" {if $imageType == 'none'}checked="checked" {/if}/> {lang}linklist.link.image.screenshotService{/lang}</label>
+							<small>{lang}linklist.link.image.screenshotService.description{/lang}</small>
+						
+							<label><input type="radio" name="imageType" value="upload" {if $imageType == 'upload'}checked="checked"{/if} />{lang}linklist.link.image.upload{/lang}</label>
+							<small><input type="file" name="image" /></small>
+						
+							<label><input type="radio" name="imageType" value="link" {if $imageType == 'link'}checked="checked"{/if} />{lang}linklist.link.image.link{/lang}</label>
+							<small>
+								{lang}linklist.link.image.link.description{/lang}<br/>
+								<input type="text" name="image" {if$imageType == 'link'}value="{$image}"{/if} class="medium" />
+						
+							</small>
+						
+						{if $errorField == 'image'}
+                            <small class="innerError">{lang}linklist.link.image.{$errorType}{/lang}
                             </small>
                         {/if}
+					</dd>
+				</dl>
 				{/if}
                 {if $action == 'add'}
                  {include file='messageFormMultilingualism'}

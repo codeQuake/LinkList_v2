@@ -131,6 +131,9 @@ class LinkEditForm extends MessageForm {
                         case 'image/png':
                             $i = 'png';
                             break;
+                        default:
+                            throw new UserInputException('image', 'notValid');
+                            break; 
                     }
                     $imagePath = LINKLIST_DIR.'images/'.$this->image['name'].md5(time()).'.'.$i;
                 

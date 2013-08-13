@@ -31,6 +31,8 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="linklist.link.linkEdit"><![CDATA[Link bearbeiten]]></item>
     <item name="linklist.link.linkAdd"><![CDATA[Link hinzufügen]]></item>
     <item name="linklist.link.author"><![CDATA[Autor]]></item>
+    <item name="linklist.link.image"><![CDATA[Vorschaubild]]></item>
+    <item name="linklist.link.image.notValid"><![CDATA[Die Datei ist kein gültiges Bild!]]></item>
     <item name="linklist.link.deleted"><![CDATA[Dieser Link wurde gelöscht.]]></item>
     <item name="linklist.link.disabled"><![CDATA[Dieser Link wurde deaktiviert.]]></item>
     <item name="linklist.link.comments"><![CDATA[Kommentare]]></item>
@@ -48,7 +50,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="linklist.link.tabs.link"><![CDATA[Link]]></item>
     <item name="linklist.link.visit"><![CDATA[Seite besuchen]]></item>
     <item name="linklist.link.edit"><![CDATA[Link bearbeiten]]></item>
-    
+
     <item name="linklist.link.linkAdd.data"><![CDATA[Allgemeine Daten]]></item>
     <item name="linklist.link.linkEdit.data"><![CDATA[Allgemeine Daten]]></item>
     <item name="linklist.link.linkAdd.category"><![CDATA[Kategorie]]></item>
