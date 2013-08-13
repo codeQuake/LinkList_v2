@@ -41,4 +41,22 @@
     <!--others-->
     <instruction type="sql">install.sql</instruction>
   </instructions>
+
+  <instructions type="update" fromversion="2.0.0 Beta 1">
+    <!--lang-->
+    <instruction type="language">language/*.xml</instruction>
+    
+    <!--tar-->
+    <instruction type="file">files.tar</instruction>
+    <instruction type="template">templates.tar</instruction>
+    
+    <!--xml-->
+    <instruction type="dashboardBox">xml/dashboardBox.xml</instruction>
+    <instruction type="objectType">xml/objectType.xml</instruction>
+    <instruction type="option">xml/option.xml</instruction>
+    <instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
+    
+    <!--others-->
+    <instruction type="sql">update.sql</instruction>
+  </instructions>
 </package>

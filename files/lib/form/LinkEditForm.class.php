@@ -118,7 +118,7 @@ class LinkEditForm extends MessageForm {
       
 	public function save() {
 		parent::save();
-		if(WCF::getUser()->getPermission('user.linklist.link.canAddOwnPreview') && LINKLIST_ENABLE_OWN_PREVIEW){
+		if(WCF::getSession()->getPermission('user.linklist.link.canAddOwnPreview') && LINKLIST_ENABLE_OWN_PREVIEW){
             switch ($this->imageType){
                 case 'upload':
                     switch($this->image['type']){

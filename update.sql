@@ -1,0 +1,1 @@
+ALTER TABLE linklist1_link ADD image VARCHAR(255) DEFAULT NULL;

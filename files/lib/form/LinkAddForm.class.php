@@ -162,7 +162,7 @@ class LinkAddForm extends MessageForm{
          if($this->languageID === null) {
             $this->languageID = LanguageFactory::getInstance()->getDefaultLanguageID();
         }
-        if(WCF::getUser()->getPermission('user.linklist.link.canAddOwnPreview') && LINKLIST_ENABLE_OWN_PREVIEW){
+        if(WCF::getSession()->getPermission('user.linklist.link.canAddOwnPreview') && LINKLIST_ENABLE_OWN_PREVIEW){
             switch ($this->imageType){
                 case 'upload':
                     switch($this->image['type']){

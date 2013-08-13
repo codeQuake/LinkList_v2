@@ -83,7 +83,7 @@
       </option>
       <option name="linklist_enable_own_preview">
         <categoryname>linklist.links.general</categoryname>
-        <optiontype>booelan</optiontype>
+        <optiontype>boolean</optiontype>
         <defaultvalue>1</defaultvalue>
       </option>
       <option name="linklist_enable_tags">
