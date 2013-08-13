@@ -96,6 +96,8 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="wcf.acp.option.linklist_enable_likes.description"><![CDATA[Like-System für Links aktivieren.]]></item>
     <item name="wcf.acp.option.linklist_enable_tags"><![CDATA[Tagging von Links aktivieren
 ]]></item>
+    <item name="wcf.acp.option.linklist_enable_own_preview"><![CDATA[Eigene Vorschaubilder]]></item>
+    <item name="wcf.acp.option.linklist_enable_own_preview.description"><![CDATA[Benutzer können eigene Vorschaubilder für Links hochladen/verlinken.]]></item>
     <item name="wcf.acp.option.linklist_enable_tags.description"><![CDATA[Benutzer können Links Tags zuweisen, die in Tag-Wolken zusammengefasst werden.]]></item>
     <item name="wcf.acp.option.linklist_default_sort_field"><![CDATA[Sortierung]]></item>
     <item name="wcf.acp.option.linklist_default_sort_field.description"><![CDATA[Standard-Sortierung für die Liste der Links]]></item>
@@ -215,6 +217,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="wcf.acp.group.option.user.linklist.link.canEditOwnComment"><![CDATA[Kann eigene Kommentare bearbeiten]]></item>
     <item name="wcf.acp.group.option.user.linklist.link.canDeleteOwnComment"><![CDATA[Kann eigene Kommentare löschen]]></item>
     <item name="wcf.acp.group.option.category.mod.linklist.link"><![CDATA[Links]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canAddOwnPreview"><![CDATA[Kann eigene Vorschaubilder hochladen/verlinken]]></item>
     <item name="wcf.acp.group.option.mod.linklist.link.canDeleteLink"><![CDATA[Kann Links entgültig löschen]]></item>
     <item name="wcf.acp.group.option.mod.linklist.link.canEditLink"><![CDATA[Kann Links bearbeiten]]></item>
     <item name="wcf.acp.group.option.mod.linklist.link.canTrashLink"><![CDATA[Kann Links in den Papierkorb verschieben]]></item>
