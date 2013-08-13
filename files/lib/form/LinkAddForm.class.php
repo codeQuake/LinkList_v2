@@ -18,7 +18,7 @@ use wcf\system\request\LinkHandler;
 use wcf\system\image\ImageHandler;
 use wcf\system\language\LanguageFactory;
 use wcf\system\exception\IllegalLinkException;
-use wcf´\system\exception\UserInputException;
+use wcf\system\exception\UserInputException;
 use wcf\system\breadcrumb\Breadcrumb;
 
 /**
@@ -145,7 +145,12 @@ class LinkAddForm extends MessageForm{
             WCF::getSession()->register('username', $this->username);
         }
         
-        
+       //image ->link
+       if($this->imageType == 'link'){
+        if((strpos($this->image, 'png') === false) && (strpos($this->image, 'gif') === false) && (strpos($this->image, 'jpg') === false)) {
+            throw new UserInputException('image', 'notValid');
+        }
+       }
         
         //url
         /**if (!FileUtil::isURL($this->url)) {
@@ -157,29 +162,29 @@ class LinkAddForm extends MessageForm{
          if($this->languageID === null) {
             $this->languageID = LanguageFactory::getInstance()->getDefaultLanguageID();
         }
-        switch ($this->imageType){
-            case 'upload':
-                switch($this->image['type']){
-                    case 'image/jpeg':
-                        $i = 'jpg';
-                        break;
-                    case 'image/gif':
-                        $i = 'gif';
-                        break;
-                    case 'image/png':
-                        $i = 'png';
-                        break;
-                }
+        if(WCF::getUser()->getPermission('user.linklist.link.canAddOwnPreview') && LINKLIST_ENABLE_OWN_PREVIEW){
+            switch ($this->imageType){
+                case 'upload':
+                    switch($this->image['type']){
+                        case 'image/jpeg':
+                            $i = 'jpg';
+                            break;
+                        case 'image/gif':
+                            $i = 'gif';
+                            break;
+                        case 'image/png':
+                            $i = 'png';
+                            break;
+                    }
+        
                 $imagePath = LINKLIST_DIR.'images/'.$this->image['name'].md5(time()).'.'.$i;
                 
                 //shrink if neccessary
                 $image = $this->shrink($this->image['tmp_name'], 150);
                 move_uploaded_file($this->image['tmp_name'], $imagePath);
                 $this->image = RELATIVE_LINKLIST_DIR.'images/'.$this->image['name'].md5(time()).'.'.$i;
-                
-                
-                
             break;
+            }
         }
         
         $data = array(  'url'   =>  $this->url,

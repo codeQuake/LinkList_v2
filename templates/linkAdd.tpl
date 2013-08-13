@@ -95,6 +95,7 @@
                     </dd>
                 </dl>
 				<!--image-->
+				{if LINKLIST_ENABLE_OWN_PREVIEW && $__wcf->getSession()->getPermission('user.linklist.link.canAddOwnPreview')}
 				<dl>
 					<dt></dt>
 					<dd>
@@ -120,6 +121,11 @@
 					</small>
 					</dd>
 				</dl>
+				{if $errorField == 'image'}
+                            <small class="innerError">{lang}wcf.global.form.error.$errorType{/lang}
+                            </small>
+                        {/if}
+				{/if}
                 {if $action == 'add'}
                  {include file='messageFormMultilingualism'}
                 {/if}

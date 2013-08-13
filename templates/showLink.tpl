@@ -5,6 +5,7 @@
       <ul class="smallButtons buttonGroup">
         <li>
           <a class="button small" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}">
+            <span class="icon icon16 icon-link"></span>
             <span>{lang}linklist.link.visit{/lang}</span>
           </a>
         </li>
