@@ -29,13 +29,13 @@
 								{/foreach}
 						</ul>
 						{/if}
-						<nav class="jsMobileNavigation buttonGroupNavigation">
+						<nav class="buttonGroupNavigation">
 							<ul class="buttonList" data-link-id="{$randomLink->linkID}">
 								{if $randomLink->isDeleted}<li><span class="icon icon16 icon-trash" title="{lang}linklist.link.deleted{/lang}"></span></li>{/if}
 								{if !$randomLink->isActive}<li><span class="icon icon16 icon-off" title="{lang}linklist.link.disabled{/lang}"></span></li>{/if}
 							</ul>
 						</nav>
-						<nav class="buttonGroupNavigation linkNavigation">
+						<nav class="jsMobileNavigation buttonGroupNavigation linkNavigation">
 							<ul class="buttonGroup smallButtons">
 								<li>
 									<a class="button" href="{link application='linklist' controller='LinkVisit' object=$randomLink}{/link}"><span class="icon-link icon icon16"></span>

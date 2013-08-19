@@ -1,7 +1,7 @@
 <div class="container marginTop containerPadding link" >
   {@$link->getFormattedMessage()}
-  <footer class="messageOptions marginTop">
-    <nav class="buttonGroupNavigation">
+  <footer class="linkOptions marginTop">
+    <nav class="buttonGroupNavigation jsMobileNavigation">
       <ul class="smallButtons buttonGroup">
         <li>
           <a class="button small" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}">

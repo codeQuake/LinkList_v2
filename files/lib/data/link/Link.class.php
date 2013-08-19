@@ -135,20 +135,9 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
         
     }
     
-    public function getExcerpt($maxLength = 255, $highlight=false) {
-        if(!$highlight) MessageParser::getInstance()->setOutputType('text/plain');
-        $message = MessageParser::getInstance()->parse($this->message, false, false, true);
-        if(!$highlight) {
-          if (StringUtil::length($message) > $maxLength) {
-            $message = StringUtil::substring($message, 0, $maxLength).'&hellip;';
-          }
-        }
-        else {
-          if(StringUtil::length($message) > $maxLength) {
-            $message = StringUtil::substring($message, 0, $maxLength);
-          }
-        }
-        return $message;
+    public function getExcerpt($maxLength = 255) {
+        MessageParser::getInstance()->setOutputType('text/simplified-html');
+        return StringUtil::truncateHTML(MessageParser::getInstance()->parse($this->message, $this->enableSmilies, $this->enableHtml, $this->enableBBCodes), $maxLength);
     }
     
       public function getLink() {
