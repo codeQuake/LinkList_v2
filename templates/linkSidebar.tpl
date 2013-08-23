@@ -27,13 +27,29 @@
                                 <small>{if $link->getUserID()}<a class="userLink" data-user-id="{$link->getUserID()}" href="{link controller='User' id=$link->getUserID() title=$link->getUsername()}{/link}">{$link->getUsername()}</a>{else}{$link->getUsername()}{/if}</small>
                             </div>
                         </li>
-                        <li class="box24">
+                        <li class="box{if $link->getCategory()->getPermission('canEditLink')}72{else}24{/if}">
+							{if !$link->getCategory()->getPermission('canEditLink')}
 							<a class="framed" href="{link application='linklist' controller='Category' object=$link->getCategory()}{/link}">
 								<span class="icon icon32 icon-globe"></span>
 							</a>
+							{/if}
                             <div class="sidebarBoxHeadline">
                                 <h3>{lang}linklist.link.sidebar.category{/lang}</h3>
-								<small><a href="{link application='linklist' controller='Category' object=$link->getCategory()}{/link}">{$link->getCategory()->getTitle()|language}</a></small>
+								{if $link->getCategory()->getPermission('canEditLink')}
+									<form action="{link controller='LinkMove' application='linklist' object=$link}{/link}" method="post">
+										<select id="move" name="move" >
+											{foreach from=$categoryList item=$categoryNode}
+											<option value="{@$categoryNode->categoryID}" {if $categoryNode->categoryID == $link->categoryID}selected="selected"{/if}>{section name=i loop=$categoryList->getDepth()}&nbsp;&raquo;&raquo;&nbsp;{/section}{$categoryNode->title|language}</option>
+											{/foreach}
+										</select>
+										<div class="formSubmit">
+											<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
+											{@SID_INPUT_TAG}
+										</div>
+									</form>
+									{else}
+									<small><a href="{link application='linklist' controller='Category' object=$link->getCategory()}{/link}">{$link->getCategory()->getTitle()|language}</a></small>
+								{/if}
                             </div>
                         </li>
                         <li class="box24">

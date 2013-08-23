@@ -1,6 +1,7 @@
 <?php
 namespace linklist\page;
 use linklist\data\link\Link;
+use linklist\data\category\LinklistCategoryNodeTree;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\breadcrumb\Breadcrumb;
 use wcf\system\request\LinkHandler;
@@ -24,6 +25,7 @@ class LinkPage extends AbstractPage{
     public $objectType = 0;
     public $likeData = array();
     public $tags = array();
+    public $categoryList = array();
     
     
     public function readParameters(){
@@ -32,7 +34,7 @@ class LinkPage extends AbstractPage{
     }
     
     public function readData(){
-        parent::readData();        
+        parent::readData();       
         $this->link = new Link($this->linkID);        
         if($this->link === null | $this->link->linkID == 0) throw new IllegalLinkException();
         WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList',array('application' => 'linklist'))));
@@ -69,6 +71,12 @@ class LinkPage extends AbstractPage{
 		if (MODULE_TAGGING && LINKLIST_ENABLE_TAGS) {
 			$this->tags = $this->link->getTags();
 		}
+        
+        if ($this->link->getCategory()->getPermission('canEditLink')){
+            $categoryTree = new LinklistCategoryNodeTree('de.codequake.linklist.category');
+            $this->categoryList = $categoryTree->getIterator();
+            $this->categoryList->setMaxDepth();
+        }
     }
     public function assignVariables(){
         parent::assignVariables();
@@ -77,6 +85,7 @@ class LinkPage extends AbstractPage{
                                     'sidebarCollapsed'=> UserCollapsibleContentHandler::getInstance()->isCollapsed('com.woltlab.wcf.collapsibleSidebar', 'de.codequake.linklist.link'),
                                     'sidebarName' => 'de.codequake.linklist.link',
                                     'commentList' => $this->commentList,
+                                    'categoryList' =>$this->categoryList,
                                     'commentObjectTypeID'=> $this->objectTypeID,
                                     'likeData' => $this->likeData,
                                     'tags' => $this->tags,
