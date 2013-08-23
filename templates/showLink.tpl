@@ -17,6 +17,16 @@
           </a>
         </li>
         {/if}
+        {if $__wcf->getSession()->getPermission('admin.user.canViewIpAddress')}
+        <li>
+        <a title="{$link->ipAddress}" class="jsTooltip button small">
+          <span class="icon icon-globe icon16"></span>
+          <span class="invisible">
+            {$link->ipAddress}
+          </span>
+        </a>
+      </li>
+        {/if}
       </ul>
     </nav>
 
