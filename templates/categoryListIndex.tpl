@@ -15,9 +15,9 @@
 {include file='header' sidebarOrientation='right'}
 
 <header class="boxHeadline">
-	<hgroup>
-		<h1>{lang}linklist.index.title{/lang}</h1>
-	</hgroup>
+
+	<h1>{lang}linklist.index.title{/lang}</h1>
+
 </header>
 <section id="dashboard">
 	{if $__boxContent|isset}{@$__boxContent}{/if}

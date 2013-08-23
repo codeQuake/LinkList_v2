@@ -17,13 +17,13 @@
             
             {if $categoryItem->hasChildren()}
             <ul class="subCategory">
-              {implode from=$categoryItem->getChildCategories() item=subCategoryItem}
+              {foreach from=$categoryItem->getChildCategories() item=subCategoryItem}
               <li data-category-id="{@$subCategoryItem->categoryID}">
                 <span class="icon icon16 icon-globe"></span>
                 <a href="{link application='linklist' controller='Category' id=$subCategoryItem->categoryID title=$subCategoryItem->title|language}{/link}">{$subCategoryItem->title|language}</a>
 
               </li>
-              {/implode}
+              {/foreach}
             </ul>
             {/if}
           </div>

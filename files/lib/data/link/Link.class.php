@@ -76,7 +76,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
         {
             return '<img src="'.$this->image.'" alt="'.$this->getTitle().'" style="max-width: 100%; max-height: 100%;" />';
         }
-        return '<img src="http://api.webthumbnail.org?width='.$size.'&height='.$size.'&screen=1280&format=png&url='.$this->url.'" alt="Captured by webthumbnail.org" />';
+        return '<img src="http://api.webthumbnail.org?width='.$size.'&amp;height='.$size.'&amp;screen=1280&amp;format=png&amp;url='.$this->url.'" alt="Captured by webthumbnail.org" />';
         
     }
     
