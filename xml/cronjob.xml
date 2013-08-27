@@ -5,8 +5,8 @@
 			<classname>linklist\system\cronjob\CheckLinksCronjob</classname>
 			<description><![CDATA[Flags Offline Links]]></description>
 			<description language="de"><![CDATA[Markiert tote Links]]></description>
-			<startminute>30</startminute>
-			<starthour>*</starthour>
+			<startminute>*</startminute>
+			<starthour>0</starthour>
 			<startdom>*</startdom>
 			<startmonth>*</startmonth>
 			<startdow>*</startdow>
