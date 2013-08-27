@@ -16,6 +16,8 @@ class CheckLinksCronjob extends AbstractCronjob{
                     WHERE isDeleted = ?";
             $statement = WCF::getDB()->prepareStatement($sql);
             $statement->execute(array(0));
+            $mh = curl_multi_init();
+            $handles = array();
             while($row = $statement->fetchArray()){
                 $link = new Link($row['linkID']);
                 $ch = curl_init();
@@ -27,22 +29,31 @@ class CheckLinksCronjob extends AbstractCronjob{
                 curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
                 curl_setopt($ch,CURLOPT_SSLVERSION,3);
                 curl_setopt($ch,CURLOPT_SSL_VERIFYHOST, false);
-                $page = curl_exec($ch);
-                $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                curl_close($ch);
+                $handles[] = array('linkID' => $link->linkID, 'handle' => $ch);
+            }
+            foreach ($handles as $handle){
+                curl_multi_add_handle($mh, $handle['handle']);
+            }
+            
+            $running = null;
+            do{
+                curl_multi_exec($mh, $running);
+            } while ($running);
+            foreach($handles as $handle){
+                $codes[] = array('linkID' => $handle['linkID'], 'code' => curl_getinfo($handle['handle'], CURLINFO_HTTP_CODE));
+                curl_multi_remove_handle($mh, $handle['handle']);
+            }
+            curl_multi_close($mh);
+            
+            foreach($codes as $code){
                 if($code >=200 && $code < 400){
-                     $editor = new LinkEditor($link);
-                     $editor->update(array(
-                                'isOnline' => 1
-                     ));
+                    $editor = new LinkEditor($link);
+                    $editor->update(array('isOnline' => 1));
                 }
                 else{
-                     $editor = new LinkEditor($link);
-                     $editor->update(array(
-                                'isOnline' => 0
-                     ));
+                    $editor = new LinkEditor($link);
+                    $editor->update(array('isOnline' => 0));
                 }
-                
             }
         }
 }   
