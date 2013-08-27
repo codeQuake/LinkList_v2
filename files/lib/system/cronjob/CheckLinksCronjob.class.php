@@ -18,8 +18,6 @@ class CheckLinksCronjob extends AbstractCronjob{
             $statement->execute(array(0));
             while($row = $statement->fetchArray()){
                 $link = new Link($row['linkID']);
-                //ini_set('user_agent', 'Mozilla/5.0 (compatible; codeQuake Linklist V2.0 +http://codequake.de)');
-                //@$headers = get_headers($link->url);
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $link->url);
                 curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0');
