@@ -18,7 +18,7 @@ class CheckLinksCronjob extends AbstractCronjob{
             $statement->execute(array(0));
             while($row = $statement->fetchArray()){
                 $link = new Link($row['linkID']);
-                ini_set('user_agent', 'Mozilla/5.0 (codeQuake Linklist V2.0 +http://codequake.de) Firefox 23.0');
+                ini_set('user_agent', 'Mozilla/5.0 (compatible; codeQuake Linklist V2.0 +http://codequake.de)');
                 @$headers = get_headers($link->url);
                 if($headers != false){
                 $code = substr($headers[0], 9, 3);
