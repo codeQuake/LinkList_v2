@@ -41,19 +41,24 @@ class CheckLinksCronjob extends AbstractCronjob{
             } while ($running);
             foreach($handles as $handle){
                 $codes[] = array('linkID' => $handle['linkID'], 'code' => curl_getinfo($handle['handle'], CURLINFO_HTTP_CODE));
+                    
                 curl_multi_remove_handle($mh, $handle['handle']);
             }
             curl_multi_close($mh);
             
             foreach($codes as $code){
-                if($code >=200 && $code < 400){
-                    $editor = new LinkEditor($link);
-                    $editor->update(array('isOnline' => 1));
+                if($code['code'] >=200 && $code['code'] < 400){
+                     $link = new Link($code['linkID']);
+                     $editor = new LinkEditor($link);
+                     $editor->update(array('isOnline' => 1));
                 }
                 else{
+                    $link = new Link($code['linkID']);
                     $editor = new LinkEditor($link);
                     $editor->update(array('isOnline' => 0));
                 }
-            }
+              }
+            
+            
         }
 }   
