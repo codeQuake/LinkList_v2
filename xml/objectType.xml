@@ -114,6 +114,16 @@
         <definitionname>com.woltlab.wcf.moderation.activation</definitionname>
         <classname>linklist\system\moderation\queue\activation\LinkModerationQueueActivationHandler</classname>
       </type>
+      <type>
+        <name>de.codequake.linklist.moderation.offline</name>
+        <definitionname>com.woltlab.wcf.moderation.type</definitionname>
+        <classname>linklist\system\moderation\queue\ModerationQueueOfflineManager</classname>
+      </type>
+      <type>
+        <name>de.codequake.linklist.link</name>
+        <definitionname>de.codequake.linklist.moderation.offline</definitionname>
+        <classname>linklist\system\moderation\queue\offline\LinkModerationQueueOfflineHandler</classname>
+      </type>
       <!--Like-->
       <type>
         <name>de.codequake.linklist.likeableLink</name>
