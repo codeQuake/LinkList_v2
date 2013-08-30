@@ -203,6 +203,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 
   <category name="wcf.moderation">
     <item name="wcf.moderation.type.de.codequake.linklist.moderation.offline"><![CDATA[Offline Meldung]]></item>
+    <item name="wcf.moderation.type.de.codequake.linklist.link"><![CDATA[Link]]></item>
   </category>
   
   <category name="wcf.acp.group">

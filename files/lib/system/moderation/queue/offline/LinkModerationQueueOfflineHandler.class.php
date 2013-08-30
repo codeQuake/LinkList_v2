@@ -19,4 +19,12 @@ class LinkModerationQueueOfflineHandler extends AbstractLinkModerationQueueHandl
             ));
         return WCF::getTPL()->fetch('moderationLink', 'linklist');
     }
+    
+    public function setOnline(ModerationQueue $queue){
+        $editor = new LinkEditor($this->getLink($queue->objectID));
+        $editor->update(array(
+                'isOnline' => 1
+        ));
+        ModerationQueueOfflineManager::getInstance()->removeModeratedContent('de.codequake.linklist.link', array($queue->objectID));
+    }
 }

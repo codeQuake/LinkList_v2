@@ -7,4 +7,6 @@ use wcf\system\moderation\queue\IModerationQueueHandler;
 interface IModerationQueueOfflineHandler extends IModerationQueueHandler{
 
     public function getOfflineContent(ViewableModerationQueue $queue);
+    
+    public function setOnline(ModerationQueue $queue);
 }
