@@ -205,6 +205,16 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="wcf.moderation.type.de.codequake.linklist.moderation.offline"><![CDATA[Offline Meldung]]></item>
     <item name="wcf.moderation.type.de.codequake.linklist.link"><![CDATA[Link]]></item>
   </category>
+  <category name="linklist.moderation">
+    <item name="linklist.moderation.offline"><![CDATA[Offline Meldung]]></item>
+    <item name="linklist.moderation.offline.details"><![CDATA[Informationen]]></item>
+    <item name="linklist.moderation.offline.content"><![CDATA[Als "Offline" gemeldeter Inhalt]]></item>
+    <item name="linklist.moderation.offline.setOnline"><![CDATA[Als "Online" markieren]]></item>
+    <item name="linklist.moderation.offline.setOnline.confirmMessage"><![CDATA[Möchten Sie diesen Inhalt wirklich als "Online" markieren? Haben Sie die Erreichbarkeit geprüft?]]></item>
+    <item name="linklist.moderation.offline.removeContent"><![CDATA[Inhalt löschen]]></item>
+    <item name="linklist.moderation.offline.removeContent.confirmMessage"><![CDATA[Möchten Sie diesen Inhalt wirklich löschen?]]></item>
+    <item name="linklist.moderation.offline.removeContent.reason"><![CDATA[Grund der Löschung (optional)]]></item>
+  </category>
   
   <category name="wcf.acp.group">
     <item name="wcf.acp.group.option.category.user.linklist"><![CDATA[Linkliste]]></item>
