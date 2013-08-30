@@ -1,9 +1,9 @@
 {include file='documentHeader'}
 
 <head>
-    <title>{lang}linklist.moderation.offline{/lang} - {PAGE_TITLE|language}</title
+    <title>{lang}linklist.moderation.offline{/lang} - {PAGE_TITLE|language}</title>
     {include file='headInclude'}
-    <script data-relocate="true" type="text/javascript" src="{@$__wcf->getPath()}js/WCF.Moderation.js"></script>
+    <script data-relocate="true" type="text/javascript" src="{@$__wcf->getPath()}js/WCF.Moderation.js?v={@$__wcfVersion}"></script>
     <script data-relocate="true" type="text/javascript" src="{@$__wcf->getPath('linklist')}js/LINKLIST.Moderation.js?v={@$__wcfVersion}"></script>
     <script data-relocate="true">
         //<![CDATA[

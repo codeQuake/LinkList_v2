@@ -2,6 +2,7 @@
 namespace linklist\data\moderation\queue;
 use wcf\system\exception\PermissionDeniedException;
 use linklist\system\moderation\queue\ModerationQueueOfflineManager;
+use wcf\data\moderation\queue\ModerationQueueAction;
 use wcf\util\StringUtil;
 
 class ModerationQueueOfflineAction extends ModerationQueueAction {

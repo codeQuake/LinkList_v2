@@ -21,10 +21,12 @@ class LinkModerationQueueOfflineHandler extends AbstractLinkModerationQueueHandl
     }
     
     public function setOnline(ModerationQueue $queue){
+        if ($this->isValid($queue->objectID)){
         $editor = new LinkEditor($this->getLink($queue->objectID));
         $editor->update(array(
                 'isOnline' => 1
         ));
         ModerationQueueOfflineManager::getInstance()->removeModeratedContent('de.codequake.linklist.link', array($queue->objectID));
+        }
     }
 }

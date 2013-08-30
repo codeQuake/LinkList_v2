@@ -72,11 +72,13 @@ abstract class AbstractLinkModerationQueueHandler extends AbstractModerationQueu
 	}
 
 	public function removeContent(ModerationQueue $queue, $message) {
-		$link = new Link($queue->objectID);
-        $editor = new LinkEditor($link);
+        if ($this->isValid($queue->objectID)) {
+		    $link = new Link($queue->objectID);
+            $editor = new LinkEditor($link);
             $editor->update(array(
-                'isDeleted' => 1,
-                'deleteTime' => TIME_NOW
-            ));
+                    'isDeleted' => 1,
+                    'deleteTime' => TIME_NOW
+                ));
+         }
 	}
 }
