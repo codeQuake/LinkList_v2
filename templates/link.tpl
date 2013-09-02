@@ -8,6 +8,11 @@
 </head>
 
 <body id="tpl{$templateName|ucfirst}">
+	{capture assign='headerNavigation'}
+	{if $link->getCategory()->getPermission('canEditLink')}
+		<li><a href="{link application='linklist' controller='LinkLog' object=$link}{/link}" title="{lang}linklist.link.log{/lang}" class="jsTooltip"><span class="icon icon16 icon-tasks"></span> <span class="invisible">{lang}linklist.link.log{/lang}</span></a></li>
+	{/if}
+	{/capture}
     {include file='linkSidebar' application='linklist'}
 
     {include file='header' sidebarOrientation='right'}

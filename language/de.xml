@@ -50,7 +50,8 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="linklist.link.tabs.link"><![CDATA[Link]]></item>
     <item name="linklist.link.visit"><![CDATA[Seite besuchen]]></item>
     <item name="linklist.link.edit"><![CDATA[Link bearbeiten]]></item>
-
+    <item name="linklist.link.offline"><![CDATA[Offline]]></item>
+    <item name="linklist.link.log"><![CDATA[Änderungsprotokoll]]></item>
     <item name="linklist.link.linkAdd.data"><![CDATA[Allgemeine Daten]]></item>
     <item name="linklist.link.linkEdit.data"><![CDATA[Allgemeine Daten]]></item>
     <item name="linklist.link.linkAdd.category"><![CDATA[Kategorie]]></item>
