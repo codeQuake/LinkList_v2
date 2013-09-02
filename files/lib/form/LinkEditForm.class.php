@@ -52,7 +52,7 @@ class LinkEditForm extends MessageForm {
         $this->image = $this->link->image;
         if($this->image != null && $this->image != '') $this->imageType = 'link';
         
-        WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('Index')));
+        WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategpryList')));
         foreach($this->link->getCategory()->getParentCategories()    AS $categoryItem) {
                                   WCF::getBreadcrumbs()->add(new Breadcrumb($categoryItem->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
                                       'application' => 'linklist',

@@ -65,7 +65,7 @@ class LinkAddForm extends MessageForm{
         parent::readData();
         WCF::getBreadcrumbs()->add(new Breadcrumb(
             WCF::getLanguage()->get('linklist.index.title'), 
-            LinkHandler::getInstance()->getLink('Index', array(
+            LinkHandler::getInstance()->getLink('CategoryList', array(
                 'application' => 'linklist'
            ))
         ));
