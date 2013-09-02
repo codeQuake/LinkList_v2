@@ -27,6 +27,9 @@ class LinkModificationLogHandler extends ModificationLogHandler{
     public function disable(Link $link){
         $this->add($link, 'disable');
     }
+    public function setOffline(Link $link){
+        $this->add($link, 'offline');
+    }
     
     public function add(Link $link, $action, array $additionalData = array()) {
 		parent::_add('de.codequake.linklist.link', $link->linkID, $action, $additionalData);

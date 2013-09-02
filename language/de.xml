@@ -27,6 +27,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 
   <category name="linklist.link">
     <item name="linklist.link.log"><![CDATA[Änderungsprotokoll]]></item>
+    <item name="linklist.link.log.link.offline"><![CDATA[Als Offline markiert]]></item>
     <item name="linklist.link.log.title"><![CDATA[Änderungen an {$link->getTitle()}]]></item>
     <item name="linklist.link.log.link.trash"><![CDATA[In den Papierkorb verschoben]]></item>
     <item name="linklist.link.log.link.restore"><![CDATA[Wiederhergestellt]]></item>

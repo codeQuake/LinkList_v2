@@ -6,6 +6,7 @@ use linklist\data\link\LinkEditor;
 use linklist\data\link\Link;
 use linklist\system\moderation\queue\ModerationQueueOfflineManager;
 use wcf\system\WCF;
+use linklist\system\log\modification\LinkModificationLogHandler;
 
 class CheckLinksCronjob extends AbstractCronjob{
     
@@ -58,6 +59,7 @@ class CheckLinksCronjob extends AbstractCronjob{
                     $editor = new LinkEditor($link);
                     $editor->update(array('isOnline' => 0));
                     ModerationQueueOfflineManager::getInstance()->addModeratedContent('de.codequake.linklist.link', $link->linkID);
+                    LinkModificationLogHandler::getInstance()->setOffline($link);
                 }
               }
             
