@@ -32,7 +32,46 @@
 </section>
 {include file='categoryList' application='linklist'}
 
+
+<div class="contentNavigation">
+  {pages print=true assign=pagesLinks controller="Category" application="linklist" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
+  {if $category->getPermission('canAddLink')}
+  <nav>
+    <ul>
+      <li>
+        <a href="{link application='linklist' controller='LinkAdd' id=$categoryID}{/link}" title="{lang}linklist.link.add{/lang}" class="button">
+          <span class="icon icon16 icon-plus"></span>
+          <span>{lang}linklist.link.add{/lang}</span>
+        </a>
+      </li>
+      {event name='contentNavigationButtonsTop'}
+    </ul>
+  </nav>
+  {/if}
+</div>
+
+
 {include file='linksList' application='linklist'}
+
+
+{if $objects|count}
+<div class="contentNavigation">
+  {@$pagesLinks}
+
+      {if $category->getPermission('canAddLink')}
+        <nav>
+            <ul>
+
+                    <li><a href="{link application='linklist' controller='LinkAdd' id=$categoryID}{/link}" title="{lang}linklist.link.add{/lang}" class="button"><span class="icon icon16 icon-plus"></span> <span>{lang}linklist.link.add{/lang}</span></a></li>
+                    {event name='contentNavigationButtonsTop'}
+
+            </ul>
+        </nav>
+    {/if}
+
+  <div class="jsClipboardEditor" data-types="[ 'de.codequake.linklist.link' ]"></div>
+</div>
+{/if}
 
 {include file='footer' sandbox=false}
 </body>

@@ -136,5 +136,11 @@
         <definitionname>com.woltlab.wcf.tagging.taggableObject</definitionname>
         <classname>linklist\system\tagging\TaggableLink</classname>
       </type>
+      <!--trash-->
+    <type>
+      <name>de.codequake.linklist.link</name>
+      <definitionname>com.woltlab.wcf.deletedContent</definitionname>
+      <classname>linklist\system\moderation\DeletedLinkProvider</classname>
+    </type>
     </import>
 </data>

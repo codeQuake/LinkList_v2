@@ -1,17 +1,4 @@
 
-<div class="contentNavigation">
-    {pages print=true assign=pagesLinks controller="Category" application="linklist" id=$categoryID link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
-	{if $category->getPermission('canAddLink')}
-        <nav>
-            <ul>
-                    <li><a href="{link application='linklist' controller='LinkAdd' id=$categoryID}{/link}" title="{lang}linklist.link.add{/lang}" class="button"><span class="icon icon16 icon-plus"></span> <span>{lang}linklist.link.add{/lang}</span></a></li>
-                    {event name='contentNavigationButtonsTop'}
-            </ul>
-        </nav>
-		{/if}
-</div>
-
-
 {if $objects|count}
 
 <div class="container marginTop shadow jsClipboardContainer" data-type="de.codequake.linklist.link">
@@ -26,6 +13,7 @@
           <div class="details">
             <div class="containerHeadline">
               <h3>
+                {if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
                 <a data-link-id="{@$link->linkID}" class="linklistLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
                 {if MODULE_LIKE && $__wcf->getSession()->getPermission('user.like.canViewLike') && $link->hasLikes() && LINKLIST_ENABLE_LIKES}<span class="likesBadge badge jsTooltip {if $link->cumulativeLikes > 0}green{elseif $link->cumulativeLikes
                   < 0}red{/if}" title="{lang likes=$link->countLikes()->likes dislikes=$link->countLikes()->dislikes}wcf.like.tooltip{/lang}">{if $link->cumulativeLikes > 0}+{elseif $link->cumulativeLikes == 0}&plusmn;{/if}{#$link->cumulativeLikes}
@@ -77,23 +65,6 @@
 			</li>
 		{/foreach}
 	</ol>
-</div>
-
-<div class="contentNavigation">
-  {@$pagesLinks}
-
-      {if $category->getPermission('canAddLink')}
-        <nav>
-            <ul>
-
-                    <li><a href="{link application='linklist' controller='LinkAdd' id=$categoryID}{/link}" title="{lang}linklist.link.add{/lang}" class="button"><span class="icon icon16 icon-plus"></span> <span>{lang}linklist.link.add{/lang}</span></a></li>
-                    {event name='contentNavigationButtonsTop'}
-
-            </ul>
-        </nav>
-    {/if}
-
-  <div class="jsClipboardEditor" data-types="[ 'de.codequake.linklist.link' ]"></div>
 </div>
 
 {/if}
