@@ -11,7 +11,9 @@
 						{/if}
 						
 						<div class="messageHeadline">
-							<h1><a href="{@$link->getLink()}">{$link->getTitle()}</a></h1>
+              <h1>
+                {if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
+                <a href="{@$link->getLink()}">{$link->getTitle()}</a></h1>
 							<p>
 								<span class="username">{if $link->getUserProfile()->userID}<a href="{link controller='User' object=$link->getUserProfile()->getDecoratedObject()}{/link}">{$link->getUsername()}</a>{else}{$link->getUsername()}{/if}</span>
 								{@$link->getTime()|time}

@@ -5,6 +5,7 @@
         <div>
             <div class="containerHeadline">
                 <h3>
+					{if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}	
                     <a href="{link controller='Link' object=$link application='linklist'}{/link}">{$link->getTitle()}</a>
                     <small>- {@$link->time|time}</small>
                 </h3>

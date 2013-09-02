@@ -14,6 +14,6 @@ class DeletedLinkProvider implements IDeletedContentProvider{
     }
     
     public function getTemplateName(){
-        return 'linksList';
+        return 'deletedLinkList';
     }
 }
