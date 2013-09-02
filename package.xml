@@ -4,7 +4,7 @@
     <packagename>Linkliste (codename: Waterfall)</packagename> <!--codename: waterfall-->
     <packagedescription><![CDATA[Linklist for WCF 2.0]]></packagedescription>
     <isapplication>1</isapplication>
-    <version>2.0.0 Beta 2</version>
+    <version>2.0.0 Beta 3</version>
     <date>2013-08-04</date>
   </packageinformation>
   <authorinformation>
@@ -42,24 +42,5 @@
     
     <!--others-->
     <instruction type="sql">install.sql</instruction>
-  </instructions>
-
-  <instructions type="update" fromversion="2.0.0 Beta 1">
-    <!--lang-->
-    <instruction type="language">language/*.xml</instruction>
-    
-    <!--tar-->
-    <instruction type="file">files.tar</instruction>
-    <instruction type="template">templates.tar</instruction>
-    
-    <!--xml-->
-    <instruction type="dashboardBox">xml/dashboardBox.xml</instruction>
-    <instruction type="objectType">xml/objectType.xml</instruction>
-    <instruction type="option">xml/option.xml</instruction>
-    <instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
-    <instruction type="cronjob">xml/cronjob.xml</instruction>
-    
-    <!--others-->
-    <instruction type="sql">update.sql</instruction>
   </instructions>
 </package>
