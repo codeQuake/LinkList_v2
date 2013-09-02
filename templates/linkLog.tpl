@@ -40,7 +40,7 @@
 					<th class="columnID{if $sortField == 'logID'} active {@$sortOrder}{/if}"><a href="{link application='linklist' controller='LinkLog' object=$link}pageNo={@$pageNo}&sortField=logID&sortOrder={if $sortField == 'logID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.global.objectID{/lang}</a></th>
 					<th class="columnText">{lang}linklist.link.log.action{/lang}</th>
 					<th class="columnText{if $sortField == 'username'} active {@$sortOrder}{/if}"><a href="{link application='linklist' controller='LinkLog' object=$link}pageNo={@$pageNo}&sortField=username&sortOrder={if $sortField == 'username' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.user.username{/lang}</a></th>
-					<th class="columnDate{if $sortField == 'time'} active {@$sortOrder}{/if}"><a href="{link application='linklist' controller='LinkLog' object=$link}pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField == 'time' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}linklist.link.time{/lang}</a></th>
+					<th class="columnDate{if $sortField == 'time'} active {@$sortOrder}{/if}"><a href="{link application='linklist' controller='LinkLog' object=$link}pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField == 'time' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}linklist.links.time{/lang}</a></th>
 					
 					{event name='columnHeads'}
 				</tr>
