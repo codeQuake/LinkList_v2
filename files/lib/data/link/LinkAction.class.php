@@ -137,6 +137,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             $editor->update(array(
                 'isActive' => 1
             ));
+            LinkModificationLogHandler::getInstance()->enable($link);
             $this->removeModeratedContent($link->linkID);
             $this->publish($link);
         }
@@ -157,6 +158,8 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             $editor->update(array(
                 'isActive' => 0
             ));
+            
+            LinkModificationLogHandler::getInstance()->disable($link);
             $this->addModeratedContent($link->linkID);
         }
 

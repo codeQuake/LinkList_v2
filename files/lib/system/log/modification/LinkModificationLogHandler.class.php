@@ -21,6 +21,13 @@ class LinkModificationLogHandler extends ModificationLogHandler{
     public function trash(Link $link, $reason = '') {
 		$this->add($link, 'trash', array('reason' => $reason));
 	}
+    public function enable(Link $link){
+        $this->add($link, 'enable');
+    }
+    public function disable(Link $link){
+        $this->add($link, 'disable');
+    }
+    
     public function add(Link $link, $action, array $additionalData = array()) {
 		parent::_add('de.codequake.linklist.link', $link->linkID, $action, $additionalData);
 	}
