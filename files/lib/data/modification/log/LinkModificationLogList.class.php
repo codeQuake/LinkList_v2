@@ -45,7 +45,7 @@ class LinkModificationLogList extends ModificationLogList{
 					AND modification_log.objectID = ?"
                     .(!empty($this->sqlOrderBy) ? "ORDER BY ".$this->sqlOrderBy : '');;
         $statement = WCF::getDB()->prepareStatement($sql);
-        $statement = execute(array(
+        $statement->execute(array(
                 $this->objectTypeID,
                 $this->link->linkID));
         $this->objects = $statement->fetchObjects(($this->objectClassName ?: $this->className));

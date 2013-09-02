@@ -21,8 +21,8 @@ class LinkLogPage extends SortablePage{
     
     public function readParameters() {
         parent::readParameters();
-        if (isset($_REQUEST['id'])) $this->linkID = intval($_REQUEST['id']);
-		$this->link = new Link($this->link);
+        if(isset($_GET['id'])) $this->linkID = intval($_GET['id']);
+		$this->link = new Link($this->linkID);
 		if ($this->link === null) {
 			throw new IllegalLinkException();
 		}

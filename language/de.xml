@@ -26,6 +26,13 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
   </category>
 
   <category name="linklist.link">
+    <item name="linklist.link.log"><![CDATA[Änderungsprotokoll]]></item>
+    <item name="linklist.link.log.title"><![CDATA[Änderungen an {$link->getTitle()}]]></item>
+    <item name="linklist.link.log.link.trash"><![CDATA[In den Papierkorb verschoben]]></item>
+    <item name="linklist.link.log.link.restore"><![CDATA[Wiederhergestellt]]></item>
+    <item name="linklist.link.log.noEntries"><![CDATA[An diesem Link wurden keine protokollierten Änderungen vorgenommen.]]></item>
+    <item name="linklist.link.log.link.edit"><![CDATA[Bearbeitet]]></item>
+    <item name="linklist.link.log.action"><![CDATA[Aktion]]></item>
     <item name="linklist.link.add"><![CDATA[Link hinzufügen]]></item>
     <item name="linklist.link.linkAdd.username"><![CDATA[Benutzername]]></item>
     <item name="linklist.link.linkEdit"><![CDATA[Link bearbeiten]]></item>
