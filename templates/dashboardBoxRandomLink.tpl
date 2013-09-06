@@ -9,7 +9,7 @@
         <div class="details">
           <div class="containerHeadline">
             <h3>
-              {if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
+              {if $randomLink->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
               <a data-link-id="{@$randomLink->linkID}" class="linklistLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$randomLink->linkID title=$randomLink->subject}{/link}">{$randomLink->subject}</a>
               {if MODULE_LIKE && $__wcf->getSession()->getPermission('user.like.canViewLike') && $randomLink->hasLikes() && LINKLIST_ENABLE_LIKES}<span class="likesBadge badge jsTooltip {if $randomLink->cumulativeLikes > 0}green{elseif $randomLink->cumulativeLikes < 0}red{/if}" title="{lang likes=$randomLink->countLikes()->likes dislikes=$randomLink->countLikes()->dislikes}wcf.like.tooltip{/lang}">{if $randomLink->cumulativeLikes > 0}+{elseif $randomLink->cumulativeLikes == 0}&plusmn;{/if}{#$randomLink->cumulativeLikes}
               </span>{/if}
