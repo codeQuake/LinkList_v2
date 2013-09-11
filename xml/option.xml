@@ -6,6 +6,12 @@
       <category name="dashboard.sidebar.linklist">
         <parent>dashboard.sidebar</parent>
       </category>
+      <category name="linklist.general">
+        <parent>linklist</parent>
+      </category>
+      <category name="linklist.general.settings">
+        <parent>linklist.general</parent>
+      </category>
       <category name="linklist.index">
         <parent>linklist</parent>
       </category>
@@ -114,6 +120,11 @@ visits:linklist.links.visits]]>
           <![CDATA[ASC:wcf.global.sortOrder.ascending
 DESC:wcf.global.sortOrder.descending]]>
         </selectoptions>
+      </option>
+      <option name="linklist_enable_croncheck">
+        <categoryname>linklist.general.settings</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>1</defaultvalue>
       </option>
     </options>
   </import>
