@@ -44,6 +44,16 @@ class LinklistImportForm extends AbstractForm{
         if (empty($this->fileUpload['tmp_name'])) return;
         $data = self::getLinkListData($this->fileUpload['tmp_name']);
         $oldCategoryIDs = array();
+        $categoryID = 0;
+        $sql = "SELECT categoryID FROM wcf".WCF_N."_category ORDER BY categoryID DESC";
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute(array());
+        $row = $statement->fetchArray();
+        $categoryID = $row['categoryID'];
+        foreach ($data['categoryData'] as $categoryData){
+            $categoryID++;
+            $oldCategoryIDs[$categoryData['categoryID']] = $categoryID;
+        }
         foreach ($data['categoryData'] as $categoryData) {
             // insert categories
            
@@ -72,7 +82,7 @@ class LinklistImportForm extends AbstractForm{
             $statement->execute();
             
             //fill old categoryIDs:
-            $oldCategoryIDs[$categoryData['categoryID']] = $returnValues['returnValues']->categoryID;
+            //$oldCategoryIDs[$categoryData['categoryID']] = $returnValues['returnValues']->categoryID;
            
         }
         
