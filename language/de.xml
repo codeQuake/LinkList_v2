@@ -96,6 +96,10 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="linklist.link.menu.comment"><![CDATA[Kommentare]]></item>
   </category>
   <category name="wcf.acp.option">
+    <item name="wcf.acp.option.category.linklist.general"><![CDATA[Allgemein]]></item>
+    <item name="wcf.acp.option.category.linklist.general.settings"><![CDATA[Einstellungen]]></item>
+    <item name="wcf.acp.option.linklist_enable_croncheck"><![CDATA[Cronjob aktivieren]]></item>
+    <item name="wcf.acp.option.linklist_enable_croncheck.description"><![CDATA[Aktiviert einen Cronjob, der regelmäßig die Erreichbarkeit aller Links prüft und nicht erreichbare Links markiert.]]></item>
     <item name="wcf.acp.option.module_linklist_comments"><![CDATA[Kommentarsystem - Linkliste]]></item>
     <item name="wcf.acp.option.category.linklist"><![CDATA[Linkliste]]></item>
     <item name="wcf.acp.option.category.linklist.index"><![CDATA[Startseite]]></item>
