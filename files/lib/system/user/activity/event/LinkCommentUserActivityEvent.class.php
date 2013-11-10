@@ -46,7 +46,7 @@ class LinkCommentUserActivityEvent extends SingletonFactory implements IUserActi
                     $event->setIsAccessible();
                 }
             }
-            else {$event->setIsOrphaned();}  
+            else $event->setIsOrphaned();  
             
         }
         
