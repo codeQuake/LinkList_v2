@@ -1,16 +1,20 @@
-{assign var="user" value=$news->getUserProfile()}
-    <div class="box128"> ><a href="{link controller='News' application='cms' object=$news}{/link}" class="framed">{@$user->getAvatarTag(128)}</a>
+{assign var="user" value=$link->getUserProfile()}
+    <div class="box128"> 
+	<div style="height: 128px; width: 128px;"><a href="{link controller='Link' application='linklist' object=$link application='linklist'}{/link}" class="framed">{@$link->getImage(128)}</a></div>
+
 
         <div>
             <div class="containerHeadline">
                 <h3>
-                    <a href="{link controller='News' object=$news application='cms'}{/link}">{$news->getTitle()}</a>
-                    <small>- {@$news->time|time}</small>
+					{if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}	
+                    <a href="{link controller='Link' object=$link application='linklist'}{/link}">{$link->getTitle()}</a>
+                    <small>- {@$link->time|time}</small>
+
                 </h3>
             </div>
 
 				<div>
-				{@$nes->getExcerpt()|nl2br}
+				{@$link->getExcerpt()|nl2br}
 				</div>
         </div>
     </div>
