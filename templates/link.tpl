@@ -16,7 +16,7 @@
     {include file='linkSidebar' application='linklist'}
 
     {include file='header' sidebarOrientation='right'}
-    <article class="link" data-object-id="{$link->linkID}" data-link-id="{$link->linkID}" data-object-type="de.codequake.linklist.likeableLink" data-like-liked="{if $likeData[$link->linkID]|isset}{@$likeData[$link->linkID]->liked}{/if}" data-like-likes="{if $likeData[$link->linkID]|isset}{@$likeData[$link->linkID]->likes}{else}0{/if}" data-like-dislikes="{if $likeData[$link->linkID]|isset}{@$likeData[$link->linkID]->dislikes}{else}0{/if}" data-like-users='{if $likeData[$link->linkID]|isset}{ {implode from=$likeData[$link->linkID]->getUsers() item=likeUser}"{@$likeUser->userID}": { "username": "{$likeUser->username|encodeJSON}" }{/implode} }{else}{ }{/if}'>
+    <article class="link" data-object-id="{$link->linkID}" data-link-id="{$link->linkID}" data-object-type="de.codequake.linklist.likeableLink" data-like-liked="{if $linkLikeData[$link->linkID]|isset}{@$linkLikeData[$link->linkID]->liked}{/if}" data-like-likes="{if $linkLikeData[$link->linkID]|isset}{@$linkLikeData[$link->linkID]->likes}{else}0{/if}" data-like-dislikes="{if $linkLikeData[$link->linkID]|isset}{@$linkLikeData[$link->linkID]->dislikes}{else}0{/if}" data-like-users='{if $linkLikeData[$link->linkID]|isset}{ {implode from=$linkLikeData[$link->linkID]->getUsers() item=likeUser}"{@$likeUser->userID}": { "username": "{$likeUser->username|encodeJSON}" }{/implode} }{else}{ }{/if}'>
 
 	<header class="boxHeadline">
             <h1>{$link->getTitle()|language}</h1>
