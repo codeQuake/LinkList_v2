@@ -20,9 +20,7 @@
         </div>
     </header>
 
-    {if $errorField}
-        <p class="error">{lang}wcf.global.form.error{/lang}</p>
-    {/if}
+    {include file='formError'}
 
     <form id="messageContainer" class="jsFormGuard" method="post" action="{if $action=='add'}{link controller='LinkAdd' application='linklist'}{/link}{else}{link controller='LinkEdit' object=$link application='linklist'}{/link}{/if}" id="link{$action|ucfirst}Form" enctype="multipart/form-data">
         {if $linkID|isset}<input type="hidden" name="linkID" value="{$linkID}" />{/if}
@@ -144,6 +142,8 @@
             {include file='messageFormTabs' wysiwygContainerID='text' attachmentHandler=null}
              <div class="formSubmit">
                  <input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
+				 {@SECURITY_TOKEN_INPUT_TAG}
+				{include file='messageFormPreviewButton'}
             </div>
         </div>
     </form>

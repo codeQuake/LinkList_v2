@@ -4,6 +4,7 @@
     <item name="linklist.pageMenu.index"><![CDATA[Links]]></item>
   </category>
   <category name="linklist.index">
+    <item name="linklist.index.copyright"><![CDATA[<address class="copyright marginTop"><a href="http://codequake.de" title="">Software: <strong>Linklist {@PACKAGE_VERSION}</strong>, developed by <strong>codeQuake</strong></a></address>]]></item>
     <item name="linklist.index.title"><![CDATA[Links]]></item>
     <item name="linklist.index.stats"><![CDATA[Statistics]]></item>
     <item name="linklist.index.usersOnline.record"><![CDATA[{if LINKLIST_USERS_ONLINE_RECORD > 0}- Record: {#LINKLIST_USERS_ONLINE_RECORD} Users ({@LINKLIST_USERS_ONLINE_RECORD_TIME|time}){/if}]]></item>
@@ -262,5 +263,9 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
   <category name="wcf.tagging">
     <item name="wcf.tagging.taggedObjects.de.codequake.linklist.link"><![CDATA[Links with Tag „{$tag->name}“]]></item>
     <item name="wcf.tagging.objectType.de.codequake.linklist.link"><![CDATA[Links]]></item>
+  </category>
+
+  <category name="wcf.acp.index">
+    <item name="wcf.acp.index.system.software.linklistVersion"><![CDATA[Linklist-Version]]></item>
   </category>
 </language>
