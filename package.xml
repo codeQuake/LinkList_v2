@@ -96,7 +96,7 @@
     <instruction type="cronjob">xml/cronjob.xml</instruction>
   </instructions>
 
-  <instructions type="update" fromversion="2.0.0 Beta 4">    
+  <instructions type="update" fromversion="2.0.0 Beta 5">    
     <instruction type="template">templates.tar</instruction>
   </instructions>
 </package>
