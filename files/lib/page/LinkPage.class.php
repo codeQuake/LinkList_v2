@@ -6,7 +6,7 @@ use wcf\system\exception\IllegalLinkException;
 use wcf\system\breadcrumb\Breadcrumb;
 use wcf\system\request\LinkHandler;
 use wcf\system\comment\CommentHandler;
-
+use wcf\system\exception\PermissionDeniedException;
 use wcf\system\tagging\TagEngine;
 use wcf\system\like\LikeHandler;
 use wcf\page\AbstractPage;
@@ -37,6 +37,7 @@ class LinkPage extends AbstractPage{
         parent::readData();       
         $this->link = new Link($this->linkID);        
         if($this->link === null | $this->link->linkID == 0) throw new IllegalLinkException();
+        if(!$this->link->isVisible()) throw new PermissionDeniedException();
         WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList',array('application' => 'linklist'))));
         foreach($this->link->getCategory()->getParentCategories()    as $categoryItem) {
                                   WCF::getBreadcrumbs()->add(new Breadcrumb($categoryItem->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
