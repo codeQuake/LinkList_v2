@@ -18,6 +18,7 @@ class RandomLinkDashboardBox extends AbstractContentDashboardBox{
         $row = $statement->fetchArray();
         
         $this->link = new Link($row['linkID']);
+        if(!$this->link->isVisible()) $this->init($box, $page);
      }
      
      protected function render(){
