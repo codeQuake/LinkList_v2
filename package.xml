@@ -4,8 +4,8 @@
     <packagename>Linkliste</packagename> <!--codename: waterfall-->
     <packagedescription><![CDATA[Linklist for WCF 2.0 (codename: Waterfall)]]></packagedescription>
     <isapplication>1</isapplication>
-    <version>2.0.0 Beta 6</version>
-    <date>2013-08-04</date>
+    <version>2.0.0 Beta 7</version>
+    <date>2013-11-26</date>
   </packageinformation>
   <authorinformation>
     <author><![CDATA[Jens Krumsieck]]></author>
@@ -44,59 +44,12 @@
     <instruction type="sql">install.sql</instruction>
   </instructions>
 
-  <instructions type="update" fromversion="2.0.0 Beta 2">
-    <!--lang-->
-    <instruction type="language">language/*.xml</instruction>
-
-    <!--tar-->
-    <instruction type="file">files.tar</instruction>
+  <instructions type="update" fromversion="2.0.0 Beta 5">
     <instruction type="template">templates.tar</instruction>
-    <instruction type="acpTemplate">acptemplates.tar</instruction>
-
-    <!--xml-->
-    <instruction type="sitemap">xml/sitemap.xml</instruction>
-    <instruction type="dashboardBox">xml/dashboardBox.xml</instruction>
-    <instruction type="pageMenu">xml/pagemenu.xml</instruction>
-    <instruction type="objectTypeDefinition">xml/objectTypeDefinition.xml</instruction>
-    <instruction type="objectType">xml/objectType.xml</instruction>
-    <instruction type="option">xml/option.xml</instruction>
-    <instruction type="aclOption">xml/aclOption.xml</instruction>
-    <instruction type="acpMenu">xml/acpMenu.xml</instruction>
-    <instruction type="templateListener">xml/templateListener.xml</instruction>
-    <instruction type="eventListener">xml/eventListener.xml</instruction>
-    <instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
-    <instruction type="clipboardAction">xml/clipboardAction.xml</instruction>
-    <instruction type="cronjob">xml/cronjob.xml</instruction>
-
-    <!--others-->
-    <instruction type="sql">update.sql</instruction>
+    <instruction type="files">files.tar</instruction>
   </instructions>
-  <instructions type="update" fromversion="2.0.0 Beta 4">
-    <!--lang-->
-    <instruction type="language">language/*.xml</instruction>
-
-    <!--tar-->
-    <instruction type="file">files.tar</instruction>
+  <instructions type="update" fromversion="2.0.0 Beta 6">    
     <instruction type="template">templates.tar</instruction>
-    <instruction type="acpTemplate">acptemplates.tar</instruction>
-
-    <!--xml-->
-    <instruction type="sitemap">xml/sitemap.xml</instruction>
-    <instruction type="dashboardBox">xml/dashboardBox.xml</instruction>
-    <instruction type="pageMenu">xml/pagemenu.xml</instruction>
-    <instruction type="objectTypeDefinition">xml/objectTypeDefinition.xml</instruction>
-    <instruction type="objectType">xml/objectType.xml</instruction>
-    <instruction type="option">xml/option.xml</instruction>
-    <instruction type="aclOption">xml/aclOption.xml</instruction>
-    <instruction type="acpMenu">xml/acpMenu.xml</instruction>
-    <instruction type="templateListener">xml/templateListener.xml</instruction>
-    <instruction type="eventListener">xml/eventListener.xml</instruction>
-    <instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
-    <instruction type="clipboardAction">xml/clipboardAction.xml</instruction>
-    <instruction type="cronjob">xml/cronjob.xml</instruction>
-  </instructions>
-
-  <instructions type="update" fromversion="2.0.0 Beta 5">    
-    <instruction type="template">templates.tar</instruction>
+    <instruction type="files">files.tar</instruction>
   </instructions>
 </package>
