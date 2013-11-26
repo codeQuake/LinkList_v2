@@ -1,6 +1,4 @@
 {capture assign='sidebar'}
-        <aside class="sidebar">
-		<div>
 			<fieldset>
 			<legend class="invisible">{lang}linklist.link.sidebar.image{/lang}</legend>
 			<div class="userAvatar">
@@ -96,6 +94,4 @@
                     <a class="button visitButton" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><h3 style="font-size:120%;">{lang}linklist.link.sidebar.visit{/lang}</h3></a>
                 </div>
             </fieldset>
-		</div>
-        </aside>
     {/capture}
