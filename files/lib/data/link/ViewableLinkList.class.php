@@ -9,8 +9,7 @@ class ViewableLinkList extends LinkList{
     public function __construct(){
         parent::__construct();
         $linkIDs = $this->getLinks();
-        $accessibleLinkIDs = implode(",",$linkIDs);
-        $this->getConditionBuilder()->add('linkID IN (?)', array($accessibleLinkIDs));
+        $this->getConditionBuilder()->add('linkID IN (?)', array($linkIDs));
     }
     
     protected function getLinks(){
@@ -21,6 +20,7 @@ class ViewableLinkList extends LinkList{
         foreach($list as $item){
             if($item->isVisible()) $linkIDs[] = $item->linkID;
         }
+        
         return $linkIDs;
      }
 }
