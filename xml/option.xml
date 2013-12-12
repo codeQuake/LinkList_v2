@@ -107,7 +107,7 @@
         <optiontype>select</optiontype>
         <defaultvalue>time</defaultvalue>
         <selectoptions>
-          <![CDATA[title:linklist.links.title
+          <![CDATA[subject:linklist.links.title
 time:linklist.links.time
 visits:linklist.links.visits]]>
         </selectoptions>
