@@ -91,7 +91,7 @@ class LinklistImportForm extends AbstractForm{
                 // insert links
                 $userID = null;
                 $user = User::getUserByUsername($linkData['username']);
-                if($user->userID) $userID =  $user->userID;
+                if($user->userID) $userID = $user->userID;
                 
                 $data = array(  'url'   =>  $linkData['url'],
                         'subject'   =>  $linkData['subject'],
