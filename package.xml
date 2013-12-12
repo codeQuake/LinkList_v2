@@ -4,8 +4,8 @@
     <packagename>Linkliste</packagename> <!--codename: waterfall-->
     <packagedescription><![CDATA[Linklist for WCF 2.0 (codename: Waterfall)]]></packagedescription>
     <isapplication>1</isapplication>
-    <version>2.0.0 Beta 8</version>
-    <date>2013-11-26</date>
+    <version>2.0.0 RC 1</version>
+    <date>2013-12-12</date>
   </packageinformation>
   <authorinformation>
     <author><![CDATA[Jens Krumsieck]]></author>
@@ -13,7 +13,7 @@
   </authorinformation>
 
   <requiredpackages>
-    <requiredpackage minversion="2.0.0 Beta 11">com.woltlab.wcf</requiredpackage>
+    <requiredpackage minversion="2.0.0 RC 1">com.woltlab.wcf</requiredpackage>
   </requiredpackages>
   <instructions type="install">
     <!--lang-->
@@ -43,17 +43,10 @@
     <!--others-->
     <instruction type="sql">install.sql</instruction>
   </instructions>
-
-  <instructions type="update" fromversion="2.0.0 Beta 5">
+  <instructions type="update" fromversion="2.0.0 Beta 8">
+    <instruction type="language">language/*.xml</instruction>
     <instruction type="template">templates.tar</instruction>
     <instruction type="file">files.tar</instruction>
-  </instructions>
-  <instructions type="update" fromversion="2.0.0 Beta 6">    
-    <instruction type="template">templates.tar</instruction>
-    <instruction type="file">files.tar</instruction>
-  </instructions>
-  <instructions type="update" fromversion="2.0.0 Beta 7">
-    <instruction type="template">templates.tar</instruction>
-    <instruction type="file">files.tar</instruction>
+    <instruction type="option">xml/option.xml</instruction>
   </instructions>
 </package>
