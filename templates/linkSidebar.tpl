@@ -25,6 +25,13 @@
                                 <small>{if $link->getUserID()}<a class="userLink" data-user-id="{$link->getUserID()}" href="{link controller='User' id=$link->getUserID() title=$link->getUsername()}{/link}">{$link->getUsername()}</a>{else}{$link->getUsername()}{/if}</small>
                             </div>
                         </li>
+                        <li class="box24">
+							<span class="icon icon32 icon-external-link"></span>
+                            <div class="sidebarBoxHeadline">
+                                <h3>{lang}linklist.link.sidebar.visits{/lang}</h3>
+                                <small>{$link->visits}</small>
+                            </div>
+                        </li>
                         <li class="box{if $link->getCategory()->getPermission('canEditLink')}72{else}24{/if}">
 							{if !$link->getCategory()->getPermission('canEditLink')}
 							<a class="framed" href="{link application='linklist' controller='Category' object=$link->getCategory()}{/link}">
@@ -50,14 +57,6 @@
 								{/if}
                             </div>
                         </li>
-                        <li class="box24">
-							<span class="icon icon32 icon-external-link"></span>
-                            <div class="sidebarBoxHeadline">
-                                <h3>{lang}linklist.link.sidebar.visits{/lang}</h3>
-                                <small>{$link->visits}</small>
-                            </div>
-                        </li>
-                        
                     </ul>
                 </div>
             </fieldset>
