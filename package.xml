@@ -45,8 +45,10 @@
   </instructions>
   <instructions type="update" fromversion="2.0.0 Beta 8">
     <instruction type="language">language/*.xml</instruction>
+    <instruction type="acpTemplate">acptemplates.tar</instruction>
     <instruction type="template">templates.tar</instruction>
     <instruction type="file">files.tar</instruction>
-    <instruction type="option">xml/option.xml</instruction>
+    <instruction type="option">xml/option.xml</instruction>    
+    <instruction type="acpMenu">xml/acpMenu.xml</instruction>
   </instructions>
 </package>
