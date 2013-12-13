@@ -7,7 +7,7 @@
 {if $errorField}
     <p class="error">{lang}wcf.global.form.error{/lang}</p>
 {/if}
-
+	<p class="info">{lang}linklist.acp.export{/lang}</p>
 <form method="post" enctype="multipart/form-data" action="{link controller='LinklistImport' application='linklist'}{/link}">
     <div class="container containerPadding marginTop">
         <fieldset>

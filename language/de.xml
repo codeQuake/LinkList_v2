@@ -84,12 +84,13 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="linklist.acp.menu.link.linklist.category"><![CDATA[Linkliste]]></item>
     <item name="linklist.acp.menu.link.linklist.category.add"><![CDATA[Kategorie hinzufügen]]></item>
     <item name="linklist.acp.menu.link.linklist.category.list"><![CDATA[Kategorien auflisten]]></item>
-    <item name="linklist.acp.menu.link.linklist.category.data.import"><![CDATA[Alte Daten importieren]]></item>
+    <item name="linklist.acp.menu.link.linklist.category.data.import"><![CDATA[Import/Export]]></item>
   </category>
   
   <category name="linklist.acp">
-    <item name="linklist.acp.import"><![CDATA[Alte Daten importieren]]></item>
+    <item name="linklist.acp.import"><![CDATA[Import/Export]]></item>
     <item name="linklist.acp.import.sourcefile"><![CDATA[Archiv hochladen]]></item>
+    <item name="linklist.acp.export"><![CDATA[Um Ihre aktuellen Daten zu sichern klicken Sie <a href="{link controller='LinklistExport' application='linklist'}{/link}">hier</a>.]]></item>
   </category>
   
   <category name="linklist.link.menu">
