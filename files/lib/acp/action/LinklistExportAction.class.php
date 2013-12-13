@@ -6,6 +6,7 @@ use linklist\data\link\LinkList;
 use wcf\util\XMLWriter;
 use wcf\util\StringUtil;
 use wcf\system\io\TarWriter;
+use wcf\system\WCF;
 
 class LinklistExportAction extends AbstractAction{
     public $data = array();
@@ -21,11 +22,11 @@ class LinklistExportAction extends AbstractAction{
         $statement->execute(array($objectTypeID));
         $i = 0;
         while($row = $statement->fetchArray()){
-            $data['categoryData'][$i]['categoryID'] = $row['categoryID'];
-            $data['categoryData'][$i]['parentID'] = $row['parentCategoryID'];
-            $data['categoryData'][$i]['description'] = $row['description'];
-            $data['categoryData'][$i]['title'] = $row['title'];
-            $data['categoryData'][$i]['isDisabled'] = 0;
+            $this->data['categoryData'][$i]['categoryID'] = $row['categoryID'];
+            $this->data['categoryData'][$i]['parentID'] = $row['parentCategoryID'];
+            $this->data['categoryData'][$i]['description'] = $row['description'];
+            $this->data['categoryData'][$i]['title'] = $row['title'];
+            $this->data['categoryData'][$i]['isDisabled'] = 0;
             $i++;
         }
         
@@ -34,20 +35,20 @@ class LinklistExportAction extends AbstractAction{
         $list->readObjects();
         $i = 0;
         foreach($list->getObjects() as $item){
-            $data['linkData'][$i]['linkID'] = $item->linkID;
-            $data['linkData'][$i]['subject'] = $item->getTitle();
-            $data['linkData'][$i]['url'] = $item->url;
-            $data['linkData'][$i]['categoryID'] = $item->categoryID;
-            $data['linkData'][$i]['message'] = $item->message;
-            $data['linkData'][$i]['userID'] = $item->userID;
-            $data['linkData'][$i]['username'] = $item->username;
-            $data['linkData'][$i]['time'] = $item->time;
-            $data['linkData'][$i]['languageID'] = $item->languageID;
-            $data['linkData'][$i]['enableSmilies'] = $item->enableSmilies;
-            $data['linkData'][$i]['enableBBCodes'] = $item->enableBBCodes;
-            $data['linkData'][$i]['enableHtml'] = $item->enableHtml;
-            $data['linkData'][$i]['visits'] = $item->visits;
-            $data['linkData'][$i]['ipAddress'] = $item->ipAddress;
+            $this->data['linkData'][$i]['linkID'] = $item->linkID;
+            $this->data['linkData'][$i]['subject'] = $item->getTitle();
+            $this->data['linkData'][$i]['url'] = $item->url;
+            $this->data['linkData'][$i]['categoryID'] = $item->categoryID;
+            $this->data['linkData'][$i]['message'] = $item->message;
+            $this->data['linkData'][$i]['userID'] = $item->userID;
+            $this->data['linkData'][$i]['username'] = $item->username;
+            $this->data['linkData'][$i]['time'] = $item->time;
+            $this->data['linkData'][$i]['languageID'] = $item->languageID;
+            $this->data['linkData'][$i]['enableSmilies'] = $item->enableSmilies;
+            $this->data['linkData'][$i]['enableBBCodes'] = $item->enableBBCodes;
+            $this->data['linkData'][$i]['enableHtml'] = $item->enableHtml;
+            $this->data['linkData'][$i]['visits'] = $item->visits;
+            $this->data['linkData'][$i]['ipAddress'] = $item->ipAddress;
             $i++;
         }
 
@@ -55,9 +56,8 @@ class LinklistExportAction extends AbstractAction{
     
     protected function buildXML(){
         $xml = new XMLWriter();
-        $xml->beginDocument();
-        $xml->startElement('data');
-        foreach($data['categoryData'] as $cat){
+        $xml->beginDocument('data', '', '');
+        foreach($this->data['categoryData'] as $cat){
             $xml->startElement('linkListCategory');
             $xml->writeElement('categoryID', $cat['categoryID']);
             $xml->writeElement('parentID', $cat['parentID']);
@@ -65,13 +65,12 @@ class LinklistExportAction extends AbstractAction{
             $xml->writeElement('description', $cat['description']);
             $xml->endElement();
         }
-        foreach($data['linkData'] as $link){
+        foreach($this->data['linkData'] as $link){
             $xml->startElement('linkListLink');
             $xml->writeElement('linkID', $link['linkID']);
             $xml->writeElement('categoryID', $link['categoryID']);            
             $xml->writeElement('subject', $link['subject']);            
             $xml->writeElement('message', $link['message']);
-            $xml->writeElement('isDisabled', $link['isDisabled']);
             $xml->writeElement('userID', $link['userID']);
             $xml->writeElement('username', $link['username']);
             $xml->writeElement('url', $link['url']);
@@ -83,7 +82,6 @@ class LinklistExportAction extends AbstractAction{
             $xml->writeElement('ipAddress', $link['ipAddress']);
             $xml->endElement();
         }
-        $xml->endElement();
         $xml->endDocument(LINKLIST_DIR.'tmp/linkListData.xml');
     }
     
@@ -101,7 +99,7 @@ class LinklistExportAction extends AbstractAction{
         $this->tar();
         $this->executed();
 		// headers for downloading file
-		header('Content-Type: application/x-gzip; charset='.CHARSET);
+		header('Content-Type: application/x-gzip; charset=utf8');
 		header('Content-Disposition: attachment; filename="LinkListData-Export.tar.gz"');
 		readfile($this->filename);
 		// delete temp file

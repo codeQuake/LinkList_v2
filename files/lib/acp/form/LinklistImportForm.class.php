@@ -64,7 +64,8 @@ class LinklistImportForm extends AbstractForm{
             }
             
             $parent = 0;
-            if($categoryData['parentID'] != 0) $parent = $oldCategoryIDs[$categoryData['parentID']];
+            if($categoryData['parentID'] != 0 && isset($oldCategoryIDs[$categoryData['parentID']])) $parent = $oldCategoryIDs[$categoryData['parentID']];
+            
             
             $create = array('data' => array('description' => $categoryData['description'],
                             'isDisabled' => 0,
