@@ -8,7 +8,7 @@ use wcf\system\WCF;
 
 class RandomLinkDashboardBox extends AbstractContentDashboardBox{
     
-    public $link = array();
+    public $link = null;
     
     public function init(DashboardBox $box, IPage $page) {
      parent::init($box, $page);
@@ -22,7 +22,7 @@ class RandomLinkDashboardBox extends AbstractContentDashboardBox{
     }
 
      protected function render(){
-        if($this->link->linkID != 0){
+        if(isset($this->link) && $this->link->linkID != 0){
             WCF::getTPL()->assign(array(
             'randomLink' => $this->link
             ));

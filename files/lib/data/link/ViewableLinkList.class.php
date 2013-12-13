@@ -9,7 +9,8 @@ class ViewableLinkList extends LinkList{
     public function __construct(){
         parent::__construct();
         $linkIDs = $this->getLinks();
-        $this->getConditionBuilder()->add('linkID IN (?)', array($linkIDs));
+        if(!empty($linkIDs)) $this->getConditionBuilder()->add('linkID IN (?)', array($linkIDs));
+        else return;
     }
     
     protected function getLinks(){
