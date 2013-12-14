@@ -295,4 +295,11 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
   <category name="wcf.acp.index">
     <item name="wcf.acp.index.system.software.linklistVersion"><![CDATA[Linkliste-Version]]></item>
   </category>
+
+  <category name="wcf.user.notification">
+    <item name="wcf.user.notification.de.codequake.linklist"><![CDATA[Linkliste]]></item>
+    <item name="wcf.user.notification.de.codequake.linklist.linkComment.notification.comment"><![CDATA[Neuer Kommentar zu einem Ihrer Links]]></item>
+    <item name="wcf.user.notification.de.codequake.linklist.linkComment.response.notification.commentResponse"><![CDATA[Neue Antwort auf einen Ihrer Kommentare zu einem Link]]></item>
+    <item name="wcf.user.notification.de.codequake.linklist.linkComment.response.notification.commentResponseOwner"><![CDATA[Neue Antwort zu einem Kommentar zu einem Ihrer Links]]></item>
+  </category>
 </language>

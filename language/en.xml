@@ -288,4 +288,11 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
   <category name="wcf.acp.index">
     <item name="wcf.acp.index.system.software.linklistVersion"><![CDATA[Linklist-Version]]></item>
   </category>
+
+  <category name="wcf.user.notification">
+    <item name="wcf.user.notification.de.codequake.linklist"><![CDATA[Linklist]]></item>
+    <item name="wcf.user.notification.de.codequake.linklist.linkComment.notification.comment"><![CDATA[New comment on one of your links]]></item>
+    <item name="wcf.user.notification.de.codequake.linklist.linkComment.response.notification.commentResponse"><![CDATA[New response to one of your comments to a links]]></item>
+    <item name="wcf.user.notification.de.codequake.linklist.linkComment.response.notification.commentResponseOwner"><![CDATA[New response to a comment on one of your links]]></item>
+  </category>
 </language>
