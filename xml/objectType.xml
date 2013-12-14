@@ -69,6 +69,19 @@
         <definitionname>com.woltlab.wcf.comment.commentableContent</definitionname>
         <classname>linklist\system\comment\manager\LinkCommentManager</classname>
       </type>
+    <!--Notifications-->
+    <type>
+      <name>de.codequake.linklist.linkComment.notification</name>
+      <definitionname>com.woltlab.wcf.notification.objectType</definitionname>
+      <classname>linklist\system\user\notification\object\type\LinkCommentUserNotificationObjectType</classname>
+      <category>de.codequake.linklist</category>
+    </type>
+    <type>
+      <name>de.codequake.linklist.linkComment.response.notification</name>
+      <definitionname>com.woltlab.wcf.notification.objectType</definitionname>
+      <classname>linklist\system\user\notification\object\type\LinkCommentResponseUserNotificationObjectType</classname>
+      <category>de.codequake.linklist</category>
+    </type>
       <!--Clipboard-->
       <type>
         <name>de.codequake.linklist.link</name>

@@ -74,6 +74,24 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
     <item name="linklist.link.linkEdit.text"><![CDATA[Message]]></item>
     <item name="linklist.link.comments.noEntries"><![CDATA[No Comments]]></item>
     <item name="linklist.link.links"><![CDATA[Links]]></item>
+    <item name="linklist.link.comment.notification.title"><![CDATA[New comment (link)]]></item>
+    <item name="linklist.link.comment.notification.message"><![CDATA[Commented on your link “{$link->subject}”.]]></item>
+    <item name="linklist.link.comment.notification.mail">
+      <![CDATA[{@$author->username} commented on your link "{@$link->subject}":
+{link application='linklist' controller='Link' object=$link encode=false forceFrontend=true}#comments{/link}]]>
+    </item>
+    <item name="linklist.link.commentResponse.notification.title"><![CDATA[New reply (link)]]></item>
+    <item name="linklist.link.commentResponse.notification.message"><![CDATA[Replied to your comment on the link “{$link->subject}”.]]></item>
+    <item name="linklist.link.commentResponse.notification.mail">
+      <![CDATA[{@$author->username} replied to your comment on the link "{@$link->subject}":
+{link application='linklist' controller='Link' object=$link encode=false forceFrontend=true}#comments{/link}]]>
+    </item>
+    <item name="linklist.link.commentResponseOwner.notification.title"><![CDATA[New reply (link)]]></item>
+    <item name="linklist.link.commentResponseOwner.notification.message"><![CDATA[Replied to a comment by “{$commentAuthor->username}” on the link “{$link->subject}”.]]></item>
+    <item name="linklist.link.commentResponseOwner.notification.mail">
+      <![CDATA[{@$author->username} replied to a comment by "{@$commentAuthor->username}" on the link "{@$link->subject}":
+{link application='linklist' controller='Link' object=$link encode=false forceFrontend=true}#comments{/link}]]>
+    </item>
   </category>
   
   <category name="linklist.search">

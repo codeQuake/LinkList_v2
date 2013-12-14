@@ -30,6 +30,7 @@
     <instruction type="pageMenu">xml/pagemenu.xml</instruction>
     <instruction type="objectTypeDefinition">xml/objectTypeDefinition.xml</instruction>
     <instruction type="objectType">xml/objectType.xml</instruction>
+    <instruction type="userNotificationEvent">xml/userNotificationEvent.xml</instruction>
     <instruction type="option">xml/option.xml</instruction>
     <instruction type="aclOption">xml/aclOption.xml</instruction>
     <instruction type="acpMenu">xml/acpMenu.xml</instruction>
@@ -43,12 +44,10 @@
     <!--others-->
     <instruction type="sql">install.sql</instruction>
   </instructions>
-  <instructions type="update" fromversion="2.0.0 Beta 8">
+  <instructions type="update" fromversion="2.0.0 RC 1">
     <instruction type="language">language/*.xml</instruction>
-    <instruction type="acpTemplate">acptemplates.tar</instruction>
-    <instruction type="template">templates.tar</instruction>
     <instruction type="file">files.tar</instruction>
-    <instruction type="option">xml/option.xml</instruction>    
-    <instruction type="acpMenu">xml/acpMenu.xml</instruction>
+    <instruction type="objectType">xml/objectType.xml</instruction>
+    <instruction type="userNotificationEvent">xml/userNotificationEvent.xml</instruction>
   </instructions>
 </package>
