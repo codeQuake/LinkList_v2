@@ -16,7 +16,7 @@ class LinkCommentResponseUserNotificationEvent extends AbstractUserNotificationE
 		$link = new Link($comment->objectID);
 		
 		return $this->getLanguage()->getDynamicVariable('linklist.link.commentResponse.notification.message', array(
-			'news' => $link,
+			'link' => $link,
 			'author' => $this->author
 		));
 	}
