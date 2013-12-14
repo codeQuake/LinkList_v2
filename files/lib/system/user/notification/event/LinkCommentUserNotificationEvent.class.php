@@ -1,6 +1,6 @@
 <?php
 namespace linklist\system\user\notification\event;
-use linkist\data\link\Link;
+use linklist\data\link\Link;
 use wcf\system\request\LinkHandler;
 use wcf\system\user\notification\event\AbstractUserNotificationEvent;
 
