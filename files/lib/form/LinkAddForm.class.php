@@ -42,6 +42,7 @@ class LinkAddForm extends MessageForm{
     public $image = null;
     public $imageType = 'none';
     
+    public $attachmentObjectType = 'de.codequake.cms.news';
     protected $link = null;
     
     public $objectTypeName = 'de.codequake.linklist.category';
@@ -122,7 +123,8 @@ class LinkAddForm extends MessageForm{
                                     'tags'      => $this->tags,
                                     'imageType' => $this->imageType,
                                     'image' => $this->image,
-                                    'url'   =>  $this->url));
+                                    'url'   =>  $this->url,
+                                    'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.linklist.link.allowedAttachmentExtensions')))));
         
 
     }
@@ -205,7 +207,8 @@ class LinkAddForm extends MessageForm{
                         'visits'    =>  0,
                         'ipAddress'  =>  $_SERVER['REMOTE_ADDR']);
         $linkData = array('data' => $data,
-                          'tags' => array());
+                          'tags' => array(),
+                          'attachmentHandler' => $this->attachmentHandler);
         if (MODULE_TAGGING) {
 			$linkData['tags'] = $this->tags;
 		}

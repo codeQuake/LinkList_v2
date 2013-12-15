@@ -3,7 +3,9 @@ namespace linklist\data\link;
 
 use linklist\data\LINKLISTDatabaseObject;
 use linklist\data\category\LinklistCategory;
-
+use wcf\data\attachment\Attachment;
+use wcf\data\attachment\GroupedAttachmentList;
+use wcf\system\bbcode\AttachmentBBCode;
 use wcf\system\WCF;
 use wcf\data\IUserContent;
 use wcf\data\IMessage;
@@ -51,10 +53,27 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
         parent::__construct(null, $row, $object);
     }
     
-    public function getFormattedMessage() {
+    public function getFormattedMessage() { 
+        AttachmentBBCode::setObjectID($this->newsID);
         MessageParser::getInstance()->setOutputType('text/html');
         return MessageParser::getInstance()->parse($this->message, $this->enableSmilies, $this->enableHtml, $this->enableBBCodes);
       }
+      
+      public function getAttachments() {
+        if (MODULE_ATTACHMENT == 1 && $this->attachments) {
+            $attachmentList = new GroupedAttachmentList('de.codequake.linklist.link');
+            $attachmentList->getConditionBuilder()->add('attachment.objectID IN (?)', array($this->linkID));
+            $attachmentList->readObjects();
+            $attachmentList->setPermissions(array(
+                'canDownload' => WCF::getSession()->getPermission('user.linklist.link.canDownloadAttachments'),
+                'canViewPreview' => WCF::getSession()->getPermission('user.linklist.link.canDownloadAttachments')
+            ));
+
+            AttachmentBBCode::setAttachmentList($attachmentList);
+            return $attachmentList;
+        }
+        return null;
+    }
       
      public function getCommentList() {
         if($this->commentList === null) {

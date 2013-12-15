@@ -28,12 +28,15 @@ class LinkEditForm extends MessageForm {
     public $tags = array();
     public $url;
 
+    public $attachmentObjectType = 'de.codequake.cms.news';
 	public $showSignatureSetting = false;
 	
     public function readParameters(){
         parent::readParameters();
         if(isset($_GET['id'])) $this->linkID = intval($_GET['id']);
         $this->link = new Link($this->linkID);
+        // set attachment object id
+        $this->attachmentObjectID = $this->newsID;
         if($this->link->linkID == 0) throw new IllegalLinkException();
         
         //can edit & own
@@ -85,7 +88,8 @@ class LinkEditForm extends MessageForm {
                                     'link'  =>  $this->link,
                                     'imageType' => $this->imageType,
                                     'image' => $this->image,
-                                    'tags'      => $this->tags
+                                    'tags'      => $this->tags,
+                                    'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.linklist.link.allowedAttachmentExtensions')))));
 		));
 	}
 	
@@ -157,6 +161,7 @@ class LinkEditForm extends MessageForm {
                 'enableBBCodes' =>  $this->enableBBCodes
 			),
            'tags' => $this->tags,
+           'attachmentHandler' => $this->attachmentHandler,
            'isEdit' => 1
 		));
 		$this->objectAction->executeAction();

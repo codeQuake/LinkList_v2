@@ -91,6 +91,7 @@ class LinkPage extends AbstractPage{
                                     'commentObjectTypeID'=> $this->objectTypeID,
                                     'linkLikeData' => $this->likeData,
                                     'tags' => $this->tags,
+                                    'attachmentList' => $this->link->getAttachments(),
                                     'commentCanAdd' => $this->commentManager->canAdd($this->linkID),
                                     'lastCommentTime' => $this->commentList->getMinCommentTime(),
                                     'commentsPerPage' => $this->commentManager->getCommentsPerPage()));

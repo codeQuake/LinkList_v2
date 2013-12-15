@@ -12,8 +12,12 @@
       <name>de.codequake.linklist.category</name>
       <definitionname>com.woltlab.wcf.acl</definitionname>
     </type>
-  
-    
+  <!--attachments-->
+    <type>
+      <name>de.codequake.linklist.link</name>
+      <definitionname>com.woltlab.wcf.attachment.objectType</definitionname>
+      <classname>linklist\system\attachment\LinkAttachmentObjectType</classname>
+    </type>
     <!--dashboard-->
     <type>
       <name>de.codequake.linklist.CategoryListPage</name>

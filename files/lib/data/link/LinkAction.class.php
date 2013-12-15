@@ -12,6 +12,7 @@ use wcf\system\tagging\TagEngine;
 use wcf\system\search\SearchIndexManager;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\data\IClipboardAction;
+use wcf\system\attachment\AttachmentHandler;
 use wcf\system\clipboard\ClipboardHandler;
 use wcf\util\StringUtil;
 use wcf\system\WCF;
@@ -43,7 +44,17 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     public $link = null;
     
     public function create(){
+        // count attachments
+		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
+			$data['attachments'] = count($this->parameters['attachmentHandler']);
+		}
         $object = call_user_func(array($this->className, 'create'), $this->parameters['data']);
+        
+        // update attachments
+		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
+			$this->parameters['attachmentHandler']->updateObjectID($news->newsID);
+		}
+        
         if (!empty($this->parameters['tags'])) {
             TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $this->parameters['tags'], $object->languageID);
         }
@@ -54,6 +65,10 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
        return $object;
     }
     public function update(){
+        // count attachments
+		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
+			$this->parameters['data']['attachments'] = count($this->parameters['attachmentHandler']);
+		}
         parent::update();       
         $objectIDs = array();
         foreach ($this->objects as $object) {
@@ -199,12 +214,18 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
      }
      public function delete(){     
         $linkIDs = array();
+        $attachedLinksIDs = array();
         foreach($this->links as $link){
-            $linkIDs[] = $link->linkID;   
+            $linkIDs[] = $link->linkID; 
+            if($news->attachments != 0) $attachedLinkIDs[] = $link->linkID;
             LinkEditor::updateLinkCounter(array($link->userID => -1));
             $this->removeModeratedContent($link->linkID);
             LinkModificationLogHandler::getInstance()->delete($link, "");
         }
+        //remove attaches
+        if (!empty($attachedNewsIDs)) {
+			AttachmentHandler::removeAttachments('de.codequake.cms.news', $attachedNewsIDs);
+		}
         // remove activity points        
         UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $linkIDs);
         

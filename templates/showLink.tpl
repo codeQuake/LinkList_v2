@@ -1,5 +1,7 @@
 <div class="container marginTop containerPadding link" >
   {@$link->getFormattedMessage()}
+
+  {include file='attachments'}
   <footer class="linkOptions marginTop">
     <nav class="buttonGroupNavigation jsMobileNavigation">
       <ul class="smallButtons buttonGroup">
