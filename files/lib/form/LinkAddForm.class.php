@@ -42,7 +42,7 @@ class LinkAddForm extends MessageForm{
     public $image = null;
     public $imageType = 'none';
     
-    public $attachmentObjectType = 'de.codequake.cms.news';
+    public $attachmentObjectType = 'de.codequake.linklist.link';
     protected $link = null;
     
     public $objectTypeName = 'de.codequake.linklist.category';

@@ -28,7 +28,7 @@ class LinkEditForm extends MessageForm {
     public $tags = array();
     public $url;
 
-    public $attachmentObjectType = 'de.codequake.cms.news';
+    public $attachmentObjectType = 'de.codequake.linklist.link';
 	public $showSignatureSetting = false;
 	
     public function readParameters(){
