@@ -1,5 +1,4 @@
 {include file='documentHeader'}
-
 <head>
     <title>{lang}linklist.link.link{$action|ucfirst}{/lang} - {PAGE_TITLE|language}</title>
     {include file='headInclude'}
@@ -139,7 +138,7 @@
             
             </fieldset>
 			{if $useCaptcha}{include file='recaptcha'}{/if}
-            {include file='messageFormTabs' wysiwygContainerID='text' attachmentHandler=null}
+            {include file='messageFormTabs' wysiwygContainerID='text'}
              <div class="formSubmit">
                  <input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
 				 {@SECURITY_TOKEN_INPUT_TAG}

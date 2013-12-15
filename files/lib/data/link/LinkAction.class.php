@@ -52,7 +52,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         
         // update attachments
 		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
-			$this->parameters['attachmentHandler']->updateObjectID($news->newsID);
+			$this->parameters['attachmentHandler']->updateObjectID($object->linkID);
 		}
         
         if (!empty($this->parameters['tags'])) {
@@ -217,14 +217,14 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         $attachedLinksIDs = array();
         foreach($this->links as $link){
             $linkIDs[] = $link->linkID; 
-            if($news->attachments != 0) $attachedLinkIDs[] = $link->linkID;
+            if($link->attachments != 0) $attachedLinkIDs[] = $link->linkID;
             LinkEditor::updateLinkCounter(array($link->userID => -1));
             $this->removeModeratedContent($link->linkID);
             LinkModificationLogHandler::getInstance()->delete($link, "");
         }
         //remove attaches
-        if (!empty($attachedNewsIDs)) {
-			AttachmentHandler::removeAttachments('de.codequake.cms.news', $attachedNewsIDs);
+        if (!empty($attachedLinkIDs)) {
+			AttachmentHandler::removeAttachments('de.codequake.linklist.link', $attachedLinkIDs);
 		}
         // remove activity points        
         UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $linkIDs);

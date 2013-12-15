@@ -22,6 +22,7 @@
             <h1>{$link->getTitle()|language}</h1>
 			{if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
     </header>
+	{assign var='objectID' value=$link->linkID}
     	<section class="linkContent">
 			{include file='showLink' application='linklist'}
 			{if MODULE_LINKLIST_COMMENTS}
