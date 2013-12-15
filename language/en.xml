@@ -278,6 +278,11 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
     <item name="wcf.acp.group.option.admin.linklist.category.canDeleteCategory"><![CDATA[Can delete categories]]></item>
     <item name="wcf.acp.group.option.admin.linklist.category.canEditCategory"><![CDATA[Can edit categories]]></item>
     <item name="wcf.acp.group.option.admin.linklist.data.canImportData"><![CDATA[Can import data]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canUploadAttachment"><![CDATA[Can attach files]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.attachmentMaxSize"><![CDATA[Maximum filesize]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.allowedAttachmentExtensions"><![CDATA[Allowed file extensions]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.canDownloadAttachments"><![CDATA[Can download attachments]]></item>
+    <item name="wcf.acp.group.option.user.linklist.link.maxAttachmentCount"><![CDATA[Maximum number of attachments per link]]></item>
   </category>
 
   <category name="wcf.tagging">
