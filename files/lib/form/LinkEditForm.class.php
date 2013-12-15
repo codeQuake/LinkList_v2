@@ -36,7 +36,7 @@ class LinkEditForm extends MessageForm {
         if(isset($_GET['id'])) $this->linkID = intval($_GET['id']);
         $this->link = new Link($this->linkID);
         // set attachment object id
-        $this->attachmentObjectID = $this->newsID;
+        $this->attachmentObjectID = $this->linkID;
         if($this->link->linkID == 0) throw new IllegalLinkException();
         
         //can edit & own
@@ -90,7 +90,7 @@ class LinkEditForm extends MessageForm {
                                     'image' => $this->image,
                                     'tags'      => $this->tags,
                                     'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.linklist.link.allowedAttachmentExtensions')))));
-		));
+		
 	}
 	
     public function readFormParameters() {
