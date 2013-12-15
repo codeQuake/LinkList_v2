@@ -46,7 +46,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
     public function create(){
         // count attachments
 		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
-			$data['attachments'] = count($this->parameters['attachmentHandler']);
+			$this->parameters['data']['attachments'] = count($this->parameters['attachmentHandler']);
 		}
         $object = call_user_func(array($this->className, 'create'), $this->parameters['data']);
         

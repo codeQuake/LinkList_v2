@@ -68,7 +68,6 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
                 'canDownload' => WCF::getSession()->getPermission('user.linklist.link.canDownloadAttachments'),
                 'canViewPreview' => WCF::getSession()->getPermission('user.linklist.link.canDownloadAttachments')
             ));
-
             AttachmentBBCode::setAttachmentList($attachmentList);
             return $attachmentList;
         }
