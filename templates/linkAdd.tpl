@@ -5,6 +5,7 @@
 	<script type="text/javascript">
 		//<![CDATA[
 		$(function() {
+			new WCF.Label.Chooser({ {implode from=$labelIDs key=groupID item=labelID}{@$groupID}: {@$labelID}{/implode} }, '#messageContainer');
 			WCF.Message.Submit.registerButton('text', $('#messageContainer > .formSubmit > input[type=submit]'));
 			new WCF.Message.FormGuard();
 		});
@@ -21,7 +22,7 @@
 
     {include file='formError'}
 
-    <form id="messageContainer" class="jsFormGuard" method="post" action="{if $action=='add'}{link controller='LinkAdd' application='linklist'}{/link}{else}{link controller='LinkEdit' object=$link application='linklist'}{/link}{/if}" id="link{$action|ucfirst}Form" enctype="multipart/form-data">
+    <form id="messageContainer" class="jsFormGuard" method="post" action="{if $action=='add'}{link controller='LinkAdd' application='linklist' id=$categoryID}{/link}{else}{link controller='LinkEdit' object=$link application='linklist'}{/link}{/if}" id="link{$action|ucfirst}Form" enctype="multipart/form-data">
         {if $linkID|isset}<input type="hidden" name="linkID" value="{$linkID}" />{/if}
         <div class="container containerPadding marginTop shadow">
             <fieldset>
@@ -61,7 +62,43 @@
                         </dd>
                     </dl>
                 {/if}
-
+				{if $labelGroups|count}
+				<dl{if $errorField == 'labelIDs'} class="formError"{/if}>
+					<dt><label>{lang}wcf.label.label{/lang}</label></dt>
+					<dd>
+						<ul class="labelList jsOnly">
+							{foreach from=$labelGroups item=labelGroup}
+								{if $labelGroup|count}
+									<li class="dropdown labelChooser" id="labelGroup{@$labelGroup->groupID}" data-group-id="{@$labelGroup->groupID}" data-force-selection="{if $labelGroup->forceSelection}true{else}false{/if}">
+										<div class="dropdownToggle" data-toggle="labelGroup{@$labelGroup->groupID}"><span class="badge label">{lang}wcf.label.none{/lang}</span></div>
+										<div class="dropdownMenu">
+											<ul class="scrollableDropdownMenu">
+												{foreach from=$labelGroup->getLabels() item=label}
+													<li data-label-id="{@$label->labelID}"><span><span class="badge label{if $label->getClassNames()} {@$label->getClassNames()}{/if}">{lang}{$label->label}{/lang}</span></span></li>
+												{/foreach}
+											</ul>
+										</div>
+									</li>
+								{/if}
+							{/foreach}
+						</ul>
+						<noscript>
+							{foreach from=$labelGroups item=labelGroup}
+								{if $labelGroup|count}
+									<select name="labelIDs[{@$labelGroup->groupID}]">
+										{foreach from=$labelGroup->getLabels() item=label}
+											<option value="{@$label->labelID}">{lang}{$label->label}{/lang}</option>
+										{/foreach}
+									</select>
+								{/if}
+							{/foreach}
+						</noscript>
+						{if $errorField == 'labelIDs'}
+							<small class="innerError">{lang}wcf.label.error.notValid{/lang}</small>
+						{/if}
+					</dd>
+				</dl>
+			{/if}
                 <!--title-->
                 <dl>
                     <dt>

@@ -18,6 +18,18 @@
       <definitionname>com.woltlab.wcf.attachment.objectType</definitionname>
       <classname>linklist\system\attachment\LinkAttachmentObjectType</classname>
     </type>
+    <!-- label -->
+    <type>
+      <name>de.codequake.linklist.link</name>
+      <definitionname>com.woltlab.wcf.label.object</definitionname>
+      <classname>linklist\system\label\object\LinkLabelObjectHandler</classname>
+    </type>
+
+    <type>
+      <name>de.codequake.linklist.link</name>
+      <definitionname>com.woltlab.wcf.label.objectType</definitionname>
+      <classname>linklist\system\label\object\type\CategoryLabelObjectTypeHandler</classname>
+    </type>
     <!--dashboard-->
     <type>
       <name>de.codequake.linklist.CategoryListPage</name>

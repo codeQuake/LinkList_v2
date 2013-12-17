@@ -7,6 +7,8 @@ use linklist\data\link\LinkAction;
 use linklist\data\link\LinkList;
 use linklist\system\cache\builder\CategoryCacheBuilder;
 use wcf\system\WCF;
+use linklist\system\label\object\LinkLabelObjectHandler;
+use wcf\system\label\LabelHandler;
 use wcf\system\category\CategoryHandler;
 use wcf\form\MessageForm;
 use wcf\util\StringUtil;
@@ -37,6 +39,8 @@ class LinkAddForm extends MessageForm{
     public $category = null;
     public $categoryNodeList = null;
     public $url;
+    public $labelGroups = null;
+	public $labelIDs = array();
     public $tags = array();
     public $enableMultilingualism = true;
     public $image = null;
@@ -49,8 +53,7 @@ class LinkAddForm extends MessageForm{
     
     public function readParameters(){
         parent::readParameters();
-        if(isset($_GET['id']))        {
-            $this->categoryID = intval($_GET['id']);
+        if(isset($_GET['id'])) $this->categoryID = intval($_GET['id']);
             $category = CategoryHandler::getInstance()->getCategory($this->categoryID);
 
             if($category !== null) $this->category = new LinklistCategory($category);
@@ -59,7 +62,6 @@ class LinkAddForm extends MessageForm{
                 throw new IllegalLinkException();
             }
             $this->category->checkPermission(array('canViewCategory', 'canEnterCategory', 'canAddLink'));
-        }
     }
     
     public function readData(){
@@ -70,6 +72,13 @@ class LinkAddForm extends MessageForm{
                 'application' => 'linklist'
            ))
         ));
+        
+        //read labels
+        $groups = $this->category->getAvailableLabelGroups();
+        if (!empty($groups)) {
+			$this->labelGroups = LabelHandler::getInstance()->getLabelGroups(array_keys($groups));
+		}
+        
         // read categories
         $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
         $this->categoryNodeList = $categoryTree->getIterator();
@@ -102,6 +111,7 @@ class LinkAddForm extends MessageForm{
         if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
         if(isset($_POST['imageType'])) $this->imageType = StringUtil::trim($_POST['imageType']);
         
+		if (isset($_POST['labelIDs']) && is_array($_POST['labelIDs'])) $this->labelIDs = $_POST['labelIDs'];
         switch ($this->imageType){
             case 'upload':
             if(isset($_FILES['image'])) $this->image = $_FILES['image'];
@@ -124,14 +134,22 @@ class LinkAddForm extends MessageForm{
                                     'imageType' => $this->imageType,
                                     'image' => $this->image,
                                     'url'   =>  $this->url,
+			                        'labelGroups' => $this->labelGroups,
+			                        'labelIDs' => $this->labelIDs,
                                     'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.linklist.link.allowedAttachmentExtensions')))));
         
-
     }
+    
+    protected function validateLabelIDs() {
+		if (!LinkLabelObjectHandler::getInstance()->validateLabelIDs($this->labelIDs, 'canSetLabel')) {
+			throw new UserInputException('labelIDs');
+		}
+	}
     
     public function validate(){
         parent::validate();
         
+		$this->validateLabelIDs();
         //user
         if (WCF::getUser()->userID == 0) {
             if (empty($this->username)) {
@@ -205,7 +223,8 @@ class LinkAddForm extends MessageForm{
                         'image' =>$this->image,
                         'enableBBCodes' =>  $this->enableBBCodes,
                         'visits'    =>  0,
-                        'ipAddress'  =>  $_SERVER['REMOTE_ADDR']);
+                        'ipAddress'  =>  $_SERVER['REMOTE_ADDR'],
+			            'hasLabels' => (!empty($this->labelIDs) ? 1 : 0));
         $linkData = array('data' => $data,
                           'tags' => array(),
                           'attachmentHandler' => $this->attachmentHandler);
@@ -216,7 +235,11 @@ class LinkAddForm extends MessageForm{
         $resultvalues = $this->objectAction->executeAction();
         
         $this->link = $resultvalues['returnValues'];
-            
+        
+        // save labels
+		if (!empty($this->labelIDs)) {
+			LinkLabelObjectHandler::getInstance()->setLabels($this->labelIDs, $this->link->linkID);
+		}
             
             
         $this->saved();

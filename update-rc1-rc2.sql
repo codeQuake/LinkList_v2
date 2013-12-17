@@ -1,1 +1,0 @@
-﻿ALTER TABLE  `linklist1_link` ADD  `attachments` INT( 10 ) NULL DEFAULT  '0' AFTER  `time`

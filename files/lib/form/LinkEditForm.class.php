@@ -5,6 +5,8 @@ use linklist\data\link\Link;
 use wcf\system\tagging\TagEngine;
 use wcf\form\MessageForm;
 use wcf\util\StringUtil;
+use linklist\system\label\object\LinkLabelObjectHandler;
+use wcf\system\label\LabelHandler;
 use wcf\util\HeaderUtil;
 use wcf\util\FileUtil;
 use wcf\util\ArrayUtil;
@@ -21,8 +23,10 @@ class LinkEditForm extends MessageForm {
 
 	public $templateName = 'linkAdd';
     public $action = 'edit';
-    public $linkID;
-    public $link;
+    public $linkID = 0;
+    public $link = null;
+    public $labelGroups = null;
+	public $labelIDs = array();
     public $image = null;
     public $imageType = 'none';
     public $tags = array();
@@ -45,7 +49,7 @@ class LinkEditForm extends MessageForm {
         }
         else {            
             $this->link->getCategory()->checkPermission(array('canViewCategory', 'canEnterCategory', 'canEditLink'));
-        }
+            }
     }
 	public function readData() {
 		parent::readData();
@@ -54,7 +58,17 @@ class LinkEditForm extends MessageForm {
         $this->text = $this->link->message;
         $this->image = $this->link->image;
         if($this->image != null && $this->image != '') $this->imageType = 'link';
-        
+        //read labels
+        $groups = $this->category->getAvailableLabelGroups();
+        if (!empty($groups)) {
+			$this->labelGroups = LabelHandler::getInstance()->getLabelGroups(array_keys($groups));
+		}
+        $assignedLabels = LinkLabelObjectHandler::getInstance()->getAssignedLabels(array($this->link->linkID), true);
+				if (isset($assignedLabels[$this->link->linkID])) {
+					foreach ($assignedLabels[$this->link->linkID] as $label) {
+						$this->labelIDs[$label->groupID] = $label->labelID;
+					}
+				}
         WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategpryList')));
         foreach($this->link->getCategory()->getParentCategories()    AS $categoryItem) {
                                   WCF::getBreadcrumbs()->add(new Breadcrumb($categoryItem->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
@@ -88,6 +102,8 @@ class LinkEditForm extends MessageForm {
                                     'link'  =>  $this->link,
                                     'imageType' => $this->imageType,
                                     'image' => $this->image,
+			                        'labelGroups' => $this->labelGroups,
+			                        'labelIDs' => $this->labelIDs,
                                     'tags'      => $this->tags,
                                     'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.linklist.link.allowedAttachmentExtensions')))));
 		
@@ -98,6 +114,8 @@ class LinkEditForm extends MessageForm {
         if(isset($_POST['url'])) $this->url = StringUtil::trim($_POST['url']);
         if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
         if(isset($_POST['imageType'])) $this->imageType = StringUtil::trim($_POST['imageType']);
+        
+		if (isset($_POST['labelIDs']) && is_array($_POST['labelIDs'])) $this->labelIDs = $_POST['labelIDs'];
          switch ($this->imageType){
             case 'upload':
             if(isset($_FILES['image'])) $this->image = $_FILES['image'];
@@ -109,9 +127,16 @@ class LinkEditForm extends MessageForm {
         }
       }
       
+      protected function validateLabelIDs() {
+		if (!LinkLabelObjectHandler::getInstance()->validateLabelIDs($this->labelIDs, 'canSetLabel')) {
+			throw new UserInputException('labelIDs');
+		}
+	}
+      
     public function validate(){
         parent::validate();
         
+		$this->validateLabelIDs();
         //image ->link
        if($this->imageType == 'link'){
         if((strpos($this->image, 'png') === false) && (strpos($this->image, 'gif') === false) && (strpos($this->image, 'jpg') === false)) {
@@ -158,7 +183,8 @@ class LinkEditForm extends MessageForm {
 				'enableSmilies' => $this->enableSmilies,
                 'enableHtml'    =>  $this->enableHtml,
                 'image' =>$this->image,
-                'enableBBCodes' =>  $this->enableBBCodes
+                'enableBBCodes' =>  $this->enableBBCodes,
+                'hasLabels' => (!empty($this->labelIDs) ? 1 : 0)
 			),
            'tags' => $this->tags,
            'attachmentHandler' => $this->attachmentHandler,
@@ -166,6 +192,10 @@ class LinkEditForm extends MessageForm {
 		));
 		$this->objectAction->executeAction();
 		$this->link = new Link($this->linkID);
+        // save labels
+		if (!empty($this->labelIDs)) {
+			LinkLabelObjectHandler::getInstance()->setLabels($this->labelIDs, $this->link->linkID);
+		}
 		$this->saved();
 		
 		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('Link', array(

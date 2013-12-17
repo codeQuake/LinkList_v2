@@ -5,6 +5,8 @@ use wcf\system\category\CategoryPermissionHandler;
 use wcf\system\category\CategoryHandler;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\data\object\type\ObjectTypeCache;
+use wcf\data\label\group\LabelGroupList;
+use wcf\data\label\group\ViewableLabelGroup;
 use wcf\system\WCF;
 
 /** 
@@ -18,6 +20,7 @@ use wcf\system\WCF;
  
 class LinklistCategory extends AbstractDecoratedCategory{
      public static $objectTypeName = 'de.codequake.linklist.category';
+     public $availableLabelGroups = null;
      
      public function getPermission($permission = 'canViewCategory') {
         if ($this->permissions === null) {
@@ -62,4 +65,34 @@ class LinklistCategory extends AbstractDecoratedCategory{
     public function isAccessible() {
         return $this->getPermission('canViewCategory') && $this->getPermission('canEnterCategory');
         }
+        
+    public function getAvailableLabelGroups() {
+                if($this->availableLabelGroups === null) {
+                        // get object type
+                        $objectType = ObjectTypeCache::getInstance()->getObjectTypeByName('com.woltlab.wcf.label.objectType', 'de.codequake.linklist.category');
+                        if($objectType === null) {
+                                return null;
+                        }
+                        $availableLabelGroups = new LabelGroupList();
+                        $availableLabelGroups->sqlJoins .= "LEFT JOIN wcf" . WCF_N . "_label_group_to_object label_group_to_object ON (label_group.groupID = label_group_to_object.groupID)";
+                        
+                        $availableLabelGroups->getConditionBuilder()->add("label_group_to_object.objectTypeID = ?", array (
+                                        $objectType->objectTypeID 
+                        ));
+                        $availableLabelGroups->getConditionBuilder()->add("label_group_to_object.objectID = ?", array (
+                                        $this->categoryID 
+                        ));
+                        
+                        $availableLabelGroups->readObjects();
+                        
+                        $this->availableLabelGroups = $availableLabelGroups->getObjects();
+                        
+                        foreach($this->availableLabelGroups as $key => $labelGroup) {
+                                $this->availableLabelGroups[$key] = new ViewableLabelGroup($labelGroup);
+                        }
+                }
+                
+                return $this->availableLabelGroups;
+        }
+
     }
