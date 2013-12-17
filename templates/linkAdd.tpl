@@ -2,7 +2,7 @@
 <head>
     <title>{lang}linklist.link.link{$action|ucfirst}{/lang} - {PAGE_TITLE|language}</title>
     {include file='headInclude'}
-	<script type="text/javascript">
+	<script data-relocate="true">
 		//<![CDATA[
 		$(function() {
 			new WCF.Label.Chooser({ {implode from=$labelIDs key=groupID item=labelID}{@$groupID}: {@$labelID}{/implode} }, '#messageContainer');
