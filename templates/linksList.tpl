@@ -15,6 +15,10 @@
             <div class="containerHeadline">
               <h3>
                 {if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
+			{foreach from=$link->getLabels() item=label}
+				<span class="label badge{if $label->getClassNames()} {$label->getClassNames()}{/if}">{lang}{$label->label}{/lang}</span>
+			{/foreach}
+
                 <a data-link-id="{@$link->linkID}" class="linklistLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
                 {if MODULE_LIKE && $__wcf->getSession()->getPermission('user.like.canViewLike') && $link->hasLikes() && LINKLIST_ENABLE_LIKES}<span class="likesBadge badge jsTooltip {if $link->cumulativeLikes > 0}green{elseif $link->cumulativeLikes
                   < 0}red{/if}" title="{lang likes=$link->countLikes()->likes dislikes=$link->countLikes()->dislikes}wcf.like.tooltip{/lang}">{if $link->cumulativeLikes > 0}+{elseif $link->cumulativeLikes == 0}&plusmn;{/if}{#$link->cumulativeLikes}

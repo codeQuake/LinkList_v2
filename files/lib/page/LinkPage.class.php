@@ -6,6 +6,7 @@ use wcf\system\exception\IllegalLinkException;
 use wcf\system\breadcrumb\Breadcrumb;
 use wcf\system\request\LinkHandler;
 use wcf\system\comment\CommentHandler;
+use linklist\system\label\object\LinkLabelObjectHandler;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\tagging\TagEngine;
 use wcf\system\like\LikeHandler;
@@ -50,7 +51,15 @@ class LinkPage extends AbstractPage{
           'object' => $this->link->getCategory()
             ))));
             
-            
+            // fetch labels
+		    if ($this->link->hasLabels) {
+			    $assignedLabels = LinkLabelObjectHandler::getInstance()->getAssignedLabels(array($this->link->linkID));
+			    if (isset($assignedLabels[$this->link->linkID])) {
+				    foreach ($assignedLabels[$this->link->linkID] as $label) {
+					    $this->link->addLabel($label);
+				    }
+			    }
+		    }
             //comments
             $this->objectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.linklist.linkComment');
             $objectType = CommentHandler::getInstance()->getObjectType($this->objectTypeID);

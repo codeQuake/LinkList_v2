@@ -11,6 +11,7 @@ use wcf\data\IUserContent;
 use wcf\data\IMessage;
 use wcf\data\object\type\ObjectTypeCache;
 use wcf\data\category\Category;
+use wcf\data\label\Label;
 use wcf\data\user\User;
 use wcf\system\tagging\TagEngine;
 use wcf\data\user\UserProfile;
@@ -36,7 +37,8 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
      */
     protected static $databaseTableName = 'link';
     protected static $databaseTableIndexName = 'linkID';
-    public $commentList;
+    public $commentList = array();
+    public $labels = array();
     
     public function __construct($id, $row = null, $object = null){
         if ($id !== null) {
@@ -74,6 +76,24 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
         return null;
     }
       
+    public function addLabel(Label $label) {
+		$this->labels[$label->labelID] = $label;
+	}
+    
+    public function getLabels() {
+		return $this->labels;
+	}
+    
+    
+    public function getPrimaryLabel() {
+		if (!$this->hasLabels()) return null;
+		
+		foreach ($this->labels as $label) return $label;
+	}
+    
+    public function hasLabels() {
+		return (count($this->labels)) ? true : false;
+	}
      public function getCommentList() {
         if($this->commentList === null) {
             $objectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.linklist.linkComment');
