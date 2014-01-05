@@ -70,6 +70,7 @@ class LinklistCategory extends AbstractDecoratedCategory{
                 if($this->availableLabelGroups === null) {
                         // get object type
                         $objectType = ObjectTypeCache::getInstance()->getObjectTypeByName('com.woltlab.wcf.label.objectType', 'de.codequake.linklist.category');
+                        
                         if($objectType === null) {
                                 return null;
                         }

@@ -21,7 +21,7 @@
     <!-- label -->
     <type>
       <name>de.codequake.linklist.link</name>
-      <definitionname>com.woltlab.wcf.label.object</definitionname>
+      <definitionname>com.woltlab.wcf.label.objectType</definitionname>
       <classname>linklist\system\label\object\LinkLabelObjectHandler</classname>
     </type>
 
