@@ -307,4 +307,8 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="wcf.user.notification.de.codequake.linklist.linkComment.response.notification.commentResponse"><![CDATA[Neue Antwort auf einen Ihrer Kommentare zu einem Link]]></item>
     <item name="wcf.user.notification.de.codequake.linklist.linkComment.response.notification.commentResponseOwner"><![CDATA[Neue Antwort zu einem Kommentar zu einem Ihrer Links]]></item>
   </category>
+
+  <category name="wcf.acp.label">
+    <item name="wcf.acp.label.container.de.codequake.linklist.category"><![CDATA[Linklist]]></item>
+  </category>
 </language>
