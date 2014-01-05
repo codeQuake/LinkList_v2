@@ -142,10 +142,8 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
     <item name="wcf.acp.option.linklist_most_limit"><![CDATA[Number of mostvisited links]]></item>
     <item name="wcf.acp.option.linklist_index_stats"><![CDATA[Statistics]]></item>
     <item name="wcf.acp.option.linklist_index_wio"><![CDATA[Show user-online-list]]></item>
-    <item name="wcf.acp.option.linklist_index_wio_noguests"><![CDATA[Only count registered users
-.]]></item>
-    <item name="wcf.acp.option.linklist_index_wio_legend"><![CDATA[Show legend of user groups
-]]></item>
+    <item name="wcf.acp.option.linklist_index_wio_noguests"><![CDATA[Only count registered users]]></item>
+    <item name="wcf.acp.option.linklist_index_wio_legend"><![CDATA[Show legend of user groups]]></item>
   </category>
 
   <category name="wcf.acl.option">
