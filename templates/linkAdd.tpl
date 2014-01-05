@@ -47,10 +47,10 @@
                 </dl>
                 {/if}
                 <!--category-->
-                {if $action == 'add'}
+
                     <dl>
                         <dt>
-                            <label for="category">{lang}linklist.link.link{$action|ucfirst}.category{/lang}</label>
+                            <label for="category">{lang}linklist.link.linkAdd.category{/lang}</label>
                         </dt>
                         <dd>
                             <select id="category" name="category" required="required">
@@ -61,7 +61,6 @@
                             </select>
                         </dd>
                     </dl>
-                {/if}
 				{if $labelGroups|count}
 				<dl{if $errorField == 'labelIDs'} class="formError"{/if}>
 					<dt><label>{lang}wcf.label.label{/lang}</label></dt>

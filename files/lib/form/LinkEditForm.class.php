@@ -1,8 +1,12 @@
 <?php
 namespace linklist\form;
+use linklist\data\category\LinklistCategoryNodeTree;
+use linklist\data\category\LinklistCategory;
 use linklist\data\link\LinkAction;
+use linklist\system\cache\builder\CategoryCacheBuilder;
 use linklist\data\link\Link;
 use wcf\system\tagging\TagEngine;
+use wcf\system\category\CategoryHandler;
 use wcf\form\MessageForm;
 use wcf\util\StringUtil;
 use linklist\system\label\object\LinkLabelObjectHandler;
@@ -23,6 +27,9 @@ class LinkEditForm extends MessageForm {
 
 	public $templateName = 'linkAdd';
     public $action = 'edit';
+    public $categoryID = 0;
+    public $category = null;
+    public $categoryNodeList = null;
     public $linkID = 0;
     public $link = null;
     public $labelGroups = null;
@@ -32,7 +39,8 @@ class LinkEditForm extends MessageForm {
     public $tags = array();
     public $url;
 
-    public $attachmentObjectType = 'de.codequake.linklist.link';
+    public $attachmentObjectType = 'de.codequake.linklist.link';    
+    public $objectTypeName = 'de.codequake.linklist.category';
 	public $showSignatureSetting = false;
 	
     public function readParameters(){
@@ -53,6 +61,10 @@ class LinkEditForm extends MessageForm {
     }
 	public function readData() {
 		parent::readData();
+        // read categories
+        $categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
+        $this->categoryNodeList = $categoryTree->getIterator();
+        
 		$this->subject = $this->link->getTitle();
         $this->url = $this->link->url;
         $this->text = $this->link->message;
@@ -96,7 +108,8 @@ class LinkEditForm extends MessageForm {
 	public function assignVariables() {
 		parent::assignVariables();
 		
-		WCF::getTPL()->assign(array(
+		WCF::getTPL()->assign(array('categoryNodeList'  =>  $this->categoryNodeList,
+                                    'categoryID'    =>  $this->categoryID,
 			                        'action'    =>  $this->action,
                                     'url'   =>  $this->url,
                                     'link'  =>  $this->link,
@@ -112,6 +125,7 @@ class LinkEditForm extends MessageForm {
     public function readFormParameters() {
         parent::readFormParameters();       
         if(isset($_POST['url'])) $this->url = StringUtil::trim($_POST['url']);
+        if(isset($_POST['category'])) $this->categoryID = intval($_POST['category']);
         if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
         if(isset($_POST['imageType'])) $this->imageType = StringUtil::trim($_POST['imageType']);
         
@@ -179,6 +193,7 @@ class LinkEditForm extends MessageForm {
 				'message' => $this->text,
 				'url' => $this->url,
 				'subject' => $this->subject,
+                'categoryID'    =>  $this->categoryID,
 				'lastChangeTime' => TIME_NOW,
 				'enableSmilies' => $this->enableSmilies,
                 'enableHtml'    =>  $this->enableHtml,
