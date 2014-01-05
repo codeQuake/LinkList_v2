@@ -6,7 +6,7 @@
 		{foreach from=$objects item=link}
 		{if $link->isVisible()}
 			<li id="link{$link->linkID}" class="jsClipboardObject link {if $link->isDeleted}linkDeleted{/if} {if !$link->isActive}linkDisabled{/if}" {if $link->isDeleted}data-is-deleted="1"{/if} {if !$link->isActive}data-is-active="0"{/if}>
-				<input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" style="float:left;"/>
+				{if $link->canTrash() || $link->canDelete() || $link->canToggle()}<input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" style="float:left;"/>{/if}
         <div class="box128">
           <div style="height: 128px; width: 128px;">
             <a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>{@$link->getImage(128)}</a>

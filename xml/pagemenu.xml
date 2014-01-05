@@ -4,6 +4,7 @@
 		<pagemenuitem name="linklist.pageMenu.index">
 			<controller><![CDATA[linklist\page\CategoryListPage]]></controller>
 			<position>header</position>
+      <permissions>user.linklist.category.canViewCategory</permissions>
 		</pagemenuitem>
 	</import>
 </data>
