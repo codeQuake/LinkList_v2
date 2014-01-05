@@ -21,12 +21,12 @@
     <!-- label -->
     <type>
       <name>de.codequake.linklist.link</name>
-      <definitionname>com.woltlab.wcf.label.objectType</definitionname>
+      <definitionname>com.woltlab.wcf.label.object</definitionname>
       <classname>linklist\system\label\object\LinkLabelObjectHandler</classname>
     </type>
 
     <type>
-      <name>de.codequake.linklist.link</name>
+      <name>de.codequake.linklist.category</name>
       <definitionname>com.woltlab.wcf.label.objectType</definitionname>
       <classname>linklist\system\label\object\type\CategoryLabelObjectTypeHandler</classname>
     </type>
