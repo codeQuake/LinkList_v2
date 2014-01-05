@@ -65,22 +65,24 @@ class LinklistExportAction extends AbstractAction{
             $xml->writeElement('description', $cat['description']);
             $xml->endElement();
         }
-        foreach($this->data['linkData'] as $link){
-            $xml->startElement('linkListLink');
-            $xml->writeElement('linkID', $link['linkID']);
-            $xml->writeElement('categoryID', $link['categoryID']);            
-            $xml->writeElement('subject', $link['subject']);            
-            $xml->writeElement('message', $link['message']);
-            $xml->writeElement('userID', $link['userID']);
-            $xml->writeElement('username', $link['username']);
-            $xml->writeElement('url', $link['url']);
-            $xml->writeElement('time', $link['time']);
-            $xml->writeElement('visits', $link['visits']);
-            $xml->writeElement('enableSmilies', $link['enableSmilies']);
-            $xml->writeElement('enableBBCodes', $link['enableBBCodes']);
-            $xml->writeElement('enableHtml', $link['enableHtml']);            
-            $xml->writeElement('ipAddress', $link['ipAddress']);
-            $xml->endElement();
+        if(isset($this->data['linkData'])){
+            foreach($this->data['linkData'] as $link){
+                $xml->startElement('linkListLink');
+                $xml->writeElement('linkID', $link['linkID']);
+                $xml->writeElement('categoryID', $link['categoryID']);            
+                $xml->writeElement('subject', $link['subject']);            
+                $xml->writeElement('message', $link['message']);
+                $xml->writeElement('userID', $link['userID']);
+                $xml->writeElement('username', $link['username']);
+                $xml->writeElement('url', $link['url']);
+                $xml->writeElement('time', $link['time']);
+                $xml->writeElement('visits', $link['visits']);
+                $xml->writeElement('enableSmilies', $link['enableSmilies']);
+                $xml->writeElement('enableBBCodes', $link['enableBBCodes']);
+                $xml->writeElement('enableHtml', $link['enableHtml']);            
+                $xml->writeElement('ipAddress', $link['ipAddress']);
+                $xml->endElement();
+            }
         }
         $xml->endDocument(LINKLIST_DIR.'tmp/linkListData.xml');
     }
