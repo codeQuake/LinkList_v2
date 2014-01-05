@@ -9,7 +9,7 @@
 				<input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}" style="float:left;"/>
         <div class="box128">
           <div style="height: 128px; width: 128px;">
-            <a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}">{@$link->getImage(128)}</a>
+            <a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>{@$link->getImage(128)}</a>
           </div>
           <div class="details">
             <div class="containerHeadline">
@@ -58,7 +58,7 @@
             <nav class="buttonGroupNavigation linkNavigation jsMobileNavigation">
               <ul class="buttonGroup smallButtons">
                 <li>
-                  <a class="button" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}">
+                  <a class="button" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>
                     <span class="icon-link icon icon16"></span>
                     <span>{lang}linklist.link.visit{/lang}</span>
                   </a>

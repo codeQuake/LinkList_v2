@@ -6,7 +6,7 @@
     <nav class="buttonGroupNavigation jsMobileNavigation">
       <ul class="smallButtons buttonGroup">
         <li>
-          <a class="button small" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}">
+          <a class="button small" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>
             <span class="icon icon16 icon-link"></span>
             <span>{lang}linklist.link.visit{/lang}</span>
           </a>

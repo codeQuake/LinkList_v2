@@ -2,7 +2,7 @@
 			<fieldset>
 			<legend class="invisible">{lang}linklist.link.sidebar.image{/lang}</legend>
 			<div class="userAvatar">
-				<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}">{@$link->getImage()}</a>
+				<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>{@$link->getImage()}</a>
 			</div>
 		</fieldset>
             <fieldset class="linklistLinkSidebar">
@@ -90,7 +90,7 @@
             <fieldset class="linklistSidebarButton">
                     <legend></legend>
                 <div>
-                    <a class="button visitButton" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}"><h3 style="font-size:120%;">{lang}linklist.link.sidebar.visit{/lang}</h3></a>
+                    <a class="button visitButton" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}><h3 style="font-size:120%;">{lang}linklist.link.sidebar.visit{/lang}</h3></a>
                 </div>
             </fieldset>
     {/capture}

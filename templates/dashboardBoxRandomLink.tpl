@@ -3,7 +3,7 @@
 			<li id="link{$randomLink->linkID}" class=" link {if $randomLink->isDeleted}linkDeleted{/if} {if !$randomLink->isActive}linkDisabled{/if}" {if $randomLink->isDeleted}data-is-deleted="1"{/if} {if !$randomLink->isActive}data-is-active="0"{/if}>
 				<div class="box128">
         <div style="height: 128px; width: 128px;">
-          <a class="framed" href="{link application='linklist' controller='LinkVisit' object=$randomLink}{/link}">{@$randomLink->getImage(128)}</a>
+          <a class="framed" href="{link application='linklist' controller='LinkVisit' object=$randomLink}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>{@$randomLink->getImage(128)}</a>
         </div>
 
         <div class="details">
@@ -51,7 +51,7 @@
           <nav class="jsMobileNavigation buttonGroupNavigation linkNavigation">
             <ul class="buttonGroup smallButtons">
               <li>
-                <a class="button" href="{link application='linklist' controller='LinkVisit' object=$randomLink}{/link}">
+                <a class="button" href="{link application='linklist' controller='LinkVisit' object=$randomLink}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>
                   <span class="icon-link icon icon16"></span>
                   <span>{lang}linklist.link.visit{/lang}</span>
                 </a>
