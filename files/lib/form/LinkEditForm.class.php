@@ -142,7 +142,7 @@ class LinkEditForm extends MessageForm {
       }
       
       protected function validateLabelIDs() {
-		if (!LinkLabelObjectHandler::getInstance()->validateLabelIDs($this->labelIDs, 'canSetLabel')) {
+		if (!LinkLabelObjectHandler::getInstance()->validateLabelIDs($this->labelIDs)) {
 			throw new UserInputException('labelIDs');
 		}
 	}
