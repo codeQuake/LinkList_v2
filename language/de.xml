@@ -309,6 +309,6 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
   </category>
 
   <category name="wcf.acp.label">
-    <item name="wcf.acp.label.container.de.codequake.linklist.category"><![CDATA[Linklist]]></item>
+    <item name="wcf.acp.label.container.de.codequake.linklist.category"><![CDATA[Linkliste]]></item>
   </category>
 </language>
