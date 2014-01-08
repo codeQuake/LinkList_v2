@@ -231,6 +231,7 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
     <item name="wcf.moderation.type.de.codequake.linklist.moderation.offline"><![CDATA[Offline Report]]></item>
     <item name="wcf.moderation.type.de.codequake.linklist.link"><![CDATA[Link]]></item>
     <item name="wcf.moderation.deletedContent.objectType.de.codequake.linklist.link"><![CDATA[Links]]></item>
+    <item name="wcf.moderation.deletedContent.objectType.de.codequake.linklist.link"><![CDATA[Links]]></item>
   </category>
   <category name="linklist.moderation">
     <item name="linklist.moderation.offline"><![CDATA[Offline Report]]></item>
