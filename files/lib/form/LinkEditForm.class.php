@@ -81,7 +81,7 @@ class LinkEditForm extends MessageForm {
 						$this->labelIDs[$label->groupID] = $label->labelID;
 					}
 				}
-        WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategpryList')));
+        WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList')));
         foreach($this->link->getCategory()->getParentCategories()    AS $categoryItem) {
                                   WCF::getBreadcrumbs()->add(new Breadcrumb($categoryItem->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
                                       'application' => 'linklist',
