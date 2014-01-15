@@ -23,7 +23,7 @@ class CategoryListPage extends AbstractPage {
         /**
      * @see	wcf\page\AbstractPage::$enableTracking
      */
-    public $permissions = array('user.linklist.category.canViewCategory');
+    public $neededPermissions = array('user.linklist.category.canViewCategory');
     public $stats = array();
     public $enableTracking = true;
     public $categoryList = null;

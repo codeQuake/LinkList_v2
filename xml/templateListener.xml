@@ -8,12 +8,6 @@
       <eventname>copyright</eventname>
       <templatecode><![CDATA[{if $__linklist->isActiveApplication()}{lang}linklist.index.copyright{/lang}{/if}]]></templatecode>
     </templatelistener>
-    <templatelistener name="linklistStyles">
-      <environment>user</environment>
-      <templatename>headInclude</templatename>
-      <eventname>stylesheets</eventname>
-      <templatecode><![CDATA[<link rel="stylesheet/less" type="text/css" href="style/linklist.less" />]]></templatecode>
-    </templatelistener>
     
     <templatelistener name="logo">
       <environment>user</environment>
