@@ -79,4 +79,12 @@
       <templatecode><![CDATA[{include file='__logo' application='linklist'}]]></templatecode>
     </templatelistener>
   </import>
+
+  <delete>
+    <templatelistener name="linklistStyles">
+      <environment>user</environment>
+      <templatename>headInclude</templatename>
+      <eventname>stylesheets</eventname>
+    </templatelistener>
+  </delete>
 </data>
