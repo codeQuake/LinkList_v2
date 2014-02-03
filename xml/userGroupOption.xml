@@ -196,7 +196,7 @@
         <categoryname>user.linklist.link</categoryname>
         <optiontype>boolean</optiontype>
         <defaultvalue>1</defaultvalue>
-        <enableoptions>user.linklist.link.attachmentMaxSize,user.linklist.link.allowedAttachmentExtensions, user.linklist.link.maxAttachmentCount</enableoptions>
+        <enableoptions>user.linklist.link.attachmentMaxSize,user.linklist.link.allowedAttachmentExtensions,user.linklist.link.maxAttachmentCount</enableoptions>
         <options>module_attachment</options>
       </option>
       <option name="user.linklist.link.attachmentMaxSize">

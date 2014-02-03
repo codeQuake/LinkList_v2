@@ -1,6 +1,6 @@
 <?php
 namespace linklist\system\moderation\queue\activation;
-use linklist\data\link\LinkEditor;
+use linklist\data\link\LinkAction;
 use linklist\data\link\ViewableLink;
 use linklist\system\moderation\queue\AbstractLinkModerationQueueHandler;
 use wcf\data\moderation\queue\ModerationQueue;
@@ -18,11 +18,8 @@ class LinkModerationQueueActivationHandler extends AbstractLinkModerationQueueHa
 	
 
 	public function enableContent(ModerationQueue $queue) {
-		    $editor = new LinkEditor($this->getLink($queue->objectID));
-            $editor->update(array(
-                'isActive' => 1
-            ));
-            ModerationQueueActivationManager::getInstance()->removeModeratedContent('de.codequake.linklist.link', array($queue->objectID));
+		    $action = new LinkAction($this->getLink($queue->objectID), 'enable');
+            $action->executeAction();
 	}
 	
 	public function getDisabledContent(ViewableModerationQueue $queue) {
