@@ -69,6 +69,7 @@ class LinkEditForm extends MessageForm {
         $this->url = $this->link->url;
         $this->text = $this->link->message;
         $this->image = $this->link->image;
+        $this->categoryID = $this->link->categoryID;
         if($this->image != null && $this->image != '') $this->imageType = 'link';
         //read labels
         $groups = $this->link->getCategory()->getAvailableLabelGroups();
