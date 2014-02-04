@@ -136,6 +136,11 @@
       <!--moderation-->
       <type>
         <name>de.codequake.linklist.link</name>
+        <definitionname>com.woltlab.wcf.moderation.report</definitionname>
+        <classname>linklist\system\moderation\queue\report\LinkModerationQueueReportHandler</classname>
+      </type>
+      <type>
+        <name>de.codequake.linklist.link</name>
         <definitionname>com.woltlab.wcf.modifiableContent</definitionname>
       </type>
       <type>

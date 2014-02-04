@@ -5,6 +5,18 @@
 	{include file='headInclude' sandbox=false}
 	<link rel="canonical" href="{link application='linklist' controller='Link' object=$link}{/link}" />	
 	<script data-relocate="true" src="{@$__wcf->getPath()}js/WCF.Label{if !ENABLE_DEBUG_MODE}.min{/if}.js?v={@$__wcfVersion}"></script>
+	<script data-relocate="true" src="{@$__wcf->getPath()}js/WCF.Moderation{if !ENABLE_DEBUG_MODE}.min{/if}.js?v={@$__wcfVersion}"></script>
+	<script data-relocate="true">
+	  //<![CDATA[
+			$(function() {
+				WCF.Language.addObject({
+					'wcf.moderation.report.reportContent': '{lang}wcf.moderation.report.reportContent{/lang}',
+					'wcf.moderation.report.success': '{lang}wcf.moderation.report.success{/lang}'
+					});
+				new WCF.Moderation.Report.Content('de.codequake.linklist.link', '.jsReportLink');
+			});
+			//]]>
+	</script>
 </head>
 
 <body id="tpl{$templateName|ucfirst}">
