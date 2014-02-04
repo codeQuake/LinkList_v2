@@ -2,7 +2,7 @@
 			<fieldset>
 			<legend class="invisible">{lang}linklist.link.sidebar.image{/lang}</legend>
 			<div class="userAvatar">
-				<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>{@$link->getImage()}</a>
+				<a href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>{@$link->getImage()}</a>
 			</div>
 		</fieldset>
             <fieldset class="linklistLinkSidebar">
