@@ -25,8 +25,8 @@
 
 
 .linklistCategoryList li:last-child > div {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-bottom-left-radius:  @wcfContainerBorderRadius;
+    border-bottom-right-radius: @wcfContainerBorderRadius;
 }
 .linklistCategoryList .subCategory {
     margin-top: 7px;
@@ -71,4 +71,8 @@
 
 .linkContent .link .linkOptions nav {
     text-align: right;
+}
+
+.previewImage {
+    border-radius: @wcfContainerBorderRadius;
 }

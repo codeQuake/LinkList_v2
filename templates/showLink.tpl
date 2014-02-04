@@ -1,6 +1,6 @@
 <div class="container marginTop containerPadding link box256">
   <div>
-    <a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}><img src="http://api.webthumbnail.org?width=250&amp;height=250&amp;screen=1280&amp;format=png&amp;url={$link->url}" alt="Captured by webthumbnail.org" /></a>
+    <a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}><img src="http://api.webthumbnail.org?width=250&amp;height=250&amp;screen=1280&amp;format=png&amp;url={$link->url}" alt="Captured by webthumbnail.org" class="previewImage" /></a>
   </div>
   <div>
     {@$link->getFormattedMessage()}
