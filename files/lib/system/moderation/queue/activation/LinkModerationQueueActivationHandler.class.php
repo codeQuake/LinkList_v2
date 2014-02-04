@@ -18,8 +18,9 @@ class LinkModerationQueueActivationHandler extends AbstractLinkModerationQueueHa
 	
 
 	public function enableContent(ModerationQueue $queue) {
-		    $action = new LinkAction(array($this->getLink($queue->objectID)), 'enable');
+		    $action = new LinkAction(array($queue->objectID), 'enable');
             $action->executeAction();
+            
 	}
 	
 	public function getDisabledContent(ViewableModerationQueue $queue) {
