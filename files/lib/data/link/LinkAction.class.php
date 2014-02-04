@@ -20,6 +20,7 @@ use linklist\data\link\LinkList;
 use linklist\data\link\ViewableLinkList;
 use linklist\data\link\LinkEditor;
 use linklist\system\log\modification\LinkModificationLogHandler;
+use wcf\system\exception\UserInputException;
 
 /** 
  * @author  Jens Krumsieck
@@ -115,7 +116,8 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         if(!empty($this->links)) ClipboardHandler::getInstance()->unmark(array_keys($this->links), ClipboardHandler::getInstance()->getObjectTypeID('de.codequake.linklist.link'));
     }
     //trash
-    public function trash() {        
+    public function trash() {
+        if(empty($this->links)) $this->loadLinks();        
         foreach ($this->links as $link) {
             $editor = new LinkEditor($link);
             $editor->update(array(
@@ -147,6 +149,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
      }
      
      public function enable(){
+        if(empty($this->links)) $this->loadLinks();
         foreach ($this->links as $link) {
             $editor = new LinkEditor($link);
             $editor->update(array(
@@ -168,6 +171,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         }
      }
      public function disable(){
+        if(empty($this->links)) $this->loadLinks();
         foreach ($this->links as $link) {
             $editor = new LinkEditor($link);
             $editor->update(array(
@@ -192,6 +196,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         }
      }
      public function  restore(){
+        if(empty($this->links)) $this->loadLinks();
         foreach($this->links as $link){
             $editor = new LinkEditor($link);
             $editor->update(array(
@@ -212,7 +217,8 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
             }
         }
      }
-     public function delete(){     
+     public function delete(){
+        if(empty($this->links)) $this->loadLinks();     
         $linkIDs = array();
         $attachedLinksIDs = array();
         foreach($this->links as $link){
@@ -253,13 +259,12 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         }
 
         $list = new LinkList();
-        $list->getConditionBuilder()->add("link.linkID IN (?)", array($this->objectIDs));
+        $list->getConditionBuilder()->add("link.linkID IN (?)", $this->objectIDs);
         $list->sqlLimit = 0;
         $list->readObjects();
 
-        foreach ($list as $link) {
-            $this->links[$link->linkID] = $link;
-        }
+        $this->links = $list->getObjects();
+        
 
         if (empty($this->links)) {
             throw new UserInputException("objectIDs");
