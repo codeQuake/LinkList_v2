@@ -56,7 +56,7 @@
                             <select id="category" name="category" required="required">
                                 {foreach from=$categoryNodeList item=category}
                                 <!-- TODO: add acl--> 
-                                    <option value="{$category->categoryID}"{if $categoryID|isset && $categoryID == $category->categoryID} selected="selected"{/if}>{section name=i loop=$categoryNodeList->getDepth()}&nbsp;&raquo;&raquo;&nbsp;{/section}{$category->getTitle()}</option>
+                                    <option value="{$category->categoryID}"{if $categoryID|isset && $categoryID == $category->categoryID} selected="selected"{/if} {if $category->isMainCategory()}disabled="disabled"{/if}>{section name=i loop=$categoryNodeList->getDepth()}&nbsp;&raquo;&raquo;&nbsp;{/section}{$category->getTitle()}</option>
                                 {/foreach}
                             </select>
                         </dd>
