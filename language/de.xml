@@ -109,6 +109,8 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="linklist.acp.import"><![CDATA[Import/Export]]></item>
     <item name="linklist.acp.import.sourcefile"><![CDATA[Archiv hochladen]]></item>
     <item name="linklist.acp.export"><![CDATA[Um Ihre aktuellen Daten zu sichern klicken Sie <a href="{link controller='LinklistExport' application='linklist'}{/link}">hier</a>.]]></item>
+    <item name="linklist.acp.category.isMainCategory"><![CDATA[Kategorie zur Hauptkategorie machen]]></item>
+    <item name="linklist.acp.category.isMainCategory.description"><![CDATA[Sperrt zusätzlich die Kategorie für Links]]></item>
   </category>
   
   <category name="linklist.link.menu">

@@ -112,7 +112,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
         ClipboardHandler::getInstance()->removeItems(ClipboardHandler::getInstance()->getObjectTypeID('de.codequake.linklist.link'));
     }
     protected function unmarkItems() {
-        ClipboardHandler::getInstance()->unmark(array_keys($this->links), ClipboardHandler::getInstance()->getObjectTypeID('de.codequake.linklist.link'));
+        if(!empty($this->links)) ClipboardHandler::getInstance()->unmark(array_keys($this->links), ClipboardHandler::getInstance()->getObjectTypeID('de.codequake.linklist.link'));
     }
     //trash
     public function trash() {        

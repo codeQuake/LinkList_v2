@@ -109,7 +109,8 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
     <item name="linklist.acp.import"><![CDATA[Import/Export]]></item>
     <item name="linklist.acp.import.sourcefile"><![CDATA[Upload Archive]]></item>
     <item name="linklist.acp.export"><![CDATA[To save your current data, please click <a href="{link controller='LinklistExport' application='linklist'}{/link}">here</a>.]]></item>
-
+    <item name="linklist.acp.category.isMainCategory"><![CDATA[Category is main category]]></item>
+    <item name="linklist.acp.category.isMainCategory.description"><![CDATA[You can't add links to it, if it's a main category.]]></item>
   </category>
   
   <category name="linklist.link.menu">

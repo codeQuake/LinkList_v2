@@ -6,6 +6,7 @@ use wcf\system\category\CategoryHandler;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\data\object\type\ObjectTypeCache;
 use wcf\data\label\group\LabelGroupList;
+use linklist\data\category\LinklistCategoryCache;
 use wcf\data\label\group\ViewableLabelGroup;
 use wcf\system\WCF;
 
@@ -96,4 +97,26 @@ class LinklistCategory extends AbstractDecoratedCategory{
                 return $this->availableLabelGroups;
         }
 
+
+    
+    public function getVisits() {
+        $visits = LinklistCategoryCache::getInstance()->getVisits($this->categoryID);
+        foreach($this->getChildCategories() as $subCategory) {
+            $visits = $visits + LinklistCategoryCache::getInstance()->getVisits($subCategory->categoryID);
+        }
+        return $visits;
     }
+    public function getLinks() {
+        $links = LinklistCategoryCache::getInstance()->getLinks($this->categoryID);
+        foreach($this->getChildCategories() as $subCategory) {
+            $links = $links + LinklistCategoryCache::getInstance()->getLinks($subCategory->categoryID);
+        }
+        return  $links;
+    }
+    
+    public function isMainCategory(){
+        return isset($this->additionalData['isMainCategory']) ? $this->additionalData['isMainCategory'] : 0;
+    }
+    
+    
+}

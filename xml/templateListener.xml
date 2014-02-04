@@ -78,6 +78,13 @@
       <eventname>headerLogo</eventname>
       <templatecode><![CDATA[{include file='__logo' application='linklist'}]]></templatecode>
     </templatelistener>
+  
+    <templatelistener name="maincategory">
+      <environment>admin</environment>
+      <templatename>categoryAdd</templatename>
+      <eventname>dataFields</eventname>
+      <templatecode><![CDATA[{if $__linklist->isActiveApplication()}{include file='__mainCategory' application='linklist'}{/if}]]></templatecode>
+    </templatelistener>
   </import>
 
   <delete>

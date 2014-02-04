@@ -1,6 +1,15 @@
-<div class="container marginTop shadow " data-type="de.codequake.linklist.link">
-	<ol class="linklist containerList" data-type="de.codequake.linklist.link">
-			<li id="link{$randomLink->linkID}" class=" link {if $randomLink->isDeleted}linkDeleted{/if} {if !$randomLink->isActive}linkDisabled{/if}" {if $randomLink->isDeleted}data-is-deleted="1"{/if} {if !$randomLink->isActive}data-is-active="0"{/if}>
+<script data-relocate="true">
+  //<![CDATA[
+        $(function() {
+        $('.slideshowContainer').wcfSlideshow();
+        });
+        //]]>
+</script>
+
+<div class="container marginTop shadow slideshowContainer" data-type="de.codequake.linklist.link">
+	<ul class="linklist containerList" data-type="de.codequake.linklist.link">
+			 {foreach from=$randomLinks item=randomLink}
+       <li id="link{$randomLink->linkID}" class=" link {if $randomLink->isDeleted}linkDeleted{/if} {if !$randomLink->isActive}linkDisabled{/if}" {if $randomLink->isDeleted}data-is-deleted="1"{/if} {if !$randomLink->isActive}data-is-active="0"{/if}>
 				<div class="box128">
         <div style="height: 128px; width: 128px;">
           <a class="framed" href="{link application='linklist' controller='LinkVisit' object=$randomLink}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>{@$randomLink->getImage(128)}</a>
@@ -50,7 +59,7 @@
           </nav>
           <nav class="jsMobileNavigation buttonGroupNavigation linkNavigation">
             <ul class="buttonGroup smallButtons">
-              <li>
+              <li style="margin-right: 35px;">
                 <a class="button" href="{link application='linklist' controller='LinkVisit' object=$randomLink}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>
                   <span class="icon-link icon icon16"></span>
                   <span>{lang}linklist.link.visit{/lang}</span>
@@ -61,5 +70,6 @@
         </div>
       </div>
 			</li>
-	</ol>
+    {/foreach}
+	</ul>
 </div>

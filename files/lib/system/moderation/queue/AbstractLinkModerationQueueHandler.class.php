@@ -1,7 +1,7 @@
 <?php
 namespace linklist\system\moderation\queue;
 use linklist\data\link\Link;
-use linklist\data\link\LinkEditor;
+use linklist\data\link\LinkAction;
 use linklist\data\link\LinkList;
 use wcf\data\moderation\queue\ModerationQueue;
 use wcf\system\database\util\PreparedStatementConditionBuilder;
@@ -74,7 +74,7 @@ abstract class AbstractLinkModerationQueueHandler extends AbstractModerationQueu
 	public function removeContent(ModerationQueue $queue, $message) {
         if ($this->isValid($queue->objectID)) {
 		    $link = new Link($queue->objectID);
-            $action = new LinkAction($link, 'trash');
+            $action = new LinkAction(array($link), 'trash');
             $action->executeAction();
          }
 	}

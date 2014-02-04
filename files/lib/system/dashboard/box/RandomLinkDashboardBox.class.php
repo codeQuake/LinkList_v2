@@ -8,23 +8,23 @@ use wcf\system\WCF;
 
 class RandomLinkDashboardBox extends AbstractContentDashboardBox{
     
-    public $link = null;
+    public $links = null;
     
     public function init(DashboardBox $box, IPage $page) {
      parent::init($box, $page);
             $list = new ViewableLinkList();
             $list->sqlOrderBy = 'RAND()';
-            $list->sqlLimit = 1;
+            $list->sqlLimit = 5;
             $list->readObjects();
             foreach($list->getObjects() as $item){
-                $this->link = $item;
+                $this->links[] = $item;
             }
     }
 
      protected function render(){
-        if(isset($this->link) && $this->link->linkID != 0){
+        if(isset($this->links)){
             WCF::getTPL()->assign(array(
-            'randomLink' => $this->link
+            'randomLinks' => $this->links
             ));
             return WCF::getTPL()->fetch('dashboardBoxRandomLink', 'linklist');
             }

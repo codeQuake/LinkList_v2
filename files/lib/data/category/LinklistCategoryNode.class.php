@@ -18,6 +18,7 @@ class LinklistCategoryNode extends CategoryNode{
     protected $visits = null;
     public $parentNode = null;
     
+    protected static $baseClass = 'linklist\data\category\LinklistCategory';
     public $objectTypeName = 'de.codequake.linklist.category';
     
     protected function fulfillsConditions(DatabaseObject $category) {
@@ -43,6 +44,10 @@ class LinklistCategoryNode extends CategoryNode{
             $links = $links + LinklistCategoryCache::getInstance()->getLinks($subCategory->categoryID);
         }
         return  $links;
+    }
+    
+    public function isMainCategory(){
+        return isset($this->additionalData['isMainCategory']) ? $this->additionalData['isMainCategory'] : 0;
     }
     
     
