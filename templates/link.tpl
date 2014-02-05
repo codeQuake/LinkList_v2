@@ -1,7 +1,7 @@
 {include file='documentHeader'}
 
 <head>
-    <title>{$link->getTitle()|language} - {PAGE_TITLE}</title>    
+    <title>{$link->getTitle()|language} - {PAGE_TITLE|language}</title>    
 	{include file='headInclude' sandbox=false}
 	<link rel="canonical" href="{link application='linklist' controller='Link' object=$link}{/link}" />	
 	<script data-relocate="true" src="{@$__wcf->getPath()}js/WCF.Label{if !ENABLE_DEBUG_MODE}.min{/if}.js?v={@$__wcfVersion}"></script>
