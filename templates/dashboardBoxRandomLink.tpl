@@ -37,7 +37,7 @@
             <dt>{lang}linklist.links.visits{/lang}</dt>
             <dd>{$randomLink->visits}</dd>
           </dl>
-          <div class="box24">{@$randomLink->getExcerpt()}</div>
+          <div>{@$randomLink->getExcerpt()}</div>
           {if $randomLink->getTags()|count && MODULE_TAGGING && LINKLIST_ENABLE_TAGS}
           <ul class="tagList">
             {foreach from=$randomLink->getTags() item=tag}

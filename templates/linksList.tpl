@@ -35,7 +35,7 @@
               <dt>{lang}linklist.links.visits{/lang}</dt>
               <dd>{$link->visits}</dd>
             </dl>
-            <div class="box24">{@$link->getExcerpt()}</div>
+            <div>{@$link->getExcerpt()}</div>
             {if $link->getTags()|count && MODULE_TAGGING && LINKLIST_ENABLE_TAGS}
             <ul class="tagList">
               {foreach from=$link->getTags() item=tag}
