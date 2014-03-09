@@ -30,7 +30,7 @@
 		{hascontent}<h2>{content}{$category->description|language}{/content}</h2>{/hascontent}
 
 </header>
-
+{include file='userNotice'}
 <section id="dashboard">
 	{if $__boxContent|isset}{@$__boxContent}{/if}
 </section>

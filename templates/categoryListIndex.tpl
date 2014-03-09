@@ -19,6 +19,7 @@
 	<h1>{lang}linklist.index.title{/lang}</h1>
 
 </header>
+{include file='userNotice'}
 <section id="dashboard">
 	{if $__boxContent|isset}{@$__boxContent}{/if}
 </section>

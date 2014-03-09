@@ -19,7 +19,7 @@
             <h1>{lang}linklist.link.link{$action|ucfirst}{/lang}</h1>
         </div>
     </header>
-
+	{include file='userNotice'}
     {include file='formError'}
 
     <form id="messageContainer" class="jsFormGuard" method="post" action="{if $action=='add'}{link controller='LinkAdd' application='linklist' id=$categoryID}{/link}{else}{link controller='LinkEdit' object=$link application='linklist'}{/link}{/if}" id="link{$action|ucfirst}Form" enctype="multipart/form-data">

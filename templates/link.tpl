@@ -40,6 +40,7 @@
 			{/foreach}
 		</ul>
     </header>
+	{include file='userNotice'}
 	{assign var='objectID' value=$link->linkID}
     	<section class="linkContent">
 			{include file='showLink' application='linklist'}
