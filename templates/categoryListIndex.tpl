@@ -26,9 +26,9 @@
 
 {include file='categoryList' application='linklist'}
 
-
-<div class="container marginTop">
 {hascontent}
+<div class="container marginTop">
+
 	<ul class="containerList infoBoxList">
 		{content}
 		{if LINKLIST_INDEX_WIO && MODULE_USERS_ONLINE}
@@ -72,9 +72,9 @@
 		{/content}
 		
 	</ul>
-{/hascontent}
 </div>
 
+{/hascontent}
 {include file='footer' sandbox=false}
 </body>
 </html>
