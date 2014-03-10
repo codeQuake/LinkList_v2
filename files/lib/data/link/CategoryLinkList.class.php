@@ -17,8 +17,7 @@ class CategoryLinkList extends ViewableLinkList{
         if(!$category->getPermission('canTrashLink')) $this->getConditionBuilder()->add('isDeleted = 0');
         
         $this->getConditionBuilder()->add('link.categoryID IN (?)', array($this->categoryIDs));
-        
-        print_r($this->getConditionBuilder());
+       
         
     }
 }
