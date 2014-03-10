@@ -4,7 +4,7 @@
     <packagename>Linkliste</packagename> <!--codename: waterfall-->
     <packagedescription><![CDATA[Linklist for WCF 2.0 (codename: Waterfall)]]></packagedescription>
     <isapplication>1</isapplication>
-    <version>2.0.0 pl 1</version>
+    <version>2.0.1</version>
     <date>2014-02-05</date>
   </packageinformation>
   <authorinformation>
@@ -58,5 +58,11 @@
 
   <instructions type="update" fromversion="2.0.0">
     <instruction type="template">templates.tar</instruction>
+  </instructions>
+
+  <instructions type="update" fromversion="2.0.0 pl 1">
+    <instruction type="language">language/*.xml</instruction>
+    <instruction type="template">templates.tar</instruction>
+    <instruction type="file">files.tar</instruction>
   </instructions>
 </package>
