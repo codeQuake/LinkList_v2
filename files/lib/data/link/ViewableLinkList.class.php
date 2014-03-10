@@ -2,29 +2,18 @@
 namespace linklist\data\link;
 
 use linklist\system\label\object\LinkLabelObjectHandler;
-use linklist\data\link\LinkList;
+use linklist\data\category\LinklistCategory;
 
 class ViewableLinkList extends LinkList{
     public $decoratorClassName = 'linklist\data\link\ViewableLink';
     
     public function __construct(){
         parent::__construct();
-        $linkIDs = $this->getLinks();
-        if(!empty($linkIDs)) $this->getConditionBuilder()->add('linkID IN (?)', array($linkIDs));
-        else return;
+        $categoryIDs = LinklistCategory::getAccessibleCategoryIDs();
+        $this->getConditionBuilder()->add('categoryID IN (?)', array($categoryIDs));
     }
     
-    protected function getLinks(){
-        $linkIDs = array();
-        $list = new LinkList();
-        $list->readObjects();
-        $list = $list->getObjects();
-        foreach($list as $item){
-            if($item->isVisible()) $linkIDs[] = $item->linkID;
-        }
-        
-        return $linkIDs;
-     }
+   
      
      public function readObjects() {
 		if ($this->objectIDs === null) $this->readObjectIDs();

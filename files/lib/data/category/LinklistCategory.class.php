@@ -49,9 +49,10 @@ class LinklistCategory extends AbstractDecoratedCategory{
      
     public static function getAccessibleCategoryIDs($permissions = array('canViewCategory', 'canEnterCategory')) {
         $categoryIDs = array();
-        foreach (CategoryHandler::getInstance()->getCategories(static::$objectTypeName) as $category) {
+        $categories = CategoryHandler::getInstance()->getCategories('de.codequake.linklist.category');
+        foreach ($categories as $category) {
             $result = true;
-            $category = new LinklistCategory($category);
+            $category = new LinklistCategory($category);;
             foreach ($permissions as $permission) {
                 $result = $result && $category->getPermission($permission);
             }
@@ -59,8 +60,8 @@ class LinklistCategory extends AbstractDecoratedCategory{
             if ($result) {
                 $categoryIDs[] = $category->categoryID;
             }
-            return $categoryIDs;
         }
+        return $categoryIDs;
     }
     
     public function isAccessible() {

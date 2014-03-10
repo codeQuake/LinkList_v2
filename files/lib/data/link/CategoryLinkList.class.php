@@ -13,8 +13,12 @@ class CategoryLinkList extends ViewableLinkList{
         $this->categoryIDs = $categoryIDs;
         
         parent::__construct();
+        if(!$category->getPermission('canSeeDeactivatedLink')) $this->getConditionBuilder()->add('isActive = 1');
+        if(!$category->getPermission('canTrashLink')) $this->getConditionBuilder()->add('isDeleted = 0');
         
         $this->getConditionBuilder()->add('link.categoryID IN (?)', array($this->categoryIDs));
+        
+        print_r($this->getConditionBuilder());
         
     }
 }
