@@ -34,7 +34,7 @@
                         </li>
                         <li class="box{if $link->getCategory()->getPermission('canEditLink')}72{else}24{/if}">
 							{if !$link->getCategory()->getPermission('canEditLink')}
-							<a class="framed" href="{link application='linklist' controller='Category' object=$link->getCategory()}{/link}">
+							<a href="{link application='linklist' controller='Category' object=$link->getCategory()}{/link}">
 								<span class="icon icon32 icon-globe"></span>
 							</a>
 							{/if}
@@ -83,7 +83,7 @@
 				<legend>{lang}wcf.message.share{/lang}</legend>
 					<ul class="sidebarBoxList">
 						<li class="box24"><input type="text" readonly="readonly" class="long" onClick="this.select()" value="{link controller='Link' application='linklist' object=$link}{/link}" /></li>
-						<li class="box24">{include file='shareButtons'}</li>
+						{if ENABLE_SHARE_BUTTONS}<li class="box24">{include file='shareButtons'}</li>{/if}
 					</ul>
 			</fieldset>
 

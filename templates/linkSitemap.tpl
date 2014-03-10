@@ -4,7 +4,7 @@
 					{section name=i loop=$oldDepth-$nodeList->getDepth()}</ul></li>{/section}
 					
 					<li>
-					    <a href="{link controller='Category' application='linklist' object=$category}{/link}">{$category->getTitle()}</a>
+					    <a href="{link controller='Category' application='linklist' id=$category->categoryID}{/link}">{$category->getTitle()}</a>
 						
 						<ul class="categoryList" data-object-id="{@$category->categoryID}">
 					{if !$nodeList->current()->hasChildren()}
