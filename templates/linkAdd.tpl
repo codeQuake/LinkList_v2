@@ -22,7 +22,7 @@
 	{include file='userNotice'}
     {include file='formError'}
 
-    <form id="messageContainer" class="jsFormGuard" method="post" action="{if $action=='add'}{link controller='LinkAdd' application='linklist' id=$categoryID}{/link}{else}{link controller='LinkEdit' object=$link application='linklist'}{/link}{/if}" id="link{$action|ucfirst}Form" enctype="multipart/form-data">
+    <form id="messageContainer" class="jsFormGuard" method="post" action="{if $action=='add'}{link controller='LinkAdd' application='linklist' id=$categoryID}{/link}{else}{link controller='LinkEdit' object=$link application='linklist'}{/link}{/if}"  enctype="multipart/form-data">
         {if $linkID|isset}<input type="hidden" name="linkID" value="{$linkID}" />{/if}
         <div class="container containerPadding marginTop shadow">
             <fieldset>
@@ -122,7 +122,7 @@
                         <input type="text" id="url" name="url" value="{if $url|isset}{$url}{/if}" required="required" class="medium"/>
                         {if $errorField == 'url'}
                             <small class="innerError">
-                            {if $errorType == 'empty'}{lang}wcf.global.form.error.empty{/lang}{/if}
+                            {if $errorType == 'empty'}{lang}wcf.global.form.error.empty{/lang}
 							{else}{lang}linklist.link.url.{$errorType}{/lang}{/if}
                             </small>
                         {/if}
@@ -164,15 +164,16 @@
                 <legend>
                      {lang}linklist.link.link{$action|ucfirst}.text{/lang}
                 </legend>
-            
-                <dd>
-                    <textarea id="text" name="text" rows="20" cols="40">{if $text|isset}{$text}{/if}</textarea>
-                    {if $errorField == 'text'}
-                        <small class="innerError">{if $errorType == 'empty'}{lang}wcf.global.form.error.empty{/lang}{/if}
-                        </small>
-                    {/if}
-                </dd>
-            
+				<dl>
+					<dt></dt>
+					<dd>
+						<textarea id="text" name="text" rows="20" cols="40">{if $text|isset}{$text}{/if}</textarea>
+						{if $errorField == 'text'}
+							<small class="innerError">{if $errorType == 'empty'}{lang}wcf.global.form.error.empty{/lang}{/if}
+							</small>
+						{/if}
+					</dd>
+				</dl>
             </fieldset>
 			{if $useCaptcha}{include file='recaptcha'}{/if}
             {include file='messageFormTabs' wysiwygContainerID='text'}
