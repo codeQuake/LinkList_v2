@@ -43,7 +43,7 @@
 	<header class="boxHeadline labeledHeadline">
             <h1>{$link->getTitle()|language}</h1>
 			<ul class="labelList">
-			{if $link->isOnline == 0}<li><span class="badge label red">{lang}linklist.link.offline{/lang}</span></li>{/if}
+			{if $link->isOnline == 0 && LINKLIST_ENABLE_CRONCHECK}<li><span class="badge label red">{lang}linklist.link.offline{/lang}</span></li>{/if}
 			
 			{foreach from=$link->getLabels() item=label}
 				<li><span class="label badge{if $label->getClassNames()} {$label->getClassNames()}{/if}">{lang}{$label->label}{/lang}</span></li>
@@ -82,9 +82,9 @@
                             </header>
 							<div class="messageBody">
 								<div>
-									<div class="linkImage">
+									{if LINK_ENABLE_IMAGE_PREVIEW}<div class="linkImage">
 										<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}><img src="http://api.webthumbnail.org?width=200&amp;height=200&amp;screen=1280&amp;format=png&amp;url={$link->url}" alt="Captured by webthumbnail.org" class="previewImage" /></a>
-									</div>
+									</div>{/if}
 									<div class="messageText">
 									  {@$link->getFormattedMessage()}
 

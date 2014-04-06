@@ -137,6 +137,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
     <item name="wcf.acp.option.linklist_enable_tags"><![CDATA[Tagging von Links aktivieren
 ]]></item>
     <item name="wcf.acp.option.linklist_enable_own_preview"><![CDATA[Eigene Vorschaubilder]]></item>
+    <item name="wcf.acp.option.linklist_enable_image_preview"><![CDATA[Screenshot im Text anzeigen]]></item>
     <item name="wcf.acp.option.linklist_enable_own_preview.description"><![CDATA[Benutzer können eigene Vorschaubilder für Links hochladen/verlinken.]]></item>
     <item name="wcf.acp.option.linklist_enable_tags.description"><![CDATA[Benutzer können Links Tags zuweisen, die in Tag-Wolken zusammengefasst werden.]]></item>
     <item name="wcf.acp.option.linklist_default_sort_field"><![CDATA[Sortierung]]></item>

@@ -122,6 +122,7 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
     <item name="wcf.acp.option.category.linklist.general"><![CDATA[General]]></item>
     <item name="wcf.acp.option.category.linklist.general.settings"><![CDATA[Settings]]></item>
     <item name="wcf.acp.option.linklist_enable_croncheck"><![CDATA[Active Cronjob]]></item>
+    <item name="wcf.acp.option.linklist_enable_image_preview"><![CDATA[Screenshot in Linktext]]></item>
     <item name="wcf.acp.option.linklist_enable_croncheck.description"><![CDATA[Activates a Cronjob for checking availability of links]]></item>
     <item name="wcf.acp.option.module_linklist_comments"><![CDATA[Commentsystem - Linklist]]></item>
     <item name="wcf.acp.option.category.linklist"><![CDATA[Linklist]]></item>

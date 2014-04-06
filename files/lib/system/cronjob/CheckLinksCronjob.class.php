@@ -4,6 +4,7 @@ use wcf\data\cronjob\Cronjob;
 use wcf\system\cronjob\AbstractCronjob;
 use linklist\data\link\LinkEditor;
 use linklist\data\link\Link;
+use linklist\data\link\LinkList;
 use linklist\system\moderation\queue\ModerationQueueOfflineManager;
 use wcf\system\WCF;
 

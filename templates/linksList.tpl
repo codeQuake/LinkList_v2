@@ -14,7 +14,7 @@
           <div class="details">
             <div class="containerHeadline">
               <h3>
-                {if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
+                {if $link->isOnline == 0 && LINKLIST_ENABLE_CRONCHECK}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
 			{foreach from=$link->getLabels() item=label}
 				<span class="label badge{if $label->getClassNames()} {$label->getClassNames()}{/if}">{lang}{$label->label}{/lang}</span>
 			{/foreach}

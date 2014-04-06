@@ -164,8 +164,7 @@
                 <legend>
                      {lang}linklist.link.link{$action|ucfirst}.text{/lang}
                 </legend>
-				<dl>
-					<dt></dt>
+				
 					<dd>
 						<textarea id="text" name="text" rows="20" cols="40">{if $text|isset}{$text}{/if}</textarea>
 						{if $errorField == 'text'}
@@ -173,7 +172,7 @@
 							</small>
 						{/if}
 					</dd>
-				</dl>
+				
             </fieldset>
 			{if $useCaptcha}{include file='recaptcha'}{/if}
             {include file='messageFormTabs' wysiwygContainerID='text'}

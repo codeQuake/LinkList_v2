@@ -17,15 +17,6 @@
                             </div>
                         </li>
                         <li class="box24">
-                            <a class="framed" href="{link controller='User' id=$link->getUserID() title=$link->getUsername()}{/link}">
-								{@$link->getUserProfile()->getAvatar()->getImageTag(24)}
-							</a>
-							<div class="sidebarBoxHeadline">
-                                <h3>{lang}linklist.link.sidebar.author{/lang}</h3>
-                                <small>{if $link->getUserID()}<a class="userLink" data-user-id="{$link->getUserID()}" href="{link controller='User' id=$link->getUserID() title=$link->getUsername()}{/link}">{$link->getUsername()}</a>{else}{$link->getUsername()}{/if}</small>
-                            </div>
-                        </li>
-                        <li class="box24">
 							<span class="icon icon32 icon-external-link"></span>
                             <div class="sidebarBoxHeadline">
                                 <h3>{lang}linklist.link.sidebar.visits{/lang}</h3>

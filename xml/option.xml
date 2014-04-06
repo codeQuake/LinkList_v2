@@ -92,6 +92,11 @@
         <optiontype>boolean</optiontype>
         <defaultvalue>1</defaultvalue>
       </option>
+      <option name="linklist_enable_image_preview">
+        <categoryname>linklist.links.general</categoryname>
+        <optiontype>boolean</optiontype>
+        <defaultvalue>1</defaultvalue>
+      </option>
       <option name="linklist_enable_tags">
         <categoryname>linklist.links.general</categoryname>
         <optiontype>boolean</optiontype>
