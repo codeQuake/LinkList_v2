@@ -1,41 +1,97 @@
+/* ### board list ### */
 .linklistCategoryList {
-    margin-top: 14px;
-}
-.linklistCategoryList > li.tabularBox{
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
-}
-.linklistCategoryList .linklistNodeTop {
-    margin-top: 14px;
-}
-.linklistCategoryList .linklistCategoryContainer {
-    position: relative;
-}
-.linklistCategoryList .linklistCategoryNode1 {
-    background-color: @wcfContainerBackgroundColor;
-}
-.linklistCategoryList .linklistCategoryNode2 {
-    background-color: @wcfContainerAccentBackgroundColor;
-}
-.linklistCategoryList .linklistCategory {
-    padding: 7px 51% 7px 7px;    
-}
-.linklistCategoryList .linklistCategory:hover {
-    background-color: @wcfContainerHoverBackgroundColor;
-}
+	.categoryDepth2 {
+		&.linklistCategoryContainer > .linklistCategory {
+			padding-left: 43px;
+		}
+		
+	    header {
+			padding-left: 43px;
+		}
+	}
+	
+	.categoryDepth3 {
+		&.linklistCategoryContainer > .linklistCategory {
+			padding-left: 79px;
+		}
+		
+		header {
+			padding-left: 79px;
+		}
+	}
+	
+	.linklistCategory {
+		.categoryDepth2{
+		&.linklistCategoryContainer > .linklistCategory {
+				padding-left: 7px;
+			}
+		}
+		
+		.categoryDepth3 {
+		&.linklistCategoryContainer > .linklistCategory {
+				padding-left: 43px;
+			}
+		}
+	}
+	
+	.tabularBox:not(.categoryDepth1) {
+		border-width: 1px 0 0;
+	}
+	
+	.linkStats {
+		left: 49%;
+		margin-top: 0;
+		position: absolute;
+		top: @wcfGapMedium;
+		width: 16%;
+		
+		> dl {
+			> dt {
+				line-height: @wcfBaseLineHeight;
+				width: 48%;
+			}
+			
+			> dd {
+				font-weight: normal;
+				font-size: @wcfSmallFontSize;
+				width: 50%;
+			}
+		}
+	}
+	
 
+	.linklistCategoryContainer {
+		position: relative;
+	}
 
-.linklistCategoryList li:last-child > div {
-    border-bottom-left-radius:  @wcfContainerBorderRadius;
-    border-bottom-right-radius: @wcfContainerBorderRadius;
-}
-.linklistCategoryList .subCategory {
-    margin-top: 7px;
-}
-.linklistCategoryList .subCategory li {
-    display:inline-block;
-}
-.linklistCategoryList .linklistCategoryDescription {
-    font-size: 90%;
+	.categoryDepth1 {
+		margin-top: @wcfGapMedium;
+	}
+
+	.linklistCategory {
+		min-height: 44px;
+		padding: @wcfGapSmall;
+		padding-right: 51%;
+		
+		.transition(background, .1s);
+		
+		&:hover {
+			background-color: @wcfContainerHoverBackgroundColor;
+		}
+	}
+	
+	.linklistCategoryNode1 {
+		background-color: @wcfContainerBackgroundColor;
+	}
+
+	.linklistCategoryNode2 {
+		background-color: @wcfContainerAccentBackgroundColor;
+	}
+	
+	
+	.icon {
+		color: @wcfLinkColor;
+	}
 }
 
 
