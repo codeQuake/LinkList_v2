@@ -10,7 +10,9 @@ class ViewableLinkList extends LinkList{
     public function __construct(){
         parent::__construct();
         $categoryIDs = LinklistCategory::getAccessibleCategoryIDs();
+        if(empty($categoryIDs)) return;
         $this->getConditionBuilder()->add('categoryID IN (?)', array($categoryIDs));
+        
     }
     
    

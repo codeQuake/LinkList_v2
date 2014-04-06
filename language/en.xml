@@ -27,6 +27,7 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
   </category>
 
   <category name="linklist.link">
+    <item name="linklist.link.url.illegalURL"><![CDATA[Enter a valid URL!]]></item>
     <item name="linklist.link.log"><![CDATA[Changelog]]></item>
     <item name="linklist.link.log.link.offline"><![CDATA[Markes as offline]]></item>
     <item name="linklist.link.log.title"><![CDATA[Changes for {$link->getTitle()}]]></item>

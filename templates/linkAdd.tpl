@@ -123,6 +123,7 @@
                         {if $errorField == 'url'}
                             <small class="innerError">
                             {if $errorType == 'empty'}{lang}wcf.global.form.error.empty{/lang}{/if}
+							{else}{lang}linklist.link.url.{$errorType}{/lang}{/if}
                             </small>
                         {/if}
                     </dd>

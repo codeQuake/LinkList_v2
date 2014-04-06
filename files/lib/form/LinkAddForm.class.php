@@ -173,9 +173,9 @@ class LinkAddForm extends MessageForm{
        }
         
         //url
-        /**if (!FileUtil::isURL($this->url)) {
+        if (!FileUtil::isURL($this->url)) {
                 throw new UserInputException('url', 'illegalURL');
-        }**/
+        }
     }
     public function save(){
         parent::save();

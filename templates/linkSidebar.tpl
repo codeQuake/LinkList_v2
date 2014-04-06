@@ -72,7 +72,6 @@
 									<li><a href="{link controller='Tagged' object=$tag}objectType=de.codequake.linklist.link{/link}" class="badge tag jsTooltip" title="{lang}wcf.tagging.taggedObjects.de.codequake.linklist.link{/lang}">{$tag->name}</a></li>
 								{/foreach}
 							</ul>
-						</div>
 					</li>
 				</ul>
 				{/if}{/content}

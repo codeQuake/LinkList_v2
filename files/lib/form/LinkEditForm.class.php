@@ -158,6 +158,10 @@ class LinkEditForm extends MessageForm {
             throw new UserInputException('image', 'noimage');
         }
        }
+       //url
+        if (!FileUtil::isURL($this->url)) {
+                throw new UserInputException('url', 'illegalURL');
+        }
     }
       
 	public function save() {
