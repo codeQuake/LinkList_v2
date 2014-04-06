@@ -118,6 +118,9 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
     <item name="linklist.link.menu.show"><![CDATA[Link]]></item>
     <item name="linklist.link.menu.comment"><![CDATA[Comments]]></item>
   </category>
+  <category name="wcf.like">
+    <item name="wcf.like.objectType.de.codequake.linklist.likeableLink"><![CDATA[Link]]></item>
+  </category>
   <category name="wcf.acp.option">
     <item name="wcf.acp.option.category.linklist.general"><![CDATA[General]]></item>
     <item name="wcf.acp.option.category.linklist.general.settings"><![CDATA[Settings]]></item>

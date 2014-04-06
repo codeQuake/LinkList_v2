@@ -5,6 +5,9 @@
 	<script data-relocate="true">
 		//<![CDATA[
 		$(function() {
+		WCF.Language.addObject({
+					'wcf.label.none': '{lang} wcf.label.none{/lang}'
+					});
 			new WCF.Label.Chooser({ {implode from=$labelIDs key=groupID item=labelID}{@$groupID}: {@$labelID}{/implode} }, '#messageContainer');
 			WCF.Message.Submit.registerButton('text', $('#messageContainer > .formSubmit > input[type=submit]'));
 			new WCF.Message.FormGuard();

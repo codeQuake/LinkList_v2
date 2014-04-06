@@ -1,6 +1,29 @@
-/* ### board list ### */
 .linklistCategoryList {
-	.categoryDepth2 {
+    	
+
+	.linklistCategoryContainer {
+		position: relative;
+	}
+
+	.categoryDepth1 {
+		margin-top: @wcfGapMedium;
+	}
+
+	.linklistCategory {
+		.categoryDepth2{
+		&.linklistCategoryContainer > .linklistCategory {
+				padding-left: 7px;
+			}
+		}
+		
+		.categoryDepth3 {
+		&.linklistCategoryContainer > .linklistCategory {
+				padding-left: 43px;
+			}
+		}
+	}
+    
+    .categoryDepth2 {
 		&.linklistCategoryContainer > .linklistCategory {
 			padding-left: 43px;
 		}
@@ -20,26 +43,13 @@
 		}
 	}
 	
-	.linklistCategory {
-		.categoryDepth2{
-		&.linklistCategoryContainer > .linklistCategory {
-				padding-left: 7px;
-			}
-		}
-		
-		.categoryDepth3 {
-		&.linklistCategoryContainer > .linklistCategory {
-				padding-left: 43px;
-			}
-		}
-	}
-	
 	.tabularBox:not(.categoryDepth1) {
 		border-width: 1px 0 0;
 	}
 	
+	
 	.linkStats {
-		left: 49%;
+		left: 60%;
 		margin-top: 0;
 		position: absolute;
 		top: @wcfGapMedium;
@@ -58,15 +68,7 @@
 			}
 		}
 	}
-	
 
-	.linklistCategoryContainer {
-		position: relative;
-	}
-
-	.categoryDepth1 {
-		margin-top: @wcfGapMedium;
-	}
 
 	.linklistCategory {
 		min-height: 44px;
@@ -95,13 +97,6 @@
 }
 
 
-.linklistCategoryList .linkStats {
-    left: 45%;
-    margin-top: 0px;
-    position: absolute;
-    top: 9px;
-    width: 50%;
-}
 
 .linkDisabled {
     background-color: @wcfDisabledBackgroundColor !important;
