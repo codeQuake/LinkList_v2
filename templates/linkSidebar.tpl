@@ -78,13 +78,6 @@
 			</fieldset>
 			{/hascontent}
 			
-			<fieldset class="linklistLinkSidebar">
-				<legend>{lang}wcf.message.share{/lang}</legend>
-					<ul class="sidebarBoxList">
-						<li class="box24"><input type="text" readonly="readonly" class="long" onClick="this.select()" value="{link controller='Link' application='linklist' object=$link}{/link}" /></li>
-						{if ENABLE_SHARE_BUTTONS}<li class="box24">{include file='shareButtons'}</li>{/if}
-					</ul>
-			</fieldset>
 
             <fieldset class="linklistSidebarButton">
                     <legend></legend>

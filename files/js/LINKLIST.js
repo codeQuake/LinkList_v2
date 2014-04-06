@@ -6,7 +6,7 @@ LINKLIST.Link.Like = WCF.Like.extend({
          * @see	WCF.Like._getContainers()
          */
     _getContainers: function() {
-        return $('article.link');
+        return $('article.message');
     },
 	
     /**
@@ -19,26 +19,41 @@ LINKLIST.Link.Like = WCF.Like.extend({
     /**
 	 * @see	WCF.Like._buildWidget()
 	 */
-    _buildWidget: function(containerID, likeButton, dislikeButton, badge, summary) {
-        this._containers[containerID].find('.boxHeadline > h1').append(badge);
-		
+    _buildWidget: function (containerID, likeButton, dislikeButton, badge, summary) {
+        var $widgetContainer = this._getWidgetContainer(containerID);
         if (this._canLike) {
-            likeButton.appendTo(this._containers[containerID].find('.smallButtons:eq(0)'));
-            dislikeButton.appendTo(this._containers[containerID].find('.smallButtons:eq(0)'));
-            dislikeButton.find('a').addClass('button small');
-            likeButton.find('a').addClass('button small');
+            var $smallButtons = this._containers[containerID].find('.smallButtons');
+            likeButton.insertBefore($smallButtons.find('.toTopLink'));
+            dislikeButton.insertBefore($smallButtons.find('.toTopLink'));
+            dislikeButton.find('a').addClass('button');
+            likeButton.find('a').addClass('button');
         }
+
+        if (summary) {
+            summary.appendTo(this._containers[containerID].find('.messageBody > .messageFooter'));
+            summary.addClass('messageFooterNote');
+        }
+        $widgetContainer.find('.permalink').after(badge);
     },
 	
-    /**
-	 * @see	WCF.Like._getWidgetContainer()
-	 */
-    _getWidgetContainer: function(containerID) {},
-	
-    /**
-	 * @see	WCF.Like._addWidget()
-	 */
-    _addWidget: function(containerID, widget) {}
+    _getWidgetContainer: function (containerID) {
+        return this._containers[containerID].find('.messageHeader');
+    },
+
+    _addWidget: function (containerID, widget) { },
+
+
+    _setActiveState: function (likeButton, dislikeButton, likeStatus) {
+        likeButton = likeButton.find('.button').removeClass('active');
+        dislikeButton = dislikeButton.find('.button').removeClass('active');
+
+        if (likeStatus == 1) {
+            likeButton.addClass('active');
+        }
+        else if (likeStatus == -1) {
+            dislikeButton.addClass('active');
+        }
+    },
 });
 
 LINKLIST.Link.Preview = WCF.Popover.extend({

@@ -10,10 +10,11 @@ use linklist\system\label\object\LinkLabelObjectHandler;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\tagging\TagEngine;
 use wcf\system\like\LikeHandler;
+use wcf\system\MetaTagHandler;
 use wcf\page\AbstractPage;
 use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
 use wcf\system\WCF;
-
+use wcf\util\StringUtil;
 
 class LinkPage extends AbstractPage{
 
@@ -60,6 +61,17 @@ class LinkPage extends AbstractPage{
 				    }
 			    }
 		    }
+            //meta
+            MetaTagHandler::getInstance()->addTag('description',  'description', StringUtil::decodeHTML(StringUtil::stripHTML($this->link->getExcerpt())));
+            if(!empty($this->tags)) MetaTagHandler::getInstance()->addTag('keywords', 'keywords', implode(',', $this->tags));
+            MetaTagHandler::getInstance()->addTag('og:title', 'og:title', $this->link->subject . ' - ' . WCF::getLanguage()->get(PAGE_TITLE), true);
+		    MetaTagHandler::getInstance()->addTag('og:url', 'og:url', LinkHandler::getInstance()->getLink('Link', array('application' => 'linklist', 'object' => $this->link)), true);
+		    MetaTagHandler::getInstance()->addTag('og:type', 'og:type', 'article', true);
+            if($this->link->getUserProfile()->facebook != '') MetaTagHandler::getInstance()->addTag('article:author', 'article:author', 'https://facebook.com/'.$this->link->getUserProfile()->facebook, true);
+            if(FACEBOOK_PUBLIC_KEY != '') MetaTagHandler::getInstance()->addTag('fb:app_id', 'fb:app_id', FACEBOOK_PUBLIC_KEY, true);
+		    MetaTagHandler::getInstance()->addTag('og:description', 'og:description', StringUtil::decodeHTML(StringUtil::stripHTML($this->link->getExcerpt())), true);
+        
+            
             //comments
             $this->objectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.linklist.linkComment');
             $objectType = CommentHandler::getInstance()->getObjectType($this->objectTypeID);
