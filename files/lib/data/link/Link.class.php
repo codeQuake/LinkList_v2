@@ -32,7 +32,7 @@ use wcf\system\comment\CommentHandler;
  * @package de.codequake.linklist
  */
 class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteController, IMessage {
-	
+
 	/**
 	 *
 	 * @see wcf\data\DatabaseObject::*
@@ -52,10 +52,10 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 				$id
 			));
 			$row = $statement->fetchArray();
-			
+
 			if ($row === false) $row = array();
 		}
-		
+
 		parent::__construct(null, $row, $object);
 	}
 
@@ -92,7 +92,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 
 	public function getPrimaryLabel() {
 		if (! $this->hasLabels()) return null;
-		
+
 		foreach ($this->labels as $label)
 			return $label;
 	}
@@ -106,7 +106,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 			$objectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.linklist.linkComment');
 			$objectType = CommentHandler::getInstance()->getObjectType($objectTypeID);
 			$commentManager = $objectType->getProcessor();
-			
+
 			$this->commentList = CommentHandler::getInstance()->getCommentList($commentManager, $objectTypeID, $this - linkID);
 		}
 		return $this->commentList;
@@ -132,7 +132,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 			$category = new Category($this->categoryID);
 			$this->category = new LinklistCategory($category);
 		}
-		
+
 		return $this->category;
 	}
 
@@ -140,7 +140,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 		if ($this->editor === null) {
 			$this->editor = new LinkEditor($this);
 		}
-		
+
 		return $this->editor;
 	}
 

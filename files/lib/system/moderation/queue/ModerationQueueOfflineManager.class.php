@@ -29,7 +29,7 @@ class ModerationQueueOfflineManager extends AbstractModerationQueueManager {
 
 	public function removeModeratedContent($objectType, array $objectIDs) {
 		if (! $this->isValid($objectType)) throw new SystemException("Object type '" . $objectType . "' is not valid for definition '" . $this->definitionName . "'");
-		
+
 		$this->removeEntries($this->getObjectTypeID($objectType), $objectIDs);
 	}
 

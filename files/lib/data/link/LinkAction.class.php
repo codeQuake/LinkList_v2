@@ -66,18 +66,18 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			$this->className,
 			'create'
 		), $this->parameters['data']);
-		
+
 		// update attachments
 		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
 			$this->parameters['attachmentHandler']->updateObjectID($object->linkID);
 		}
-		
+
 		if (! empty($this->parameters['tags'])) {
 			TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $this->parameters['tags'], $object->languageID);
 		}
 		LinklistStatsCacheBuilder::getInstance()->reset();
 		SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
-		
+
 		$this->handleActivation($object);
 		return $object;
 	}
@@ -100,7 +100,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 					$this->removeModeratedContent($object->linkID);
 				}
 			}
-			
+
 			// edit
 			if (isset($this->parameters['isEdit'])) {
 				$reason = (isset($this->parameters['data']['editReason'])) ? $this->parameters['data']['editReason'] : '';
@@ -113,7 +113,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 				unset($this->parameters['tags']);
 			}
 			if (! empty($tags)) {
-				
+
 				$languageID = (! isset($this->parameters['data']['languageID']) || ($this->parameters['data']['languageID'] === null)) ? LanguageFactory::getInstance()->getDefaultLanguageID() : $this->parameters['data']['languageID'];
 				TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $tags, $languageID);
 			}
@@ -121,7 +121,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 		if (! empty($objectIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $objectIDs);
 		if (! empty($objectIDs)) SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
 	}
-	
+
 	// unmark
 	public function validateUnmarkAll() {}
 
@@ -143,7 +143,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			));
 			LinkModificationLogHandler::getInstance()->trash($link, "");
 		}
-		
+
 		$this->unmarkItems();
 	}
 
@@ -155,7 +155,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			}
 		}
 	}
-	
+
 	// toggle
 	public function validateEnable() {
 		$this->loadlinks();
@@ -177,7 +177,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			$this->removeModeratedContent($link->linkID);
 			$this->publish($link);
 		}
-		
+
 		$this->unmarkItems();
 	}
 
@@ -197,14 +197,14 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			$editor->update(array(
 				'isActive' => 0
 			));
-			
+
 			LinkModificationLogHandler::getInstance()->disable($link);
 			$this->addModeratedContent($link->linkID);
 		}
-		
+
 		$this->unmarkItems();
 	}
-	
+
 	// restore
 	public function validateRestore() {
 		$this->loadLinks();
@@ -251,7 +251,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 		}
 		// remove activity points
 		UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $linkIDs);
-		
+
 		// delete
 		parent::delete();
 		$linkIDs = array();
@@ -263,24 +263,24 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			TagEngine::getInstance()->deleteObjectTags('de.codequake.linklist.link', $link->linkID);
 		}
 		if (! empty($linkIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $linkIDs);
-		
+
 		// reset cache
 		LinklistStatsCacheBuilder::getInstance()->reset();
 	}
-	
+
 	// getLinks
 	protected function loadLinks() {
 		if (empty($this->objectIDs)) {
 			throw new UserInputException("objectIDs");
 		}
-		
+
 		$list = new LinkList();
 		$list->getConditionBuilder()->add("link.linkID IN (?)", $this->objectIDs);
 		$list->sqlLimit = 0;
 		$list->readObjects();
-		
+
 		$this->links = $list->getObjects();
-		
+
 		if (empty($this->links)) {
 			throw new UserInputException("objectIDs");
 		}
@@ -353,7 +353,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 				$link->userID => 1
 			));
 		}
-		
+
 		$this->refreshStats($link);
 	}
 

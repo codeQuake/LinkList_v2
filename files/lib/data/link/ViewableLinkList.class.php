@@ -19,7 +19,7 @@ class ViewableLinkList extends LinkList {
 	public function readObjects() {
 		if ($this->objectIDs === null) $this->readObjectIDs();
 		parent::readObjects();
-		
+
 		// get assigned labels
 		$linkIDs = array();
 		foreach ($this->objects as $link) {
@@ -27,7 +27,7 @@ class ViewableLinkList extends LinkList {
 				$linkIDs[] = $link->linkID;
 			}
 		}
-		
+
 		if (! empty($linkIDs)) {
 			$assignedLabels = LinkLabelObjectHandler::getInstance()->getAssignedLabels($linkIDs);
 			foreach ($assignedLabels as $linkID => $labels) {

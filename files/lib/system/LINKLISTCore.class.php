@@ -30,7 +30,7 @@ class LINKLISTCore extends AbstractApplication {
 		if (! $this->isActiveApplication()) {
 			return;
 		}
-		
+
 		PageMenu::getInstance()->setActiveMenuItem('linklist.pageMenu.index');
 	}
 }

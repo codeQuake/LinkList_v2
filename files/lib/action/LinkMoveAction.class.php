@@ -28,7 +28,7 @@ class LinkMoveAction extends AbstractAction {
 		$editor->update(array(
 			'categoryID' => $this->moveID
 		));
-		
+
 		$this->executed();
 		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('Link', array(
 			'application' => 'linklist',

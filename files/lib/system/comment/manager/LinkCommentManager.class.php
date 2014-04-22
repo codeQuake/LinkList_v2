@@ -26,7 +26,7 @@ class LinkCommentManager extends AbstractCommentManager {
 		}
 		$aclOption = $this->link->getCategory()->getPermission('canWriteComment');
 		$canAdd = $aclOption || parent::canAdd($objectID);
-		
+
 		if ($canAdd) return true;
 		else
 			return false;
@@ -42,7 +42,7 @@ class LinkCommentManager extends AbstractCommentManager {
 		$aclOption = $this->link->getCategory()->getPermission('canEditComment');
 		$isOwn = $this->link->userID && $this->link->userID == WCF::getUser()->userID;
 		$canEdit = $aclOption || ($isOwn && $this->link->getCategory()->getPermission('canEditOwnComment')) || parent::canEditComment($comment);
-		
+
 		if ($canEdit) return true;
 		else
 			return false;
@@ -58,7 +58,7 @@ class LinkCommentManager extends AbstractCommentManager {
 		$aclOption = $this->link->getCategory()->getPermission('canEditComment');
 		$isOwn = $this->link->userID && $this->link->userID == WCF::getUser()->userID;
 		$canEdit = $aclOption || ($isOwn && $this->link->getCategory()->getPermission('canEditOwnComment')) || parent::canEditCommentResponse($response);
-		
+
 		if ($canEdit) return true;
 		else
 			return false;
@@ -68,15 +68,15 @@ class LinkCommentManager extends AbstractCommentManager {
 		if (! $this->isAccessible($comment->objectID)) {
 			return false;
 		}
-		
+
 		if ($this->link === null) {
 			$this->link = new Link($comment->objectID);
 		}
-		
+
 		$aclOption = $this->link->getCategory()->getPermission('canDeleteComment');
 		$isOwn = $this->link->userID && $this->link->userID == WCF::getUser()->userID;
 		$canDelete = $aclOption || ($isOwn && $this->link->getCategory()->getPermission('canDeleteOwnComment')) || parent::canDeleteComment($comment);
-		
+
 		if ($canDelete) return true;
 		else
 			return false;
@@ -86,14 +86,14 @@ class LinkCommentManager extends AbstractCommentManager {
 		if (! $this->isAccessible($response->objectID)) {
 			return false;
 		}
-		
+
 		if ($this->link === null) {
 			$this->link = new Link($response->getComment()->objectID);
 		}
 		$aclOption = $this->link->getCategory()->getPermission('canDeleteComment');
 		$isOwn = $this->link->userID && $this->link->userID == WCF::getUser()->userID;
 		$canDelete = $aclOption || ($isOwn && $this->link->getCategory()->getPermission('canDeleteOwnComment')) || parent::canDeleteCommentResponse($response);
-		
+
 		if ($canDelete) return true;
 		else
 			return false;
@@ -103,11 +103,11 @@ class LinkCommentManager extends AbstractCommentManager {
 		if ($this->link === null) {
 			$this->link = new Link($objectID);
 		}
-		
+
 		if ($validateWritePermission) {
 			return $this->link->getCategory()->getPermission('canWriteComment');
 		}
-		
+
 		return $this->link->getCategory()->getPermission('canViewLink');
 	}
 

@@ -34,7 +34,7 @@ class LinklistExportAction extends AbstractAction {
 			$this->data['categoryData'][$i]['isDisabled'] = 0;
 			$i ++;
 		}
-		
+
 		// links
 		$list = new Linklist();
 		$list->readObjects();

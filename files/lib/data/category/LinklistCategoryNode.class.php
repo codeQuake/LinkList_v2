@@ -23,10 +23,10 @@ class LinklistCategoryNode extends CategoryNode {
 	protected function fulfillsConditions(DatabaseObject $category) {
 		if (parent::fulfillsConditions($category)) {
 			$category = new LinklistCategory($category);
-			
+
 			return $category->isAccessible();
 		}
-		
+
 		return false;
 	}
 

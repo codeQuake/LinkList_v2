@@ -33,7 +33,7 @@ class LinkModificationLogList extends ModificationLogList {
 		while ($row = $statement->fetchArray()) {
 			$count += $row['count'];
 		}
-		
+
 		return $count;
 	}
 
@@ -53,7 +53,7 @@ class LinkModificationLogList extends ModificationLogList {
 		foreach ($this->objects as $object) {
 			$objectID = $object->{$this->getDatabaseTableIndexName()};
 			$objects[$objectID] = $object;
-			
+
 			$this->indexToObject[] = $objectID;
 		}
 		$this->objectIDs = $this->indexToObject;

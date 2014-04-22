@@ -26,7 +26,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 		if (empty($this->links)) {
 			$this->links = $objects;
 		}
-		
+
 		$item = parent::execute($objects, $action);
 		if ($item === null) {
 			return null;
@@ -40,7 +40,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$item->addParameter('className', $this->getClassName());
 				$item->setName('de.codequake.linklist.link.trash');
 				break;
-			
+
 			case 'restore':
 				$item->addParameter('objectIDs', array_keys($this->links));
 				$item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.restore.confirmMessage', array(
@@ -49,7 +49,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$item->addParameter('className', $this->getClassName());
 				$item->setName('de.codequake.linklist.link.restore');
 				break;
-			
+
 			case 'enable':
 				$item->addParameter('objectIDs', array_keys($this->links));
 				$item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.enable.confirmMessage', array(
@@ -58,7 +58,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$item->addParameter('className', $this->getClassName());
 				$item->setName('de.codequake.linklist.link.enable');
 				break;
-			
+
 			case 'disable':
 				$item->addParameter('objectIDs', array_keys($this->links));
 				$item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.disable.confirmMessage', array(
@@ -67,7 +67,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$item->addParameter('className', $this->getClassName());
 				$item->setName('de.codequake.linklist.link.disable');
 				break;
-			
+
 			case 'delete':
 				$item->addParameter('objectIDs', array_keys($this->links));
 				$item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.delete.confirmMessage', array(
@@ -95,7 +95,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$linkIDs[] = $link->linkID;
 			}
 		}
-		
+
 		return $linkIDs;
 	}
 
@@ -106,7 +106,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$linkIDs[] = $link->linkID;
 			}
 		}
-		
+
 		return $linkIDs;
 	}
 
@@ -117,7 +117,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$linkIDs[] = $link->linkID;
 			}
 		}
-		
+
 		return $linkIDs;
 	}
 
@@ -129,7 +129,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$linkIDs[] = $link->linkID;
 			}
 		}
-		
+
 		return $linkIDs;
 	}
 
@@ -140,7 +140,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$linkIDs[] = $link->linkID;
 			}
 		}
-		
+
 		return $linkIDs;
 	}
 }

@@ -15,11 +15,11 @@ class LinkModerationQueueReportHandler extends AbstractLinkModerationQueueHandle
 		if (! $this->isValid($objectID)) {
 			return false;
 		}
-		
+
 		if (! $this->getLink($objectID)->isVisible()) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -27,7 +27,7 @@ class LinkModerationQueueReportHandler extends AbstractLinkModerationQueueHandle
 		WCF::getTPL()->assign(array(
 			'link' => new ViewableLink($queue->getAffectedObject())
 		));
-		
+
 		return WCF::getTPL()->fetch('moderationLink', 'linklist');
 	}
 
@@ -35,7 +35,7 @@ class LinkModerationQueueReportHandler extends AbstractLinkModerationQueueHandle
 		if ($this->isValid($objectID)) {
 			return $this->getLink($objectID);
 		}
-		
+
 		return null;
 	}
 }

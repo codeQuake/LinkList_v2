@@ -32,8 +32,8 @@ class LinkVisitAction extends AbstractAction {
 		foreach ($linklist as $linkitem) {
 			$visits = $visits + $linkitem->visits;
 		}
-		$sql = "UPDATE linklist" . WCF_N . "_category_stats 
-                    SET  visits = " . $visits . " 
+		$sql = "UPDATE linklist" . WCF_N . "_category_stats
+                    SET  visits = " . $visits . "
                     WHERE categoryID = " . $this->link->getCategory()->categoryID;
 		$statement = WCF::getDB()->prepareStatement($sql);
 		$statement->execute();

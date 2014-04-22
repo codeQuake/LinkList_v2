@@ -19,10 +19,10 @@ class CategoryLabelObjectTypeHandler extends AbstractLabelObjectTypeHandler {
 
 	public function setObjectTypeID($objectTypeID) {
 		parent::setObjectTypeID($objectTypeID);
-		
+
 		// build label object type container
 		$this->container = new LabelObjectTypeContainer($this->objectTypeID);
-		
+
 		foreach ($this->categoryList as $category) {
 			$objectType = new LabelObjectType($category->getTitle(), $category->categoryID, $this->categoryList->getDepth());
 			$this->container->add($objectType);

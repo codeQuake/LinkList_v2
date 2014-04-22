@@ -21,7 +21,7 @@ class LinkCommentUserNotificationObjectType extends AbstractUserNotificationObje
 			$objectID
 		));
 		$row = $statement->fetchArray();
-		
+
 		return ($row ? $row['userID'] : 0);
 	}
 }

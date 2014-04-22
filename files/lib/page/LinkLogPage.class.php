@@ -36,7 +36,7 @@ class LinkLogPage extends SortablePage {
 
 	protected function initObjectList() {
 		parent::initObjectList();
-		
+
 		$this->objectList->setLink($this->link);
 	}
 
@@ -64,7 +64,7 @@ class LinkLogPage extends SortablePage {
 
 	public function assignVariables() {
 		parent::assignVariables();
-		
+
 		WCF::getTPL()->assign(array(
 			'link' => $this->link
 		));

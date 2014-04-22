@@ -16,7 +16,7 @@ class LinkCommentResponseUserActivityEvent extends SingletonFactory implements I
 		foreach ($events as $event) {
 			$objectIDs[] = $event->objectID;
 		}
-		
+
 		// comments responses
 		$responseList = new CommentResponseList();
 		$responseList->getConditionBuilder()->add("comment_response.responseID IN (?)", array(
@@ -24,7 +24,7 @@ class LinkCommentResponseUserActivityEvent extends SingletonFactory implements I
 		));
 		$responseList->readObjects();
 		$responses = $responseList->getObjects();
-		
+
 		// comments
 		$commentIDs = array();
 		foreach ($responses as $response) {
@@ -36,20 +36,20 @@ class LinkCommentResponseUserActivityEvent extends SingletonFactory implements I
 		));
 		$commentList->readObjects();
 		$comments = $commentList->getObjects();
-		
+
 		// get links
 		$linkIDs = array();
 		foreach ($comments as $comment) {
 			$linkIDs[] = $comment->objectID;
 		}
-		
+
 		$linkList = new LinkList();
 		$linkList->getConditionBuilder()->add("link.linkID IN (?)", array(
 			$linkIDs
 		));
 		$linkList->readObjects();
 		$links = $linkList->getObjects();
-		
+
 		foreach ($events as $event) {
 			if (isset($responses[$event->objectID])) {
 				$response = $responses[$event->objectID];

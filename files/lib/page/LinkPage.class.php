@@ -53,7 +53,7 @@ class LinkPage extends AbstractPage {
 			'application' => 'linklist',
 			'object' => $this->link->getCategory()
 		))));
-		
+
 		// fetch labels
 		if ($this->link->hasLabels) {
 			$assignedLabels = LinkLabelObjectHandler::getInstance()->getAssignedLabels(array(
@@ -77,14 +77,14 @@ class LinkPage extends AbstractPage {
 		if ($this->link->getUserProfile()->facebook != '') MetaTagHandler::getInstance()->addTag('article:author', 'article:author', 'https://facebook.com/' . $this->link->getUserProfile()->facebook, true);
 		if (FACEBOOK_PUBLIC_KEY != '') MetaTagHandler::getInstance()->addTag('fb:app_id', 'fb:app_id', FACEBOOK_PUBLIC_KEY, true);
 		MetaTagHandler::getInstance()->addTag('og:description', 'og:description', StringUtil::decodeHTML(StringUtil::stripHTML($this->link->getExcerpt())), true);
-		
+
 		// comments
 		$this->objectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.linklist.linkComment');
 		$objectType = CommentHandler::getInstance()->getObjectType($this->objectTypeID);
 		$this->commentManager = $objectType->getProcessor();
-		
+
 		$this->commentList = CommentHandler::getInstance()->getCommentList($this->commentManager, $this->objectTypeID, $this->linkID);
-		
+
 		// fetch likes
 		if (MODULE_LIKE && LINKLIST_ENABLE_LIKES) {
 			$linkIDs = array();
@@ -93,12 +93,12 @@ class LinkPage extends AbstractPage {
 			LikeHandler::getInstance()->loadLikeObjects($objectType, $linkIDs);
 			$this->likeData = LikeHandler::getInstance()->getLikeObjects($objectType);
 		}
-		
+
 		// get tags
 		if (MODULE_TAGGING && LINKLIST_ENABLE_TAGS) {
 			$this->tags = $this->link->getTags();
 		}
-		
+
 		if ($this->link->getCategory()->getPermission('canEditLink')) {
 			$categoryTree = new LinklistCategoryNodeTree('de.codequake.linklist.category');
 			$this->categoryList = $categoryTree->getIterator();

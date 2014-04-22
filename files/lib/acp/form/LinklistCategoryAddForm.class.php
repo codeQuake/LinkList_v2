@@ -10,13 +10,13 @@ class LinklistCategoryAddForm extends AbstractCategoryAddForm {
 	 * @see wcf\acp\form\ACPForm::$activeMenuItem
 	 */
 	public $activeMenuItem = 'linklist.acp.menu.link.linklist.category.add';
-	
+
 	/**
 	 *
 	 * @see wcf\acp\form\AbstractCategoryAddForm::$objectTypeName
 	 */
 	public $objectTypeName = 'de.codequake.linklist.category';
-	
+
 	/**
 	 *
 	 * @see wcf\acp\form\AbstractCategoryAddForm::$title

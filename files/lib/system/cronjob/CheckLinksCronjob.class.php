@@ -42,7 +42,7 @@ class CheckLinksCronjob extends AbstractCronjob {
 			foreach ($handles as $handle) {
 				curl_multi_add_handle($mh, $handle['handle']);
 			}
-			
+
 			$running = null;
 			do {
 				curl_multi_exec($mh, $running);
@@ -53,11 +53,11 @@ class CheckLinksCronjob extends AbstractCronjob {
 					'linkID' => $handle['linkID'],
 					'code' => curl_getinfo($handle['handle'], CURLINFO_HTTP_CODE)
 				);
-				
+
 				curl_multi_remove_handle($mh, $handle['handle']);
 			}
 			curl_multi_close($mh);
-			
+
 			foreach ($codes as $code) {
 				if ($code['code'] >= 200 && $code['code'] < 400) {
 					$link = new Link($code['linkID']);
@@ -77,4 +77,4 @@ class CheckLinksCronjob extends AbstractCronjob {
 			}
 		}
 	}
-}   
+}

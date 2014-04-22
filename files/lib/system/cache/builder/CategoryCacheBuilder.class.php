@@ -12,7 +12,7 @@ class CategoryCacheBuilder extends AbstractCacheBuilder {
 		$data = array(
 			'counts' => array()
 		);
-		
+
 		$sql = "SELECT	categoryID, links, visits
             FROM	linklist" . WCF_N . "_category_stats";
 		$statement = WCF::getDB()->prepareStatement($sql);

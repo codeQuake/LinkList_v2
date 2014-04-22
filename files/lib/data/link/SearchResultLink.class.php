@@ -60,4 +60,4 @@ class SearchResultLink extends ViewableLink implements ISearchResultObject {
 		}
 		return $this->link;
 	}
-} 
+}

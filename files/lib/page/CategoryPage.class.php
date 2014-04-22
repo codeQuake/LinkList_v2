@@ -67,11 +67,11 @@ class CategoryPage extends SortablePage {
 	 */
 	public function readData() {
 		parent::readData();
-		
+
 		$categoryTree = new LinklistCategoryNodeTree($this->objectTypeName, $this->categoryID);
 		$this->categoryList = $categoryTree->getIterator();
 		$this->categoryList->setMaxDepth(0);
-		
+
 		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList', array(
 			'application' => 'linklist'
 		))));
@@ -91,7 +91,7 @@ class CategoryPage extends SortablePage {
 		parent::assignVariables();
 		// dashboard
 		DashboardHandler::getInstance()->loadBoxes('de.codequake.linklist.CategoryPage', $this);
-		
+
 		WCF::getTPL()->assign(array(
 			'categoryList' => $this->categoryList,
 			'categoryID' => $this->categoryID,

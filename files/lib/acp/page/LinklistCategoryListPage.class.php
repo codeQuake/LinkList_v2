@@ -10,7 +10,7 @@ use wcf\acp\page\AbstractCategoryListPage;
  * @copyright 2013 codeQuake
  * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package de.codequake.linklist
- *         
+ *
  */
 class LinklistCategoryListPage extends AbstractCategoryListPage {
 	public $activeMenuItem = 'linklist.acp.menu.link.linklist.category.list';

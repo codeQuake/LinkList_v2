@@ -25,7 +25,7 @@ class LinkModerationQueueActivationHandler extends AbstractLinkModerationQueueHa
 		WCF::getTPL()->assign(array(
 			'link' => new ViewableLink($queue->getAffectedObject())
 		));
-		
+
 		return WCF::getTPL()->fetch('moderationLink', 'linklist');
 	}
 }

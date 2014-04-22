@@ -30,7 +30,7 @@ class LinklistImportForm extends AbstractForm {
 
 	public function readFormParameters() {
 		parent::readFormParameters();
-		
+
 		if (isset($_POST['filename'])) $this->filename = StringUtil::trim($_POST['filename']);
 		if (isset($_FILES['fileUpload'])) $this->fileUpload = $_FILES['fileUpload'];
 	}
@@ -58,16 +58,16 @@ class LinklistImportForm extends AbstractForm {
 		}
 		foreach ($data['categoryData'] as $categoryData) {
 			// insert categories
-			
+
 			$objectType = CategoryHandler::getInstance()->getObjectTypeByName('de.codequake.linklist.category');
 			// should never ever happen ;)
 			if ($objectType === null) {
 				throw new SystemException("Unknown category object type with name '" . $objectTypeName . "'");
 			}
-			
+
 			$parent = 0;
 			if ($categoryData['parentID'] != 0 && isset($oldCategoryIDs[$categoryData['parentID']])) $parent = $oldCategoryIDs[$categoryData['parentID']];
-			
+
 			$create = array(
 				'data' => array(
 					'description' => $categoryData['description'],
@@ -86,18 +86,18 @@ class LinklistImportForm extends AbstractForm {
                     VALUES(" . $returnValues['returnValues']->categoryID . ")";
 			$statement = WCF::getDB()->prepareStatement($sql);
 			$statement->execute();
-			
+
 			// fill old categoryIDs:
 			// $oldCategoryIDs[$categoryData['categoryID']] = $returnValues['returnValues']->categoryID;
 		}
-		
+
 		// import links
 		foreach ($data['linkData'] as $linkData) {
 			// insert links
 			$userID = null;
 			$user = User::getUserByUsername($linkData['username']);
 			if ($user->userID) $userID = $user->userID;
-			
+
 			$data = array(
 				'url' => $linkData['url'],
 				'subject' => $linkData['subject'],
@@ -119,7 +119,7 @@ class LinklistImportForm extends AbstractForm {
 			);
 			$objectAction = new LinkAction(array(), 'import', $create);
 			$returnValues = $objectAction->executeAction();
-			
+
 			// count visits
 			$visits = 0;
 			$links = new Linklist();
@@ -129,13 +129,13 @@ class LinklistImportForm extends AbstractForm {
 			foreach ($linklist as $linkitem) {
 				$visits = $visits + $linkitem->visits;
 			}
-			$sql = "UPDATE linklist" . WCF_N . "_category_stats 
-                        SET  visits = " . $visits . " 
+			$sql = "UPDATE linklist" . WCF_N . "_category_stats
+                        SET  visits = " . $visits . "
                         WHERE categoryID = " . $returnValues['returnValues']->categoryID;
 			$statement = WCF::getDB()->prepareStatement($sql);
 			$statement->execute();
 		}
-		
+
 		// clear stats
 		LinklistStatsCacheBuilder::getInstance()->reset();
 		CategoryCacheBuilder::getInstance()->reset();
@@ -159,7 +159,7 @@ class LinklistImportForm extends AbstractForm {
 		if ($tar->getIndexByFileName($xml) === false) {
 			throw new SystemException("Unable to find required file '" . $xml . "' in the import archive");
 		}
-		
+
 		// open XML
 		$xmlData = new XML();
 		$xmlData->loadXML($xml, $tar->extractToString($tar->getIndexByFileName($xml)));
