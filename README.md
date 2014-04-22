@@ -2,6 +2,7 @@ Linklist
 ================
 
 This is the new codeQuake Linklist-Software based on WoltLab Community Framework 2.0.
+
 [![Build Status](https://travis-ci.org/codeQuake/LinkList_v2.svg?branch=master)](https://travis-ci.org/codeQuake/LinkList_v2)
 
 
