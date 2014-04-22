@@ -1,4 +1,5 @@
 <?php
+
 namespace linklist\data\link;
 
 use wcf\data\like\object\ILikeObject;
@@ -9,8 +10,7 @@ class LikeableLinkProvider extends AbstractObjectTypeProvider implements ILikeOb
 	public $className = 'linklist\data\link\Link';
 	public $decoratorClassName = 'linklist\data\link\LikeableLink';
 	public $listClassName = 'linklist\data\link\LinkList';
-
 	public function checkPermissions(ILikeObject $object) {
-		return $object->isVisible();
+		return $object->isVisible ();
 	}
 }

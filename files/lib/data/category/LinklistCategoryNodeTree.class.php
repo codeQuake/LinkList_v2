@@ -1,4 +1,5 @@
 <?php
+
 namespace linklist\data\category;
 
 use wcf\data\category\CategoryNodeTree;

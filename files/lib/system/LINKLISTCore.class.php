@@ -1,4 +1,5 @@
 <?php
+
 namespace linklist\system;
 
 use wcf\system\cache\CacheHandler;
@@ -21,16 +22,16 @@ class LINKLISTCore extends AbstractApplication {
 	 * @see AbstractApplication::$abbreviation
 	 */
 	protected $abbreviation = 'linklist';
-
+	
 	/**
 	 *
 	 * @see wcf\system\application\AbstractApplication
 	 */
 	public function __run() {
-		if (! $this->isActiveApplication()) {
+		if (! $this->isActiveApplication ()) {
 			return;
 		}
 		
-		PageMenu::getInstance()->setActiveMenuItem('linklist.pageMenu.index');
+		PageMenu::getInstance ()->setActiveMenuItem ( 'linklist.pageMenu.index' );
 	}
 }

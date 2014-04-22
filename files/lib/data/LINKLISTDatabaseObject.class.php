@@ -1,4 +1,5 @@
 <?php
+
 namespace linklist\data;
 
 use wcf\data\DatabaseObject;
@@ -12,7 +13,7 @@ use wcf\data\DatabaseObject;
  *         
  */
 abstract class LINKLISTDatabaseObject extends DatabaseObject {
-
+	
 	/**
 	 *
 	 * @see wcf\data\IStorableObject::getDatabaseTableName()

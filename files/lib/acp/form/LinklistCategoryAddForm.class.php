@@ -1,4 +1,5 @@
 <?php
+
 namespace linklist\acp\form;
 
 use wcf\acp\form\AbstractCategoryAddForm;
@@ -22,14 +23,13 @@ class LinklistCategoryAddForm extends AbstractCategoryAddForm {
 	 * @see wcf\acp\form\AbstractCategoryAddForm::$title
 	 */
 	public $title = 'linklist.acp.category.add';
-
 	public function readFormParameters() {
-		parent::readFormParameters();
-		if (isset($_POST['isMainCategory'])) $this->additionalData['isMainCategory'] = intval($_POST['isMainCategory']);
+		parent::readFormParameters ();
+		if (isset ( $_POST ['isMainCategory'] ))
+			$this->additionalData ['isMainCategory'] = intval ( $_POST ['isMainCategory'] );
 	}
-
 	public function assignVariables() {
-		parent::assignVariables();
-		WCF::getTPL()->assign('isMainCategory', isset($this->additionalData['isMainCategory']) ? $this->additionalData['isMainCategory'] : 0);
+		parent::assignVariables ();
+		WCF::getTPL ()->assign ( 'isMainCategory', isset ( $this->additionalData ['isMainCategory'] ) ? $this->additionalData ['isMainCategory'] : 0 );
 	}
 }

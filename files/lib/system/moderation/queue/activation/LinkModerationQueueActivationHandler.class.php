@@ -1,4 +1,5 @@
 <?php
+
 namespace linklist\system\moderation\queue\activation;
 
 use linklist\data\link\LinkAction;
@@ -13,19 +14,17 @@ use wcf\system\WCF;
 class LinkModerationQueueActivationHandler extends AbstractLinkModerationQueueHandler implements IModerationQueueActivationHandler {
 	protected $definitionName = 'com.woltlab.wcf.moderation.activation';
 	protected $objectType = 'de.codequake.linklist.link';
-
 	public function enableContent(ModerationQueue $queue) {
-		$action = new LinkAction(array(
-			$queue->objectID
-		), 'enable');
-		$action->executeAction();
+		$action = new LinkAction ( array (
+				$queue->objectID 
+		), 'enable' );
+		$action->executeAction ();
 	}
-
 	public function getDisabledContent(ViewableModerationQueue $queue) {
-		WCF::getTPL()->assign(array(
-			'link' => new ViewableLink($queue->getAffectedObject())
-		));
+		WCF::getTPL ()->assign ( array (
+				'link' => new ViewableLink ( $queue->getAffectedObject () ) 
+		) );
 		
-		return WCF::getTPL()->fetch('moderationLink', 'linklist');
+		return WCF::getTPL ()->fetch ( 'moderationLink', 'linklist' );
 	}
 }

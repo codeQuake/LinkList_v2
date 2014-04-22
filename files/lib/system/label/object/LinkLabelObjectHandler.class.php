@@ -1,4 +1,5 @@
 <?php
+
 namespace linklist\system\label\object;
 
 use wcf\system\label\object\AbstractLabelObjectHandler;
