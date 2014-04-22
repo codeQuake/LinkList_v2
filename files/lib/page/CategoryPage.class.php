@@ -6,7 +6,6 @@ use linklist\data\category\LinklistCategoryNode;
 use linklist\data\category\LinklistCategoryNodeTree;
 use linklist\data\link\CategoryLinkList;
 use wcf\page\SortablePage;
-use wcf\system\WCF;
 use wcf\system\breadcrumb\Breadcrumb;
 use wcf\system\category\CategoryHandler;
 use wcf\system\clipboard\ClipboardHandler;
@@ -15,6 +14,7 @@ use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\request\LinkHandler;
 use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
+use wcf\system\WCF;
 
 /**
  * Shows the category page.

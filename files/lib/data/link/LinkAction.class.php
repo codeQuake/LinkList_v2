@@ -9,7 +9,6 @@ use linklist\system\cache\builder\LinklistStatsCacheBuilder;
 use linklist\system\log\modification\LinkModificationLogHandler;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\IClipboardAction;
-use wcf\system\WCF;
 use wcf\system\attachment\AttachmentHandler;
 use wcf\system\clipboard\ClipboardHandler;
 use wcf\system\database\util\PreparedStatementConditionBuilder;
@@ -21,6 +20,7 @@ use wcf\system\search\SearchIndexManager;
 use wcf\system\tagging\TagEngine;
 use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\system\user\activity\point\UserActivityPointHandler;
+use wcf\system\WCF;
 use wcf\util\StringUtil;
 
 /**

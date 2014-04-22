@@ -3,11 +3,11 @@ namespace linklist\page;
 
 use linklist\data\link\Link;
 use wcf\page\SortablePage;
-use wcf\system\WCF;
 use wcf\system\breadcrumb\Breadcrumb;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\request\LinkHandler;
+use wcf\system\WCF;
 
 class LinkLogPage extends SortablePage {
 	public $activeMenuItem = 'linklist.pageMenu.index';

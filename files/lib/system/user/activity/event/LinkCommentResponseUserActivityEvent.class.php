@@ -5,8 +5,8 @@ use linklist\data\link\LinkList;
 use wcf\data\comment\CommentList;
 use wcf\data\comment\response\CommentResponseList;
 use wcf\data\user\User;
-use wcf\system\SingletonFactory;
 use wcf\system\user\activity\event\IUserActivityEvent;
+use wcf\system\SingletonFactory;
 use wcf\system\WCF;
 
 class LinkCommentResponseUserActivityEvent extends SingletonFactory implements IUserActivityEvent {
