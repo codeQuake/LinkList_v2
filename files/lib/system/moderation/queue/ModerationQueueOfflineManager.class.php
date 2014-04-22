@@ -4,8 +4,8 @@ namespace linklist\system\moderation\queue;
 use wcf\data\moderation\queue\ModerationQueue;
 use wcf\data\moderation\queue\ViewableModerationQueue;
 use wcf\system\exception\SystemException;
-use wcf\system\request\LinkHandler;
 use wcf\system\moderation\queue\AbstractModerationQueueManager;
+use wcf\system\request\LinkHandler;
 
 class ModerationQueueOfflineManager extends AbstractModerationQueueManager {
 	protected $definitionName = 'de.codequake.linklist.moderation.offline';

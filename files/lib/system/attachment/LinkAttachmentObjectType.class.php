@@ -1,10 +1,10 @@
 <?php
 namespace linklist\system\attachment;
 
-use wcf\system\WCF;
-use wcf\util\ArrayUtil;
 use linklist\data\link\Link;
 use wcf\system\attachment\AbstractAttachmentObjectType;
+use wcf\system\WCF;
+use wcf\util\ArrayUtil;
 
 class LinkAttachmentObjectType extends AbstractAttachmentObjectType {
 

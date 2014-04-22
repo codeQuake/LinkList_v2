@@ -1,28 +1,28 @@
 <?php
 namespace linklist\data\link;
 
-use linklist\data\LINKLISTDatabaseObject;
 use linklist\data\category\LinklistCategory;
+use linklist\data\LINKLISTDatabaseObject;
 use wcf\data\attachment\Attachment;
 use wcf\data\attachment\GroupedAttachmentList;
-use wcf\system\bbcode\AttachmentBBCode;
-use wcf\system\WCF;
-use wcf\data\IUserContent;
-use wcf\data\IMessage;
-use wcf\data\object\type\ObjectTypeCache;
 use wcf\data\category\Category;
+use wcf\data\IMessage;
+use wcf\data\IUserContent;
 use wcf\data\label\Label;
+use wcf\data\object\type\ObjectTypeCache;
 use wcf\data\user\User;
-use wcf\system\tagging\TagEngine;
 use wcf\data\user\UserProfile;
-use wcf\system\language\LanguageFactory;
-use wcf\system\request\IRouteController;
+use wcf\system\bbcode\AttachmentBBCode;
 use wcf\system\bbcode\MessageParser;
-use wcf\util\StringUtil;
-use wcf\system\exception\PermissionDeniedException;
-use wcf\system\request\LinkHandler;
-use wcf\system\like\LikeHandler;
 use wcf\system\comment\CommentHandler;
+use wcf\system\exception\PermissionDeniedException;
+use wcf\system\language\LanguageFactory;
+use wcf\system\like\LikeHandler;
+use wcf\system\request\IRouteController;
+use wcf\system\request\LinkHandler;
+use wcf\system\tagging\TagEngine;
+use wcf\system\WCF;
+use wcf\util\StringUtil;
 
 /**
  *

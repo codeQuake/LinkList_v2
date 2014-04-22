@@ -1,9 +1,9 @@
 <?php
 namespace linklist\data\category;
 
+use linklist\data\category\LinklistCategoryCache;
 use wcf\data\category\CategoryNode;
 use wcf\data\DatabaseObject;
-use linklist\data\category\LinklistCategoryCache;
 
 /**
  * Represents a category node

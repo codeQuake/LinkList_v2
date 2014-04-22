@@ -1,9 +1,9 @@
 <?php
 namespace linklist\system;
 
+use wcf\system\application\AbstractApplication;
 use wcf\system\cache\CacheHandler;
 use wcf\system\menu\page\PageMenu;
-use wcf\system\application\AbstractApplication;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 

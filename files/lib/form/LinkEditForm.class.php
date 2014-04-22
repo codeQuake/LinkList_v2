@@ -1,27 +1,27 @@
 <?php
 namespace linklist\form;
 
-use linklist\data\category\LinklistCategoryNodeTree;
 use linklist\data\category\LinklistCategory;
+use linklist\data\category\LinklistCategoryNodeTree;
+use linklist\data\link\Link;
 use linklist\data\link\LinkAction;
 use linklist\system\cache\builder\CategoryCacheBuilder;
-use linklist\data\link\Link;
-use wcf\system\tagging\TagEngine;
-use wcf\system\category\CategoryHandler;
-use wcf\form\MessageForm;
-use wcf\util\StringUtil;
 use linklist\system\label\object\LinkLabelObjectHandler;
-use wcf\system\label\LabelHandler;
-use wcf\util\HeaderUtil;
-use wcf\util\FileUtil;
-use wcf\util\ArrayUtil;
-use wcf\system\request\LinkHandler;
-use wcf\system\image\ImageHandler;
-use wcf\system\language\LanguageFactory;
+use wcf\form\MessageForm;
+use wcf\system\WCF;
+use wcf\system\breadcrumb\Breadcrumb;
+use wcf\system\category\CategoryHandler;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\UserInputException;
-use wcf\system\breadcrumb\Breadcrumb;
-use wcf\system\WCF;
+use wcf\system\image\ImageHandler;
+use wcf\system\label\LabelHandler;
+use wcf\system\language\LanguageFactory;
+use wcf\system\request\LinkHandler;
+use wcf\system\tagging\TagEngine;
+use wcf\util\ArrayUtil;
+use wcf\util\FileUtil;
+use wcf\util\HeaderUtil;
+use wcf\util\StringUtil;
 
 class LinkEditForm extends MessageForm {
 	public $enableTracking = true;

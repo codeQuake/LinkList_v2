@@ -1,8 +1,8 @@
 <?php
 namespace linklist\data\link;
 
-use linklist\system\label\object\LinkLabelObjectHandler;
 use linklist\data\category\LinklistCategory;
+use linklist\system\label\object\LinkLabelObjectHandler;
 
 class ViewableLinkList extends LinkList {
 	public $decoratorClassName = 'linklist\data\link\ViewableLink';

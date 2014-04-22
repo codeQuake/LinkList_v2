@@ -1,11 +1,11 @@
 <?php
 namespace linklist\system\user\activity\event;
 
-use wcf\system\user\activity\event\IUserActivityEvent;
-use wcf\system\SingletonFactory;
-use wcf\system\WCF;
-use wcf\data\comment\CommentList;
 use linklist\data\link\LinkList;
+use wcf\data\comment\CommentList;
+use wcf\system\SingletonFactory;
+use wcf\system\user\activity\event\IUserActivityEvent;
+use wcf\system\WCF;
 
 class LinkCommentUserActivityEvent extends SingletonFactory implements IUserActivityEvent {
 

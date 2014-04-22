@@ -1,13 +1,13 @@
 <?php
 namespace linklist\action;
 
-use wcf\action\AbstractAction;
 use linklist\data\link\Link;
 use linklist\data\link\LinkList;
-use wcf\system\exception\IllegalLinkException;
 use linklist\system\cache\builder\CategoryCacheBuilder;
-use wcf\util\HeaderUtil;
+use wcf\action\AbstractAction;
+use wcf\system\exception\IllegalLinkException;
 use wcf\system\WCF;
+use wcf\util\HeaderUtil;
 
 class LinkVisitAction extends AbstractAction {
 	public $link = null;

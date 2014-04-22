@@ -1,20 +1,20 @@
 <?php
 namespace linklist\page;
 
-use wcf\page\SortablePage;
-use linklist\data\category\LinklistCategoryNodeTree;
-use linklist\data\category\LinklistCategoryNode;
 use linklist\data\category\LinklistCategory;
+use linklist\data\category\LinklistCategoryNode;
+use linklist\data\category\LinklistCategoryNodeTree;
 use linklist\data\link\CategoryLinkList;
+use wcf\page\SortablePage;
 use wcf\system\WCF;
-use wcf\system\dashboard\DashboardHandler;
-use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
-use wcf\system\category\CategoryHandler;
-use wcf\system\request\LinkHandler;
-use wcf\system\clipboard\ClipboardHandler;
 use wcf\system\breadcrumb\Breadcrumb;
+use wcf\system\category\CategoryHandler;
+use wcf\system\clipboard\ClipboardHandler;
+use wcf\system\dashboard\DashboardHandler;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
+use wcf\system\request\LinkHandler;
+use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
 
 /**
  * Shows the category page.

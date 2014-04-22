@@ -2,8 +2,8 @@
 namespace linklist\data\link;
 
 use wcf\data\tag\Tag;
-use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
+use wcf\system\tagging\TagEngine;
 
 class TaggedLinkList extends ViewableLinkList {
 

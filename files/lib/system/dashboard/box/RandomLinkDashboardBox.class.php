@@ -1,9 +1,9 @@
 <?php
 namespace linklist\system\dashboard\box;
 
+use linklist\data\link\ViewableLinkList;
 use wcf\data\dashboard\box\DashboardBox;
 use wcf\page\IPage;
-use linklist\data\link\ViewableLinkList;
 use wcf\system\dashboard\box\AbstractContentDashboardBox;
 use wcf\system\WCF;
 

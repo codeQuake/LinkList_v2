@@ -1,20 +1,20 @@
 <?php
 namespace linklist\page;
 
-use linklist\data\link\Link;
 use linklist\data\category\LinklistCategoryNodeTree;
-use wcf\system\exception\IllegalLinkException;
-use wcf\system\breadcrumb\Breadcrumb;
-use wcf\system\request\LinkHandler;
-use wcf\system\comment\CommentHandler;
+use linklist\data\link\Link;
 use linklist\system\label\object\LinkLabelObjectHandler;
-use wcf\system\exception\PermissionDeniedException;
-use wcf\system\tagging\TagEngine;
-use wcf\system\like\LikeHandler;
-use wcf\system\MetaTagHandler;
 use wcf\page\AbstractPage;
-use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
+use wcf\system\MetaTagHandler;
 use wcf\system\WCF;
+use wcf\system\breadcrumb\Breadcrumb;
+use wcf\system\comment\CommentHandler;
+use wcf\system\exception\IllegalLinkException;
+use wcf\system\exception\PermissionDeniedException;
+use wcf\system\like\LikeHandler;
+use wcf\system\request\LinkHandler;
+use wcf\system\tagging\TagEngine;
+use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
 use wcf\util\StringUtil;
 
 class LinkPage extends AbstractPage {

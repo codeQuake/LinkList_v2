@@ -1,13 +1,13 @@
 <?php
 namespace linklist\action;
 
-use wcf\action\AbstractAction;
-use linklist\data\link\LinkEditor;
 use linklist\data\link\Link;
+use linklist\data\link\LinkEditor;
+use wcf\action\AbstractAction;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
-use wcf\util\HeaderUtil;
 use wcf\system\request\LinkHandler;
+use wcf\util\HeaderUtil;
 
 class LinkMoveAction extends AbstractAction {
 	public $link = null;

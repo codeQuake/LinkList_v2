@@ -1,8 +1,8 @@
 <?php
 namespace linklist\data\link;
 
-use wcf\data\like\object\ILikeObject;
 use wcf\data\like\ILikeObjectTypeProvider;
+use wcf\data\like\object\ILikeObject;
 use wcf\data\object\type\AbstractObjectTypeProvider;
 
 class LikeableLinkProvider extends AbstractObjectTypeProvider implements ILikeObjectTypeProvider {

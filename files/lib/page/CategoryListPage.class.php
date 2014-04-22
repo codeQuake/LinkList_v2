@@ -1,15 +1,15 @@
 <?php
 namespace linklist\page;
 
-use wcf\page\AbstractPage;
-use wcf\system\cache\builder\UserStatsCacheBuilder;
-use wcf\data\user\online\UsersOnlineList;
-use wcf\data\option\OptionAction;
-use linklist\system\cache\builder\LinklistStatsCacheBuilder;
 use linklist\data\category\LinklistCategoryNodeTree;
+use linklist\system\cache\builder\LinklistStatsCacheBuilder;
+use wcf\data\option\OptionAction;
+use wcf\data\user\online\UsersOnlineList;
+use wcf\page\AbstractPage;
+use wcf\system\WCF;
+use wcf\system\cache\builder\UserStatsCacheBuilder;
 use wcf\system\dashboard\DashboardHandler;
 use wcf\system\user\collapsible\content\UserCollapsibleContentHandler;
-use wcf\system\WCF;
 
 /**
  * Shows the categorylist

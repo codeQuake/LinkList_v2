@@ -1,8 +1,8 @@
 <?php
 namespace linklist\form;
 
-use wcf\form\AbstractModerationForm;
 use linklist\system\moderation\queue\ModerationQueueOfflineManager;
+use wcf\form\AbstractModerationForm;
 use wcf\system\WCF;
 
 class ModerationOfflineForm extends AbstractModerationForm {

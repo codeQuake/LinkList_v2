@@ -2,12 +2,12 @@
 namespace linklist\system\dashboard\box;
 
 use linklist\page\CategoryPage;
-use wcf\system\dashboard\box\AbstractSidebarDashboardBox;
-use wcf\system\tagging\TypedTagCloud;
-use wcf\system\language\LanguageFactory;
-use wcf\system\WCF;
-use wcf\page\IPage;
 use wcf\data\dashboard\box\DashboardBox;
+use wcf\page\IPage;
+use wcf\system\dashboard\box\AbstractSidebarDashboardBox;
+use wcf\system\language\LanguageFactory;
+use wcf\system\tagging\TypedTagCloud;
+use wcf\system\WCF;
 
 class LinksTagCloudDashboardBox extends AbstractSidebarDashboardBox {
 	public $tagCloud = null;

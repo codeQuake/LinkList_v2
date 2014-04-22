@@ -1,14 +1,14 @@
 <?php
 namespace linklist\data\category;
 
-use wcf\data\category\AbstractDecoratedCategory;
-use wcf\system\category\CategoryPermissionHandler;
-use wcf\system\category\CategoryHandler;
-use wcf\system\exception\PermissionDeniedException;
-use wcf\data\object\type\ObjectTypeCache;
-use wcf\data\label\group\LabelGroupList;
 use linklist\data\category\LinklistCategoryCache;
+use wcf\data\category\AbstractDecoratedCategory;
+use wcf\data\label\group\LabelGroupList;
 use wcf\data\label\group\ViewableLabelGroup;
+use wcf\data\object\type\ObjectTypeCache;
+use wcf\system\category\CategoryHandler;
+use wcf\system\category\CategoryPermissionHandler;
+use wcf\system\exception\PermissionDeniedException;
 use wcf\system\WCF;
 
 /**

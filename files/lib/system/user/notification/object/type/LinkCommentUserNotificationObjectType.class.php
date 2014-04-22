@@ -1,8 +1,8 @@
 <?php
 namespace linklist\system\user\notification\object\type;
 
-use wcf\system\user\notification\object\type\ICommentUserNotificationObjectType;
 use wcf\system\user\notification\object\type\AbstractUserNotificationObjectType;
+use wcf\system\user\notification\object\type\ICommentUserNotificationObjectType;
 use wcf\system\WCF;
 
 class LinkCommentUserNotificationObjectType extends AbstractUserNotificationObjectType implements ICommentUserNotificationObjectType {

@@ -1,8 +1,8 @@
 <?php
 namespace linklist\acp\form;
 
-use wcf\system\WCF;
 use wcf\acp\form\AbstractCategoryEditForm;
+use wcf\system\WCF;
 
 class LinklistCategoryEditForm extends AbstractCategoryEditForm {
 	/**

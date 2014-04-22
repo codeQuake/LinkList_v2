@@ -1,11 +1,11 @@
 <?php
 namespace linklist\system\moderation\queue\report;
 
+use linklist\data\link\ViewableLink;
+use linklist\system\moderation\queue\AbstractLinkModerationQueueHandler;
 use wcf\data\moderation\queue\ViewableModerationQueue;
 use wcf\system\moderation\queue\report\IModerationQueueReportHandler;
 use wcf\system\WCF;
-use linklist\system\moderation\queue\AbstractLinkModerationQueueHandler;
-use linklist\data\link\ViewableLink;
 
 class LinkModerationQueueReportHandler extends AbstractLinkModerationQueueHandler implements IModerationQueueReportHandler {
 	protected $definitionName = 'com.woltlab.wcf.moderation.report';

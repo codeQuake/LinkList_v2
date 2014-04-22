@@ -2,8 +2,8 @@
 namespace linklist\data\link;
 
 use wcf\data\search\ISearchResultObject;
-use wcf\system\search\SearchResultTextParser;
 use wcf\system\request\LinkHandler;
+use wcf\system\search\SearchResultTextParser;
 
 class SearchResultLink extends ViewableLink implements ISearchResultObject {
 	public $link = null;

@@ -1,9 +1,9 @@
 <?php
 namespace linklist\system\user\online\location;
 
+use linklist\data\category\LinklistCategory;
 use wcf\data\user\online\UserOnline;
 use wcf\system\category\CategoryHandler;
-use linklist\data\category\LinklistCategory;
 use wcf\system\user\online\location\IUserOnlineLocation;
 use wcf\system\WCF;
 

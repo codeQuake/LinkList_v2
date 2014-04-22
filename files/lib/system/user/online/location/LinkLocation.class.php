@@ -1,10 +1,10 @@
 <?php
 namespace linklist\system\user\online\location;
 
+use linklist\data\link\Link;
 use wcf\data\user\online\UserOnline;
 use wcf\system\user\online\location\IUserOnlineLocation;
 use wcf\system\WCF;
-use linklist\data\link\Link;
 
 class LinkLocation implements IUserOnlineLocation {
 

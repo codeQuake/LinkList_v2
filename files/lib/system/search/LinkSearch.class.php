@@ -1,16 +1,16 @@
 <?php
 namespace linklist\system\search;
 
-use wcf\system\search\AbstractSearchableObjectType;
-use linklist\data\link\SearchResultLinkList;
 use linklist\data\category\LinklistCategoryNodeTree;
+use linklist\data\link\SearchResultLinkList;
 use linklist\system\event\listener\SearchListener;
 use wcf\form\IForm;
-use wcf\util\ArrayUtil;
+use wcf\system\category\CategoryHandler;
 use wcf\system\database\util\PreparedStatementConditionBuilder;
 use wcf\system\exception\UserInputException;
-use wcf\system\category\CategoryHandler;
+use wcf\system\search\AbstractSearchableObjectType;
 use wcf\system\WCF;
+use wcf\util\ArrayUtil;
 
 class LinkSearch extends AbstractSearchableObjectType {
 	public $messageCache = array();

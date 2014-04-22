@@ -2,9 +2,9 @@
 namespace linklist\system\dashboard\box;
 
 use linklist\data\link\MostVisitedLinkList;
+use linklist\page\CategoryPage;
 use wcf\data\dashboard\box\DashboardBox;
 use wcf\page\IPage;
-use linklist\page\CategoryPage;
 use wcf\system\dashboard\box\AbstractSidebarDashboardBox;
 use wcf\system\WCF;
 
