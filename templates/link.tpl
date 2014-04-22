@@ -65,7 +65,7 @@
 									</a>
                                     <div class="messageHeadline">
                                         <h1>
-                                            <a href="{link controller='Link' object=$link application='linklisst'}{/link}">{$link->getTitle()}</a>
+                                            <a href="{link controller='Link' object=$link application='linklist'}{/link}">{$link->getTitle()}</a>
                                         </h1>
                                         <p>
                                             <span class="username">
@@ -82,7 +82,7 @@
                             </header>
 							<div class="messageBody">
 								<div>
-									{if LINK_ENABLE_IMAGE_PREVIEW}<div class="linkImage">
+									{if LINKLIST_ENABLE_IMAGE_PREVIEW}<div class="linkImage">
 										<a class="framed" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}><img src="http://api.webthumbnail.org?width=200&amp;height=200&amp;screen=1280&amp;format=png&amp;url={$link->url}" alt="Captured by webthumbnail.org" class="previewImage" /></a>
 									</div>{/if}
 									<div class="messageText">

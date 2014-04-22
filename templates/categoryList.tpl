@@ -3,7 +3,7 @@
   {assign var=oldDepth value=0}
   {foreach from=$categoryList item=category}
   {section name=i loop=$oldDepth-$categoryList->getDepth()}</ul></li>{/section}
-  <li data-object-id="{$category->categoryID}"  class="linklistCategoryContainer {if $category->isMainCategory}tabularBox tabularBoxTitle {else}linklistCategoryContainer {if $categoryList->getDepth() == 0}container{/if}{/if}  categoryDepth{$categoryList->getDepth()+1}">
+  <li data-object-id="{$category->categoryID}"  class="linklistCategoryContainer {if $category->isMainCategory}tabularBox tabularBoxTitle marginTop {else}linklistCategoryContainer {if $categoryList->getDepth() == 0}container marginTop{/if}{/if}  categoryDepth{$categoryList->getDepth()+1}">
     {if $category->isMainCategory}
     <header>
       <h2>
