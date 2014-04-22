@@ -1,5 +1,6 @@
 <?php
 namespace linklist\system\user\notification\event;
+
 use linklist\data\link\Link;
 use wcf\data\comment\Comment;
 use wcf\data\user\User;
@@ -11,7 +12,6 @@ class LinkCommentResponseOwnerUserNotificationEvent extends AbstractUserNotifica
 	public function getTitle() {
 		return $this->getLanguage()->get('linklist.link.commentResponseOwner.notification.title');
 	}
-	
 
 	public function getMessage() {
 		$comment = new Comment($this->userNotificationObject->commentID);
@@ -24,6 +24,7 @@ class LinkCommentResponseOwnerUserNotificationEvent extends AbstractUserNotifica
 			'commentAuthor' => $commentAuthor
 		));
 	}
+
 	public function getEmailMessage($notificationType = 'instant') {
 		$comment = new Comment($this->userNotificationObject->commentID);
 		$link = new Link($comment->objectID);

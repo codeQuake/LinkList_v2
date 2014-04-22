@@ -1,5 +1,6 @@
 <?php
 namespace linklist\system\moderation\queue;
+
 use linklist\data\link\Link;
 use linklist\data\link\LinkAction;
 use linklist\data\link\LinkList;
@@ -10,7 +11,6 @@ use wcf\system\moderation\queue\ModerationQueueManager;
 use wcf\system\WCF;
 
 abstract class AbstractLinkModerationQueueHandler extends AbstractModerationQueueHandler {
-
 	protected static $links = array();
 
 	public function assignQueues(array $queues) {
@@ -21,18 +21,17 @@ abstract class AbstractLinkModerationQueueHandler extends AbstractModerationQueu
 			if (WCF::getSession()->getPermission('mod.linklist.link.canToggleLink')) {
 				$assignUser = 1;
 			}
-				
+			
 			$assignments[$queue->queueID] = $assignUser;
 		}
-	
+		
 		ModerationQueueManager::getInstance()->setAssignment($assignments);
 	}
-	
 
 	public function getContainerID($objectID) {
 		return $this->getLink($objectID)->categoryID;
 	}
-	
+
 	public function isValid($objectID) {
 		if ($this->getLink($objectID) === null) {
 			return false;
@@ -40,12 +39,11 @@ abstract class AbstractLinkModerationQueueHandler extends AbstractModerationQueu
 		
 		return true;
 	}
-	
 
 	protected function getLink($objectID) {
-		if (!array_key_exists($objectID, self::$links)) {
+		if (! array_key_exists($objectID, self::$links)) {
 			self::$links[$objectID] = new Link($objectID);
-			if (!self::$links[$objectID]->linkID) {
+			if (! self::$links[$objectID]->linkID) {
 				self::$links[$objectID] = null;
 			}
 		}
@@ -60,10 +58,12 @@ abstract class AbstractLinkModerationQueueHandler extends AbstractModerationQueu
 		}
 		
 		$list = new LinkList();
-		$list->getConditionBuilder()->add("link.linkID IN (?)", array($objectIDs));
+		$list->getConditionBuilder()->add("link.linkID IN (?)", array(
+			$objectIDs
+		));
 		$list->readObjects();
 		$links = $list->getObjects();
-
+		
 		foreach ($queues as $object) {
 			if (isset($links[$object->objectID])) {
 				$object->setAffectedObject($links[$object->objectID]);
@@ -72,9 +72,11 @@ abstract class AbstractLinkModerationQueueHandler extends AbstractModerationQueu
 	}
 
 	public function removeContent(ModerationQueue $queue, $message) {
-        if ($this->isValid($queue->objectID)) {
-            $action = new LinkAction(array($queue->objectID), 'trash');
-            $action->executeAction();
-         }
+		if ($this->isValid($queue->objectID)) {
+			$action = new LinkAction(array(
+				$queue->objectID
+			), 'trash');
+			$action->executeAction();
+		}
 	}
 }

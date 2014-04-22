@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/dashboardBox.xsd">
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/dashboardBox.xsd">
 	<import>
 		<dashboardbox name="de.codequake.linklist.latestLinks">
 			<classname><![CDATA[linklist\system\dashboard\box\LatestLinksDashboardBox]]></classname>
 			<boxtype>sidebar</boxtype>
 		</dashboardbox>
-    <dashboardbox name="de.codequake.linklist.mostVisitedLinks">
-      <classname><![CDATA[linklist\system\dashboard\box\MostVisitedLinksDashboardBox]]></classname>
-      <boxtype>sidebar</boxtype>
-    </dashboardbox>
-    <dashboardbox name="de.codequake.linklist.tagCloud">
-      <classname><![CDATA[linklist\system\dashboard\box\LinksTagCloudDashboardBox]]></classname>
-      <boxtype>sidebar</boxtype>
-    </dashboardbox>
-    <dashboardbox name="de.codequake.linklist.randomLink">
-      <classname><![CDATA[linklist\system\dashboard\box\RandomLinkDashboardBox]]></classname>
-      <boxtype>content</boxtype>
-    </dashboardbox>
+		<dashboardbox name="de.codequake.linklist.mostVisitedLinks">
+			<classname><![CDATA[linklist\system\dashboard\box\MostVisitedLinksDashboardBox]]></classname>
+			<boxtype>sidebar</boxtype>
+		</dashboardbox>
+		<dashboardbox name="de.codequake.linklist.tagCloud">
+			<classname><![CDATA[linklist\system\dashboard\box\LinksTagCloudDashboardBox]]></classname>
+			<boxtype>sidebar</boxtype>
+		</dashboardbox>
+		<dashboardbox name="de.codequake.linklist.randomLink">
+			<classname><![CDATA[linklist\system\dashboard\box\RandomLinkDashboardBox]]></classname>
+			<boxtype>content</boxtype>
+		</dashboardbox>
 	</import>
 </data>

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/eventListener.xsd">
-  <import>
-    <eventlistener>
-      <eventclassname>linklist\acp\form\LinklistCategoryAddForm</eventclassname>
-      <eventname>saved</eventname>
-      <listenerclassname>linklist\system\event\listener\CategoryAddListener</listenerclassname>
-      <environment>admin</environment>
-    </eventlistener>
-    <eventlistener>
-      <eventclassname>wcf\page\MembersListPage</eventclassname>
-      <eventname>readParameters</eventname>
-      <listenerclassname>linklist\system\event\listener\LinksMembersListPageListener</listenerclassname>
-    </eventlistener>
-    <eventlistener>
-      <eventclassname>wcf\system\dashboard\box\StatsSidebarDashboardBox</eventclassname>
-      <eventname>init</eventname>
-      <listenerclassname>linklist\system\event\listener\StatsSidebarDashboardBoxListener</listenerclassname>
-    </eventlistener>
-  </import>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/eventListener.xsd">
+	<import>
+		<eventlistener>
+			<eventclassname>linklist\acp\form\LinklistCategoryAddForm</eventclassname>
+			<eventname>saved</eventname>
+			<listenerclassname>linklist\system\event\listener\CategoryAddListener</listenerclassname>
+			<environment>admin</environment>
+		</eventlistener>
+		<eventlistener>
+			<eventclassname>wcf\page\MembersListPage</eventclassname>
+			<eventname>readParameters</eventname>
+			<listenerclassname>linklist\system\event\listener\LinksMembersListPageListener</listenerclassname>
+		</eventlistener>
+		<eventlistener>
+			<eventclassname>wcf\system\dashboard\box\StatsSidebarDashboardBox</eventclassname>
+			<eventname>init</eventname>
+			<listenerclassname>linklist\system\event\listener\StatsSidebarDashboardBoxListener</listenerclassname>
+		</eventlistener>
+	</import>
 </data>

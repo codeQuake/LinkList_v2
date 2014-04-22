@@ -1,100 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/aclOption.xsd">
-  <import>
-    <categories>
-      <category name="user.linklist.category">
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </category>
-      <category name="mod.linklist.category">
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </category>
-      <category name="user.linklist.link">
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </category>
-      <category name="mod.linklist.link">
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </category>
-    </categories>
-    
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/aclOption.xsd">
+	<import>
+		<categories>
+			<category name="user.linklist.category">
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</category>
+			<category name="mod.linklist.category">
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</category>
+			<category name="user.linklist.link">
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</category>
+			<category name="mod.linklist.link">
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</category>
+		</categories>
 
-    <options>
-      <!--user.category-->
-      <option name="canViewCategory">
-          <categoryname>user.linklist.category</categoryname>
-          <objecttype>de.codequake.linklist.category</objecttype>
-        </option>      
-      <option name="canEnterCategory">
-          <categoryname>user.linklist.category</categoryname>
-          <objecttype>de.codequake.linklist.category</objecttype>
-        </option>
 
-     
-      <!--user.category-->
-      <option name="canViewLink">
-        <categoryname>user.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      <option name="canSeeDeactivatedLink">
-        <categoryname>user.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      <option name="canAddLink">
-        <categoryname>user.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      <option name="canAddActiveLink">
-        <categoryname>user.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      <option name="canEditOwnLink">
-        <categoryname>user.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      <option name="canDeleteOwnLink">
-        <categoryname>user.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      <option name="canWriteComment">
-        <categoryname>user.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      <option name="canEditOwnComment">
-        <categoryname>user.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      <option name="canDeleteOwnComment">
-        <categoryname>user.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      
-      </option><option name="canEditComment">
-        <categoryname>mod.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      <option name="canDeleteComment">
-        <categoryname>mod.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      
-      <!--mod.link-->
-      <option name="canEditLink">
-        <categoryname>mod.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-      
-      <option name="canDeleteLink">
-        <categoryname>mod.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
+		<options>
+			<!--user.category -->
+			<option name="canViewCategory">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+			<option name="canEnterCategory">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
 
-      <option name="canTrashLink">
-        <categoryname>mod.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
 
-      <option name="canToggleLink">
-        <categoryname>mod.linklist.category</categoryname>
-        <objecttype>de.codequake.linklist.category</objecttype>
-      </option>
-    </options>
-  </import>
+			<!--user.category -->
+			<option name="canViewLink">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+			<option name="canSeeDeactivatedLink">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+			<option name="canAddLink">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+			<option name="canAddActiveLink">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+			<option name="canEditOwnLink">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+			<option name="canDeleteOwnLink">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+			<option name="canWriteComment">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+			<option name="canEditOwnComment">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+			<option name="canDeleteOwnComment">
+				<categoryname>user.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+
+			</option>
+			<option name="canEditComment">
+				<categoryname>mod.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+			<option name="canDeleteComment">
+				<categoryname>mod.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+
+			<!--mod.link -->
+			<option name="canEditLink">
+				<categoryname>mod.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+
+			<option name="canDeleteLink">
+				<categoryname>mod.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+
+			<option name="canTrashLink">
+				<categoryname>mod.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+
+			<option name="canToggleLink">
+				<categoryname>mod.linklist.category</categoryname>
+				<objecttype>de.codequake.linklist.category</objecttype>
+			</option>
+		</options>
+	</import>
 </data>

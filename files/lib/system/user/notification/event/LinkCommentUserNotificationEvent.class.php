@@ -1,5 +1,6 @@
 <?php
 namespace linklist\system\user\notification\event;
+
 use linklist\data\link\Link;
 use wcf\system\request\LinkHandler;
 use wcf\system\user\notification\event\AbstractUserNotificationEvent;
@@ -9,7 +10,7 @@ class LinkCommentUserNotificationEvent extends AbstractUserNotificationEvent {
 	public function getTitle() {
 		return $this->getLanguage()->get('linklist.link.comment.notification.title');
 	}
-	
+
 	public function getMessage() {
 		$link = new Link($this->userNotificationObject->objectID);
 		

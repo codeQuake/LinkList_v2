@@ -1,97 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/templatelistener.xsd">
-  <import>
-    <!--user-->
-    <templatelistener name="linklistCopyright">
-      <environment>user</environment>
-      <templatename>footer</templatename>
-      <eventname>copyright</eventname>
-      <templatecode><![CDATA[{if $__linklist->isActiveApplication()}{lang}linklist.index.copyright{/lang}{/if}]]></templatecode>
-    </templatelistener>
-    
-    <templatelistener name="logo">
-      <environment>user</environment>
-      <templatename>header</templatename>
-      <eventname>headerLogo</eventname>
-      <templatecode><![CDATA[{include file='__logo' application='linklist'}]]></templatecode>
-    </templatelistener>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/templatelistener.xsd">
+	<import>
+		<!--user -->
+		<templatelistener name="linklistCopyright">
+			<environment>user</environment>
+			<templatename>footer</templatename>
+			<eventname>copyright</eventname>
+			<templatecode><![CDATA[{if $__linklist->isActiveApplication()}{lang}linklist.index.copyright{/lang}{/if}]]></templatecode>
+		</templatelistener>
 
-    <templatelistener name="linkJavascript">
-      <environment>user</environment>
-      <templatename>headInclude</templatename>
-      <eventname>javascriptInclude</eventname>
-      <templatecode><![CDATA[{include file='__jsInclude' application='linklist'}]]></templatecode>
-    </templatelistener>
-    
-    <templatelistener name="linkJavascriptInit">
-      <environment>user</environment>
-      <templatename>headInclude</templatename>
-      <eventname>javascriptInit</eventname>
-      <templatecode><![CDATA[{include file='__javascriptInit' application='linklist'}]]></templatecode>
-    </templatelistener>
+		<templatelistener name="logo">
+			<environment>user</environment>
+			<templatename>header</templatename>
+			<eventname>headerLogo</eventname>
+			<templatecode><![CDATA[{include file='__logo' application='linklist'}]]></templatecode>
+		</templatelistener>
 
-    <templatelistener name="linkMembersList">
-      <environment>user</environment>
-      <templatename>membersList</templatename>
-      <eventname>sortField</eventname>
-      <templatecode><![CDATA[<option value="linklistLinks"{if $sortField == 'linklistLinks'} selected="selected"{/if}>{lang}linklist.link.links{/lang}</option>]]></templatecode>
-    </templatelistener>
-    
-    <templatelistener name="linkDashboardBoxStatsSidebar">
-      <environment>user</environment>
-      <templatename>dashboardBoxStatsSidebar</templatename>
-      <eventname>stats</eventname>
-      <templatecode><![CDATA[{include file='__dashboardBoxStatsSidebar' application='linklist'}]]></templatecode>
-    </templatelistener>
-    
-    <templatelistener name="linkUserInformationStatistics">
-      <environment>user</environment>
-      <templatename>userInformationStatistics</templatename>
-      <eventname>statistics</eventname>
-     <templatecode><![CDATA[{include file='__userStats' application='linklist'}]]></templatecode>
-    </templatelistener>
-    
-    <templatelistener name="linkUserStatistics">
-      <environment>user</environment>
-      <templatename>userSidebar</templatename>
-      <eventname>statistics</eventname>
-      <templatecode><![CDATA[{include file='__userStats' application='linklist'}]]></templatecode>
-    </templatelistener>
+		<templatelistener name="linkJavascript">
+			<environment>user</environment>
+			<templatename>headInclude</templatename>
+			<eventname>javascriptInclude</eventname>
+			<templatecode><![CDATA[{include file='__jsInclude' application='linklist'}]]></templatecode>
+		</templatelistener>
 
-    <templatelistener name="linkSearchAreaSettings">
-      <environment>user</environment>
-      <templatename>searchArea</templatename>
-      <eventname>settings</eventname>
-      <templatecode><![CDATA[{include file='__searchAreaSettings' application='linklist'}]]></templatecode>
-    </templatelistener>
-    <!--admin-->
-    <templatelistener name="linklistVersion">
-      <environment>admin</environment>
-      <templatename>index</templatename>
-      <eventname>softwareVersions</eventname>
-      <templatecode><![CDATA[{include file='__linklistVersion' application='linklist'}]]></templatecode>
-    </templatelistener>
+		<templatelistener name="linkJavascriptInit">
+			<environment>user</environment>
+			<templatename>headInclude</templatename>
+			<eventname>javascriptInit</eventname>
+			<templatecode><![CDATA[{include file='__javascriptInit' application='linklist'}]]></templatecode>
+		</templatelistener>
 
-    <templatelistener name="headerLogo">
-      <environment>admin</environment>
-      <templatename>header</templatename>
-      <eventname>headerLogo</eventname>
-      <templatecode><![CDATA[{include file='__logo' application='linklist'}]]></templatecode>
-    </templatelistener>
-  
-    <templatelistener name="maincategory">
-      <environment>admin</environment>
-      <templatename>categoryAdd</templatename>
-      <eventname>dataFields</eventname>
-      <templatecode><![CDATA[{if $__linklist->isActiveApplication()}{include file='__mainCategory' application='linklist'}{/if}]]></templatecode>
-    </templatelistener>
-  </import>
+		<templatelistener name="linkMembersList">
+			<environment>user</environment>
+			<templatename>membersList</templatename>
+			<eventname>sortField</eventname>
+			<templatecode><![CDATA[<option value="linklistLinks"{if $sortField == 'linklistLinks'} selected="selected"{/if}>{lang}linklist.link.links{/lang}</option>]]></templatecode>
+		</templatelistener>
 
-  <delete>
-    <templatelistener name="linklistStyles">
-      <environment>user</environment>
-      <templatename>headInclude</templatename>
-      <eventname>stylesheets</eventname>
-    </templatelistener>
-  </delete>
+		<templatelistener name="linkDashboardBoxStatsSidebar">
+			<environment>user</environment>
+			<templatename>dashboardBoxStatsSidebar</templatename>
+			<eventname>stats</eventname>
+			<templatecode><![CDATA[{include file='__dashboardBoxStatsSidebar' application='linklist'}]]></templatecode>
+		</templatelistener>
+
+		<templatelistener name="linkUserInformationStatistics">
+			<environment>user</environment>
+			<templatename>userInformationStatistics</templatename>
+			<eventname>statistics</eventname>
+			<templatecode><![CDATA[{include file='__userStats' application='linklist'}]]></templatecode>
+		</templatelistener>
+
+		<templatelistener name="linkUserStatistics">
+			<environment>user</environment>
+			<templatename>userSidebar</templatename>
+			<eventname>statistics</eventname>
+			<templatecode><![CDATA[{include file='__userStats' application='linklist'}]]></templatecode>
+		</templatelistener>
+
+		<templatelistener name="linkSearchAreaSettings">
+			<environment>user</environment>
+			<templatename>searchArea</templatename>
+			<eventname>settings</eventname>
+			<templatecode><![CDATA[{include file='__searchAreaSettings' application='linklist'}]]></templatecode>
+		</templatelistener>
+		<!--admin -->
+		<templatelistener name="linklistVersion">
+			<environment>admin</environment>
+			<templatename>index</templatename>
+			<eventname>softwareVersions</eventname>
+			<templatecode><![CDATA[{include file='__linklistVersion' application='linklist'}]]></templatecode>
+		</templatelistener>
+
+		<templatelistener name="headerLogo">
+			<environment>admin</environment>
+			<templatename>header</templatename>
+			<eventname>headerLogo</eventname>
+			<templatecode><![CDATA[{include file='__logo' application='linklist'}]]></templatecode>
+		</templatelistener>
+
+		<templatelistener name="maincategory">
+			<environment>admin</environment>
+			<templatename>categoryAdd</templatename>
+			<eventname>dataFields</eventname>
+			<templatecode><![CDATA[{if $__linklist->isActiveApplication()}{include file='__mainCategory' application='linklist'}{/if}]]></templatecode>
+		</templatelistener>
+	</import>
+
+	<delete>
+		<templatelistener name="linklistStyles">
+			<environment>user</environment>
+			<templatename>headInclude</templatename>
+			<eventname>stylesheets</eventname>
+		</templatelistener>
+	</delete>
 </data>

@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/clipboardAction.xsd">
-  <import>
-    <action name="enable">
-      <actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
-      <showorder>1</showorder>
-      <pages>
-        <page><![CDATA[linklist\page\CategoryPage]]></page>
-        <page><![CDATA[linklist\page\LinkPage]]></page>
-      </pages>
-    </action>
-    <action name="disable">
-      <actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
-      <showorder>2</showorder>
-      <pages>
-        <page><![CDATA[linklist\page\CategoryPage]]></page>
-        <page><![CDATA[linklist\page\LinkPage]]></page>
-      </pages>
-    </action>
-    
-    <action name="trash">
-      <actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
-      <showorder>3</showorder>
-      <pages>
-        <page><![CDATA[linklist\page\CategoryPage]]></page>
-        <page><![CDATA[linklist\page\LinkPage]]></page>
-      </pages>
-    </action>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/clipboardAction.xsd">
+	<import>
+		<action name="enable">
+			<actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
+			<showorder>1</showorder>
+			<pages>
+				<page><![CDATA[linklist\page\CategoryPage]]></page>
+				<page><![CDATA[linklist\page\LinkPage]]></page>
+			</pages>
+		</action>
+		<action name="disable">
+			<actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
+			<showorder>2</showorder>
+			<pages>
+				<page><![CDATA[linklist\page\CategoryPage]]></page>
+				<page><![CDATA[linklist\page\LinkPage]]></page>
+			</pages>
+		</action>
+
+		<action name="trash">
+			<actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
+			<showorder>3</showorder>
+			<pages>
+				<page><![CDATA[linklist\page\CategoryPage]]></page>
+				<page><![CDATA[linklist\page\LinkPage]]></page>
+			</pages>
+		</action>
 
 
-    <action name="delete">
-      <actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
-      <showorder>4</showorder>
-      <pages>
-        <page><![CDATA[linklist\page\CategoryPage]]></page>
-        <page><![CDATA[linklist\page\LinkPage]]></page>
-      </pages>
-    </action>
+		<action name="delete">
+			<actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
+			<showorder>4</showorder>
+			<pages>
+				<page><![CDATA[linklist\page\CategoryPage]]></page>
+				<page><![CDATA[linklist\page\LinkPage]]></page>
+			</pages>
+		</action>
 
-    <action name="restore">
-      <actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
-      <showorder>5</showorder>
-      <pages>
-        <page><![CDATA[linklist\page\CategoryPage]]></page>
-        <page><![CDATA[linklist\page\LinkPage]]></page>
-      </pages>
-    </action>
-  </import>
+		<action name="restore">
+			<actionclassname><![CDATA[linklist\system\clipboard\action\LinkClipboardAction]]></actionclassname>
+			<showorder>5</showorder>
+			<pages>
+				<page><![CDATA[linklist\page\CategoryPage]]></page>
+				<page><![CDATA[linklist\page\LinkPage]]></page>
+			</pages>
+		</action>
+	</import>
 </data>

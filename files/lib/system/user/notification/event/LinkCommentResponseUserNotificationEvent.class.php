@@ -1,5 +1,6 @@
 <?php
-namespace  linklist\system\user\notification\event;
+namespace linklist\system\user\notification\event;
+
 use linklist\data\link\Link;
 use wcf\data\comment\Comment;
 use wcf\system\request\LinkHandler;
@@ -20,7 +21,7 @@ class LinkCommentResponseUserNotificationEvent extends AbstractUserNotificationE
 			'author' => $this->author
 		));
 	}
-	
+
 	public function getEmailMessage($notificationType = 'instant') {
 		$comment = new Comment($this->userNotificationObject->commentID);
 		$link = new Link($comment->objectID);

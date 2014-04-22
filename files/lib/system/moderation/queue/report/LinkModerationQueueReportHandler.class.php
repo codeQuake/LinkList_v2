@@ -1,37 +1,37 @@
 <?php
 namespace linklist\system\moderation\queue\report;
+
 use wcf\data\moderation\queue\ViewableModerationQueue;
 use wcf\system\moderation\queue\report\IModerationQueueReportHandler;
 use wcf\system\WCF;
 use linklist\system\moderation\queue\AbstractLinkModerationQueueHandler;
 use linklist\data\link\ViewableLink;
 
-class LinkModerationQueueReportHandler extends AbstractLinkModerationQueueHandler implements IModerationQueueReportHandler{
-    protected $definitionName = 'com.woltlab.wcf.moderation.report';
-    protected $objectType = 'de.codequake.linklist.link';
-    
-    
-    public function canReport($objectID) {
-		if (!$this->isValid($objectID)) {
+class LinkModerationQueueReportHandler extends AbstractLinkModerationQueueHandler implements IModerationQueueReportHandler {
+	protected $definitionName = 'com.woltlab.wcf.moderation.report';
+	protected $objectType = 'de.codequake.linklist.link';
+
+	public function canReport($objectID) {
+		if (! $this->isValid($objectID)) {
 			return false;
 		}
 		
-		if (!$this->getLink($objectID)->isVisible()) {
+		if (! $this->getLink($objectID)->isVisible()) {
 			return false;
 		}
 		
 		return true;
 	}
-    
-    public function getReportedContent(ViewableModerationQueue $queue) {
+
+	public function getReportedContent(ViewableModerationQueue $queue) {
 		WCF::getTPL()->assign(array(
 			'link' => new ViewableLink($queue->getAffectedObject())
 		));
 		
 		return WCF::getTPL()->fetch('moderationLink', 'linklist');
 	}
-    
-    public function getReportedObject($objectID) {
+
+	public function getReportedObject($objectID) {
 		if ($this->isValid($objectID)) {
 			return $this->getLink($objectID);
 		}
