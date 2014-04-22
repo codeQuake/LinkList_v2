@@ -1,5 +1,4 @@
 <?php
-
 namespace linklist\form;
 
 use linklist\data\category\LinklistCategoryNodeTree;
@@ -40,241 +39,239 @@ class LinkAddForm extends MessageForm {
 	public $categoryNodeList = null;
 	public $url;
 	public $labelGroups = null;
-	public $labelIDs = array ();
-	public $tags = array ();
+	public $labelIDs = array();
+	public $tags = array();
 	public $enableMultilingualism = true;
 	public $image = null;
 	public $imageType = 'none';
 	public $attachmentObjectType = 'de.codequake.linklist.link';
 	protected $link = null;
 	public $objectTypeName = 'de.codequake.linklist.category';
+
 	public function readParameters() {
-		parent::readParameters ();
-		if (isset ( $_GET ['id'] ))
-			$this->categoryID = intval ( $_GET ['id'] );
-		$category = CategoryHandler::getInstance ()->getCategory ( $this->categoryID );
+		parent::readParameters();
+		if (isset($_GET['id'])) $this->categoryID = intval($_GET['id']);
+		$category = CategoryHandler::getInstance()->getCategory($this->categoryID);
 		
-		if ($category !== null)
-			$this->category = new LinklistCategory ( $category );
+		if ($category !== null) $this->category = new LinklistCategory($category);
 		
 		if ($this->category === null || ! $this->category->categoryID) {
-			throw new IllegalLinkException ();
+			throw new IllegalLinkException();
 		}
-		$this->category->checkPermission ( array (
-				'canViewCategory',
-				'canEnterCategory',
-				'canAddLink' 
-		) );
+		$this->category->checkPermission(array(
+			'canViewCategory',
+			'canEnterCategory',
+			'canAddLink'
+		));
 	}
+
 	public function readData() {
-		parent::readData ();
-		WCF::getBreadcrumbs ()->add ( new Breadcrumb ( WCF::getLanguage ()->get ( 'linklist.index.title' ), LinkHandler::getInstance ()->getLink ( 'CategoryList', array (
-				'application' => 'linklist' 
-		) ) ) );
+		parent::readData();
+		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList', array(
+			'application' => 'linklist'
+		))));
 		
 		// read labels
-		$groups = $this->category->getAvailableLabelGroups ();
-		if (! empty ( $groups )) {
-			$this->labelGroups = LabelHandler::getInstance ()->getLabelGroups ( array_keys ( $groups ) );
+		$groups = $this->category->getAvailableLabelGroups();
+		if (! empty($groups)) {
+			$this->labelGroups = LabelHandler::getInstance()->getLabelGroups(array_keys($groups));
 		}
 		
 		// read categories
-		$categoryTree = new LinklistCategoryNodeTree ( $this->objectTypeName );
-		$this->categoryNodeList = $categoryTree->getIterator ();
+		$categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
+		$this->categoryNodeList = $categoryTree->getIterator();
 		
 		// default values
-		if (! count ( $_POST )) {
-			$this->username = WCF::getSession ()->getVar ( 'username' );
+		if (! count($_POST)) {
+			$this->username = WCF::getSession()->getVar('username');
 			
 			// multilingualism
-			if (! empty ( $this->availableContentLanguages )) {
+			if (! empty($this->availableContentLanguages)) {
 				if (! $this->languageID) {
-					$language = LanguageFactory::getInstance ()->getUserLanguage ();
+					$language = LanguageFactory::getInstance()->getUserLanguage();
 					$this->languageID = $language->languageID;
 				}
 				
-				if (! isset ( $this->availableContentLanguages [$this->languageID] )) {
-					$languageIDs = array_keys ( $this->availableContentLanguages );
-					$this->languageID = array_shift ( $languageIDs );
+				if (! isset($this->availableContentLanguages[$this->languageID])) {
+					$languageIDs = array_keys($this->availableContentLanguages);
+					$this->languageID = array_shift($languageIDs);
 				}
 			}
 		}
 	}
+
 	public function readFormParameters() {
-		parent::readFormParameters ();
+		parent::readFormParameters();
 		
-		if (isset ( $_POST ['username'] ))
-			$this->username = StringUtil::trim ( $_POST ['username'] );
-		if (isset ( $_POST ['category'] ))
-			$this->categoryID = intval ( $_POST ['category'] );
-		if (isset ( $_POST ['url'] ))
-			$this->url = StringUtil::trim ( $_POST ['url'] );
-		if (isset ( $_POST ['tags'] ) && is_array ( $_POST ['tags'] ))
-			$this->tags = ArrayUtil::trim ( $_POST ['tags'] );
-		if (isset ( $_POST ['imageType'] ))
-			$this->imageType = StringUtil::trim ( $_POST ['imageType'] );
+		if (isset($_POST['username'])) $this->username = StringUtil::trim($_POST['username']);
+		if (isset($_POST['category'])) $this->categoryID = intval($_POST['category']);
+		if (isset($_POST['url'])) $this->url = StringUtil::trim($_POST['url']);
+		if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
+		if (isset($_POST['imageType'])) $this->imageType = StringUtil::trim($_POST['imageType']);
 		
-		if (isset ( $_POST ['labelIDs'] ) && is_array ( $_POST ['labelIDs'] ))
-			$this->labelIDs = $_POST ['labelIDs'];
+		if (isset($_POST['labelIDs']) && is_array($_POST['labelIDs'])) $this->labelIDs = $_POST['labelIDs'];
 		switch ($this->imageType) {
-			case 'upload' :
-				if (isset ( $_FILES ['image'] ))
-					$this->image = $_FILES ['image'];
+			case 'upload':
+				if (isset($_FILES['image'])) $this->image = $_FILES['image'];
 				
 				break;
-			case 'link' :
-				if (isset ( $_POST ['image'] ))
-					$this->image = StringUtil::trim ( $_POST ['image'] );
+			case 'link':
+				if (isset($_POST['image'])) $this->image = StringUtil::trim($_POST['image']);
 				break;
 		}
 	}
+
 	public function assignVariables() {
-		parent::assignVariables ();
-		WCF::getTPL ()->assign ( array (
-				'categoryNodeList' => $this->categoryNodeList,
-				'categoryID' => $this->categoryID,
-				'username' => $this->username,
-				'action' => $this->action,
-				'tags' => $this->tags,
-				'imageType' => $this->imageType,
-				'image' => $this->image,
-				'url' => $this->url,
-				'labelGroups' => $this->labelGroups,
-				'labelIDs' => $this->labelIDs,
-				'allowedFileExtensions' => explode ( "\n", StringUtil::unifyNewlines ( WCF::getSession ()->getPermission ( 'user.linklist.link.allowedAttachmentExtensions' ) ) ) 
-		) );
+		parent::assignVariables();
+		WCF::getTPL()->assign(array(
+			'categoryNodeList' => $this->categoryNodeList,
+			'categoryID' => $this->categoryID,
+			'username' => $this->username,
+			'action' => $this->action,
+			'tags' => $this->tags,
+			'imageType' => $this->imageType,
+			'image' => $this->image,
+			'url' => $this->url,
+			'labelGroups' => $this->labelGroups,
+			'labelIDs' => $this->labelIDs,
+			'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.linklist.link.allowedAttachmentExtensions')))
+		));
 	}
+
 	protected function validateLabelIDs() {
-		if (! LinkLabelObjectHandler::getInstance ()->validateLabelIDs ( $this->labelIDs )) {
-			throw new UserInputException ( 'labelIDs' );
+		if (! LinkLabelObjectHandler::getInstance()->validateLabelIDs($this->labelIDs)) {
+			throw new UserInputException('labelIDs');
 		}
 	}
+
 	public function validate() {
-		parent::validate ();
+		parent::validate();
 		
-		$this->validateLabelIDs ();
+		$this->validateLabelIDs();
 		// user
-		if (WCF::getUser ()->userID == 0) {
-			if (empty ( $this->username )) {
-				throw new UserInputException ( 'username' );
+		if (WCF::getUser()->userID == 0) {
+			if (empty($this->username)) {
+				throw new UserInputException('username');
 			}
-			if (! UserUtil::isValidUsername ( $this->username )) {
-				throw new UserInputException ( 'username', 'notValid' );
+			if (! UserUtil::isValidUsername($this->username)) {
+				throw new UserInputException('username', 'notValid');
 			}
-			if (! UserUtil::isAvailableUsername ( $this->username )) {
-				throw new UserInputException ( 'username', 'notAvailable' );
+			if (! UserUtil::isAvailableUsername($this->username)) {
+				throw new UserInputException('username', 'notAvailable');
 			}
 			
-			WCF::getSession ()->register ( 'username', $this->username );
+			WCF::getSession()->register('username', $this->username);
 		}
 		
 		// image ->link
 		if ($this->imageType == 'link') {
-			if ((strpos ( $this->image, 'png' ) === false) && (strpos ( $this->image, 'gif' ) === false) && (strpos ( $this->image, 'jpg' ) === false)) {
-				throw new UserInputException ( 'image', 'notValid' );
+			if ((strpos($this->image, 'png') === false) && (strpos($this->image, 'gif') === false) && (strpos($this->image, 'jpg') === false)) {
+				throw new UserInputException('image', 'notValid');
 			}
 		}
 		
 		// url
-		if (! FileUtil::isURL ( $this->url )) {
-			throw new UserInputException ( 'url', 'illegalURL' );
+		if (! FileUtil::isURL($this->url)) {
+			throw new UserInputException('url', 'illegalURL');
 		}
 	}
+
 	public function save() {
-		parent::save ();
+		parent::save();
 		if ($this->languageID === null) {
-			$this->languageID = LanguageFactory::getInstance ()->getDefaultLanguageID ();
+			$this->languageID = LanguageFactory::getInstance()->getDefaultLanguageID();
 		}
-		if (WCF::getSession ()->getPermission ( 'user.linklist.link.canAddOwnPreview' ) && LINKLIST_ENABLE_OWN_PREVIEW) {
+		if (WCF::getSession()->getPermission('user.linklist.link.canAddOwnPreview') && LINKLIST_ENABLE_OWN_PREVIEW) {
 			switch ($this->imageType) {
-				case 'upload' :
-					switch ($this->image ['type']) {
-						case 'image/jpeg' :
+				case 'upload':
+					switch ($this->image['type']) {
+						case 'image/jpeg':
 							$i = 'jpg';
 							break;
-						case 'image/gif' :
+						case 'image/gif':
 							$i = 'gif';
 							break;
-						case 'image/png' :
+						case 'image/png':
 							$i = 'png';
 							break;
-						default :
-							throw new UserInputException ( 'image', 'notValid' );
+						default:
+							throw new UserInputException('image', 'notValid');
 							break;
 					}
 					
-					$imagePath = LINKLIST_DIR . 'images/' . $this->image ['name'] . md5 ( time () ) . '.' . $i;
+					$imagePath = LINKLIST_DIR . 'images/' . $this->image['name'] . md5(time()) . '.' . $i;
 					
 					// shrink if neccessary
-					$image = $this->shrink ( $this->image ['tmp_name'], 150 );
-					move_uploaded_file ( $this->image ['tmp_name'], $imagePath );
-					$this->image = RELATIVE_LINKLIST_DIR . 'images/' . $this->image ['name'] . md5 ( time () ) . '.' . $i;
+					$image = $this->shrink($this->image['tmp_name'], 150);
+					move_uploaded_file($this->image['tmp_name'], $imagePath);
+					$this->image = RELATIVE_LINKLIST_DIR . 'images/' . $this->image['name'] . md5(time()) . '.' . $i;
 					break;
 			}
 		}
 		
-		$data = array (
-				'url' => $this->url,
-				'subject' => $this->subject,
-				'categoryID' => $this->categoryID,
-				'message' => $this->text,
-				'userID' => (WCF::getUser ()->userID ?  : null),
-				'username' => (WCF::getUser ()->userID ? WCF::getUser ()->username : $this->username),
-				'time' => TIME_NOW,
-				'languageID' => $this->languageID,
-				'enableSmilies' => $this->enableSmilies,
-				'enableHtml' => $this->enableHtml,
-				'image' => $this->image,
-				'enableBBCodes' => $this->enableBBCodes,
-				'visits' => 0,
-				'ipAddress' => $_SERVER ['REMOTE_ADDR'],
-				'hasLabels' => (! empty ( $this->labelIDs ) ? 1 : 0) 
+		$data = array(
+			'url' => $this->url,
+			'subject' => $this->subject,
+			'categoryID' => $this->categoryID,
+			'message' => $this->text,
+			'userID' => (WCF::getUser()->userID ?  : null),
+			'username' => (WCF::getUser()->userID ? WCF::getUser()->username : $this->username),
+			'time' => TIME_NOW,
+			'languageID' => $this->languageID,
+			'enableSmilies' => $this->enableSmilies,
+			'enableHtml' => $this->enableHtml,
+			'image' => $this->image,
+			'enableBBCodes' => $this->enableBBCodes,
+			'visits' => 0,
+			'ipAddress' => $_SERVER['REMOTE_ADDR'],
+			'hasLabels' => (! empty($this->labelIDs) ? 1 : 0)
 		);
-		$linkData = array (
-				'data' => $data,
-				'tags' => array (),
-				'attachmentHandler' => $this->attachmentHandler 
+		$linkData = array(
+			'data' => $data,
+			'tags' => array(),
+			'attachmentHandler' => $this->attachmentHandler
 		);
 		if (MODULE_TAGGING) {
-			$linkData ['tags'] = $this->tags;
+			$linkData['tags'] = $this->tags;
 		}
-		$this->objectAction = new LinkAction ( array (), 'create', $linkData );
-		$resultvalues = $this->objectAction->executeAction ();
+		$this->objectAction = new LinkAction(array(), 'create', $linkData);
+		$resultvalues = $this->objectAction->executeAction();
 		
-		$this->link = $resultvalues ['returnValues'];
+		$this->link = $resultvalues['returnValues'];
 		
 		// save labels
-		if (! empty ( $this->labelIDs )) {
-			LinkLabelObjectHandler::getInstance ()->setLabels ( $this->labelIDs, $this->link->linkID );
+		if (! empty($this->labelIDs)) {
+			LinkLabelObjectHandler::getInstance()->setLabels($this->labelIDs, $this->link->linkID);
 		}
 		
-		$this->saved ();
+		$this->saved();
 		
-		HeaderUtil::redirect ( LinkHandler::getInstance ()->getLink ( 'Link', array (
-				'application' => 'linklist',
-				'object' => $this->link 
-		) ) );
-		exit ();
+		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('Link', array(
+			'application' => 'linklist',
+			'object' => $this->link
+		)));
+		exit();
 	}
+
 	protected function shrink($filename, $size) {
-		$imageData = getimagesize ( $filename );
-		if ($imageData [0] > $size || $imageData [1] > $size) {
+		$imageData = getimagesize($filename);
+		if ($imageData[0] > $size || $imageData[1] > $size) {
 			try {
 				$obtainDimensions = true;
-				if (MAX_AVATAR_WIDTH / $imageData [0] < 150 / $imageData [1]) {
-					if (round ( $imageData [1] * ($size / $imageData [0]) ) < 48)
-						$obtainDimensions = false;
-				} else {
-					if (round ( $imageData [0] * ($size / $imageData [1]) ) < 48)
-						$obtainDimensions = false;
+				if (MAX_AVATAR_WIDTH / $imageData[0] < 150 / $imageData[1]) {
+					if (round($imageData[1] * ($size / $imageData[0])) < 48) $obtainDimensions = false;
+				}
+				else {
+					if (round($imageData[0] * ($size / $imageData[1])) < 48) $obtainDimensions = false;
 				}
 				
-				$adapter = ImageHandler::getInstance ()->getAdapter ();
-				$adapter->loadFile ( $filename );
-				$thumbnail = $adapter->createThumbnail ( $size, $size, $obtainDimensions );
-				$adapter->writeImage ( $thumbnail, $filename );
-			} catch ( SystemException $e ) {
-				throw new UserInputException ( 'image', 'tooLarge' );
+				$adapter = ImageHandler::getInstance()->getAdapter();
+				$adapter->loadFile($filename);
+				$thumbnail = $adapter->createThumbnail($size, $size, $obtainDimensions);
+				$adapter->writeImage($thumbnail, $filename);
+			}
+			catch (SystemException $e) {
+				throw new UserInputException('image', 'tooLarge');
 			}
 		}
 		return $filename;

@@ -1,5 +1,4 @@
 <?php
-
 namespace linklist\acp\page;
 
 use wcf\acp\page\AbstractCategoryListPage;

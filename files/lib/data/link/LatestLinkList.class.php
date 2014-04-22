@@ -1,5 +1,4 @@
 <?php
-
 namespace linklist\data\link;
 
 class LatestLinkList extends ViewableLinkList {

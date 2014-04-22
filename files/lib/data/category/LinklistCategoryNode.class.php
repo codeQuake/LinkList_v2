@@ -1,5 +1,4 @@
 <?php
-
 namespace linklist\data\category;
 
 use wcf\data\category\CategoryNode;
@@ -20,30 +19,34 @@ class LinklistCategoryNode extends CategoryNode {
 	public $parentNode = null;
 	protected static $baseClass = 'linklist\data\category\LinklistCategory';
 	public $objectTypeName = 'de.codequake.linklist.category';
+
 	protected function fulfillsConditions(DatabaseObject $category) {
-		if (parent::fulfillsConditions ( $category )) {
-			$category = new LinklistCategory ( $category );
+		if (parent::fulfillsConditions($category)) {
+			$category = new LinklistCategory($category);
 			
-			return $category->isAccessible ();
+			return $category->isAccessible();
 		}
 		
 		return false;
 	}
+
 	public function getVisits() {
-		$visits = LinklistCategoryCache::getInstance ()->getVisits ( $this->categoryID );
-		foreach ( $this->getChildCategories () as $subCategory ) {
-			$visits = $visits + LinklistCategoryCache::getInstance ()->getVisits ( $subCategory->categoryID );
+		$visits = LinklistCategoryCache::getInstance()->getVisits($this->categoryID);
+		foreach ($this->getChildCategories() as $subCategory) {
+			$visits = $visits + LinklistCategoryCache::getInstance()->getVisits($subCategory->categoryID);
 		}
 		return $visits;
 	}
+
 	public function getLinks() {
-		$links = LinklistCategoryCache::getInstance ()->getLinks ( $this->categoryID );
-		foreach ( $this->getChildCategories () as $subCategory ) {
-			$links = $links + LinklistCategoryCache::getInstance ()->getLinks ( $subCategory->categoryID );
+		$links = LinklistCategoryCache::getInstance()->getLinks($this->categoryID);
+		foreach ($this->getChildCategories() as $subCategory) {
+			$links = $links + LinklistCategoryCache::getInstance()->getLinks($subCategory->categoryID);
 		}
 		return $links;
 	}
+
 	public function isMainCategory() {
-		return isset ( $this->additionalData ['isMainCategory'] ) ? $this->additionalData ['isMainCategory'] : 0;
+		return isset($this->additionalData['isMainCategory']) ? $this->additionalData['isMainCategory'] : 0;
 	}
 }

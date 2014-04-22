@@ -1,5 +1,4 @@
 <?php
-
 namespace linklist\data\link;
 
 use wcf\data\DatabaseObjectList;

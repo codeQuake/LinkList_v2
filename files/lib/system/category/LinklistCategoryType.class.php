@@ -1,5 +1,4 @@
 <?php
-
 namespace linklist\system\category;
 
 use wcf\system\category\AbstractCategoryType;
@@ -19,11 +18,11 @@ class LinklistCategoryType extends AbstractCategoryType {
 	 */
 	protected $permissionPrefix = 'admin.linklist.category';
 	protected $langVarPrefix = 'linklist.category';
-	protected $objectTypes = array (
-			'com.woltlab.wcf.acl' => 'de.codequake.linklist.category' 
+	protected $objectTypes = array(
+		'com.woltlab.wcf.acl' => 'de.codequake.linklist.category'
 	);
 	protected $forceDescription = false;
-	
+
 	/**
 	 *
 	 * @see wcf\system\category\ICategoryType::getApplication()

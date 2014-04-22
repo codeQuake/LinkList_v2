@@ -1,5 +1,4 @@
 <?php
-
 namespace linklist\system\cache\builder;
 
 use wcf\data\object\type\ObjectTypeCache;
@@ -12,22 +11,23 @@ use wcf\util\StringUtil;
 
 class LinksTagCloudCacheBuilder extends TagCloudCacheBuilder {
 	protected $maxLifetime = 3600;
+
 	protected function rebuild(array $parameters) {
-		$objectType = ObjectTypeCache::getInstance ()->getObjectTypeByName ( 'com.woltlab.wcf.tagging.taggableObject', 'de.codequake.linklist.link' );
+		$objectType = ObjectTypeCache::getInstance()->getObjectTypeByName('com.woltlab.wcf.tagging.taggableObject', 'de.codequake.linklist.link');
 		
-		$conditions = new PreparedStatementConditionBuilder ();
-		if (isset ( $parameters ['languageIDs'] ) && ! empty ( $parameters ['languageIDs'] )) {
-			$conditions->add ( "tag_to_object.languageID IN (?)", array (
-					$parameters ['languageIDs'] 
-			) );
+		$conditions = new PreparedStatementConditionBuilder();
+		if (isset($parameters['languageIDs']) && ! empty($parameters['languageIDs'])) {
+			$conditions->add("tag_to_object.languageID IN (?)", array(
+				$parameters['languageIDs']
+			));
 		}
-		$conditions->add ( "tag_to_object.objectTypeID = ?", array (
-				$objectType->objectTypeID 
-		) );
-		$conditions->add ( "tag_to_object.objectID = thread.threadID" );
-		$conditions->add ( "link.categoryID = ?", array (
-				$parameters ['categoryID'] 
-		) );
+		$conditions->add("tag_to_object.objectTypeID = ?", array(
+			$objectType->objectTypeID
+		));
+		$conditions->add("tag_to_object.objectID = thread.threadID");
+		$conditions->add("link.categoryID = ?", array(
+			$parameters['categoryID']
+		));
 		
 		$sql = "SELECT		COUNT(tag_to_object.tagID) AS counter, tag_to_object.tagID
 			FROM		wcf" . WCF_N . "_tag_to_object tag_to_object,
@@ -35,34 +35,34 @@ class LinksTagCloudCacheBuilder extends TagCloudCacheBuilder {
 			" . $conditions . "
 			GROUP BY	tag_to_object.tagID
 			ORDER BY	counter DESC";
-		$statement = WCF::getDB ()->prepareStatement ( $sql );
-		$statement->execute ( $conditions->getParameters () );
+		$statement = WCF::getDB()->prepareStatement($sql);
+		$statement->execute($conditions->getParameters());
 		
-		$tagIDs = array ();
-		while ( $row = $statement->fetchArray () ) {
-			$tagIDs [$row ['tagID']] = $row ['counter'];
+		$tagIDs = array();
+		while ($row = $statement->fetchArray()) {
+			$tagIDs[$row['tagID']] = $row['counter'];
 		}
 		
-		if (! empty ( $tagIDs )) {
-			$conditions = new PreparedStatementConditionBuilder ();
-			$conditions->add ( "tagID IN (?)", array (
-					array_keys ( $tagIDs ) 
-			) );
+		if (! empty($tagIDs)) {
+			$conditions = new PreparedStatementConditionBuilder();
+			$conditions->add("tagID IN (?)", array(
+				array_keys($tagIDs)
+			));
 			
 			$sql = "SELECT	*
 				FROM	wcf" . WCF_N . "_tag
 				" . $conditions;
-			$statement = WCF::getDB ()->prepareStatement ( $sql );
-			$statement->execute ( $conditions->getParameters () );
-			while ( $row = $statement->fetchArray () ) {
-				$row ['counter'] = $tagIDs [$row ['tagID']];
-				$this->tags [StringUtil::toLowerCase ( $row ['name'] )] = new TagCloudTag ( new Tag ( null, $row ) );
+			$statement = WCF::getDB()->prepareStatement($sql);
+			$statement->execute($conditions->getParameters());
+			while ($row = $statement->fetchArray()) {
+				$row['counter'] = $tagIDs[$row['tagID']];
+				$this->tags[StringUtil::toLowerCase($row['name'])] = new TagCloudTag(new Tag(null, $row));
 			}
 			
-			uasort ( $this->tags, array (
-					'self',
-					'compareTags' 
-			) );
+			uasort($this->tags, array(
+				'self',
+				'compareTags'
+			));
 		}
 		
 		return $this->tags;
