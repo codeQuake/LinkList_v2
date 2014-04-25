@@ -3,9 +3,9 @@ namespace linklist\system\moderation\queue\offline;
 
 use linklist\data\link\LinkEditor;
 use linklist\data\link\ViewableLink;
+use linklist\system\moderation\queue\offline\IModerationQueueOfflineHandler;
 use linklist\system\moderation\queue\AbstractLinkModerationQueueHandler;
 use linklist\system\moderation\queue\ModerationQueueOfflineManager;
-use linklist\system\moderation\queue\offline\IModerationQueueOfflineHandler;
 use wcf\data\moderation\queue\ModerationQueue;
 use wcf\data\moderation\queue\ViewableModerationQueue;
 use wcf\system\WCF;

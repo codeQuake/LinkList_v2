@@ -2,8 +2,8 @@
 namespace linklist\system\comment\manager;
 
 use linklist\data\link\Link;
-use wcf\data\comment\Comment;
 use wcf\data\comment\response\CommentResponse;
+use wcf\data\comment\Comment;
 use wcf\system\comment\manager\AbstractCommentManager;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;

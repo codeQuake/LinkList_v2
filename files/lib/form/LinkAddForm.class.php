@@ -28,7 +28,7 @@ use wcf\util\UserUtil;
  * @author Jens Krumsieck
  * @copyright 2013 codeQuake
  * @license GNU Lesser General Public License
- *          @pakage de.codequake.linklist
+ * @pakage de.codequake.linklist
  */
 class LinkAddForm extends MessageForm {
 	public $action = 'add';

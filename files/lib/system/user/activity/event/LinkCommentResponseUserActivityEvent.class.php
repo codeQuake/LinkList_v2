@@ -2,10 +2,10 @@
 namespace linklist\system\user\activity\event;
 
 use linklist\data\link\LinkList;
-use wcf\data\comment\CommentList;
 use wcf\data\comment\response\CommentResponseList;
-use wcf\data\user\User;
+use wcf\data\comment\CommentList;
 use wcf\system\user\activity\event\IUserActivityEvent;
+use wcf\data\user\User;
 use wcf\system\SingletonFactory;
 use wcf\system\WCF;
 
