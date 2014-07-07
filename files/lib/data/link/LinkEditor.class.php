@@ -12,6 +12,7 @@ use wcf\system\WCF;
  * @package de.codequake.linklist
  */
 class LinkEditor extends DatabaseObjectEditor {
+
 	protected static $baseClass = 'linklist\data\link\Link';
 
 	public static function updateLinkCounter(array $users) {

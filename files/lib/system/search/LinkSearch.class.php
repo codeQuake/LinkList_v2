@@ -13,10 +13,15 @@ use wcf\system\WCF;
 use wcf\util\ArrayUtil;
 
 class LinkSearch extends AbstractSearchableObjectType {
+
 	public $messageCache = array();
+
 	public $categoryIDs = array();
+
 	public $categories = array();
+
 	public $selectedCategories = array();
+
 	public $objectTypeName = 'de.codequake.linklist.category';
 
 	public function cacheObjects(array $objectIDs, array $additionalData = null) {
@@ -72,11 +77,11 @@ class LinkSearch extends AbstractSearchableObjectType {
 	public function show(IForm $form = null) {
 		$nodeTree = new LinklistCategoryNodeTree($this->objectTypeName);
 		$nodeList = $nodeTree->getIterator();
-
+		
 		if ($form !== null && isset($form->searchData['additionalData']['link'])) {
 			$this->linkIDs = $form->searchData['additionalData']['link']['categoryIDs'];
 		}
-
+		
 		WCF::getTPL()->assign(array(
 			'linkIDs' => $this->linkIDs,
 			'selectAllCategories' => count($this->categoryIDs) == 0 || $this->categoryIDs[0] == '*',
@@ -89,7 +94,7 @@ class LinkSearch extends AbstractSearchableObjectType {
 		if ($form !== null && isset($form->searchData['additionalData']['link'])) {
 			$this->categoryIDs = $form->searchData['additionalData']['link']['categoryIDs'];
 		}
-
+		
 		// new pewpew
 		if (isset($_POST['categoryIDs']) && is_array($_POST['categoryIDs'])) $this->categoryIDs = ArrayUtil::toIntegerArray($_POST['categoryIDs']);
 	}
@@ -97,17 +102,17 @@ class LinkSearch extends AbstractSearchableObjectType {
 	public function getConditions(IForm $form = null) {
 		$conditionBuilder = new PreparedStatementConditionBuilder();
 		$this->readFormParameters($form);
-
+		
 		$categoryIDs = $this->categoryIDs;
 		if (count($categoryIDs) && $categoryIDs[0] == '*') $categoryIDs = array();
-
+		
 		foreach ($categoryIDs as $key => $categoryID) {
 			if ($categoryID == '-') unset($categoryIDs[$key]);
 		}
-
+		
 		$this->categories = CategoryHandler::getInstance()->getCategories($this->objectTypeName);
 		$this->selectedCategories = array();
-
+		
 		foreach ($categoryIDs as $key => $categoryID) {
 			if (! isset($this->categories[$categoryID])) {
 				throw new UserInputException('categoryIDs', 'notValid');
@@ -116,20 +121,20 @@ class LinkSearch extends AbstractSearchableObjectType {
 				$this->selectedCategories[$categoryID] = $this->categories[$categoryID];
 			}
 		}
-
+		
 		$categoryIDs = array();
 		if (count($this->selectedCategories) != $this->categories) {
 			foreach ($this->selectedCategories as $category) {
 				$categoryIDs[] = $category->categoryID;
 			}
 		}
-
+		
 		if (count($categoryIDs)) {
 			$conditionBuilder->add($this->getTableName() . '.categoryID IN (?)', array(
 				$categoryIDs
 			));
 		}
-
+		
 		if (count(WCF::getUser()->getLanguageIDs())) {
 			$conditionBuilder->add('(' . $this->getTableName() . '.languageID IN (?) OR ' . $this->getTableName() . '.languageID IS NULL)', array(
 				WCF::getUser()->getLanguageIDs()

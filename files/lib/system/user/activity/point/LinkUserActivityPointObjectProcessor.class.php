@@ -7,7 +7,9 @@ use wcf\system\user\activity\point\IUserActivityPointObjectProcessor;
 use wcf\system\WCF;
 
 class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectProcessor {
+
 	public $objectType = null;
+
 	public $limit = 5000;
 
 	public function __construct(ObjectType $objectType) {
@@ -32,9 +34,9 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 			$statement->execute(array(
 				$this->objectType->objectTypeID
 			));
-		}
-		else {
+		} else {
 			// others
+			
 
 			// get linkIDs
 			$sql = "SELECT link.linkID
@@ -47,10 +49,10 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 			while ($row = $statement->fetchArray()) {
 				$linkIDs[] = $row['linkID'];
 			}
-
+			
 			// if there's no link
 			if (empty($linkIDs)) return;
-
+			
 			$conditionBuilder = new PreparedStatementConditionBuilder();
 			$conditionBuilder->add("objectTypeID = ?", array(
 				$this->objectType->objectTypeID
@@ -58,13 +60,13 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 			$conditionBuilder->add("objectID IN (?)", array(
 				$linkIDs
 			));
-
+			
 			// kill old values
 			$sql = "DELETE FROM	wcf" . WCF_N . "_user_activity_point_event
                 " . $conditionBuilder;
 			$statement = WCF::getDB()->prepareStatement($sql);
 			$statement->execute($conditionBuilder->getParameters());
-
+			
 			// prepare Uranus
 			$conditionBuilder = new PreparedStatementConditionBuilder();
 			$conditionBuilder->add("linkID IN (?)", array(

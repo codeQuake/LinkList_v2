@@ -10,10 +10,13 @@ use wcf\util\StringUtil;
 use wcf\util\XMLWriter;
 
 class LinklistExportAction extends AbstractAction {
+
 	public $data = array();
+
 	public $neededPermissions = array(
 		'admin.linklist.data.canImportData'
 	);
+
 	public $filename;
 
 	public function readParameters() {
@@ -34,7 +37,7 @@ class LinklistExportAction extends AbstractAction {
 			$this->data['categoryData'][$i]['isDisabled'] = 0;
 			$i ++;
 		}
-
+		
 		// links
 		$list = new Linklist();
 		$list->readObjects();

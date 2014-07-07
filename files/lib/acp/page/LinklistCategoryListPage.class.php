@@ -13,6 +13,8 @@ use wcf\acp\page\AbstractCategoryListPage;
  *
  */
 class LinklistCategoryListPage extends AbstractCategoryListPage {
+
 	public $activeMenuItem = 'linklist.acp.menu.link.linklist.category.list';
+
 	public $objectTypeName = 'de.codequake.linklist.category';
 }

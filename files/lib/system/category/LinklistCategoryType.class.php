@@ -12,15 +12,19 @@ use wcf\system\category\AbstractCategoryType;
  * @package de.codequake.linklist
  */
 class LinklistCategoryType extends AbstractCategoryType {
+
 	/**
 	 *
 	 * @see AbstractCategoryType::$*
 	 */
 	protected $permissionPrefix = 'admin.linklist.category';
+
 	protected $langVarPrefix = 'linklist.category';
+
 	protected $objectTypes = array(
 		'com.woltlab.wcf.acl' => 'de.codequake.linklist.category'
 	);
+
 	protected $forceDescription = false;
 
 	/**

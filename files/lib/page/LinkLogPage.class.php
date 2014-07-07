@@ -10,16 +10,23 @@ use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 
 class LinkLogPage extends SortablePage {
+
 	public $activeMenuItem = 'linklist.pageMenu.index';
+
 	public $defaultSortField = 'time';
+
 	public $defaultSortOrder = 'DESC';
+
 	public $validSortFields = array(
 		'logID',
 		'time',
 		'username'
 	);
+
 	public $linkID = 0;
+
 	public $link = null;
+
 	public $objectListClassName = 'linklist\data\modification\log\LinkModificationLogList';
 
 	public function readParameters() {
@@ -36,7 +43,7 @@ class LinkLogPage extends SortablePage {
 
 	protected function initObjectList() {
 		parent::initObjectList();
-
+		
 		$this->objectList->setLink($this->link);
 	}
 
@@ -64,7 +71,7 @@ class LinkLogPage extends SortablePage {
 
 	public function assignVariables() {
 		parent::assignVariables();
-
+		
 		WCF::getTPL()->assign(array(
 			'link' => $this->link
 		));

@@ -6,6 +6,7 @@ use wcf\system\request\LinkHandler;
 use wcf\system\search\SearchResultTextParser;
 
 class SearchResultLink extends ViewableLink implements ISearchResultObject {
+
 	public $link = null;
 
 	public function getFormattedMessage() {

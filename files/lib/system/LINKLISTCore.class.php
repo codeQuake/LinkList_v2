@@ -16,6 +16,7 @@ use wcf\system\WCF;
  * @package de.codequake.linklist
  */
 class LINKLISTCore extends AbstractApplication {
+
 	/**
 	 *
 	 * @see AbstractApplication::$abbreviation
@@ -30,7 +31,7 @@ class LINKLISTCore extends AbstractApplication {
 		if (! $this->isActiveApplication()) {
 			return;
 		}
-
+		
 		PageMenu::getInstance()->setActiveMenuItem('linklist.pageMenu.index');
 	}
 }

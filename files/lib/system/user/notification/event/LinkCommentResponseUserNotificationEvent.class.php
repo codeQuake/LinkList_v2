@@ -15,7 +15,7 @@ class LinkCommentResponseUserNotificationEvent extends AbstractUserNotificationE
 	public function getMessage() {
 		$comment = new Comment($this->userNotificationObject->commentID);
 		$link = new Link($comment->objectID);
-
+		
 		return $this->getLanguage()->getDynamicVariable('linklist.link.commentResponse.notification.message', array(
 			'link' => $link,
 			'author' => $this->author
@@ -25,7 +25,7 @@ class LinkCommentResponseUserNotificationEvent extends AbstractUserNotificationE
 	public function getEmailMessage($notificationType = 'instant') {
 		$comment = new Comment($this->userNotificationObject->commentID);
 		$link = new Link($comment->objectID);
-
+		
 		return $this->getLanguage()->getDynamicVariable('linklist.link.commentResponse.notification.mail', array(
 			'link' => $link,
 			'author' => $this->author
@@ -35,7 +35,7 @@ class LinkCommentResponseUserNotificationEvent extends AbstractUserNotificationE
 	public function getLink() {
 		$comment = new Comment($this->userNotificationObject->commentID);
 		$link = new Link($comment->objectID);
-
+		
 		return LinkHandler::getInstance()->getLink('Link', array(
 			'application' => 'linklist',
 			'object' => $link

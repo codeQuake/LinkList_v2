@@ -10,7 +10,9 @@ use wcf\system\request\LinkHandler;
 use wcf\util\HeaderUtil;
 
 class LinkMoveAction extends AbstractAction {
+
 	public $link = null;
+
 	public $moveID = 0;
 
 	public function readParameters() {
@@ -28,7 +30,7 @@ class LinkMoveAction extends AbstractAction {
 		$editor->update(array(
 			'categoryID' => $this->moveID
 		));
-
+		
 		$this->executed();
 		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('Link', array(
 			'application' => 'linklist',

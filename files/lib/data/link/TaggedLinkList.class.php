@@ -9,7 +9,7 @@ class TaggedLinkList extends ViewableLinkList {
 
 	public function __construct(Tag $tag) {
 		parent::__construct();
-
+		
 		$this->getConditionBuilder()->add('tag_to_object.objectTypeID = ? AND tag_to_object.languageID = ? AND tag_to_object.tagID = ?', array(
 			TagEngine::getInstance()->getObjectTypeID('de.codequake.linklist.link'),
 			$tag->languageID,

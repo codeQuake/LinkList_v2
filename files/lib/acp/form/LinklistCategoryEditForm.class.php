@@ -5,6 +5,7 @@ use wcf\acp\form\AbstractCategoryEditForm;
 use wcf\system\WCF;
 
 class LinklistCategoryEditForm extends AbstractCategoryEditForm {
+
 	/**
 	 *
 	 * @see wcf\acp\form\ACPForm::$activeMenuItem

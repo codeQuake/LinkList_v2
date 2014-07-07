@@ -5,6 +5,7 @@ use wcf\data\DatabaseObjectDecorator;
 use wcf\system\WCF;
 
 class ViewableLinkModificationLog extends DatabaseObjectDecorator {
+
 	protected static $baseClass = 'wcf\data\modification\log\ModificationLog';
 
 	public function __toString() {

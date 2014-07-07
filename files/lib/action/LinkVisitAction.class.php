@@ -10,7 +10,9 @@ use wcf\system\WCF;
 use wcf\util\HeaderUtil;
 
 class LinkVisitAction extends AbstractAction {
+
 	public $link = null;
+
 	public $linkID;
 
 	public function readParameters() {

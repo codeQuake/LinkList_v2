@@ -20,7 +20,9 @@ use wcf\system\WCF;
  * @package de.codequake.linklist
  */
 class CategoryListPage extends AbstractPage {
+
 	public $templateName = 'categoryListIndex';
+
 	/**
 	 *
 	 * @see wcf\page\AbstractPage::$enableTracking
@@ -28,10 +30,15 @@ class CategoryListPage extends AbstractPage {
 	public $neededPermissions = array(
 		'user.linklist.category.canViewCategory'
 	);
+
 	public $stats = array();
+
 	public $enableTracking = true;
+
 	public $categoryList = null;
+
 	public $usersOnlineList = null;
+
 	public $objectTypeName = 'de.codequake.linklist.category';
 
 	/**
@@ -43,14 +50,14 @@ class CategoryListPage extends AbstractPage {
 		$categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
 		$this->categoryList = $categoryTree->getIterator();
 		$this->stats = array_merge(LinklistStatsCacheBuilder::getInstance()->getData(), UserStatsCacheBuilder::getInstance()->getData());
-
+		
 		// users online
 		if (MODULE_USERS_ONLINE && LINKLIST_INDEX_WIO) {
 			$this->usersOnlineList = new UsersOnlineList();
 			$this->usersOnlineList->readStats();
 			$this->usersOnlineList->getConditionBuilder()->add('session.userID IS NOT NULL');
 			$this->usersOnlineList->readObjects();
-
+			
 			// check users online record
 			$usersOnlineTotal = (LINKLIST_INDEX_WIO_NOGUESTS ? $this->usersOnlineList->stats['members'] : $this->usersOnlineList->stats['total']);
 			if ($usersOnlineTotal > LINKLIST_USERS_ONLINE_RECORD) {
@@ -72,10 +79,10 @@ class CategoryListPage extends AbstractPage {
 	 */
 	public function assignVariables() {
 		parent::assignVariables();
-
+		
 		// dashboard
 		DashboardHandler::getInstance()->loadBoxes('de.codequake.linklist.CategoryListPage', $this);
-
+		
 		WCF::getTPL()->assign(array(
 			'categoryList' => $this->categoryList,
 			'sidebarCollapsed' => UserCollapsibleContentHandler::getInstance()->isCollapsed('com.woltlab.wcf.collapsibleSidebar', 'de.codequake.linklist.CategoryListPage'),

@@ -14,7 +14,7 @@ class LinkCommentUserActivityEvent extends SingletonFactory implements IUserActi
 		foreach ($events as $event) {
 			$objectIDs[] = $event->objectID;
 		}
-
+		
 		// comments
 		$commentList = new CommentList();
 		$commentList->getConditionBuilder()->add("comment.commentID IN (?)", array(
@@ -22,20 +22,20 @@ class LinkCommentUserActivityEvent extends SingletonFactory implements IUserActi
 		));
 		$commentList->readObjects();
 		$comments = $commentList->getObjects();
-
+		
 		// get links
 		$linkIDs = array();
 		foreach ($comments as $comment) {
 			$linkIDs[] = $comment->objectID;
 		}
-
+		
 		$linkList = new LinkList();
 		$linkList->getConditionBuilder()->add("link.linkID IN (?)", array(
 			$linkIDs
 		));
 		$linkList->readObjects();
 		$links = $linkList->getObjects();
-
+		
 		foreach ($events as $event) {
 			if (isset($comments[$event->objectID])) {
 				$comment = $comments[$event->objectID];
@@ -48,8 +48,7 @@ class LinkCommentUserActivityEvent extends SingletonFactory implements IUserActi
 					$event->setDescription($comment->getFormattedMessage());
 					$event->setIsAccessible();
 				}
-			}
-			else
+			} else
 				$event->setIsOrphaned();
 		}
 	}

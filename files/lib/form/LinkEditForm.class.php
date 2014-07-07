@@ -24,22 +24,39 @@ use wcf\util\HeaderUtil;
 use wcf\util\StringUtil;
 
 class LinkEditForm extends MessageForm {
+
 	public $enableTracking = true;
+
 	public $templateName = 'linkAdd';
+
 	public $action = 'edit';
+
 	public $categoryID = 0;
+
 	public $category = null;
+
 	public $categoryNodeList = null;
+
 	public $linkID = 0;
+
 	public $link = null;
+
 	public $labelGroups = null;
+
 	public $labelIDs = array();
+
 	public $image = null;
+
 	public $imageType = 'none';
+
 	public $tags = array();
+
 	public $url;
+
 	public $attachmentObjectType = 'de.codequake.linklist.link';
+
 	public $objectTypeName = 'de.codequake.linklist.category';
+
 	public $showSignatureSetting = false;
 
 	public function readParameters() {
@@ -49,7 +66,7 @@ class LinkEditForm extends MessageForm {
 		// set attachment object id
 		$this->attachmentObjectID = $this->linkID;
 		if ($this->link->linkID == 0) throw new IllegalLinkException();
-
+		
 		// can edit & own
 		if ($this->link->userID == WCF::getUser()->userID) {
 			$this->link->getCategory()->checkPermission(array(
@@ -57,8 +74,7 @@ class LinkEditForm extends MessageForm {
 				'canEnterCategory',
 				'canEditOwnLink'
 			));
-		}
-		else {
+		} else {
 			$this->link->getCategory()->checkPermission(array(
 				'canViewCategory',
 				'canEnterCategory',
@@ -72,7 +88,7 @@ class LinkEditForm extends MessageForm {
 		// read categories
 		$categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
 		$this->categoryNodeList = $categoryTree->getIterator();
-
+		
 		$this->subject = $this->link->getTitle();
 		$this->url = $this->link->url;
 		$this->text = $this->link->message;
@@ -108,7 +124,7 @@ class LinkEditForm extends MessageForm {
 			'application' => 'linklist',
 			'object' => $this->link
 		))));
-
+		
 		// tagging
 		if (MODULE_TAGGING) {
 			$tags = TagEngine::getInstance()->getObjectTags('de.codequake.linklist.link', $this->link->linkID, array(
@@ -122,7 +138,7 @@ class LinkEditForm extends MessageForm {
 
 	public function assignVariables() {
 		parent::assignVariables();
-
+		
 		WCF::getTPL()->assign(array(
 			'categoryNodeList' => $this->categoryNodeList,
 			'categoryID' => $this->categoryID,
@@ -144,12 +160,12 @@ class LinkEditForm extends MessageForm {
 		if (isset($_POST['category'])) $this->categoryID = intval($_POST['category']);
 		if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
 		if (isset($_POST['imageType'])) $this->imageType = StringUtil::trim($_POST['imageType']);
-
+		
 		if (isset($_POST['labelIDs']) && is_array($_POST['labelIDs'])) $this->labelIDs = $_POST['labelIDs'];
 		switch ($this->imageType) {
 			case 'upload':
 				if (isset($_FILES['image'])) $this->image = $_FILES['image'];
-
+				
 				break;
 			case 'link':
 				if (isset($_POST['image'])) $this->image = StringUtil::trim($_POST['image']);
@@ -165,7 +181,7 @@ class LinkEditForm extends MessageForm {
 
 	public function validate() {
 		parent::validate();
-
+		
 		$this->validateLabelIDs();
 		// image ->link
 		if ($this->imageType == 'link') {
@@ -199,12 +215,12 @@ class LinkEditForm extends MessageForm {
 							break;
 					}
 					$imagePath = LINKLIST_DIR . 'images/' . $this->image['name'] . md5(time()) . '.' . $i;
-
+					
 					// shrink if neccessary
 					$image = $this->shrink($this->image['tmp_name'], 150);
 					move_uploaded_file($this->image['tmp_name'], $imagePath);
 					$this->image = RELATIVE_LINKLIST_DIR . 'images/' . $this->image['name'] . md5(time()) . '.' . $i;
-
+					
 					break;
 			}
 		}
@@ -234,7 +250,7 @@ class LinkEditForm extends MessageForm {
 			LinkLabelObjectHandler::getInstance()->setLabels($this->labelIDs, $this->link->linkID);
 		}
 		$this->saved();
-
+		
 		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('Link', array(
 			'application' => 'linklist',
 			'object' => $this->link
@@ -249,17 +265,15 @@ class LinkEditForm extends MessageForm {
 				$obtainDimensions = true;
 				if (MAX_AVATAR_WIDTH / $imageData[0] < 150 / $imageData[1]) {
 					if (round($imageData[1] * ($size / $imageData[0])) < 48) $obtainDimensions = false;
-				}
-				else {
+				} else {
 					if (round($imageData[0] * ($size / $imageData[1])) < 48) $obtainDimensions = false;
 				}
-
+				
 				$adapter = ImageHandler::getInstance()->getAdapter();
 				$adapter->loadFile($filename);
 				$thumbnail = $adapter->createThumbnail($size, $size, $obtainDimensions);
 				$adapter->writeImage($thumbnail, $filename);
-			}
-			catch (SystemException $e) {
+			} catch (SystemException $e) {
 				throw new UserInputException('image', 'tooLarge');
 			}
 		}

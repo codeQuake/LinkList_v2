@@ -8,6 +8,7 @@ use wcf\system\moderation\queue\AbstractModerationQueueManager;
 use wcf\system\request\LinkHandler;
 
 class ModerationQueueOfflineManager extends AbstractModerationQueueManager {
+
 	protected $definitionName = 'de.codequake.linklist.moderation.offline';
 
 	public function getOfflineContent(ViewableModerationQueue $queue) {
@@ -29,7 +30,7 @@ class ModerationQueueOfflineManager extends AbstractModerationQueueManager {
 
 	public function removeModeratedContent($objectType, array $objectIDs) {
 		if (! $this->isValid($objectType)) throw new SystemException("Object type '" . $objectType . "' is not valid for definition '" . $this->definitionName . "'");
-
+		
 		$this->removeEntries($this->getObjectTypeID($objectType), $objectIDs);
 	}
 

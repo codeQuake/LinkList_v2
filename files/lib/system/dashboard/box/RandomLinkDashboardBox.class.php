@@ -8,6 +8,7 @@ use wcf\system\dashboard\box\AbstractContentDashboardBox;
 use wcf\system\WCF;
 
 class RandomLinkDashboardBox extends AbstractContentDashboardBox {
+
 	public $links = null;
 
 	public function init(DashboardBox $box, IPage $page) {

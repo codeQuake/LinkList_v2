@@ -25,23 +25,33 @@ use wcf\system\WCF;
  * @package de.codequake.linklist
  */
 class CategoryPage extends SortablePage {
+
 	/**
 	 *
 	 * @see wcf\page\AbstractPage::$enableTracking
 	 */
 	public $enableTracking = true;
+
 	public $categoryList = null;
+
 	public $categoryID;
+
 	public $objectTypeName = 'de.codequake.linklist.category';
+
 	public $category;
+
 	public $objectListClassName = 'linklist\data\link\CategoryLinkList';
+
 	public $validSortFields = array(
 		'subject',
 		'time',
 		'visits'
 	);
+
 	public $itemsPerPage = LINKLIST_LINKS_PER_PAGE;
+
 	public $defaultSortField = LINKLIST_DEFAULT_SORT_FIELD;
+
 	public $defaultSortOrder = LINKLIST_DEFAULT_SORT_ORDER;
 
 	protected function initObjectList() {
@@ -67,11 +77,11 @@ class CategoryPage extends SortablePage {
 	 */
 	public function readData() {
 		parent::readData();
-
+		
 		$categoryTree = new LinklistCategoryNodeTree($this->objectTypeName, $this->categoryID);
 		$this->categoryList = $categoryTree->getIterator();
 		$this->categoryList->setMaxDepth(0);
-
+		
 		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList', array(
 			'application' => 'linklist'
 		))));
@@ -91,7 +101,7 @@ class CategoryPage extends SortablePage {
 		parent::assignVariables();
 		// dashboard
 		DashboardHandler::getInstance()->loadBoxes('de.codequake.linklist.CategoryPage', $this);
-
+		
 		WCF::getTPL()->assign(array(
 			'categoryList' => $this->categoryList,
 			'categoryID' => $this->categoryID,

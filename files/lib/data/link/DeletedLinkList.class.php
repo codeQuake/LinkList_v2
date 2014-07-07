@@ -4,6 +4,7 @@ namespace linklist\data\link;
 use wcf\system\clipboard\ClipboardHandler;
 
 class DeletedLinkList extends ViewableLinkList {
+
 	public $sqlOrderBy = 'link.deleteTime DESC';
 
 	public function __construct() {

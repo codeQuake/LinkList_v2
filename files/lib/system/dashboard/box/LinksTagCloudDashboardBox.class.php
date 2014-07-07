@@ -10,6 +10,7 @@ use wcf\system\tagging\TypedTagCloud;
 use wcf\system\WCF;
 
 class LinksTagCloudDashboardBox extends AbstractSidebarDashboardBox {
+
 	public $tagCloud = null;
 
 	public function init(DashboardBox $box, IPage $page) {

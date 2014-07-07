@@ -5,6 +5,7 @@ use wcf\data\like\object\AbstractLikeObject;
 use wcf\system\request\LinkHandler;
 
 class LikeableLink extends AbstractLikeObject {
+
 	protected static $baseClass = 'linklist\data\link\Link';
 
 	public function getTitle() {

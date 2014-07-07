@@ -38,8 +38,11 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 	 * @see wcf\data\DatabaseObject::*
 	 */
 	protected static $databaseTableName = 'link';
+
 	protected static $databaseTableIndexName = 'linkID';
+
 	public $commentList = array();
+
 	public $labels = array();
 
 	public function __construct($id, $row = null, $object = null) {
@@ -52,10 +55,10 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 				$id
 			));
 			$row = $statement->fetchArray();
-
+			
 			if ($row === false) $row = array();
 		}
-
+		
 		parent::__construct(null, $row, $object);
 	}
 
@@ -92,7 +95,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 
 	public function getPrimaryLabel() {
 		if (! $this->hasLabels()) return null;
-
+		
 		foreach ($this->labels as $label)
 			return $label;
 	}
@@ -106,7 +109,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 			$objectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.linklist.linkComment');
 			$objectType = CommentHandler::getInstance()->getObjectType($objectTypeID);
 			$commentManager = $objectType->getProcessor();
-
+			
 			$this->commentList = CommentHandler::getInstance()->getCommentList($commentManager, $objectTypeID, $this - linkID);
 		}
 		return $this->commentList;
@@ -132,7 +135,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 			$category = new Category($this->categoryID);
 			$this->category = new LinklistCategory($category);
 		}
-
+		
 		return $this->category;
 	}
 
@@ -140,7 +143,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 		if ($this->editor === null) {
 			$this->editor = new LinkEditor($this);
 		}
-
+		
 		return $this->editor;
 	}
 
@@ -194,18 +197,14 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 	public function isVisible() {
 		if ($this->isActive == 0 && $this->isDeleted == 0) {
 			return $this->getCategory()->getPermission('canSeeDeactivatedLink');
-		}
-		else if ($this->isDeleted == 1 && $this->isActive == 1) {
+		} else if ($this->isDeleted == 1 && $this->isActive == 1) {
 			return $this->getCategory()->getPermission('canTrashLink');
-		}
-		else if ($this->isDeleted === 1 && $this->isActive == 0) {
+		} else if ($this->isDeleted === 1 && $this->isActive == 0) {
 			$trash = $this->getCategory()->getPermission('canSeeTrashLink');
 			$deactive = $this->getCategory()->getPermission('canSeeDeactivatedLink');
 			if ($trash && $deactive) return true;
-			else
-				return false;
-		}
-		else {
+			else return false;
+		} else {
 			return $this->getCategory()->getPermission('canViewLink');
 		}
 	}
@@ -215,8 +214,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 		$isOwn = $this->userID && $this->userID == WCF::getUser()->userID;
 		$canTrash = $aclOption || ($isOwn && $this->getCategory()->getPermission('canDeleteOwnLink'));
 		if ($canTrash) return true;
-		else
-			return false;
+		else return false;
 	}
 
 	public function canDelete() {
@@ -224,15 +222,13 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 		$isOwn = $this->userID && $this->userID == WCF::getUser()->userID;
 		$canDelete = $aclOption || ($isOwn && $this->getCategory()->getPermission('canDeleteOwnLink'));
 		if ($canDelete) return true;
-		else
-			return false;
+		else return false;
 	}
 
 	public function canToggle() {
 		$aclOption = $this->getCategory()->getPermission('canToggleLink');
 		if ($aclOption) return true;
-		else
-			return false;
+		else return false;
 	}
 
 	public function countLikes() {
@@ -249,8 +245,7 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 		if (MODULE_LIKE) {
 			if ($this->cumulativeLikes == 0) {
 				return false;
-			}
-			else
+			} else
 				return true;
 		}
 		return false;

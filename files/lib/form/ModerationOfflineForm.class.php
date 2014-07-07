@@ -9,7 +9,7 @@ class ModerationOfflineForm extends AbstractModerationForm {
 
 	public function assignVariables() {
 		parent::assignVariables();
-
+		
 		WCF::getTPL()->assign(array(
 			'offlineContent' => ModerationQueueOfflineManager::getInstance()->getOfflineContent($this->queue)
 		));

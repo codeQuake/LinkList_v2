@@ -31,30 +31,46 @@ use wcf\util\UserUtil;
  * @pakage de.codequake.linklist
  */
 class LinkAddForm extends MessageForm {
+
 	public $action = 'add';
+
 	public $templateName = 'linkAdd';
+
 	public $username = '';
+
 	public $categoryID = 0;
+
 	public $category = null;
+
 	public $categoryNodeList = null;
+
 	public $url;
+
 	public $labelGroups = null;
+
 	public $labelIDs = array();
+
 	public $tags = array();
+
 	public $enableMultilingualism = true;
+
 	public $image = null;
+
 	public $imageType = 'none';
+
 	public $attachmentObjectType = 'de.codequake.linklist.link';
+
 	protected $link = null;
+
 	public $objectTypeName = 'de.codequake.linklist.category';
 
 	public function readParameters() {
 		parent::readParameters();
 		if (isset($_GET['id'])) $this->categoryID = intval($_GET['id']);
 		$category = CategoryHandler::getInstance()->getCategory($this->categoryID);
-
+		
 		if ($category !== null) $this->category = new LinklistCategory($category);
-
+		
 		if ($this->category === null || ! $this->category->categoryID) {
 			throw new IllegalLinkException();
 		}
@@ -70,28 +86,28 @@ class LinkAddForm extends MessageForm {
 		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList', array(
 			'application' => 'linklist'
 		))));
-
+		
 		// read labels
 		$groups = $this->category->getAvailableLabelGroups();
 		if (! empty($groups)) {
 			$this->labelGroups = LabelHandler::getInstance()->getLabelGroups(array_keys($groups));
 		}
-
+		
 		// read categories
 		$categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
 		$this->categoryNodeList = $categoryTree->getIterator();
-
+		
 		// default values
 		if (! count($_POST)) {
 			$this->username = WCF::getSession()->getVar('username');
-
+			
 			// multilingualism
 			if (! empty($this->availableContentLanguages)) {
 				if (! $this->languageID) {
 					$language = LanguageFactory::getInstance()->getUserLanguage();
 					$this->languageID = $language->languageID;
 				}
-
+				
 				if (! isset($this->availableContentLanguages[$this->languageID])) {
 					$languageIDs = array_keys($this->availableContentLanguages);
 					$this->languageID = array_shift($languageIDs);
@@ -102,18 +118,18 @@ class LinkAddForm extends MessageForm {
 
 	public function readFormParameters() {
 		parent::readFormParameters();
-
+		
 		if (isset($_POST['username'])) $this->username = StringUtil::trim($_POST['username']);
 		if (isset($_POST['category'])) $this->categoryID = intval($_POST['category']);
 		if (isset($_POST['url'])) $this->url = StringUtil::trim($_POST['url']);
 		if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
 		if (isset($_POST['imageType'])) $this->imageType = StringUtil::trim($_POST['imageType']);
-
+		
 		if (isset($_POST['labelIDs']) && is_array($_POST['labelIDs'])) $this->labelIDs = $_POST['labelIDs'];
 		switch ($this->imageType) {
 			case 'upload':
 				if (isset($_FILES['image'])) $this->image = $_FILES['image'];
-
+				
 				break;
 			case 'link':
 				if (isset($_POST['image'])) $this->image = StringUtil::trim($_POST['image']);
@@ -146,7 +162,7 @@ class LinkAddForm extends MessageForm {
 
 	public function validate() {
 		parent::validate();
-
+		
 		$this->validateLabelIDs();
 		// user
 		if (WCF::getUser()->userID == 0) {
@@ -159,17 +175,17 @@ class LinkAddForm extends MessageForm {
 			if (! UserUtil::isAvailableUsername($this->username)) {
 				throw new UserInputException('username', 'notAvailable');
 			}
-
+			
 			WCF::getSession()->register('username', $this->username);
 		}
-
+		
 		// image ->link
 		if ($this->imageType == 'link') {
 			if ((strpos($this->image, 'png') === false) && (strpos($this->image, 'gif') === false) && (strpos($this->image, 'jpg') === false)) {
 				throw new UserInputException('image', 'notValid');
 			}
 		}
-
+		
 		// url
 		if (! FileUtil::isURL($this->url)) {
 			throw new UserInputException('url', 'illegalURL');
@@ -198,9 +214,9 @@ class LinkAddForm extends MessageForm {
 							throw new UserInputException('image', 'notValid');
 							break;
 					}
-
+					
 					$imagePath = LINKLIST_DIR . 'images/' . $this->image['name'] . md5(time()) . '.' . $i;
-
+					
 					// shrink if neccessary
 					$image = $this->shrink($this->image['tmp_name'], 150);
 					move_uploaded_file($this->image['tmp_name'], $imagePath);
@@ -208,7 +224,7 @@ class LinkAddForm extends MessageForm {
 					break;
 			}
 		}
-
+		
 		$data = array(
 			'url' => $this->url,
 			'subject' => $this->subject,
@@ -236,16 +252,16 @@ class LinkAddForm extends MessageForm {
 		}
 		$this->objectAction = new LinkAction(array(), 'create', $linkData);
 		$resultvalues = $this->objectAction->executeAction();
-
+		
 		$this->link = $resultvalues['returnValues'];
-
+		
 		// save labels
 		if (! empty($this->labelIDs)) {
 			LinkLabelObjectHandler::getInstance()->setLabels($this->labelIDs, $this->link->linkID);
 		}
-
+		
 		$this->saved();
-
+		
 		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('Link', array(
 			'application' => 'linklist',
 			'object' => $this->link
@@ -260,17 +276,15 @@ class LinkAddForm extends MessageForm {
 				$obtainDimensions = true;
 				if (MAX_AVATAR_WIDTH / $imageData[0] < 150 / $imageData[1]) {
 					if (round($imageData[1] * ($size / $imageData[0])) < 48) $obtainDimensions = false;
-				}
-				else {
+				} else {
 					if (round($imageData[0] * ($size / $imageData[1])) < 48) $obtainDimensions = false;
 				}
-
+				
 				$adapter = ImageHandler::getInstance()->getAdapter();
 				$adapter->loadFile($filename);
 				$thumbnail = $adapter->createThumbnail($size, $size, $obtainDimensions);
 				$adapter->writeImage($thumbnail, $filename);
-			}
-			catch (SystemException $e) {
+			} catch (SystemException $e) {
 				throw new UserInputException('image', 'tooLarge');
 			}
 		}

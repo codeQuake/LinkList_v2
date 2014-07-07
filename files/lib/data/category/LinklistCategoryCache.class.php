@@ -6,6 +6,7 @@ use wcf\system\SingletonFactory;
 use wcf\system\WCF;
 
 class LinklistCategoryCache extends SingletonFactory {
+
 	public $counts = array();
 
 	protected function init() {

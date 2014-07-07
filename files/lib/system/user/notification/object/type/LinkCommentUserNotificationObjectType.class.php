@@ -6,8 +6,11 @@ use wcf\system\user\notification\object\type\ICommentUserNotificationObjectType;
 use wcf\system\WCF;
 
 class LinkCommentUserNotificationObjectType extends AbstractUserNotificationObjectType implements ICommentUserNotificationObjectType {
+
 	protected static $decoratorClassName = 'wcf\system\user\notification\object\CommentUserNotificationObject';
+
 	protected static $objectClassName = 'wcf\data\comment\Comment';
+
 	protected static $objectListClassName = 'wcf\data\comment\CommentList';
 
 	public function getOwnerID($objectID) {
@@ -21,7 +24,7 @@ class LinkCommentUserNotificationObjectType extends AbstractUserNotificationObje
 			$objectID
 		));
 		$row = $statement->fetchArray();
-
+		
 		return ($row ? $row['userID'] : 0);
 	}
 }

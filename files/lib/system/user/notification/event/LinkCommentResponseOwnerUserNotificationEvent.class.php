@@ -17,7 +17,7 @@ class LinkCommentResponseOwnerUserNotificationEvent extends AbstractUserNotifica
 		$comment = new Comment($this->userNotificationObject->commentID);
 		$link = new Link($comment->objectID);
 		$commentAuthor = new User($comment->userID);
-
+		
 		return $this->getLanguage()->getDynamicVariable('linklist.link.commentResponseOwner.notification.message', array(
 			'link' => $link,
 			'author' => $this->author,
@@ -29,7 +29,7 @@ class LinkCommentResponseOwnerUserNotificationEvent extends AbstractUserNotifica
 		$comment = new Comment($this->userNotificationObject->commentID);
 		$link = new Link($comment->objectID);
 		$commentAuthor = new User($comment->userID);
-
+		
 		return $this->getLanguage()->getDynamicVariable('linklist.link.commentResponseOwner.notification.mail', array(
 			'link' => $link,
 			'author' => $this->author,
@@ -40,7 +40,7 @@ class LinkCommentResponseOwnerUserNotificationEvent extends AbstractUserNotifica
 	public function getLink() {
 		$comment = new Comment($this->userNotificationObject->commentID);
 		$link = new Link($comment->objectID);
-
+		
 		return LinkHandler::getInstance()->getLink('Link', array(
 			'application' => 'linklist',
 			'object' => $link

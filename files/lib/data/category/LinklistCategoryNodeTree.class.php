@@ -12,5 +12,6 @@ use wcf\data\category\CategoryNodeTree;
  * @package de.codequake.linklist
  */
 class LinklistCategoryNodeTree extends CategoryNodeTree {
+
 	protected $nodeClassName = 'linklist\data\category\LinklistCategoryNode';
 }

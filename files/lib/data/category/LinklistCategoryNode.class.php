@@ -14,19 +14,24 @@ use wcf\data\DatabaseObject;
  * @package de.codequake.linklist
  */
 class LinklistCategoryNode extends CategoryNode {
+
 	protected $links = null;
+
 	protected $visits = null;
+
 	public $parentNode = null;
+
 	protected static $baseClass = 'linklist\data\category\LinklistCategory';
+
 	public $objectTypeName = 'de.codequake.linklist.category';
 
 	protected function fulfillsConditions(DatabaseObject $category) {
 		if (parent::fulfillsConditions($category)) {
 			$category = new LinklistCategory($category);
-
+			
 			return $category->isAccessible();
 		}
-
+		
 		return false;
 	}
 

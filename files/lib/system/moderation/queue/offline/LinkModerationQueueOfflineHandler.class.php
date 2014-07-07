@@ -11,7 +11,9 @@ use wcf\data\moderation\queue\ViewableModerationQueue;
 use wcf\system\WCF;
 
 class LinkModerationQueueOfflineHandler extends AbstractLinkModerationQueueHandler implements IModerationQueueOfflineHandler {
+
 	protected $definitionName = 'de.codequake.linklist.moderation.offline';
+
 	protected $objectType = 'de.codequake.linklist.link';
 
 	public function getOfflineContent(ViewableModerationQueue $queue) {

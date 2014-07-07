@@ -6,7 +6,9 @@ use wcf\data\modification\log\ModificationLogList;
 use wcf\system\WCF;
 
 class LinkModificationLogList extends ModificationLogList {
+
 	public $objectTypeID = 0;
+
 	public $link = null;
 
 	public function __construct() {
@@ -33,7 +35,7 @@ class LinkModificationLogList extends ModificationLogList {
 		while ($row = $statement->fetchArray()) {
 			$count += $row['count'];
 		}
-
+		
 		return $count;
 	}
 
@@ -53,7 +55,7 @@ class LinkModificationLogList extends ModificationLogList {
 		foreach ($this->objects as $object) {
 			$objectID = $object->{$this->getDatabaseTableIndexName()};
 			$objects[$objectID] = $object;
-
+			
 			$this->indexToObject[] = $objectID;
 		}
 		$this->objectIDs = $this->indexToObject;
