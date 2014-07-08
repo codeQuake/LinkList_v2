@@ -74,7 +74,8 @@ class LinkEditForm extends MessageForm {
 				'canEnterCategory',
 				'canEditOwnLink'
 			));
-		} else {
+		}
+		else {
 			$this->link->getCategory()->checkPermission(array(
 				'canViewCategory',
 				'canEnterCategory',
@@ -265,7 +266,8 @@ class LinkEditForm extends MessageForm {
 				$obtainDimensions = true;
 				if (MAX_AVATAR_WIDTH / $imageData[0] < 150 / $imageData[1]) {
 					if (round($imageData[1] * ($size / $imageData[0])) < 48) $obtainDimensions = false;
-				} else {
+				}
+				else {
 					if (round($imageData[0] * ($size / $imageData[1])) < 48) $obtainDimensions = false;
 				}
 				
@@ -273,7 +275,8 @@ class LinkEditForm extends MessageForm {
 				$adapter->loadFile($filename);
 				$thumbnail = $adapter->createThumbnail($size, $size, $obtainDimensions);
 				$adapter->writeImage($thumbnail, $filename);
-			} catch (SystemException $e) {
+			}
+			catch (SystemException $e) {
 				throw new UserInputException('image', 'tooLarge');
 			}
 		}

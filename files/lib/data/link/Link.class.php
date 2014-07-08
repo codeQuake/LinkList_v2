@@ -197,14 +197,17 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 	public function isVisible() {
 		if ($this->isActive == 0 && $this->isDeleted == 0) {
 			return $this->getCategory()->getPermission('canSeeDeactivatedLink');
-		} else if ($this->isDeleted == 1 && $this->isActive == 1) {
+		}
+		else if ($this->isDeleted == 1 && $this->isActive == 1) {
 			return $this->getCategory()->getPermission('canTrashLink');
-		} else if ($this->isDeleted === 1 && $this->isActive == 0) {
+		}
+		else if ($this->isDeleted === 1 && $this->isActive == 0) {
 			$trash = $this->getCategory()->getPermission('canSeeTrashLink');
 			$deactive = $this->getCategory()->getPermission('canSeeDeactivatedLink');
 			if ($trash && $deactive) return true;
 			else return false;
-		} else {
+		}
+		else {
 			return $this->getCategory()->getPermission('canViewLink');
 		}
 	}
@@ -245,7 +248,8 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 		if (MODULE_LIKE) {
 			if ($this->cumulativeLikes == 0) {
 				return false;
-			} else
+			}
+			else
 				return true;
 		}
 		return false;

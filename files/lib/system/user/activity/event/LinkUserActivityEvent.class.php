@@ -29,7 +29,8 @@ class LinkUserActivityEvent extends SingletonFactory implements IUserActivityEve
 				$event->setTitle($text);
 				$event->setDescription($link->getExcerpt());
 				$event->setIsAccessible();
-			} else {
+			}
+			else {
 				$event->setIsOrphaned();
 			}
 		}

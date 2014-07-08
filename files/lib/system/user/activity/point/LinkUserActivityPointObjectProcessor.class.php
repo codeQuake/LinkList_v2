@@ -34,7 +34,8 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 			$statement->execute(array(
 				$this->objectType->objectTypeID
 			));
-		} else {
+		}
+		else {
 			// others
 			
 

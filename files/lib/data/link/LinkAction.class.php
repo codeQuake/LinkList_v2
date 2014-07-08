@@ -104,7 +104,8 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			if (isset($this->parameters['data']['isDisabled'])) {
 				if ($this->parameters['data']['isDisabled']) {
 					$this->addModeratedContent($object->linkID);
-				} else {
+				}
+				else {
 					$this->removeModeratedContent($object->linkID);
 				}
 			}
@@ -337,7 +338,8 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 				'isActive' => 1
 			));
 			$this->publish($link);
-		} else {
+		}
+		else {
 			$this->addModeratedContent($link->linkID);
 		}
 	}

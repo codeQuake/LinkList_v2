@@ -46,7 +46,8 @@ class CheckLinksCronjob extends AbstractCronjob {
 			$running = null;
 			do {
 				curl_multi_exec($mh, $running);
-			} while ($running);
+			}
+			while ($running);
 			foreach ($handles as $handle) {
 				$codes[] = array(
 					'linkID' => $handle['linkID'],
@@ -64,7 +65,8 @@ class CheckLinksCronjob extends AbstractCronjob {
 					$editor->update(array(
 						'isOnline' => 1
 					));
-				} else {
+				}
+				else {
 					$link = new Link($code['linkID']);
 					$editor = new LinkEditor($link);
 					$editor->update(array(
