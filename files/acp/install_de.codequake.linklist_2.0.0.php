@@ -17,10 +17,22 @@ DashboardHandler::setDefaultValues('de.codequake.linklist.CategoryPage', array(
 
 // install date
 $sql = "UPDATE	wcf" . WCF_N . "_option
-    SET	optionValue = ?
-    WHERE	optionName = ?";
+	SET	optionValue = ?
+	WHERE	optionName = ?";
 $statement = WCF::getDB()->prepareStatement($sql);
 $statement->execute(array(
 	TIME_NOW,
 	'linklist_install_date'
 ));
+
+// set default page title
+if (! defined('PAGE_TITLE') || ! PAGE_TITLE) {
+	$sql = "UPDATE	wcf" . WCF_N . "_option
+		SET	optionValue = ?
+		WHERE	optionName = ?";
+	$statement = WCF::getDB()->prepareStatement($sql);
+	$statement->execute(array(
+		'Linklist 2.1',
+		'page_title'
+	));
+}
