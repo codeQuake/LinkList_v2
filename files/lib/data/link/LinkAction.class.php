@@ -1,28 +1,18 @@
 <?php
 namespace linklist\data\link;
 
-use linklist\data\link\LinkEditor;
-use linklist\data\link\LinkList;
-use linklist\data\link\ViewableLinkList;
-use linklist\system\cache\builder\CategoryCacheBuilder;
-use linklist\system\cache\builder\LinklistStatsCacheBuilder;
-use linklist\system\log\modification\LinkModificationLogHandler;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\IClipboardAction;
 use wcf\system\attachment\AttachmentHandler;
-use wcf\system\clipboard\ClipboardHandler;
-use wcf\system\database\util\PreparedStatementConditionBuilder;
-use wcf\system\exception\PermissionDeniedException;
-use wcf\system\exception\UserInputException;
 use wcf\system\language\LanguageFactory;
-use wcf\system\moderation\queue\ModerationQueueActivationManager;
 use wcf\system\search\SearchIndexManager;
 use wcf\system\tagging\TagEngine;
 use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\system\user\activity\point\UserActivityPointHandler;
+use wcf\system\user\storage\UserStorageHandler;
+use wcf\system\visitTracker\VisitTracker;
 use wcf\system\WCF;
-use wcf\util\StringUtil;
-
+use wcf\util\UserUtil;
 /**
  *
  * @author Jens Krumsieck
@@ -32,10 +22,6 @@ use wcf\util\StringUtil;
  */
 class LinkAction extends AbstractDatabaseObjectAction implements IClipboardAction {
 
-	/**
-	 *
-	 * @see wcf\data\AbstractDatabaseObjectAction::$className
-	 */
 	protected $className = 'linklist\data\link\LinkEditor';
 
 	protected $permissionsCreate = array(
@@ -59,34 +45,62 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 	);
 
 	protected $allowGuestAccess = array(
-		'getLinkPreview'
+		'getLinkPreview',
+		'markAllAsRead'
 	);
 
 	public $links = array();
-
-	public $link = null;
 
 	public function create() {
 		// count attachments
 		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
 			$this->parameters['data']['attachments'] = count($this->parameters['attachmentHandler']);
 		}
+
+		if (LOG_IP_ADDRESS) {
+			// add ip address
+			if (! isset($data['ipAddress'])) {
+				$data['ipAddress'] = WCF::getSession()->ipAddress;
+			}
+		} else {
+			// do not track ip address
+			if (isset($data['ipAddress'])) {
+				unset($data['ipAddress']);
+			}
+		}
 		$object = call_user_func(array(
 			$this->className,
 			'create'
 		), $this->parameters['data']);
-		
+
 		// update attachments
 		if (isset($this->parameters['attachmentHandler']) && $this->parameters['attachmentHandler'] !== null) {
 			$this->parameters['attachmentHandler']->updateObjectID($object->linkID);
 		}
-		
+
 		if (! empty($this->parameters['tags'])) {
-			TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $this->parameters['tags'], $object->languageID);
+			TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $this->parameters['tags'], null);
 		}
-		LinklistStatsCacheBuilder::getInstance()->reset();
-		SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
-		
+
+		// handle categories
+		$editor = new LinkEditor($object);
+		$editor->updateCategoryIDs($this->parameters['categoryIDs']);
+		$editor->setCategoryIDs($this->parameters['categoryIDs']);
+
+		// reset storage
+		UserStorageHandler::getInstance()->resetAll('linklistUnreadLinks');
+
+		if (!$object->isDisabled) {
+			if ($object->userID !== null) {
+				UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
+				UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $object->linkID, $object->userID);
+				LinkEditor::updateLinkCounter(array(
+				$object->userID => 1
+				));
+			}
+			SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
+		}
+
 		$this->handleActivation($object);
 		return $object;
 	}
@@ -109,7 +123,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 					$this->removeModeratedContent($object->linkID);
 				}
 			}
-			
+
 			// edit
 			if (isset($this->parameters['isEdit'])) {
 				$reason = (isset($this->parameters['data']['editReason'])) ? $this->parameters['data']['editReason'] : '';
@@ -122,7 +136,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 				unset($this->parameters['tags']);
 			}
 			if (! empty($tags)) {
-				
+
 				$languageID = (! isset($this->parameters['data']['languageID']) || ($this->parameters['data']['languageID'] === null)) ? LanguageFactory::getInstance()->getDefaultLanguageID() : $this->parameters['data']['languageID'];
 				TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $tags, $languageID);
 			}
@@ -130,7 +144,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 		if (! empty($objectIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $objectIDs);
 		if (! empty($objectIDs)) SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
 	}
-	
+
 	// unmark
 	public function validateUnmarkAll() {}
 
@@ -152,7 +166,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			));
 			LinkModificationLogHandler::getInstance()->trash($link, "");
 		}
-		
+
 		$this->unmarkItems();
 	}
 
@@ -164,7 +178,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			}
 		}
 	}
-	
+
 	// toggle
 	public function validateEnable() {
 		$this->loadlinks();
@@ -186,7 +200,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			$this->removeModeratedContent($link->linkID);
 			$this->publish($link);
 		}
-		
+
 		$this->unmarkItems();
 	}
 
@@ -206,14 +220,14 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			$editor->update(array(
 				'isActive' => 0
 			));
-			
+
 			LinkModificationLogHandler::getInstance()->disable($link);
 			$this->addModeratedContent($link->linkID);
 		}
-		
+
 		$this->unmarkItems();
 	}
-	
+
 	// restore
 	public function validateRestore() {
 		$this->loadLinks();
@@ -260,7 +274,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 		}
 		// remove activity points
 		UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $linkIDs);
-		
+
 		// delete
 		parent::delete();
 		$linkIDs = array();
@@ -272,24 +286,24 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			TagEngine::getInstance()->deleteObjectTags('de.codequake.linklist.link', $link->linkID);
 		}
 		if (! empty($linkIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $linkIDs);
-		
+
 		// reset cache
 		LinklistStatsCacheBuilder::getInstance()->reset();
 	}
-	
+
 	// getLinks
 	protected function loadLinks() {
 		if (empty($this->objectIDs)) {
 			throw new UserInputException("objectIDs");
 		}
-		
+
 		$list = new LinkList();
 		$list->getConditionBuilder()->add("link.linkID IN (?)", $this->objectIDs);
 		$list->sqlLimit = 0;
 		$list->readObjects();
-		
+
 		$this->links = $list->getObjects();
-		
+
 		if (empty($this->links)) {
 			throw new UserInputException("objectIDs");
 		}
@@ -352,18 +366,6 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
 	protected function addModeratedContent($linkID) {
 		ModerationQueueActivationManager::getInstance()->addModeratedContent('de.codequake.linklist.link', $linkID);
-	}
-
-	protected function publish($link) {
-		if ($link->userID !== null) {
-			UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $link->linkID, $link->languageID, $link->userID, $link->time);
-			UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $link->linkID, $link->userID);
-			LinkEditor::updateLinkCounter(array(
-				$link->userID => 1
-			));
-		}
-		
-		$this->refreshStats($link);
 	}
 
 	public function import() {
