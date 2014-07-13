@@ -5,24 +5,19 @@ use linklist\data\category\LinklistCategory;
 use linklist\data\LINKLISTDatabaseObject;
 use wcf\data\attachment\Attachment;
 use wcf\data\attachment\GroupedAttachmentList;
-use wcf\data\category\Category;
-use wcf\data\label\Label;
-use wcf\data\object\type\ObjectTypeCache;
-use wcf\data\user\User;
-use wcf\data\user\UserProfile;
 use wcf\data\IMessage;
-use wcf\data\IUserContent;
 use wcf\system\bbcode\AttachmentBBCode;
 use wcf\system\bbcode\MessageParser;
-use wcf\system\comment\CommentHandler;
-use wcf\system\exception\PermissionDeniedException;
+use wcf\system\breadcrumb\Breadcrumb;
+use wcf\system\breadcrumb\IBreadcrumbProvider;
+use wcf\system\category\CategoryHandler;
+use wcf\system\database\util\PreparedStatementConditionBuilder;
 use wcf\system\language\LanguageFactory;
-use wcf\system\like\LikeHandler;
 use wcf\system\request\IRouteController;
-use wcf\system\request\LinkHandler;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 use wcf\util\StringUtil;
+use wcf\util\UserUtil;
 
 /**
  *
@@ -31,41 +26,51 @@ use wcf\util\StringUtil;
  * @license GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package de.codequake.linklist
  */
-class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteController, IMessage {
+class Link extends LINKLISTDatabaseObject implements IMessage, IRouteController, IBreadcrumbProvider {
 
-	/**
-	 *
-	 * @see wcf\data\DatabaseObject::*
-	 */
 	protected static $databaseTableName = 'link';
 
 	protected static $databaseTableIndexName = 'linkID';
 
-	public $commentList = array();
+	protected $categories = null;
 
-	public $labels = array();
+	protected $categoryIDs = array();
 
-	public function __construct($id, $row = null, $object = null) {
+public function __construct($id, $row = null, $object = null) {
 		if ($id !== null) {
 			$sql = "SELECT *
-                    FROM " . static::getDatabaseTableName() . "
-                    WHERE (" . static::getDatabaseTableIndexName() . " = ?)";
+					FROM " . static::getDatabaseTableName() . "
+					WHERE (" . static::getDatabaseTableIndexName() . " = ?)";
 			$statement = WCF::getDB()->prepareStatement($sql);
 			$statement->execute(array(
 				$id
 			));
 			$row = $statement->fetchArray();
-			
+
 			if ($row === false) $row = array();
 		}
-		
+
 		parent::__construct(null, $row, $object);
 	}
 
+	public function getTitle() {
+		return $this->subject;
+	}
+
+	public function getMessage() {
+		return $this->message;
+	}
+
+	public function getTags() {
+		$tags = TagEngine::getInstance()->getObjectTags('de.codequake.linklist.link', $this->linkID);
+		return $tags;
+	}
+
 	public function getFormattedMessage() {
-		AttachmentBBCode::setObjectID($this->newsID);
+		AttachmentBBCode::setObjectID($this->linkID);
+
 		MessageParser::getInstance()->setOutputType('text/html');
-		return MessageParser::getInstance()->parse($this->message, $this->enableSmilies, $this->enableHtml, $this->enableBBCodes);
+		return MessageParser::getInstance()->parse($this->getMessage(), $this->enableSmilies, $this->enableHtml, $this->enableBBCodes);
 	}
 
 	public function getAttachments() {
@@ -79,88 +84,15 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 				'canDownload' => WCF::getSession()->getPermission('user.linklist.link.canDownloadAttachments'),
 				'canViewPreview' => WCF::getSession()->getPermission('user.linklist.link.canDownloadAttachments')
 			));
+
 			AttachmentBBCode::setAttachmentList($attachmentList);
 			return $attachmentList;
 		}
 		return null;
 	}
 
-	public function addLabel(Label $label) {
-		$this->labels[$label->labelID] = $label;
-	}
-
-	public function getLabels() {
-		return $this->labels;
-	}
-
-	public function getPrimaryLabel() {
-		if (! $this->hasLabels()) return null;
-		
-		foreach ($this->labels as $label)
-			return $label;
-	}
-
-	public function hasLabels() {
-		return (count($this->labels)) ? true : false;
-	}
-
-	public function getCommentList() {
-		if ($this->commentList === null) {
-			$objectTypeID = CommentHandler::getInstance()->getObjectTypeID('de.codequake.linklist.linkComment');
-			$objectType = CommentHandler::getInstance()->getObjectType($objectTypeID);
-			$commentManager = $objectType->getProcessor();
-			
-			$this->commentList = CommentHandler::getInstance()->getCommentList($commentManager, $objectTypeID, $this - linkID);
-		}
-		return $this->commentList;
-	}
-
-	public function getMessage() {
-		return $this->message;
-	}
-
-	public function getImage($size = 150) {
-		if ($this->image !== null && $this->image != '') {
-			return '<img src="' . $this->image . '" alt="' . $this->getTitle() . '" style="max-width: 100%; max-height: 100%;" />';
-		}
-		return '<img src="http://api.webthumbnail.org?width=' . $size . '&amp;height=' . $size . '&amp;screen=1280&amp;format=png&amp;url=' . $this->url . '" alt="Captured by webthumbnail.org" />';
-	}
-
-	public function __toString() {
-		return $this->getFormattedMessage();
-	}
-
-	public function getCategory() {
-		if ($this->category === null) {
-			$category = new Category($this->categoryID);
-			$this->category = new LinklistCategory($category);
-		}
-		
-		return $this->category;
-	}
-
-	public function getEditor() {
-		if ($this->editor === null) {
-			$this->editor = new LinkEditor($this);
-		}
-		
-		return $this->editor;
-	}
-
-	public function getID() {
-		return $this->linkID;
-	}
-
-	public function getTitle() {
-		return $this->subject;
-	}
-
-	public function getTime() {
-		return $this->time;
-	}
-
-	public function getUserProfile() {
-		return new UserProfile(new User($this->userID));
+	public function getExcerpt($maxLength = 500) {
+		return StringUtil::truncateHTML($this->getFormattedMessage(), $maxLength);
 	}
 
 	public function getUserID() {
@@ -171,94 +103,138 @@ class Link extends LINKLISTDatabaseObject implements IUserContent, IRouteControl
 		return $this->username;
 	}
 
-	public function updateVisits() {
-		$visits = $this->visits + 1;
-		$sql = "UPDATE " . static::getDatabaseTableName() . "
-                SET visits = " . $visits . "
-                WHERE " . static::getDatabaseTableIndexName() . " = ?";
-		$statement = WCF::getDB()->prepareStatement($sql);
-		$statement->execute(array(
-			$this->linkID
-		));
-	}
-
-	public function getExcerpt($maxLength = 255) {
-		MessageParser::getInstance()->setOutputType('text/simplified-html');
-		return StringUtil::truncateHTML(MessageParser::getInstance()->parse($this->message, $this->enableSmilies, $this->enableHtml, $this->enableBBCodes), $maxLength);
+	public function getTime() {
+		return $this->time;
 	}
 
 	public function getLink() {
 		return LinkHandler::getInstance()->getLink('Link', array(
 			'application' => 'linklist',
-			'object' => $this
+			'object' => $this,
+			'forceFrontend' => true
 		));
+	}
+	public function __toString() {
+		return $this->getFormattedMessage();
+	}
+
+	public function getBreadcrumb() {
+		return new Breadcrumb($this->subject, $this->getLink());
+	}
+
+	public function getCategoryIDs() {
+		return $this->categoryIDs;
+	}
+
+	public function setCategoryID($categoryID) {
+		$this->categoryIDs[] = $categoryID;
+	}
+
+	public function setCategoryIDs(array $categoryIDs) {
+		$this->categoryIDs = $categoryIDs;
+	}
+
+	public function getCategories() {
+		if ($this->categories === null) {
+			$this->categories = array();
+
+			if (! empty($this->categoryIDs)) {
+				foreach ($this->categoryIDs as $categoryID) {
+					$this->categories[$categoryID] = new LinklistCategory(CategoryHandler::getInstance()->getCategory($categoryID));
+				}
+			} else {
+				$sql = "SELECT	categoryID
+					FROM	linklist" . WCF_N . "_link_to_category
+					WHERE	linkID = ?";
+				$statement = WCF::getDB()->prepareStatement($sql);
+				$statement->execute(array(
+					$this->linkID
+				));
+				while ($row = $statement->fetchArray()) {
+					$this->categories[$row['categoryID']] = new LinklistCategory(CategoryHandler::getInstance()->getCategory($row['categoryID']));
+				}
+			}
+		}
+
+		return $this->categories;
+	}
+
+	public function getIpAddress() {
+		if ($this->ipAddress) {
+			return UserUtil::convertIPv6To4($this->ipAddress);
+		}
+
+		return '';
 	}
 
 	public function isVisible() {
-		if ($this->isActive == 0 && $this->isDeleted == 0) {
-			return $this->getCategory()->getPermission('canSeeDeactivatedLink');
-		}
-		else if ($this->isDeleted == 1 && $this->isActive == 1) {
-			return $this->getCategory()->getPermission('canTrashLink');
-		}
-		else if ($this->isDeleted === 1 && $this->isActive == 0) {
-			$trash = $this->getCategory()->getPermission('canSeeTrashLink');
-			$deactive = $this->getCategory()->getPermission('canSeeDeactivatedLink');
-			if ($trash && $deactive) return true;
-			else return false;
-		}
-		else {
-			return $this->getCategory()->getPermission('canViewLink');
-		}
+		return true;
 	}
 
-	public function canTrash() {
-		$aclOption = $this->getCategory()->getPermission('canTrashLink');
-		$isOwn = $this->userID && $this->userID == WCF::getUser()->userID;
-		$canTrash = $aclOption || ($isOwn && $this->getCategory()->getPermission('canDeleteOwnLink'));
-		if ($canTrash) return true;
-		else return false;
+	public function canRead() {
+		return WCF::getSession()->getPermission('user.linklist.link.canViewCategory');
 	}
 
-	public function canDelete() {
-		$aclOption = $this->getCategory()->getPermission('canDeleteLink');
-		$isOwn = $this->userID && $this->userID == WCF::getUser()->userID;
-		$canDelete = $aclOption || ($isOwn && $this->getCategory()->getPermission('canDeleteOwnLink'));
-		if ($canDelete) return true;
-		else return false;
+	public function canAdd() {
+		return WCF::getSession()->getPermission('user.linklist.link.canAddNews');
 	}
 
-	public function canToggle() {
-		$aclOption = $this->getCategory()->getPermission('canToggleLink');
-		if ($aclOption) return true;
-		else return false;
+	public function canModerate() {
+		return WCF::getSession()->getPermission('mod.linklist.link.canModerateNews');
 	}
 
-	public function countLikes() {
-		if (MODULE_LIKE) {
-			$linkIDs = array();
-			$linkIDs[] = $this->linkID;
-			$objectType = LikeHandler::getInstance()->getObjectType('de.codequake.linklist.likeableLink');
-			LikeHandler::getInstance()->loadLikeObjects($objectType, $linkIDs);
-			return LikeHandler::getInstance()->getLikeObject($objectType, $this->linkID);
-		}
-	}
-
-	public function hasLikes() {
-		if (MODULE_LIKE) {
-			if ($this->cumulativeLikes == 0) {
-				return false;
-			}
-			else
-				return true;
-		}
-		return false;
-	}
-
-	public function getTags() {
-		$tags = TagEngine::getInstance()->getObjectTags('de.codequake.linklist.link', $this->linkID, array(
-			($this->languageID === null ? LanguageFactory::getInstance()->getDefaultLanguageID() : "")
+	public static function getIpAddressByAuthor($userID, $username = '', $notIpAddress = '', $limit = 10) {
+		$conditions = new PreparedStatementConditionBuilder();
+		$conditions->add("userID = ?", array(
+			$userID
 		));
-		return $tags;
+		if (! empty($username) && ! $userID) $conditions->add("username = ?", array(
+			$username
+		));
+		if (! empty($notIpAddress)) $conditions->add("ipAddress <> ?", array(
+			$notIpAddress
+		));
+		$conditions->add("ipAddress <> ''");
+
+		$sql = "SELECT		DISTINCT ipAddress
+			FROM		linklist" . WCF_N . "_link
+			" . $conditions . "
+			ORDER BY	time DESC";
+		$statement = WCF::getDB()->prepareStatement($sql, $limit);
+		$statement->execute($conditions->getParameters());
+
+		$ipAddresses = array();
+		while ($row = $statement->fetchArray()) {
+			$ipAddresses[] = $row['ipAddress'];
+		}
+
+		return $ipAddresses;
+	}
+
+	public static function getAuthorByIpAddress($ipAddress, $notUserID = 0, $notUsername = '', $limit = 10) {
+		$conditions = new PreparedStatementConditionBuilder();
+		$conditions->add("ipAddress = ?", array(
+			$ipAddress
+		));
+		if ($notUserID) $conditions->add("userID <> ?", array(
+			$notUserID
+		));
+		if (! empty($notUsername)) $conditions->add("username <> ?", array(
+			$notUsername
+		));
+
+		$sql = "SELECT		DISTINCT username, userID
+			FROM		linklist" . WCF_N . "_link
+			" . $conditions . "
+			ORDER BY	time DESC";
+		$statement = WCF::getDB()->prepareStatement($sql, $limit);
+		$statement->execute($conditions->getParameters());
+
+		$users = array();
+		while ($row = $statement->fetchArray()) {
+			$users[] = $row;
+		}
+
+		return $users;
 	}
 }
