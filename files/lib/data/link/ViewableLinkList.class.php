@@ -1,8 +1,10 @@
 <?php
 namespace linklist\data\link;
 
-use linklist\data\category\LinklistCategory;
-use linklist\system\label\object\LinkLabelObjectHandler;
+use wcf\system\language\LanguageFactory;
+use wcf\system\like\LikeHandler;
+use wcf\system\visitTracker\VisitTracker;
+use wcf\system\WCF;
 
 class ViewableLinkList extends LinkList {
 

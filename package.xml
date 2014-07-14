@@ -30,7 +30,6 @@
 		<instruction type="sitemap">xml/sitemap.xml</instruction>
 		<instruction type="dashboardBox">xml/dashboardBox.xml</instruction>
 		<instruction type="pageMenu">xml/pagemenu.xml</instruction>
-		<instruction type="objectTypeDefinition">xml/objectTypeDefinition.xml</instruction>
 		<instruction type="objectType">xml/objectType.xml</instruction>
 		<instruction type="userNotificationEvent">xml/userNotificationEvent.xml</instruction>
 		<instruction type="option">xml/option.xml</instruction>
@@ -45,35 +44,5 @@
 
 		<!--others -->
 		<instruction type="sql">install.sql</instruction>
-	</instructions>
-
-
-	<instructions type="update" fromversion="2.0.0">
-		<instruction type="language">language/*.xml</instruction>
-		<instruction type="template">templates.tar</instruction>
-		<instruction type="file">files.tar</instruction>
-		<instruction type="acpTemplate">acptemplates.tar</instruction>
-		<instruction type="option">xml/option.xml</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="2.0.0 pl 1">
-		<instruction type="language">language/*.xml</instruction>
-		<instruction type="template">templates.tar</instruction>
-		<instruction type="file">files.tar</instruction>
-		<instruction type="acpTemplate">acptemplates.tar</instruction>
-		<instruction type="option">xml/option.xml</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="2.0.1">
-		<instruction type="language">language/*.xml</instruction>
-		<instruction type="template">templates.tar</instruction>
-		<instruction type="file">files.tar</instruction>
-		<instruction type="acpTemplate">acptemplates.tar</instruction>
-		<instruction type="option">xml/option.xml</instruction>
-	</instructions>
-
-	<instructions type="update" fromversion="2.0.2">
-		<instruction type="template">templates.tar</instruction>
-		<instruction type="file">files.tar</instruction>
 	</instructions>
 </package>

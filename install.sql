@@ -42,4 +42,4 @@ ALTER TABLE wcf1_user ADD INDEX linklistLinks (linklistLinks);
 ALTER TABLE linklist1_link ADD FOREIGN KEY (userID) REFERENCES wcf1_user (userID) ON DELETE SET NULL;
 ALTER TABLE linklist1_link ADD FOREIGN KEY (languageID) REFERENCES wcf1_language (languageID) ON DELETE SET NULL;
 ALTER TABLE linklist1_link_to_category ADD FOREIGN KEY (categoryID) REFERENCES wcf1_category (categoryID) ON DELETE CASCADE;
-ALTER TABLE linklist1_link_to_category ADD FOREIGN KEY (linkID) REFERENCES linklist1_link (newsID) ON DELETE CASCADE;
+ALTER TABLE linklist1_link_to_category ADD FOREIGN KEY (linkID) REFERENCES linklist1_link (linkID) ON DELETE CASCADE;
