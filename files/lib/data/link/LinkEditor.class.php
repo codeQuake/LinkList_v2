@@ -14,17 +14,4 @@ use wcf\system\WCF;
 class LinkEditor extends DatabaseObjectEditor {
 
 	protected static $baseClass = 'linklist\data\link\Link';
-
-	public static function updateLinkCounter(array $users) {
-		$sql = "UPDATE wcf" . WCF_N . "_user
-                SET linklistLinks = linklistLinks + ?
-                WHERE userID = ?";
-		$statement = WCF::getDB()->prepareStatement($sql);
-		foreach ($users as $userID => $links) {
-			$statement->execute(array(
-				$links,
-				$userID
-			));
-		}
-	}
 }
