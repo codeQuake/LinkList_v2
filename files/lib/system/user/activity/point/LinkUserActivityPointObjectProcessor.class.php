@@ -18,7 +18,7 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 
 	public function countRequests() {
 		$sql = "SELECT  COUNT(*) AS count
-            FROM    linklist" . WCF_N . "_link";
+			FROM    linklist" . WCF_N . "_link";
 		$statement = WCF::getDB()->prepareStatement($sql);
 		$statement->execute();
 		$row = $statement->fetchArray();
@@ -29,7 +29,7 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 		if ($request == 0) {
 			// first request
 			$sql = "DELETE FROM	wcf" . WCF_N . "_user_activity_point_event
-            WHERE   objectTypeID = ?";
+			WHERE   objectTypeID = ?";
 			$statement = WCF::getDB()->prepareStatement($sql);
 			$statement->execute(array(
 				$this->objectType->objectTypeID
@@ -37,23 +37,22 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 		}
 		else {
 			// others
-			
 
 			// get linkIDs
 			$sql = "SELECT link.linkID
-                FROM    linklist" . WCF_N . "_link link
-                    AND link.userID IS NOT NULL
-                ORDER BY link.linkID ASC";
+				FROM    linklist" . WCF_N . "_link link
+					AND link.userID IS NOT NULL
+				ORDER BY link.linkID ASC";
 			$statement = WCF::getDB()->prepareStatement($sql, $this->limit, ($this->limit * ($request - 1)));
 			$statement->execute();
 			$linkIDs = array();
 			while ($row = $statement->fetchArray()) {
 				$linkIDs[] = $row['linkID'];
 			}
-			
+
 			// if there's no link
 			if (empty($linkIDs)) return;
-			
+
 			$conditionBuilder = new PreparedStatementConditionBuilder();
 			$conditionBuilder->add("objectTypeID = ?", array(
 				$this->objectType->objectTypeID
@@ -61,13 +60,13 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 			$conditionBuilder->add("objectID IN (?)", array(
 				$linkIDs
 			));
-			
+
 			// kill old values
 			$sql = "DELETE FROM	wcf" . WCF_N . "_user_activity_point_event
-                " . $conditionBuilder;
+				" . $conditionBuilder;
 			$statement = WCF::getDB()->prepareStatement($sql);
 			$statement->execute($conditionBuilder->getParameters());
-			
+
 			// prepare Uranus
 			$conditionBuilder = new PreparedStatementConditionBuilder();
 			$conditionBuilder->add("linkID IN (?)", array(
@@ -75,13 +74,13 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 			));
 			// as in ReceivedLikesUserActivtityPointObjectProcessor
 			$sql = "INSERT INTO
-                    wcf" . WCF_N . "_user_activity_point_event (userID, objectTypeID, objectID, additionalData)
-                    SELECT	userID,
-                        ?,
-                        linkID AS objectID,
-                        ?
-                    FROM	linklist" . WCF_N . "_link
-                    " . $conditionBuilder;
+					wcf" . WCF_N . "_user_activity_point_event (userID, objectTypeID, objectID, additionalData)
+					SELECT	userID,
+						?,
+						linkID AS objectID,
+						?
+					FROM	linklist" . WCF_N . "_link
+					" . $conditionBuilder;
 			$statement = WCF::getDB()->prepareStatement($sql);
 			$statement->execute(array_merge((array) $this->objectType->objectTypeID, (array) serialize(array()), $conditionBuilder->getParameters()));
 		}

@@ -2,6 +2,7 @@
 namespace linklist\data\category;
 
 use wcf\data\category\CategoryNode;
+
 /**
  * Represents a category node
  *

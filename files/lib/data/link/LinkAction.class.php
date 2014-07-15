@@ -13,6 +13,7 @@ use wcf\system\user\storage\UserStorageHandler;
 use wcf\system\visitTracker\VisitTracker;
 use wcf\system\WCF;
 use wcf\util\UserUtil;
+
 /**
  *
  * @author Jens Krumsieck
