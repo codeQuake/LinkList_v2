@@ -89,6 +89,11 @@
 								<footer class="messageOptions">
 									<nav class="buttonGroupNavigation jsMobileNavigation">
 										<ul class="smallButtons buttonGroup">
+											<li><a class="button buttonPrimary" href="{link controller='LinkVisit' application='linklist' object=$link}{/link}">{lang}linklist.link.visit{/lang}</a></li>
+											{if $link->canModerate()}<li><a href="{link controller='LinkEdit' application='linklist' object=$link}{/link}" class="button jsMessageEditButton" title="{lang}wcf.global.button.edit{/lang}"><span class="icon icon16 icon-pencil"></span> <span>{lang}wcf.global.button.edit{/lang}</span></a></li>{/if}
+											{if LOG_IP_ADDRESS && $link->ipAddress && $__wcf->session->getPermission('admin.user.canViewIpAddress')}<li class="jsIpAddress jsOnly" data-news-id="{@$link->linkID}"><a title="{lang}linklisst.link.ipAddress{/lang}" class="button jsTooltip"><span class="icon icon16 icon-globe"></span> <span class="invisible">{lang}linklist.link.ipAddress{/lang}</span></a></li>{/if}
+											{if $link->canModerate()}<li class="jsOnly"><div class="button"><span class="icon icon16 icon-remove jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}" data-object-id="{@$link->linkID}" data-confirm-message="{lang}linklist.link.delete.sure{/lang}"></span></div></li>{/if}
+											{event name='messageOptions'}
 											<li class="toTopLink"><a href="{@$anchor}" title="{lang}wcf.global.scrollUp{/lang}" class="button jsTooltip"><span class="icon icon16 icon-arrow-up"></span> <span class="invisible">{lang}wcf.global.scrollUp{/lang}</span></a></li>
 
 										</ul>

@@ -193,11 +193,11 @@ class Link extends LINKLISTDatabaseObject implements IMessage, IRouteController,
 	}
 
 	public function canAdd() {
-		return WCF::getSession()->getPermission('user.linklist.link.canAddNews');
+		return WCF::getSession()->getPermission('user.linklist.link.canAddLink');
 	}
 
 	public function canModerate() {
-		return WCF::getSession()->getPermission('mod.linklist.link.canModerateNews');
+		return WCF::getSession()->getPermission('mod.linklist.link.canEditLink');
 	}
 
 	public static function getIpAddressByAuthor($userID, $username = '', $notIpAddress = '', $limit = 10) {

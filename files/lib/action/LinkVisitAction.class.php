@@ -2,6 +2,7 @@
 namespace linklist\action;
 
 use linklist\data\link\Link;
+use linklist\data\link\LinkEditor;
 use linklist\data\link\LinkList;
 use linklist\system\cache\builder\CategoryCacheBuilder;
 use wcf\action\AbstractAction;
@@ -24,22 +25,10 @@ class LinkVisitAction extends AbstractAction {
 
 	public function execute() {
 		parent::execute();
-		$this->link->updateVisits();
-		// update visits
-		$visits = 0;
-		$links = new Linklist();
-		$links->sqlJoins = 'WHERE categoryID = ' . $this->link->getCategory()->categoryID;
-		$links->readObjects();
-		$linklist = $links->getObjects();
-		foreach ($linklist as $linkitem) {
-			$visits = $visits + $linkitem->visits;
-		}
-		$sql = "UPDATE linklist" . WCF_N . "_category_stats
-                    SET  visits = " . $visits . "
-                    WHERE categoryID = " . $this->link->getCategory()->categoryID;
-		$statement = WCF::getDB()->prepareStatement($sql);
-		$statement->execute();
-		CategoryCacheBuilder::getInstance()->reset();
+		$linkEditor = new LinkEditor($this->link);
+		$linkEditor->update(array(
+			'clicks' => $this->link->clicks + 1
+		));
 		$this->executed();
 		HeaderUtil::redirect($this->link->url);
 	}

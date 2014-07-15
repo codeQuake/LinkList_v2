@@ -1,33 +1,47 @@
 {capture assign='sidebar'}
 		<fieldset>
-			<legend class="invisible">{lang}linklist.link.sidebar.image{/lang}</legend>
+		<legend>{lang}linklist.link.author{/lang}</legend>
+		<div class="box32">
 			<div class="userAvatar">
-				<a href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}></a>
+				<a class="framed userLink" data-user-id="{$link->getUserProfile()->userID}" href="{link controller='User' object=$link->getUserProfile()}{/link}">{@$link->getUserProfile()->getAvatar()->getImageTag(24)}</a>
 			</div>
-		</fieldset>
-			{hascontent}
-			<fieldset>
-				<legend>{lang}wcf.tagging.tags{/lang}</legend>
-				{content}
-				{if $tags|count && MODULE_TAGGING && LINKLIST_ENABLE_TAGS}
-				<ul class="sidebarBoxList">
-					<li class="box24 tags">
-							<ul class="tagList">
-								{foreach from=$tags item=tag}
-									<li><a href="{link controller='Tagged' object=$tag}objectType=de.codequake.linklist.link{/link}" class="badge tag jsTooltip" title="{lang}wcf.tagging.taggedObjects.de.codequake.linklist.link{/lang}">{$tag->name}</a></li>
-								{/foreach}
-							</ul>
-					</li>
-				</ul>
-				{/if}{/content}
-			</fieldset>
-			{/hascontent}
-
-
-			<fieldset class="linklistSidebarButton">
-					<legend></legend>
-				<div>
-					<a class="button visitButton" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}><h3 style="font-size:120%;">{lang}linklist.link.sidebar.visit{/lang}</h3></a>
+			<div class="userDetails">
+				<div class="containerHeadline">
+					<h3><a class="userLink" data-user-id="{$link->getUserProfile()->userID}" href="{link controller='User' object=$link->getUserProfile()}{/link}">{$link->getUserProfile()->username}</a></h3>
 				</div>
-			</fieldset>
+			</div>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>{lang}cms.news.general{/lang}</legend>
+		<dl class="plain inlineDataList">
+			<dt>{lang}linklist.link.clicks{/lang}</dt>
+			<dd>{$link->clicks}</dd>
+			<dt>{lang}linklist.link.visits{/lang}</dt>
+			<dd>{$link->visits}</dd>
+			<dt>{lang}linklist.link.comments{/lang}</dt>
+			<dd>{@$commentList->countObjects()}</dd>
+		</dl>
+	</fieldset>
+	{if $link->getCategories()|count}
+		<fieldset>
+			<legend>{lang}linklist.link.category.categories{/lang}</legend>
+
+			<ul>
+				{foreach from=$link->getCategories() item=category}
+					<li><a href="{link application='linklist' controller='LinkCategoryList' object=$category}{/link}" class="jsTooltip" title="{lang}linklist.link.categorizedNews{/lang}">{$category->getTitle()}</a></li>
+				{/foreach}
+			</ul>
+		</fieldset>
+	{/if}
+	{if $tags|count}
+		<fieldset>
+			<legend>{lang}wcf.tagging.tags{/lang}</legend>
+			<ul class="tagList">
+			{foreach from=$tags item=tag}
+				<li><a href="{link controller='Tagged' object=$tag}objectType=de.codequake.linklist.link{/link}" class="badge tag jsTooltip" title="{lang}wcf.tagging.taggedObjects.de.codequake.linklist.link{/lang}">{$tag->name}</a></li>
+			{/foreach}
+		</fieldset>
+	{/if}
+	{event name='boxes'}
 {/capture}
