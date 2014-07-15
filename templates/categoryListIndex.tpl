@@ -2,7 +2,7 @@
 
 <head>
 	<title>{if $__wcf->getPageMenu()->getLandingPage()->menuItem != 'linklist.pageMenu.index'}{lang}linklist.pageMenu.index{/lang} - {/if}{PAGE_TITLE|language}</title>
-	
+
 	{include file='headInclude' sandbox=false}
 	<link rel="canonical" href="{link application='linklist' controller='CategoryList'}{/link}" />
 </head>
@@ -58,19 +58,19 @@
 		</li>
 		{/if}
 		{if LINKLIST_INDEX_STATS}
-		
+
 		<li class="box32 statsInfoBox">
 			<span class="icon icon32 icon-bar-chart"></span>
 			<div>
 				<div class="containerHeadline">
 					<h3>{lang}linklist.index.stats{/lang}</h3>
-					<p>{lang}linklist.index.stats.detail{/lang}</p>
+					{*<p>{lang}linklist.index.stats.detail{/lang}</p>*}
 				</div>
 			</div>
 		</li>
 		{/if}
 		{/content}
-		
+
 	</ul>
 </div>
 

@@ -70,14 +70,14 @@
 				<admindefaultvalue>1</admindefaultvalue>
 			</option>
 
-			<option name="user.linklist.category.canEnterCategory">
+			<option name="user.linklist.link.canEnterCategory">
 				<categoryname>user.linklist.category</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 				<admindefaultvalue>1</admindefaultvalue>
 			</option>
 
-			<option name="user.linklist.category.canViewCategory">
+			<option name="user.linklist.link.canViewCategory">
 				<categoryname>user.linklist.category</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
@@ -212,7 +212,7 @@
 				<categoryname>user.linklist.link</categoryname>
 				<optiontype>textarea</optiontype>
 				<defaultvalue>
-          <![CDATA[gif
+		  <![CDATA[gif
 jpg
 jpeg
 png

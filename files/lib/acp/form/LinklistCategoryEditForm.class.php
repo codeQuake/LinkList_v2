@@ -3,6 +3,7 @@ namespace linklist\acp\form;
 
 use wcf\acp\form\AbstractCategoryEditForm;
 use wcf\system\WCF;
+use wcf\util\StringUtil;
 
 class LinklistCategoryEditForm extends AbstractCategoryEditForm {
 
@@ -27,10 +28,15 @@ class LinklistCategoryEditForm extends AbstractCategoryEditForm {
 	public function readFormParameters() {
 		parent::readFormParameters();
 		if (isset($_POST['isMainCategory'])) $this->additionalData['isMainCategory'] = intval($_POST['isMainCategory']);
+		if (isset($_POST['icon'])) $this->additionalData['icon'] = StringUtil::trim($_POST['icon']);
 	}
 
 	public function assignVariables() {
 		parent::assignVariables();
-		WCF::getTPL()->assign('isMainCategory', isset($this->additionalData['isMainCategory']) ? $this->additionalData['isMainCategory'] : 0);
+		WCF::getTPL()->assign(array(
+			'isMainCategory' => isset($this->additionalData['isMainCategory']) ? $this->additionalData['isMainCategory'] : 0,
+			'icon' => isset($this->additionalData['icon']) ? $this->additionalData['icon'] : ''
+			));
+
 	}
 }

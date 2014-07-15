@@ -61,4 +61,8 @@ class LinklistCategory extends AbstractDecoratedCategory implements IBreadcrumbP
 	public function isMainCategory() {
 		return isset($this->additionalData['isMainCategory']) ? $this->additionalData['isMainCategory'] : 0;
 	}
+
+	public function getIcon() {
+		return isset($this->additionalData['icon']) ? $this->additionalData['icon'] : 'globe';
+	}
 }
