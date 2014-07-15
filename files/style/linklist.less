@@ -1,5 +1,5 @@
 .linklistCategoryList {
-    	
+
 
 	.linklistCategoryContainer {
 		position: relative;
@@ -15,73 +15,50 @@
 				padding-left: 7px;
 			}
 		}
-		
+
 		.categoryDepth3 {
 		&.linklistCategoryContainer > .linklistCategory {
 				padding-left: 43px;
 			}
 		}
 	}
-    
-    .categoryDepth2 {
+
+	.categoryDepth2 {
 		&.linklistCategoryContainer > .linklistCategory {
 			padding-left: 43px;
 		}
-		
-	    header {
+
+		header {
 			padding-left: 43px;
 		}
 	}
-	
+
 	.categoryDepth3 {
 		&.linklistCategoryContainer > .linklistCategory {
 			padding-left: 79px;
 		}
-		
+
 		header {
 			padding-left: 79px;
 		}
 	}
-	
+
 	.tabularBox:not(.categoryDepth1) {
 		border-width: 1px 0 0;
 	}
-	
-	
-	.linkStats {
-		left: 60%;
-		margin-top: 0;
-		position: absolute;
-		top: @wcfGapMedium;
-		width: 16%;
-		
-		> dl {
-			> dt {
-				line-height: @wcfBaseLineHeight;
-				width: 48%;
-			}
-			
-			> dd {
-				font-weight: normal;
-				font-size: @wcfSmallFontSize;
-				width: 50%;
-			}
-		}
-	}
-
 
 	.linklistCategory {
 		min-height: 44px;
 		padding: @wcfGapSmall;
 		padding-right: 51%;
-		
+
 		.transition(background, .1s);
-		
+
 		&:hover {
 			background-color: @wcfContainerHoverBackgroundColor;
 		}
 	}
-	
+
 	.linklistCategoryNode1 {
 		background-color: @wcfContainerBackgroundColor;
 	}
@@ -89,8 +66,8 @@
 	.linklistCategoryNode2 {
 		background-color: @wcfContainerAccentBackgroundColor;
 	}
-	
-	
+
+
 	.icon {
 		color: @wcfLinkColor;
 	}
@@ -99,32 +76,28 @@
 
 
 .linkDisabled {
-    background-color: @wcfDisabledBackgroundColor !important;
+	background-color: @wcfDisabledBackgroundColor !important;
 }
 .linkDeleted {
-    background-color: @wcfDeletedBackgroundColor !important;
+	background-color: @wcfDeletedBackgroundColor !important;
 }
 .linklist .details {
-    margin-left: 165px;
+	margin-left: 165px;
 }
 .linklistLink:hover .linkNavigation{
-    display: block !important;
+	display: block !important;
 }
 
 .visitButton {
-    font-size: 100% !important;
+	font-size: 100% !important;
 }
 
 #tplCategoryListIndex .content #dashboard .dashboardBox legend {
-    display: none;
+	display: none;
 }
 
-.linkImage {
-    float: left;
-    border-radius: @wcfButtonBorderRadius;
-    padding: 10px;
-    background: @wcfContainerAccentBackgroundColor;
-    margin-right: 20px;
-    border: @wcfContainerBorderColor solid 1px;
-
+.linkBox256, .linkBox128{
+	> :first-child { float: left; margin-right: @wcfGapMedium; margin-bottom: @wcfGapMedium;}
+	> .newsText {text-align: justify;}
+	> .newsTeaser {text-align: justify;}
 }

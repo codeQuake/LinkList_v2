@@ -14,6 +14,6 @@ class LikeableLinkProvider extends AbstractObjectTypeProvider implements ILikeOb
 	public $listClassName = 'linklist\data\link\LinkList';
 
 	public function checkPermissions(ILikeObject $object) {
-		return $object->isVisible();
+		return $object->canRead();
 	}
 }

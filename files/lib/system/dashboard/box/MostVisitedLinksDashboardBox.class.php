@@ -14,22 +14,22 @@ class MostVisitedLinksDashboardBox extends AbstractSidebarDashboardBox {
 
 	public function init(DashboardBox $box, IPage $page) {
 		parent::init($box, $page);
-		
+
 		$categoryID = ($page instanceof CategoryPage) ? $page->categoryID : 0;
-		
-		$this->links = new MostVisitedLinkList($categoryID);
+
+		$this->links = new MostVisitedLinkList(array($categoryID));
 		$this->links->readObjects();
-		
+
 		$this->fetched();
 	}
 
 	protected function render() {
 		if (! count($this->links)) return '';
-		
+
 		WCF::getTPL()->assign(array(
 			'mostVisitedLinks' => $this->links
 		));
-		
+
 		return WCF::getTPL()->fetch('dashboardBoxMostVisitedLinks', 'linklist');
 	}
 }

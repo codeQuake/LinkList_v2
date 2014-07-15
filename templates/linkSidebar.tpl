@@ -1,61 +1,15 @@
 {capture assign='sidebar'}
-			<fieldset>
+		<fieldset>
 			<legend class="invisible">{lang}linklist.link.sidebar.image{/lang}</legend>
 			<div class="userAvatar">
-				<a href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>{@$link->getImage()}</a>
+				<a href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}></a>
 			</div>
 		</fieldset>
-            <fieldset class="linklistLinkSidebar">
-                <legend>{lang}linklist.link.sidebar.info{/lang}</legend>
-                <div>
-                    <ul class="sidebarBoxList">
-                        <li class="box24">
-							<span class="icon icon32 icon-link"></span>
-                            <div class="sidebarBoxHeadline">
-                                <h3>{lang}linklist.link.sidebar.title{/lang}</h3>
-                                <small>{$link->getTitle()|language}</small>
-                            </div>
-                        </li>
-                        <li class="box24">
-							<span class="icon icon32 icon-external-link"></span>
-                            <div class="sidebarBoxHeadline">
-                                <h3>{lang}linklist.link.sidebar.visits{/lang}</h3>
-                                <small>{$link->visits}</small>
-                            </div>
-                        </li>
-                        <li class="box{if $link->getCategory()->getPermission('canEditLink')}72{else}24{/if}">
-							{if !$link->getCategory()->getPermission('canEditLink')}
-							<a href="{link application='linklist' controller='Category' object=$link->getCategory()}{/link}">
-								<span class="icon icon32 icon-globe"></span>
-							</a>
-							{/if}
-                            <div class="sidebarBoxHeadline">
-                                <h3>{lang}linklist.link.sidebar.category{/lang}</h3>
-								{if $link->getCategory()->getPermission('canEditLink')}
-									<form action="{link controller='LinkMove' application='linklist' object=$link}{/link}" method="post">
-										<select id="move" name="move" >
-											{foreach from=$categoryList item=$categoryNode}
-											<option value="{@$categoryNode->categoryID}" {if $categoryNode->categoryID == $link->categoryID}selected="selected"{/if}>{section name=i loop=$categoryList->getDepth()}&nbsp;&raquo;&raquo;&nbsp;{/section}{$categoryNode->title|language}</option>
-											{/foreach}
-										</select>
-										<div class="formSubmit">
-											<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
-											{@SID_INPUT_TAG}
-										</div>
-									</form>
-									{else}
-									<small><a href="{link application='linklist' controller='Category' object=$link->getCategory()}{/link}">{$link->getCategory()->getTitle()|language}</a></small>
-								{/if}
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </fieldset>
 			{hascontent}
-			<fieldset class="linklistLinkSidebar">
+			<fieldset>
 				<legend>{lang}wcf.tagging.tags{/lang}</legend>
 				{content}
-				{if $tags|count && MODULE_TAGGING && LINKLIST_ENABLE_TAGS}				
+				{if $tags|count && MODULE_TAGGING && LINKLIST_ENABLE_TAGS}
 				<ul class="sidebarBoxList">
 					<li class="box24 tags">
 							<ul class="tagList">
@@ -68,12 +22,12 @@
 				{/if}{/content}
 			</fieldset>
 			{/hascontent}
-			
 
-            <fieldset class="linklistSidebarButton">
-                    <legend></legend>
-                <div>
-                    <a class="button visitButton" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}><h3 style="font-size:120%;">{lang}linklist.link.sidebar.visit{/lang}</h3></a>
-                </div>
-            </fieldset>
-    {/capture}
+
+			<fieldset class="linklistSidebarButton">
+					<legend></legend>
+				<div>
+					<a class="button visitButton" href="{link application='linklist' controller='LinkVisit' object=$link}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}><h3 style="font-size:120%;">{lang}linklist.link.sidebar.visit{/lang}</h3></a>
+				</div>
+			</fieldset>
+{/capture}

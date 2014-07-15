@@ -14,4 +14,32 @@ use wcf\system\WCF;
 class LinkEditor extends DatabaseObjectEditor {
 
 	protected static $baseClass = 'linklist\data\link\Link';
+
+	public function updateCategoryIDs(array $categoryIDs = array()) {
+		// remove old assigns
+		$sql = "DELETE FROM	linklist" . WCF_N . "_link_to_category
+			WHERE		linkID = ?";
+		$statement = WCF::getDB()->prepareStatement($sql);
+		$statement->execute(array(
+			$this->linkID
+		));
+
+		// assign new categories
+		if (! empty($categoryIDs)) {
+			WCF::getDB()->beginTransaction();
+
+			$sql = "INSERT INTO	linklist" . WCF_N . "_link_to_category
+						(categoryID, linkID)
+				VALUES		(?, ?)";
+			$statement = WCF::getDB()->prepareStatement($sql);
+			foreach ($categoryIDs as $categoryID) {
+				$statement->execute(array(
+					$categoryID,
+					$this->linkID
+				));
+			}
+
+			WCF::getDB()->commitTransaction();
+		}
+	}
 }

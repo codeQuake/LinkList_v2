@@ -81,15 +81,20 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			$this->parameters['attachmentHandler']->updateObjectID($object->linkID);
 		}
 
-		if (! empty($this->parameters['tags'])) {
-			TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $this->parameters['tags'], null);
-		}
 
 		// handle categories
 		$editor = new LinkEditor($object);
+		// langID != 0
+		$languageID = (! isset($this->parameters['data']['languageID']) || ($this->parameters['data']['languageID'] === null)) ? LanguageFactory::getInstance()->getDefaultLanguageID() : $this->parameters['data']['languageID'];
+		$editor->update(array(
+			'languageID' => $languageID
+		));
 		$editor->updateCategoryIDs($this->parameters['categoryIDs']);
 		$editor->setCategoryIDs($this->parameters['categoryIDs']);
 
+		if (! empty($this->parameters['tags'])) {
+			TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $this->parameters['tags'], $this->parameters['data']['languageID']);
+		}
 		// reset storage
 		UserStorageHandler::getInstance()->resetAll('linklistUnreadLinks');
 
@@ -97,9 +102,6 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			if ($object->userID !== null) {
 				UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $object->linkID, $object->languageID, $object->userID, $object->time);
 				UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $object->linkID, $object->userID);
-				LinkEditor::updateLinkCounter(array(
-				$object->userID => 1
-				));
 			}
 			SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
 		}

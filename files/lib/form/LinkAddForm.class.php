@@ -6,14 +6,11 @@ use linklist\data\category\LinklistCategoryNodeTree;
 use linklist\data\link\LinkAction;
 use linklist\data\link\LinkList;
 use linklist\system\cache\builder\CategoryCacheBuilder;
-use linklist\system\label\object\LinkLabelObjectHandler;
 use wcf\form\MessageForm;
 use wcf\system\breadcrumb\Breadcrumb;
 use wcf\system\category\CategoryHandler;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\UserInputException;
-use wcf\system\image\ImageHandler;
-use wcf\system\label\LabelHandler;
 use wcf\system\language\LanguageFactory;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
@@ -36,19 +33,17 @@ class LinkAddForm extends MessageForm {
 
 	public $templateName = 'linkAdd';
 
-	public $username = '';
-
-	public $categoryID = 0;
+	public $categoryIDs = array();
 
 	public $category = null;
 
-	public $categoryNodeList = null;
+	public $categoryList = array();
 
 	public $url;
 
-	public $labelGroups = null;
+	public $isDisabled = 0;
 
-	public $labelIDs = array();
+	public $teaser = '';
 
 	public $tags = array();
 
@@ -60,54 +55,47 @@ class LinkAddForm extends MessageForm {
 
 	public $attachmentObjectType = 'de.codequake.linklist.link';
 
-	protected $link = null;
+	public $enableTracking = true;
 
 	public $objectTypeName = 'de.codequake.linklist.category';
 
+	public function readFormParameters() {
+		parent::readFormParameters();
+		if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
+		if (isset($_POST['url']) && $_POST['url'] != '') $this->url = StringUtil::trim($_POST['url']);
+		if (isset($_POST['teaser'])) $this->teaser = StringUtil::trim($_POST['teaser']);
+
+	}
+
 	public function readParameters() {
 		parent::readParameters();
-		if (isset($_GET['id'])) $this->categoryID = intval($_GET['id']);
-		$category = CategoryHandler::getInstance()->getCategory($this->categoryID);
-		
-		if ($category !== null) $this->category = new LinklistCategory($category);
-		
-		if ($this->category === null || ! $this->category->categoryID) {
-			throw new IllegalLinkException();
-		}
-		$this->category->checkPermission(array(
-			'canViewCategory',
-			'canEnterCategory',
-			'canAddLink'
-		));
+		if (isset($_REQUEST['categoryIDs']) && is_array($_REQUEST['categoryIDs'])) $this->categoryIDs = ArrayUtil::toIntegerArray($_REQUEST['categoryIDs']);
 	}
 
 	public function readData() {
 		parent::readData();
-		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.index.title'), LinkHandler::getInstance()->getLink('CategoryList', array(
-			'application' => 'linklist'
-		))));
-		
-		// read labels
-		$groups = $this->category->getAvailableLabelGroups();
-		if (! empty($groups)) {
-			$this->labelGroups = LabelHandler::getInstance()->getLabelGroups(array_keys($groups));
-		}
-		
-		// read categories
-		$categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
-		$this->categoryNodeList = $categoryTree->getIterator();
-		
+
+		WCF::getBreadcrumbs()->add(new Breadcrumb(WCF::getLanguage()->get('linklist.pageMenu.index'), LinkHandler::getInstance()->getLink('CategoryListIndex', array(
+		'application' => 'linklist'
+			))));
+
+		$excludedCategoryIDs = array_diff(LinklistCategory::getAccessibleCategoryIDs(), LinklistCategory::getAccessibleCategoryIDs(array(
+			'canAddLink'
+		)));
+		$categoryTree = new LinklistCategoryNodeTree($this->objectTypeName, 0, false, $excludedCategoryIDs);
+		$this->categoryList = $categoryTree->getIterator();
+
 		// default values
 		if (! count($_POST)) {
 			$this->username = WCF::getSession()->getVar('username');
-			
+
 			// multilingualism
 			if (! empty($this->availableContentLanguages)) {
 				if (! $this->languageID) {
 					$language = LanguageFactory::getInstance()->getUserLanguage();
 					$this->languageID = $language->languageID;
 				}
-				
+
 				if (! isset($this->availableContentLanguages[$this->languageID])) {
 					$languageIDs = array_keys($this->availableContentLanguages);
 					$this->languageID = array_shift($languageIDs);
@@ -116,79 +104,22 @@ class LinkAddForm extends MessageForm {
 		}
 	}
 
-	public function readFormParameters() {
-		parent::readFormParameters();
-		
-		if (isset($_POST['username'])) $this->username = StringUtil::trim($_POST['username']);
-		if (isset($_POST['category'])) $this->categoryID = intval($_POST['category']);
-		if (isset($_POST['url'])) $this->url = StringUtil::trim($_POST['url']);
-		if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
-		if (isset($_POST['imageType'])) $this->imageType = StringUtil::trim($_POST['imageType']);
-		
-		if (isset($_POST['labelIDs']) && is_array($_POST['labelIDs'])) $this->labelIDs = $_POST['labelIDs'];
-		switch ($this->imageType) {
-			case 'upload':
-				if (isset($_FILES['image'])) $this->image = $_FILES['image'];
-				
-				break;
-			case 'link':
-				if (isset($_POST['image'])) $this->image = StringUtil::trim($_POST['image']);
-				break;
-		}
-	}
-
-	public function assignVariables() {
-		parent::assignVariables();
-		WCF::getTPL()->assign(array(
-			'categoryNodeList' => $this->categoryNodeList,
-			'categoryID' => $this->categoryID,
-			'username' => $this->username,
-			'action' => $this->action,
-			'tags' => $this->tags,
-			'imageType' => $this->imageType,
-			'image' => $this->image,
-			'url' => $this->url,
-			'labelGroups' => $this->labelGroups,
-			'labelIDs' => $this->labelIDs,
-			'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.linklist.link.allowedAttachmentExtensions')))
-		));
-	}
-
-	protected function validateLabelIDs() {
-		if (! LinkLabelObjectHandler::getInstance()->validateLabelIDs($this->labelIDs)) {
-			throw new UserInputException('labelIDs');
-		}
-	}
-
 	public function validate() {
 		parent::validate();
-		
-		$this->validateLabelIDs();
-		// user
-		if (WCF::getUser()->userID == 0) {
-			if (empty($this->username)) {
-				throw new UserInputException('username');
-			}
-			if (! UserUtil::isValidUsername($this->username)) {
-				throw new UserInputException('username', 'notValid');
-			}
-			if (! UserUtil::isAvailableUsername($this->username)) {
-				throw new UserInputException('username', 'notAvailable');
-			}
-			
-			WCF::getSession()->register('username', $this->username);
+		// categories
+		if (empty($this->categoryIDs)) {
+			throw new UserInputException('categoryIDs');
 		}
-		
-		// image ->link
-		if ($this->imageType == 'link') {
-			if ((strpos($this->image, 'png') === false) && (strpos($this->image, 'gif') === false) && (strpos($this->image, 'jpg') === false)) {
-				throw new UserInputException('image', 'notValid');
-			}
-		}
-		
-		// url
-		if (! FileUtil::isURL($this->url)) {
-			throw new UserInputException('url', 'illegalURL');
+
+		if ($this->languageID === null || $this->languageID == 0) $this->languageID = LanguageFactory::getInstance()->getDefaultLanguageID();
+
+		foreach ($this->categoryIDs as $categoryID) {
+			$category = CategoryHandler::getInstance()->getCategory($categoryID);
+			if ($category === null) throw new UserInputException('categoryIDs');
+
+			$category = new LinklistCategory($category);
+			if (! $category->isAccessible() || ! $category->getPermission('canAddLink')) throw new UserInputException('categoryIDs');
+			if (!$category->getPermission('canAddActiveLink')) $this->isDisabled = 1;
 		}
 	}
 
@@ -197,99 +128,52 @@ class LinkAddForm extends MessageForm {
 		if ($this->languageID === null) {
 			$this->languageID = LanguageFactory::getInstance()->getDefaultLanguageID();
 		}
-		if (WCF::getSession()->getPermission('user.linklist.link.canAddOwnPreview') && LINKLIST_ENABLE_OWN_PREVIEW) {
-			switch ($this->imageType) {
-				case 'upload':
-					switch ($this->image['type']) {
-						case 'image/jpeg':
-							$i = 'jpg';
-							break;
-						case 'image/gif':
-							$i = 'gif';
-							break;
-						case 'image/png':
-							$i = 'png';
-							break;
-						default:
-							throw new UserInputException('image', 'notValid');
-							break;
-					}
-					
-					$imagePath = LINKLIST_DIR . 'images/' . $this->image['name'] . md5(time()) . '.' . $i;
-					
-					// shrink if neccessary
-					$image = $this->shrink($this->image['tmp_name'], 150);
-					move_uploaded_file($this->image['tmp_name'], $imagePath);
-					$this->image = RELATIVE_LINKLIST_DIR . 'images/' . $this->image['name'] . md5(time()) . '.' . $i;
-					break;
-			}
-		}
-		
 		$data = array(
-			'url' => $this->url,
-			'subject' => $this->subject,
-			'categoryID' => $this->categoryID,
-			'message' => $this->text,
-			'userID' => (WCF::getUser()->userID ?  : null),
-			'username' => (WCF::getUser()->userID ? WCF::getUser()->username : $this->username),
-			'time' => TIME_NOW,
 			'languageID' => $this->languageID,
-			'enableSmilies' => $this->enableSmilies,
-			'enableHtml' => $this->enableHtml,
-			'image' => $this->image,
+			'subject' => $this->subject,
+			'time' => TIME_NOW,
+			'teaser' => $this->teaser,
+			'message' => $this->text,
+			'url' => $this->url,
+			'userID' => WCF::getUser()->userID,
+			'username' => WCF::getUser()->username,
+			'isDisabled' => 0,
 			'enableBBCodes' => $this->enableBBCodes,
-			'visits' => 0,
-			'ipAddress' => $_SERVER['REMOTE_ADDR'],
-			'hasLabels' => (! empty($this->labelIDs) ? 1 : 0)
+			'enableHtml' => $this->enableHtml,
+			'enableSmilies' => $this->enableSmilies,
+			'lastChangeTime' => TIME_NOW
 		);
 		$linkData = array(
 			'data' => $data,
 			'tags' => array(),
-			'attachmentHandler' => $this->attachmentHandler
+			'attachmentHandler' => $this->attachmentHandler,
+			'categoryIDs' => $this->categoryIDs
 		);
-		if (MODULE_TAGGING) {
-			$linkData['tags'] = $this->tags;
-		}
-		$this->objectAction = new LinkAction(array(), 'create', $linkData);
-		$resultvalues = $this->objectAction->executeAction();
-		
-		$this->link = $resultvalues['returnValues'];
-		
-		// save labels
-		if (! empty($this->labelIDs)) {
-			LinkLabelObjectHandler::getInstance()->setLabels($this->labelIDs, $this->link->linkID);
-		}
-		
+		$linkData['tags'] = $this->tags;
+
+		$action = new LinkAction(array(), 'create', $linkData);
+		$resultValues = $action->executeAction();
+
 		$this->saved();
-		
+
 		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('Link', array(
-			'application' => 'linklist',
-			'object' => $this->link
+		'application' => 'linklist',
+		'object' => $resultValues['returnValues']
 		)));
 		exit();
 	}
 
-	protected function shrink($filename, $size) {
-		$imageData = getimagesize($filename);
-		if ($imageData[0] > $size || $imageData[1] > $size) {
-			try {
-				$obtainDimensions = true;
-				if (MAX_AVATAR_WIDTH / $imageData[0] < 150 / $imageData[1]) {
-					if (round($imageData[1] * ($size / $imageData[0])) < 48) $obtainDimensions = false;
-				}
-				else {
-					if (round($imageData[0] * ($size / $imageData[1])) < 48) $obtainDimensions = false;
-				}
-				
-				$adapter = ImageHandler::getInstance()->getAdapter();
-				$adapter->loadFile($filename);
-				$thumbnail = $adapter->createThumbnail($size, $size, $obtainDimensions);
-				$adapter->writeImage($thumbnail, $filename);
-			}
-			catch (SystemException $e) {
-				throw new UserInputException('image', 'tooLarge');
-			}
-		}
-		return $filename;
+	public function assignVariables() {
+		parent::assignVariables();
+
+		WCF::getTPL()->assign(array(
+		'categoryList' => $this->categoryList,
+		'categoryIDs' => $this->categoryIDs,
+		'url' => $this->url,
+		'teaser' => $this->teaser,
+		'action' => $this->action,
+		'tags' => $this->tags,
+		'allowedFileExtensions' => explode("\n", StringUtil::unifyNewlines(WCF::getSession()->getPermission('user.cms.news.allowedAttachmentExtensions')))
+		));
 	}
 }

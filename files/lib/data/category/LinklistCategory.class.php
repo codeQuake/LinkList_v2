@@ -23,6 +23,11 @@ class LinklistCategory extends AbstractDecoratedCategory implements IBreadcrumbP
 
 	public $permissions = null;
 
+	public function isAccessible() {
+		if ($this->getObjectType()->objectType != self::$objectTypeName) return false;
+		return $this->getPermission('canViewCategory');
+	}
+
 	public function getPermission($permission = 'canViewCategory') {
 		if ($this->permissions === null) {
 			$this->permissions = CategoryPermissionHandler::getInstance()->getPermissions($this->getDecoratedObject());
@@ -32,7 +37,7 @@ class LinklistCategory extends AbstractDecoratedCategory implements IBreadcrumbP
 			return $this->permissions[$permission];
 		}
 
-		return (WCF::getSession()->getPermission('user.linklist.links.' . $permission) || WCF::getSession()->getPermission('mod.linklist.links.' . $permission) || WCF::getSession()->getPermission('admin.linklist.links.' . $permission));
+		return (WCF::getSession()->getPermission('user.linklist.link.' . $permission) || WCF::getSession()->getPermission('mod.linklist.link.' . $permission) || WCF::getSession()->getPermission('admin.linklist.link.' . $permission));
 	}
 
 	public function getBreadcrumb() {
@@ -44,9 +49,9 @@ class LinklistCategory extends AbstractDecoratedCategory implements IBreadcrumbP
 
 	public static function getAccessibleCategoryIDs($permissions = array('canViewCategory')) {
 		$categoryIDs = array();
-		foreach (CategoryHandler::getInstance()->getCategories(self::OBJECT_TYPE_NAME) as $category) {
+		foreach (CategoryHandler::getInstance()->getCategories(self::$objectTypeName) as $category) {
 			$result = true;
-			$category = new LinkCategory($category);
+			$category = new LinklistCategory($category);
 			foreach ($permissions as $permission) {
 				$result = $result && $category->getPermission($permission);
 			}
@@ -63,6 +68,6 @@ class LinklistCategory extends AbstractDecoratedCategory implements IBreadcrumbP
 	}
 
 	public function getIcon() {
-		return isset($this->additionalData['icon']) ? $this->additionalData['icon'] : 'globe';
+		return isset($this->additionalData['icon']) && $this->additionalData['icon'] !='' ? $this->additionalData['icon'] : 'globe';
 	}
 }

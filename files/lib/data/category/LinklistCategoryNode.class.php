@@ -27,6 +27,6 @@ class LinklistCategoryNode extends CategoryNode {
 	}
 
 	public function getIcon() {
-		return isset($this->additionalData['icon']) ? $this->additionalData['icon'] : 'globe';
+		return isset($this->additionalData['icon']) && $this->additionalData['icon'] != '' ? $this->additionalData['icon'] : 'globe';
 	}
 }

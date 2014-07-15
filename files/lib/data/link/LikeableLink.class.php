@@ -13,7 +13,10 @@ class LikeableLink extends AbstractLikeObject {
 	}
 
 	public function getURL() {
-		return $this->getLink();
+		return LinkHandler::getInstance()->getLink('Link', array(
+			'application' => 'linklist',
+			'object' => $this->getDecoratedObject()
+		));
 	}
 
 	public function getUserID() {
@@ -25,6 +28,7 @@ class LikeableLink extends AbstractLikeObject {
 	}
 
 	public function updateLikeCounter($cumulativeLikes) {
+		// update cumulative likes
 		$editor = new LinkEditor($this->getDecoratedObject());
 		$editor->update(array(
 			'cumulativeLikes' => $cumulativeLikes

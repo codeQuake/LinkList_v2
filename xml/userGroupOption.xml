@@ -143,13 +143,6 @@
 				<admindefaultvalue>1</admindefaultvalue>
 			</option>
 
-			<option name="mod.linklist.link.canTrashLink">
-				<categoryname>mod.linklist.link</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>0</defaultvalue>
-				<admindefaultvalue>1</admindefaultvalue>
-			</option>
-
 			<option name="mod.linklist.link.canToggleLink">
 				<categoryname>mod.linklist.link</categoryname>
 				<optiontype>boolean</optiontype>
@@ -212,7 +205,7 @@
 				<categoryname>user.linklist.link</categoryname>
 				<optiontype>textarea</optiontype>
 				<defaultvalue>
-		  <![CDATA[gif
+		<![CDATA[gif
 jpg
 jpeg
 png

@@ -5,6 +5,8 @@ use linklist\data\category\LinklistCategory;
 use linklist\data\LINKLISTDatabaseObject;
 use wcf\data\attachment\Attachment;
 use wcf\data\attachment\GroupedAttachmentList;
+use wcf\data\user\User;
+use wcf\data\user\UserProfile;
 use wcf\data\IMessage;
 use wcf\system\bbcode\AttachmentBBCode;
 use wcf\system\bbcode\MessageParser;
@@ -36,7 +38,9 @@ class Link extends LINKLISTDatabaseObject implements IMessage, IRouteController,
 
 	protected $categoryIDs = array();
 
-public function __construct($id, $row = null, $object = null) {
+	public $userProfile = null;
+
+	public function __construct($id, $row = null, $object = null) {
 		if ($id !== null) {
 			$sql = "SELECT *
 					FROM " . static::getDatabaseTableName() . "
@@ -51,6 +55,11 @@ public function __construct($id, $row = null, $object = null) {
 		}
 
 		parent::__construct(null, $row, $object);
+	}
+
+	public function getThumb() {
+		if (LINKLIST_THUMBALIZR) return "https://api.thumbalizr.com/?url=".$this->url."&width=250&api_key=".LINKLIST_THUMBALIZR_APIKEY."&qualitiy=100";
+		return "http://api.webthumbnail.org?width=250&height=250&screen=1024&url=".$this->url;
 	}
 
 	public function getTitle() {
@@ -105,6 +114,14 @@ public function __construct($id, $row = null, $object = null) {
 
 	public function getTime() {
 		return $this->time;
+	}
+
+	public function getUserProfile() {
+
+		if ($this->userProfile === null) {
+			$this->userProfile = new UserProfile(new User($this->userID));
+		}
+			return $this->userProfile;
 	}
 
 	public function getLink() {

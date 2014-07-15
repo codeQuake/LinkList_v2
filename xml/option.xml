@@ -94,10 +94,14 @@
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
-			<option name="linklist_enable_image_preview">
+			<option name="linklist_thumbalizr">
 				<categoryname>linklist.links.general</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
+			</option>
+			<option name="linklist_thumbalizr_apikey">
+				<categoryname>linklist.links.general</categoryname>
+				<optiontype>text</optiontype>
 			</option>
 			<option name="linklist_enable_tags">
 				<categoryname>linklist.links.general</categoryname>
@@ -114,7 +118,7 @@
 				<optiontype>select</optiontype>
 				<defaultvalue>time</defaultvalue>
 				<selectoptions>
-          <![CDATA[subject:linklist.links.title
+		  <![CDATA[subject:linklist.links.title
 time:linklist.links.time
 visits:linklist.links.visits]]>
 				</selectoptions>
@@ -124,7 +128,7 @@ visits:linklist.links.visits]]>
 				<optiontype>select</optiontype>
 				<defaultvalue>DESC</defaultvalue>
 				<selectoptions>
-          <![CDATA[ASC:wcf.global.sortOrder.ascending
+		  <![CDATA[ASC:wcf.global.sortOrder.ascending
 DESC:wcf.global.sortOrder.descending]]>
 				</selectoptions>
 			</option>
