@@ -137,16 +137,6 @@
 			<definitionname>com.woltlab.wcf.moderation.activation</definitionname>
 			<classname>linklist\system\moderation\queue\activation\LinkModerationQueueActivationHandler</classname>
 		</type>
-		<type>
-			<name>de.codequake.linklist.moderation.offline</name>
-			<definitionname>com.woltlab.wcf.moderation.type</definitionname>
-			<classname>linklist\system\moderation\queue\ModerationQueueOfflineManager</classname>
-		</type>
-		<type>
-			<name>de.codequake.linklist.link</name>
-			<definitionname>de.codequake.linklist.moderation.offline</definitionname>
-			<classname>linklist\system\moderation\queue\offline\LinkModerationQueueOfflineHandler</classname>
-		</type>
 		<!--Like -->
 		<type>
 			<name>de.codequake.linklist.likeableLink</name>
@@ -158,12 +148,6 @@
 			<name>de.codequake.linklist.link</name>
 			<definitionname>com.woltlab.wcf.tagging.taggableObject</definitionname>
 			<classname>linklist\system\tagging\TaggableLink</classname>
-		</type>
-		<!--trash -->
-		<type>
-			<name>de.codequake.linklist.link</name>
-			<definitionname>com.woltlab.wcf.deletedContent</definitionname>
-			<classname>linklist\system\moderation\DeletedLinkProvider</classname>
 		</type>
 	</import>
 </data>

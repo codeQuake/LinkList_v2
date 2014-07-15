@@ -3,12 +3,6 @@
 	xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/eventListener.xsd">
 	<import>
 		<eventlistener>
-			<eventclassname>linklist\acp\form\LinklistCategoryAddForm</eventclassname>
-			<eventname>saved</eventname>
-			<listenerclassname>linklist\system\event\listener\CategoryAddListener</listenerclassname>
-			<environment>admin</environment>
-		</eventlistener>
-		<eventlistener>
 			<eventclassname>wcf\page\MembersListPage</eventclassname>
 			<eventname>readParameters</eventname>
 			<listenerclassname>linklist\system\event\listener\LinksMembersListPageListener</listenerclassname>
