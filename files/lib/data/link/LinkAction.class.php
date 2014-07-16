@@ -386,7 +386,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 		UserActivityPointHandler::getInstance()->removeEvents('de.codequake.linklist.activityPointEvent.link', $this->objectIDs);
 
 		// delete
-		parent::delete();;
+		parent::delete();
 		foreach ($this->objects as $link) {
 			// remove tags
 			TagEngine::getInstance()->deleteObjectTags('de.codequake.linklist.link', $link->linkID);
