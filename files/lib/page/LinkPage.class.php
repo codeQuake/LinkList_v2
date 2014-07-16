@@ -113,7 +113,7 @@ class LinkPage extends AbstractPage {
 			'sidebarName' => 'de.codequake.linklist.link',
 			'likeData' => ((MODULE_LIKE && $this->commentList) ? $this->commentList->getLikeData() : array()),
 			'linkLikeData' => $this->likeData,
-			'commentCanAdd' => (WCF::getUser()->userID && WCF::getSession()->getPermission('user.linklist.link.canAddComment')),
+			'commentCanAdd' => (WCF::getUser()->userID && WCF::getSession()->getPermission('user.linklist.link.canWriteComment')),
 			'commentList' => $this->commentList,
 			'commentObjectTypeID' => $this->commentObjectTypeID,
 			'tags' => $this->tags,

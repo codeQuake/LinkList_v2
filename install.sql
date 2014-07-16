@@ -24,7 +24,8 @@ CREATE TABLE linklist1_link (
 	enableHtml TINYINT(1) NOT NULL DEFAULT 0,
 	enableBBCodes	TINYINT(1) NOT NULL DEFAULT 1,
 	ipAddress VARCHAR(39) NOT NULL DEFAULT '',
-	cumulativeLikes MEDIUMINT(7) NOT NULL DEFAULT 0
+	cumulativeLikes MEDIUMINT(7) NOT NULL DEFAULT 0,
+	comments INT(10) NOT NULL DEFAULT 0
 );
 
 --link to category
