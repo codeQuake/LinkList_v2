@@ -143,6 +143,10 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 		<item name="wcf.acp.option.category.linklist.links"><![CDATA[Links]]></item>
 		<item name="wcf.acp.option.category.linklist.links.general"><![CDATA[Allgemeine Einstellungen]]></item>
 		<item name="wcf.acp.option.linklist_enable_likes"><![CDATA[Like-System]]></item>
+		<item name="wcf.acp.option.linklist_thumbalizr"><![CDATA[Thumbalizr verwenden]]></item>
+		<item name="wcf.acp.option.linklist_thumbalizr.description"><![CDATA[Statt Webthumbnail.org wird für alle automatisch generierten Vorschaubilder der Dienst <a href="http://thumbalizr.com">Thumbalizr</a> verwendet.]]></item>
+		<item name="wcf.acp.option.linklist_thumbalizr_api_key"><![CDATA[Thumbalizr API-Key]]></item>
+		<item name="wcf.acp.option.linklist_thumbalizr.description"><![CDATA[Um die Qualität der Vorschaubilder zu erhöhen, können Sie sich kostenlos bei <a href="http://thumbalizr.com">Thumbalizr</a> registrieren und sich einen API-Key generieren lassen (Empfohlen).]]></item>
 		<item name="wcf.acp.option.linklist_enable_likes.description"><![CDATA[Like-System für Links aktivieren.]]></item>
 		<item name="wcf.acp.option.linklist_enable_tags"><![CDATA[Tagging von Links aktivieren
 ]]></item>

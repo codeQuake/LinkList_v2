@@ -145,6 +145,10 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
 		<item name="wcf.acp.option.category.linklist.links.general"><![CDATA[General settings]]></item>
 		<item name="wcf.acp.option.linklist_enable_likes"><![CDATA[Like-System]]></item>
 		<item name="wcf.acp.option.linklist_enable_tags"><![CDATA[Activate tagging]]></item>
+		<item name="wcf.acp.option.linklist_thumbalizr"><![CDATA[Use Thumbalizr]]></item>
+		<item name="wcf.acp.option.linklist_thumbalizr.description"><![CDATA[Instead Webthumbnail.org <a href="http://thumbalizr.com">Thumbalizr</a> will be used for all automatic preview images]]></item>
+		<item name="wcf.acp.option.linklist_thumbalizr_api_key"><![CDATA[Thumbalizr API-Key]]></item>
+		<item name="wcf.acp.option.linklist_thumbalizr.description"><![CDATA[To increase the thumbnails quality, please register on <a href="http://thumbalizr.com">Thumbalizr</a> and get your API-Key]]></item>
 		<item name="wcf.acp.option.linklist_enable_own_preview"><![CDATA[Own thumbnails]]></item>
 		<item name="wcf.acp.option.linklist_enable_own_preview.description"><![CDATA[Users can upload/link own thumbnails.]]></item>
 		<item name="wcf.acp.option.linklist_enable_tags.description"><![CDATA[Users can add tags.]]></item>
