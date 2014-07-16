@@ -1,6 +1,7 @@
 <?php
 namespace linklist\data\category;
 
+use linklist\system\cache\builder\CategoryCacheBuilder;
 use wcf\system\database\util\PreparedStatementConditionBuilder;
 use wcf\system\language\LanguageFactory;
 use wcf\system\visitTracker\VisitTracker;
@@ -10,12 +11,21 @@ use wcf\system\WCF;
 class LinklistCategoryCache extends SingletonFactory {
 
 	public $unreadLinks = array();
+	public $data = array();
 
 	protected function init() {
-		$this->counts = CategoryCacheBuilder::getInstance()->getData(array(), 'counts');
+		$this->data = CategoryCacheBuilder::getInstance()->getData();
 	}
 
-protected function initUnreadLinks() {
+	public function getLinks($categoryID) {
+		return isset($this->data[$categoryID]['links']) ? $this->data[$categoryID]['links'] : 0;
+	}
+
+	public function getVisits($categoryID) {
+		return isset($this->data[$categoryID]['visits']) ? $this->data[$categoryID]['visits'] : 0;
+	}
+
+	protected function initUnreadLinks() {
 		$this->unreadLinks = array();
 
 		if (WCF::getUser()->userID) {

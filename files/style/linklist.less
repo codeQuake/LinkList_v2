@@ -48,9 +48,8 @@
 	}
 
 	.linklistCategory {
-		min-height: 44px;
 		padding: @wcfGapSmall;
-		padding-right: 51%;
+		padding-right: 25%;
 
 		.transition(background, .1s);
 
@@ -69,8 +68,23 @@
 
 
 	.icon {
+		&.new{color: @wcfLinkHoverColor};
 		color: @wcfLinkColor;
 	}
+
+	.linkStats {
+		left: 75%;
+		margin-top: 0px;
+		position: absolute;
+		top: 0px;
+		width: 25%;
+		> dl.plain.statsDataList > dd, > dl.plain.statsDataList > dt {
+			text-align: center;
+			float: none;
+			width: 100%;
+		}
+	}
+
 }
 
 

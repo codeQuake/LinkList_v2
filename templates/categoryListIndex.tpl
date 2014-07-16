@@ -64,7 +64,7 @@
 			<div>
 				<div class="containerHeadline">
 					<h3>{lang}linklist.index.stats{/lang}</h3>
-					{*<p>{lang}linklist.index.stats.detail{/lang}</p>*}
+					<p>{lang}linklist.index.stats.detail{/lang}</p>
 				</div>
 			</div>
 		</li>

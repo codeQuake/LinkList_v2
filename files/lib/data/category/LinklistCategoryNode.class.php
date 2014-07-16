@@ -16,10 +16,22 @@ class LinklistCategoryNode extends CategoryNode {
 	protected static $baseClass = 'linklist\data\category\LinklistCategory';
 
 	protected $unreadLinks = null;
+	protected $links = null;
+	protected $visits = null;
 
 	public function getUnreadLinks() {
-		if ($this->unreadLinks === null) $this->unreadLinks = LinklistCategoryCache::getInstance()->getUnreadNews($this->categoryID);
+		if ($this->unreadLinks === null) $this->unreadLinks = LinklistCategoryCache::getInstance()->getUnreadLinks($this->categoryID);
 		return $this->unreadLinks;
+	}
+
+	public function getLinks() {
+		if ($this->links === null) $this->links = LinklistCategoryCache::getInstance()->getLinks($this->categoryID);
+		return $this->links;
+	}
+
+	public function getVisits() {
+		if ($this->visits === null) $this->visits = LinklistCategoryCache::getInstance()->getVisits($this->categoryID);
+		return $this->visits;
 	}
 
 	public function isMainCategory() {

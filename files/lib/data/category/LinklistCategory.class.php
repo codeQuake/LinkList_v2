@@ -70,4 +70,5 @@ class LinklistCategory extends AbstractDecoratedCategory implements IBreadcrumbP
 	public function getIcon() {
 		return isset($this->additionalData['icon']) && $this->additionalData['icon'] !='' ? $this->additionalData['icon'] : 'globe';
 	}
+
 }

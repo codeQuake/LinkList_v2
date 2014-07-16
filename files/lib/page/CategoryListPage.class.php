@@ -2,6 +2,7 @@
 namespace linklist\page;
 
 use linklist\data\category\LinklistCategoryNodeTree;
+use linklist\system\cache\builder\LinklistStatsCacheBuilder;
 use wcf\data\option\OptionAction;
 use wcf\data\user\online\UsersOnlineList;
 use wcf\page\AbstractPage;
@@ -48,7 +49,7 @@ class CategoryListPage extends AbstractPage {
 		parent::readData();
 		$categoryTree = new LinklistCategoryNodeTree($this->objectTypeName);
 		$this->categoryList = $categoryTree->getIterator();
-		$this->stats = array_merge(UserStatsCacheBuilder::getInstance()->getData());
+		$this->stats = array_merge(UserStatsCacheBuilder::getInstance()->getData(), LinklistStatsCacheBuilder::getInstance()->getData());
 
 		// users online
 		if (MODULE_USERS_ONLINE && LINKLIST_INDEX_WIO) {

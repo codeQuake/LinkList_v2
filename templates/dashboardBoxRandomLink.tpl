@@ -30,7 +30,7 @@
 			</dd>
 		</dl>
 		<dl class="plain inlineDataList">
-			<dt>{lang}linklist.links.visits{/lang}</dt>
+			<dt>{lang}linklist.link.visits{/lang}</dt>
 			<dd>{$randomLink->visits}</dd>
 		</dl>
 		<div>{@$randomLink->getExcerpt()}</div>
