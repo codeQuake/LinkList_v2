@@ -4,10 +4,26 @@
 	<title>{if $__wcf->getPageMenu()->getLandingPage()->menuItem != 'linklist.pageMenu.index'}{lang}linklist.pageMenu.index{/lang} - {/if}{PAGE_TITLE|language}</title>
 
 	{include file='headInclude' sandbox=false}
+	<script data-relocate="true">
+		//<![CDATA[
+		$(function() {
+			new Linklist.Link.MarkAllAsRead();
+			});
+		//]]>
+	</script>
 	<link rel="canonical" href="{link application='linklist' controller='CategoryList'}{/link}" />
 </head>
 
 <body id="tpl{$templateName|ucfirst}">
+{capture assign='headerNavigation'}
+	<li class="jsOnly">
+		<a title="{lang}cms.news.markAllAsRead{/lang}" class="markAllAsReadButton jsTooltip">
+			<span class="icon icon16 icon-ok"></span>
+			<span class="invisible">{lang}linklist.link.markAllAsRead{/lang}</span>
+		</a>
+	</li>
+
+{/capture}
 {capture assign='sidebar'}
 	{@$__boxSidebar}
 {/capture}

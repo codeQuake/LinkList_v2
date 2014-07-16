@@ -5,6 +5,7 @@ use linklist\data\link\Link;
 use linklist\data\link\LinkEditor;
 use linklist\data\link\LinkList;
 use linklist\system\cache\builder\CategoryCacheBuilder;
+use linklist\system\cache\builder\LinklistStatsCacheBuilder;
 use wcf\action\AbstractAction;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\WCF;
@@ -29,6 +30,8 @@ class LinkVisitAction extends AbstractAction {
 		$linkEditor->update(array(
 			'visits' => $this->link->visits + 1
 		));
+		CategoryCacheBuilder::getInstance()->reset();
+		LinklistStatsCacheBuilder::getInstance()->reset();
 		$this->executed();
 		HeaderUtil::redirect($this->link->url);
 	}

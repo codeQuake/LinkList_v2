@@ -79,6 +79,7 @@ class LinkAddForm extends MessageForm {
 		)));
 		$categoryTree = new LinklistCategoryNodeTree($this->objectTypeName, 0, false, $excludedCategoryIDs);
 		$this->categoryList = $categoryTree->getIterator();
+		$this->categoryList->setMaxDepth(0);
 
 		// default values
 		if (! count($_POST)) {

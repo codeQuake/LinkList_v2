@@ -31,6 +31,16 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
 	public $link;
 
+	protected $resetCache = array(
+		'create',
+		'delete',
+		'toggle',
+		'update',
+		'updatePosition',
+		'markAsRead',
+		'markAllAsRead'
+	);
+
 	protected $permissionsCreate = array(
 		'user.linklist.link.canAddLink'
 	);
@@ -166,6 +176,8 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 				TagEngine::getInstance()->addObjectTags('de.codequake.linklist.link', $object->linkID, $tags, $languageID);
 			}
 		}
+
+		UserStorageHandler::getInstance()->resetAll('linklistUnreadLinks');
 		if (! empty($objectIDs)) SearchIndexManager::getInstance()->delete('de.codequake.linklist.link', $objectIDs);
 		if (! empty($objectIDs)) SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $object->linkID, $object->message, $object->subject, $object->time, $object->userID, $object->username, $object->languageID);
 	}

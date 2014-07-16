@@ -2,6 +2,8 @@
 namespace linklist\form;
 
 use linklist\data\link\Link;
+use linklist\data\link\LinkAction;
+use wcf\form\MessageForm;
 use wcf\system\tagging\TagEngine;
 use wcf\system\WCF;
 
@@ -66,32 +68,36 @@ class LinkEditForm extends LinkAddForm {
 	}
 
 	public function save() {
-		parent::save();
+		MessageForm::save();
+		$data = array(
+			'languageID' => $this->languageID,
+			'subject' => $this->subject,
+			'time' => TIME_NOW,
+			'teaser' => $this->teaser,
+			'message' => $this->text,
+			'url' => $this->url,
+			'userID' => WCF::getUser()->userID,
+			'username' => WCF::getUser()->username,
+			'isDisabled' => 0,
+			'enableBBCodes' => $this->enableBBCodes,
+			'enableHtml' => $this->enableHtml,
+			'enableSmilies' => $this->enableSmilies,
+			'lastChangeTime' => TIME_NOW
+		);
+		$linkData = array(
+			'data' => $data,
+			'tags' => array(),
+			'attachmentHandler' => $this->attachmentHandler,
+			'categoryIDs' => $this->categoryIDs
+		);
+		$linkData['tags'] = $this->tags;
 		$this->objectAction = new LinkAction(array(
 			$this->linkID
-		), 'update', array(
-			'data' => array(
-				'message' => $this->text,
-				'url' => $this->url,
-				'subject' => $this->subject,
-				'teaser' => $this->teaser,
-				'categoryID' => $this->categoryID,
-				'lastChangeTime' => TIME_NOW,
-				'enableSmilies' => $this->enableSmilies,
-				'enableHtml' => $this->enableHtml,
-				'enableBBCodes' => $this->enableBBCodes
-			),
-			'tags' => $this->tags,
-			'attachmentHandler' => $this->attachmentHandler
-		));
+		), 'update', $linkData);
 		$this->objectAction->executeAction();
 		$this->link = new Link($this->linkID);
 		$this->saved();
 
-		HeaderUtil::redirect(LinkHandler::getInstance()->getLink('Link', array(
-			'application' => 'linklist',
-			'object' => $this->link
-		)));
-		exit();
+		WCF::getTPL()->assign('success', true);
 	}
 }

@@ -19,11 +19,11 @@
 	{cycle assign=alternate name=alternate reset=true print=false}
 	{/if}
 	<div class="linklistCategory box48 {@$alternate}">
-		<span class="icon icon48 icon-{$category->getIcon()}"></span>
+		<span class="icon icon48 icon-{$category->getIcon()} {if $category->getUnreadLinks() != 0}new{/if}"></span>
 		<div>
 		<div class="containerHeadline">
 			<h3>
-			<a href="{link application='linklist' controller='Category' id=$category->categoryID title=$category->getTitle()|language}{/link}">{$category->getTitle()}</a>
+			<a href="{link application='linklist' controller='Category' id=$category->categoryID title=$category->getTitle()|language}{/link}">{$category->getTitle()}</a>{if $category->getUnreadLinks() != 0} <span class="badge">{#$category->getUnreadLinks()}</span>{/if}
 			</h3>
 			{hascontent}
 			<span class="linklistCategoryDescription">

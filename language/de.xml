@@ -23,6 +23,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 
 	<category name="linklist.link">
 		<item name="linklist.link.list"><![CDATA[Links]]></item>
+		<item name="linklist.link.markAllAsRead"><![CDATA[Alle Links als gelesen markieren]]></item>
 		<item name="linklist.link.delete.sure"><![CDATA[Sind Sie sicher, dass Sie diesen Link löschen wollen?]]></item>
 		<item name="linklist.link.general"><![CDATA[Allgemeine Informationen]]></item>
 		<item name="linklist.link.title"><![CDATA[Titel]]></item>
