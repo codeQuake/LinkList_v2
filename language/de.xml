@@ -30,6 +30,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 		<item name="linklist.link.teaser"><![CDATA[Teaser]]></item>
 		<item name="linklist.link.teaser.description"><![CDATA[Ein Teaser ist eine kleine Einleitung des Links. Bleibt dieses Feld leer, wird kein Teaser angezeigt.]]></item>
 		<item name="linklist.link.category.categories"><![CDATA[Kategorien]]></item>
+		<item name="linklist.link.category.main"><![CDATA[Hauptkategorie]]></item>
 		<item name="linklist.link.category.categories.description"><![CDATA[Wählen Sie die passenden Kategorien für den Link!]]></item>
 		<item name="linklist.link.categorizedLink"><![CDATA[Links der Kategorie {$category->getTitle()}]]></item>
 		<item name="linklist.link.clicks"><![CDATA[Aufrufe]]></item>

@@ -36,7 +36,7 @@
 					<li>
 						<div>
 							<div class="containerHeadline">
-								<h3><label{if $categoryItem->getDescription()} class="jsTooltip" title="{$categoryItem->getDescription()}"{/if}><input type="checkbox" name="categoryIDs[]" value="{@$categoryItem->categoryID}" class="jsCategory"{if $categoryItem->categoryID|in_array:$categoryIDs}checked="checked" {/if}/> {$categoryItem->getTitle()}</label></h3>
+								<h3><label{if $categoryItem->getDescription()} class="jsTooltip" title="{$categoryItem->getDescription()}"{/if}>{if !$categoryItem->isMainCategory()}<input type="checkbox" name="categoryIDs[]" value="{@$categoryItem->categoryID}" class="jsCategory"{if $categoryItem->categoryID|in_array:$categoryIDs}checked="checked" {/if}/>{else}<span title="{lang}linklist.link.category.main{/lang}" class="jsTooltip icon icon16 icon-folder-close"></span>{/if} {$categoryItem->getTitle()}</label></h3>
 							</div>
 
 							{if $categoryItem->hasChildren()}
@@ -44,7 +44,7 @@
 									{foreach from=$categoryItem item=subCategoryItem}
 										{if $subCategoryItem->isAccessible()}
 										<li>
-											<label{if $subCategoryItem->getDescription()} class="jsTooltip" title="{$subCategoryItem->getDescription()}"{/if}><input type="checkbox" name="categoryIDs[]" value="{@$subCategoryItem->categoryID}" class="jsChildCategory"{if $subCategoryItem->categoryID|in_array:$categoryIDs}checked="checked" {/if}/> {$subCategoryItem->getTitle()}</label>
+											<label{if $subCategoryItem->getDescription()} class="jsTooltip" title="{$subCategoryItem->getDescription()}"{/if}>{if !$subCategoryItem->isMainCategory()}<input type="checkbox" name="categoryIDs[]" value="{@$subCategoryItem->categoryID}" class="jsChildCategory"{if $subCategoryItem->categoryID|in_array:$categoryIDs}checked="checked" {/if}/>{else}<span title="{lang}linklist.link.category.main{/lang}" class="jsTooltip icon icon16 icon-folder-close"></span>{/if} {$subCategoryItem->getTitle()}</label>
 										</li>
 										{/if}
 									{/foreach}

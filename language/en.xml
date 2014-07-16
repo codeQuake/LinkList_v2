@@ -27,6 +27,7 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
 		<item name="linklist.link.delete.sure"><![CDATA[Are you sure you want to delete this link?]]></item>
 		<item name="linklist.link.general"><![CDATA[General Information]]></item>
 		<item name="linklist.link.category.categories"><![CDATA[Categories]]></item>
+		<item name="linklist.link.category.main"><![CDATA[Main category]]></item>
 		<item name="linklist.link.category.categories.description"><![CDATA[]]></item>
 		<item name="linklist.link.categorizedLink"><![CDATA[Links in {$category->getTitle()}]]></item>
 		<item name="linklist.link.teaser"><![CDATA[Teaser]]></item>
