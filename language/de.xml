@@ -24,6 +24,7 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 	<category name="linklist.link">
 		<item name="linklist.link.list"><![CDATA[Links]]></item>
 		<item name="linklist.link.title"><![CDATA[Titel]]></item>
+		<item name="linklist.link.clicks"><![CDATA[Aufrufe]]></item>
 		<item name="linklist.link.visits"><![CDATA[Besuche]]></item>
 		<item name="linklist.link.time"><![CDATA[Zeit]]></item>
 		<item name="linklist.link.url.illegalURL"><![CDATA[Geben Sie eine korrekte URL ein!]]></item>

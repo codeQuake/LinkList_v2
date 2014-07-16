@@ -24,6 +24,7 @@ The newest Member is: <a href="{link controller='User' object=$stats[newestMembe
 	<category name="linklist.link">
 		<item name="linklist.link.list"><![CDATA[Links]]></item>
 		<item name="linklist.link.title"><![CDATA[Title]]></item>
+		<item name="linklist.link.clicks"><![CDATA[Clicks]]></item>
 		<item name="linklist.link.visits"><![CDATA[Visits]]></item>
 		<item name="linklist.link.time"><![CDATA[Time]]></item>
 		<item name="linklist.link.url.illegalURL"><![CDATA[Enter a valid URL!]]></item>
