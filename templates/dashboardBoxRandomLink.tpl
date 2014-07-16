@@ -22,18 +22,21 @@
 			{if MODULE_LIKE && $__wcf->getSession()->getPermission('user.like.canViewLike') && $randomLink->likes || $randomLink->dislikes && LINKLIST_ENABLE_LIKES}<span class="likesBadge badge jsTooltip {if $randomLink->cumulativeLikes > 0}green{elseif $randomLink->cumulativeLikes < 0}red{/if}" title="{lang likes=$randomLink->likes dislikes=$randomLink->dislikes}wcf.like.tooltip{/lang}">{if $randomLink->cumulativeLikes > 0}+{elseif $randomLink->cumulativeLikes == 0}&plusmn;{/if}{#$randomLink->cumulativeLikes}
 			</span>{/if}
 			</h3>
+			<p>
+				<small>{if $randomLink->getUserProfile()->userID != 0}<a class="userLink" data-user-id="{$randomLink->userID}" href="{link controller='User' object=$randomLink->getUserProfile()}{/link}">{$randomLink->username}</a>{else}{$randomLink->username}{/if}</small>
+				-
+				<small>{@$randomLink->time|time}</small>
+			</p>
+			<p>
+				<dl class="plain inlineDataList">
+					<dt><small>{lang}linklist.link.visits{/lang}</small></dt>
+					<dd><small>{$randomLink->visits}</small></dd>
+					<dt><small>{lang}linklist.link.clicks{/lang}</small></dt>
+					<dd><small>{$randomLink->clicks}</small></dd>
+				</dl>
+			</p>
 		</div>
-		<dl class="plain inlineDataList">
-			<dt>{lang}linklist.link.author{/lang}</dt>
-			<dd>
-			{if $randomLink->getUserProfile()->userID != 0}<a class="userLink" data-user-id="{$randomLink->userID}" href="{link controller='User' object=$randomLink->getUserProfile()}{/link}">{$randomLink->username}</a>{else}{$randomLink->username}{/if} ({$randomLink->time|DateDiff})
-			</dd>
-		</dl>
-		<dl class="plain inlineDataList">
-			<dt>{lang}linklist.link.visits{/lang}</dt>
-			<dd>{$randomLink->visits}</dd>
-		</dl>
-		<div>{@$randomLink->getExcerpt()}</div>
+		<div>{if $randomLink->teaser != ''}{$randomLink->teaser|truncate:250}{else}{@$randomLink->getExcerpt()}{/if}</div>
 		{if $randomLink->getTags()|count && MODULE_TAGGING && LINKLIST_ENABLE_TAGS}
 		<ul class="tagList">
 			{foreach from=$randomLink->getTags() item=tag}
@@ -43,16 +46,14 @@
 			{/foreach}
 		</ul>
 		{/if}
-		<nav class="jsMobileNavigation buttonGroupNavigation linkNavigation">
-			<ul class="buttonGroup smallButtons">
+		<ul class="buttonList smallButtons">
 			<li>
 				<a class="button buttonPrimary" href="{link application='linklist' controller='LinkVisit' object=$randomLink}{/link}" {if EXTERNAL_LINK_TARGET_BLANK}target="_blank"{/if}>
 				<span class="icon-link icon icon16"></span>
 				<span>{lang}linklist.link.visit{/lang}</span>
 				</a>
 			</li>
-			</ul>
-		</nav>
+		</ul>
 		</div>
 	</div>
 			</li>
