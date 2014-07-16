@@ -88,12 +88,7 @@
 				<objecttype>de.codequake.linklist.category</objecttype>
 			</option>
 
-			<option name="canTrashLink">
-				<categoryname>mod.linklist.category</categoryname>
-				<objecttype>de.codequake.linklist.category</objecttype>
-			</option>
-
-			<option name="canToggleLink">
+			<option name="canModerateLink">
 				<categoryname>mod.linklist.category</categoryname>
 				<objecttype>de.codequake.linklist.category</objecttype>
 			</option>

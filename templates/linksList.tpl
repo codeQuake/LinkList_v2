@@ -12,7 +12,7 @@
 					<div>
 						<header class="messageHeader">
 							<ul class="messageQuickOptions">
-								{if $link->canDelete() || $link->canToggle()}<input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}"/>{/if}
+								{if $link->canDelete() || $link->canModerate()}<input type="checkbox" class="jsClipboardItem" data-object-id="{@$link->linkID}"/>{/if}
 							</ul>
 							<div class="messageHeadline">
 								<h1><a data-link-id="{@$link->linkID}" class="linklistLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a></h1>

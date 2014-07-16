@@ -197,7 +197,7 @@ class Link extends LINKLISTDatabaseObject implements IMessage, IRouteController,
 	}
 
 	public function canModerate() {
-		return WCF::getSession()->getPermission('mod.linklist.link.canEditLink');
+		return WCF::getSession()->getPermission('mod.linklist.link.canModerateLink');
 	}
 
 	public function canDelete() {

@@ -10,17 +10,13 @@ class LinkClipboardAction extends AbstractClipboardAction {
 	protected $links = array();
 
 	protected $actionClassActions = array(
-		'trash',
-		'restore',
 		'delete',
 		'enable',
 		'disable'
 	);
 
 	protected $supportedActions = array(
-		'trash',
 		'delete',
-		'restore',
 		'enable',
 		'disable'
 	);
@@ -29,30 +25,12 @@ class LinkClipboardAction extends AbstractClipboardAction {
 		if (empty($this->links)) {
 			$this->links = $objects;
 		}
-		
+
 		$item = parent::execute($objects, $action);
 		if ($item === null) {
 			return null;
 		}
 		switch ($action->actionName) {
-			case 'trash':
-				$item->addParameter('objectIDs', array_keys($this->links));
-				$item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.trash.confirmMessage', array(
-					'count' => $item->getCount()
-				)));
-				$item->addParameter('className', $this->getClassName());
-				$item->setName('de.codequake.linklist.link.trash');
-				break;
-			
-			case 'restore':
-				$item->addParameter('objectIDs', array_keys($this->links));
-				$item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.restore.confirmMessage', array(
-					'count' => $item->getCount()
-				)));
-				$item->addParameter('className', $this->getClassName());
-				$item->setName('de.codequake.linklist.link.restore');
-				break;
-			
 			case 'enable':
 				$item->addParameter('objectIDs', array_keys($this->links));
 				$item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.enable.confirmMessage', array(
@@ -61,7 +39,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$item->addParameter('className', $this->getClassName());
 				$item->setName('de.codequake.linklist.link.enable');
 				break;
-			
+
 			case 'disable':
 				$item->addParameter('objectIDs', array_keys($this->links));
 				$item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.disable.confirmMessage', array(
@@ -70,7 +48,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$item->addParameter('className', $this->getClassName());
 				$item->setName('de.codequake.linklist.link.disable');
 				break;
-			
+
 			case 'delete':
 				$item->addParameter('objectIDs', array_keys($this->links));
 				$item->addInternalData('confirmMessage', WCF::getLanguage()->getDynamicVariable('wcf.clipboard.item.de.codequake.linklist.link.delete.confirmMessage', array(
@@ -91,48 +69,25 @@ class LinkClipboardAction extends AbstractClipboardAction {
 		return 'linklist\data\link\LinkAction';
 	}
 
-	protected function validateTrash() {
-		$linkIDs = array();
-		foreach ($this->links as $link) {
-			if (! $link->isDeleted && $link->canTrash()) {
-				$linkIDs[] = $link->linkID;
-			}
-		}
-		
-		return $linkIDs;
-	}
-
 	protected function validateEnable() {
 		$linkIDs = array();
 		foreach ($this->links as $link) {
-			if (! $link->isActive && $link->canToggle()) {
+			if ($link->isDisabled && $link->canModerate()) {
 				$linkIDs[] = $link->linkID;
 			}
 		}
-		
+
 		return $linkIDs;
 	}
 
 	protected function validateDisable() {
 		$linkIDs = array();
 		foreach ($this->links as $link) {
-			if ($link->isActive && $link->canToggle()) {
+			if (!$link->isDisabled && $link->canModerate()) {
 				$linkIDs[] = $link->linkID;
 			}
 		}
-		
-		return $linkIDs;
-	}
 
-	protected function validateRestore() {
-		$linkIDs = array();
-		foreach ($this->links as $link) {
-			// if you can trash, you can restore
-			if ($link->isDeleted && $link->canTrash()) {
-				$linkIDs[] = $link->linkID;
-			}
-		}
-		
 		return $linkIDs;
 	}
 
@@ -143,7 +98,7 @@ class LinkClipboardAction extends AbstractClipboardAction {
 				$linkIDs[] = $link->linkID;
 			}
 		}
-		
+
 		return $linkIDs;
 	}
 }
