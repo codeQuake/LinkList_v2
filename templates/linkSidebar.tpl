@@ -1,5 +1,11 @@
 {capture assign='sidebar'}
-		<fieldset>
+	<fieldset>
+		<legend>{lang}linklist.link.image{/lang}</legend>
+		<div class="framed">
+			{@$link->getImage(268)}
+		</div>
+	</fieldset>
+	<fieldset>
 		<legend>{lang}linklist.link.author{/lang}</legend>
 		<div class="box32">
 			<div class="userAvatar">
@@ -29,7 +35,7 @@
 
 			<ul>
 				{foreach from=$link->getCategories() item=category}
-					<li><a href="{link application='linklist' controller='Category' object=$category}{/link}" class="jsTooltip" title="{lang}linklist.link.categorizedNews{/lang}">{$category->getTitle()}</a></li>
+					<li><a href="{link application='linklist' controller='Category' object=$category}{/link}" class="jsTooltip" title="{lang}linklist.link.categorizedLink{/lang}">{$category->getTitle()}</a></li>
 				{/foreach}
 			</ul>
 		</fieldset>

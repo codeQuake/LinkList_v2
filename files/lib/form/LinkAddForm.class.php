@@ -64,11 +64,6 @@ class LinkAddForm extends MessageForm {
 		if (isset($_POST['tags']) && is_array($_POST['tags'])) $this->tags = ArrayUtil::trim($_POST['tags']);
 		if (isset($_POST['url']) && $_POST['url'] != '') $this->url = StringUtil::trim($_POST['url']);
 		if (isset($_POST['teaser'])) $this->teaser = StringUtil::trim($_POST['teaser']);
-
-	}
-
-	public function readParameters() {
-		parent::readParameters();
 		if (isset($_REQUEST['categoryIDs']) && is_array($_REQUEST['categoryIDs'])) $this->categoryIDs = ArrayUtil::toIntegerArray($_REQUEST['categoryIDs']);
 	}
 
@@ -112,6 +107,11 @@ class LinkAddForm extends MessageForm {
 		}
 
 		if ($this->languageID === null || $this->languageID == 0) $this->languageID = LanguageFactory::getInstance()->getDefaultLanguageID();
+
+		// url
+		if (! FileUtil::isURL($this->url)) {
+			throw new UserInputException('url', 'illegalURL');
+		}
 
 		foreach ($this->categoryIDs as $categoryID) {
 			$category = CategoryHandler::getInstance()->getCategory($categoryID);

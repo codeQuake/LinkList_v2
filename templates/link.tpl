@@ -81,6 +81,9 @@
 									<div class="framed">
 										<img src="{$link->getThumb()}" alt="" />
 									</div>
+									<div class="linkTeaser">
+										<strong>{$link->teaser}</strong>
+									</div>
 									<div class="linkText">
 										{@$link->getFormattedMessage()}
 									</div>

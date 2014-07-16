@@ -375,9 +375,6 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 		$attachedLinksIDs = array();
 		foreach ($this->objects as $link) {
 			if ($link->attachments != 0) $attachedLinkIDs[] = $link->linkID;
-			LinkEditor::updateLinkCounter(array(
-				$link->userID => - 1
-			));
 			$this->removeModeratedContent($link->linkID);
 		}
 		// remove attaches
