@@ -50,6 +50,7 @@
 			<h1>{$link->getTitle()|language}</h1>
 		</ul>
 	</header>
+	{if $link->isDisabled}<p class="info">{lang}linklist.link.isDisabled.notice{/lang}</p>{/if}
 	{include file='userNotice'}
 	<ul class="messageList">
 	<li>

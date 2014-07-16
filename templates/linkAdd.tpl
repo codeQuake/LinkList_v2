@@ -118,6 +118,24 @@
 						{/if}
 					</dd>
 				</dl>
+
+				<dl {if $errorField == 'teaser'}class="formError{/if}">
+					<dt><label for="teaser">{lang}linklist.link.teaser{/lang}</label></dt>
+					<dd>
+						<textarea id="teaser" name="teaser" rows="5" cols="40">{$teaser}</textarea>
+						<small>{lang}linklist.link.teaser.description{/lang}</small>
+						{if $errorField == 'teaser'}
+							<small class="innerError">
+								{if $errorType == 'empty'}
+									{lang}wcf.global.form.error.empty{/lang}
+								{else}
+									{lang}linklist.link.teaser.error.{@$errorType}{/lang}
+								{/if}
+							</small>
+						{/if}
+					</dd>
+				</dl>
+
 				{if $action == 'add'}
 				{include file='messageFormMultilingualism'}
 				{/if}

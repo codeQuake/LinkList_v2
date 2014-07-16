@@ -29,7 +29,7 @@
 
 			<ul>
 				{foreach from=$link->getCategories() item=category}
-					<li><a href="{link application='linklist' controller='LinkCategoryList' object=$category}{/link}" class="jsTooltip" title="{lang}linklist.link.categorizedNews{/lang}">{$category->getTitle()}</a></li>
+					<li><a href="{link application='linklist' controller='Category' object=$category}{/link}" class="jsTooltip" title="{lang}linklist.link.categorizedNews{/lang}">{$category->getTitle()}</a></li>
 				{/foreach}
 			</ul>
 		</fieldset>

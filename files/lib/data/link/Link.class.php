@@ -57,9 +57,9 @@ class Link extends LINKLISTDatabaseObject implements IMessage, IRouteController,
 		parent::__construct(null, $row, $object);
 	}
 
-	public function getThumb() {
-		if (LINKLIST_THUMBALIZR) return "https://api.thumbalizr.com/?url=".$this->url."&width=250&api_key=".LINKLIST_THUMBALIZR_APIKEY."&qualitiy=100";
-		return "http://api.webthumbnail.org?width=250&height=250&screen=1024&url=".$this->url;
+	public function getThumb($size = 250) {
+		if (LINKLIST_THUMBALIZR) return "https://api.thumbalizr.com/?url=".$this->url."&width=".$size."&api_key=".LINKLIST_THUMBALIZR_APIKEY."&qualitiy=100";
+		return "http://api.webthumbnail.org?width=".$size."&height=".$size."&screen=1024&url=".$this->url;
 	}
 
 	public function getTitle() {
@@ -198,6 +198,16 @@ class Link extends LINKLISTDatabaseObject implements IMessage, IRouteController,
 
 	public function canModerate() {
 		return WCF::getSession()->getPermission('mod.linklist.link.canEditLink');
+	}
+
+	public function canDelete() {
+		return WCF::getSession()->getPermission('mod.linklist.link.canDeleteLink');
+	}
+
+
+	public function getImage($size) {
+		if ($this->image == '') return '<img src="'.$this->getThumb($size).'" alt="" />';
+		return '';
 	}
 
 	public static function getIpAddressByAuthor($userID, $username = '', $notIpAddress = '', $limit = 10) {

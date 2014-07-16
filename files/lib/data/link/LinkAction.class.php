@@ -411,12 +411,9 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
 	public function validateGetLinkPreview() {
 		$this->link = $this->getSingleObject();
-		// check if board may be entered and thread can be read
-		$this->link->getCategory()->checkPermission(array(
-			'canViewCategory',
-			'canEnterCategory',
-			'canViewLink'
-		));
+		foreach($this->link->getCategories() as $category) {
+			if (!$category->getPermission('canViewLink')) throw new PermissionDeniedException();
+		}
 	}
 
 	protected function removeModeratedContent($linkID) {

@@ -27,7 +27,7 @@ class LinkVisitAction extends AbstractAction {
 		parent::execute();
 		$linkEditor = new LinkEditor($this->link);
 		$linkEditor->update(array(
-			'clicks' => $this->link->clicks + 1
+			'visits' => $this->link->visits + 1
 		));
 		$this->executed();
 		HeaderUtil::redirect($this->link->url);
