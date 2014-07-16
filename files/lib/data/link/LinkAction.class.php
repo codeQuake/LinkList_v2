@@ -1,10 +1,14 @@
 <?php
 namespace linklist\data\link;
 
+use linklist\system\log\modification\LinkModificationLogHandler;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\IClipboardAction;
 use wcf\system\attachment\AttachmentHandler;
+use wcf\system\clipboard\ClipboardHandler;
+use wcf\system\exception\PermissionDeniedException;
 use wcf\system\language\LanguageFactory;
+use wcf\system\moderation\queue\ModerationQueueActivationManager;
 use wcf\system\search\SearchIndexManager;
 use wcf\system\tagging\TagEngine;
 use wcf\system\user\activity\event\UserActivityEventHandler;
@@ -114,7 +118,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 				'isDisabled' => 0
 			));
 			// recent
-			UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $link->linkD, $link->languageID, $link->userID, $link->time);
+			UserActivityEventHandler::getInstance()->fireEvent('de.codequake.linklist.link.recentActivityEvent', $link->linkID, $link->languageID, $link->userID, $link->time);
 			UserActivityPointHandler::getInstance()->fireEvent('de.codequake.linklist.activityPointEvent.link', $link->linkID, $link->userID);
 			// update search index
 			SearchIndexManager::getInstance()->add('de.codequake.linklist.link', $link->linkID, $link->message, $link->subject, $link->time, $link->userID, $link->username, $link->languageID);
@@ -325,12 +329,11 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
 	public function enable() {
 		if (empty($this->objects)) $this->readObjects();
-		foreach ($this->links as $link) {
-			$editor = new LinkEditor($link);
-			$editor->update(array(
-				'isDisabled' =>0
+		foreach ($this->objects as $link) {
+			$link->update(array(
+				'isDisabled' => 0
 			));
-			LinkModificationLogHandler::getInstance()->enable($link);
+			LinkModificationLogHandler::getInstance()->enable($link->getDecoratedObject());
 			$this->removeModeratedContent($link->linkID);
 			$this->publish();
 		}
@@ -350,12 +353,11 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 	public function disable() {
 		if (empty($this->objects)) $this->readObjects();
 		foreach ($this->objects as $link) {
-			$editor = new LinkEditor($link);
-			$editor->update(array(
+			$link->update(array(
 				'isDisabled' => 1
 			));
 
-			LinkModificationLogHandler::getInstance()->disable($link);
+			LinkModificationLogHandler::getInstance()->disable($link->getDecoratedObject());
 			$this->addModeratedContent($link->linkID);
 		}
 

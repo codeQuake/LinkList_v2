@@ -16,28 +16,28 @@ abstract class AbstractLinkModerationQueueHandler extends AbstractModerationQueu
 
 	public function assignQueues(array $queues) {
 		$assignments = array();
-		
+
 		foreach ($queues as $queue) {
 			$assignUser = 0;
-			if (WCF::getSession()->getPermission('mod.linklist.link.canToggleLink')) {
+			if (WCF::getSession()->getPermission('mod.linklist.link.canModerateLink')) {
 				$assignUser = 1;
 			}
-			
+
 			$assignments[$queue->queueID] = $assignUser;
 		}
-		
+
 		ModerationQueueManager::getInstance()->setAssignment($assignments);
 	}
 
 	public function getContainerID($objectID) {
-		return $this->getLink($objectID)->categoryID;
+		return 0;
 	}
 
 	public function isValid($objectID) {
 		if ($this->getLink($objectID) === null) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -48,7 +48,7 @@ abstract class AbstractLinkModerationQueueHandler extends AbstractModerationQueu
 				self::$links[$objectID] = null;
 			}
 		}
-		
+
 		return self::$links[$objectID];
 	}
 
@@ -57,14 +57,14 @@ abstract class AbstractLinkModerationQueueHandler extends AbstractModerationQueu
 		foreach ($queues as $object) {
 			$objectIDs[] = $object->objectID;
 		}
-		
+
 		$list = new LinkList();
 		$list->getConditionBuilder()->add("link.linkID IN (?)", array(
 			$objectIDs
 		));
 		$list->readObjects();
 		$links = $list->getObjects();
-		
+
 		foreach ($queues as $object) {
 			if (isset($links[$object->objectID])) {
 				$object->setAffectedObject($links[$object->objectID]);

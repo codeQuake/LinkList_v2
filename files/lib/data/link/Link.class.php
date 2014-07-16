@@ -185,6 +185,8 @@ class Link extends LINKLISTDatabaseObject implements IMessage, IRouteController,
 	}
 
 	public function isVisible() {
+		if ($this->isDisabled && WCF::getSession()->getPermission('user.linklist.link.canSeeDeactivatedLink')) return true;
+		if ($this->isDisabled) return false;
 		return true;
 	}
 

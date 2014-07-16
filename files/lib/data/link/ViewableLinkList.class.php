@@ -19,7 +19,7 @@ class ViewableLinkList extends LinkList {
 			$this->sqlSelects .= 'tracked_visit.visitTime';
 			$this->sqlJoins .= " LEFT JOIN wcf" . WCF_N . "_tracked_visit tracked_visit ON (tracked_visit.objectTypeID = " . VisitTracker::getInstance()->getObjectTypeID('de.codequake.linklist.link') . " AND tracked_visit.objectID = link.linkID AND tracked_visit.userID = " . WCF::getUser()->userID . ")";
 		}
-		if (! WCF::getSession()->getPermission('user.linklist.link.canViewDisabledLinks')) {
+		if (!WCF::getSession()->getPermission('user.linklist.link.canSeeDeactivatedLink')) {
 			$this->getConditionBuilder()->add('link.isDisabled = ?', array(
 				0
 			));

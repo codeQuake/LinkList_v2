@@ -5,7 +5,7 @@
 	<ul class="linklist messageList" data-type="de.codequake.linklist.link">
 		{foreach from=$objects item=link}
 		{if $link->isVisible()}
-			<li id="link{$link->linkID}" class="jsClipboardObject link {if $link->isDisabled}linkDisabled{/if}" {if $link->Disabled}data-is-active="0"{/if}>
+			<li id="link{$link->linkID}" class="jsClipboardObject link {if $link->isDisabled}linkDisabled{/if}" {if $link->Disabled}data-is-disabled="1"{/if}>
 		<article class="message messageReduced marginTop">
 			<div>
 				<section class="messageContent">

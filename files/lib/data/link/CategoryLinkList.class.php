@@ -20,11 +20,10 @@ public function __construct(array $categoryIDs) {
 			$this->getConditionBuilder()->add('1=0');
 		foreach ($categoryIDs as $categoryID) {
 			$category = new LinklistCategory(CategoryHandler::getInstance()->getCategory($categoryID));
-			if (! $category->getPermission('canSeeDeactivatedLink')) $this->getConditionBuilder()->add('link.isDisabled = ?', array(
+			if (!$category->getPermission('canSeeDeactivatedLink')) $this->getConditionBuilder()->add('link.isDisabled = ?', array(
 				0
 			));
 		}
-		if (! WCF::getSession()->getPermission('mod.linklist.link.canToggleLink')) $this->getConditionBuilder()->add('link.isDisabled = 0');
 	}
 
 	public function readObjectIDs() {

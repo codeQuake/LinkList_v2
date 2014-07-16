@@ -9,11 +9,10 @@
 						{else}
 							<span class="framed">{@$link->getUserProfile()->getAvatar()->getImageTag(32)}</span>
 						{/if}
-						
+
 						<div class="messageHeadline">
-              <h1>
-                {if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
-                <a href="{@$link->getLink()}">{$link->getTitle()}</a></h1>
+			<h1>
+				<a href="{link application='linklist' controller='Link' object=$link}{/link}">{$link->getTitle()}</a></h1>
 							<p>
 								<span class="username">{if $link->getUserProfile()->userID}<a href="{link controller='User' object=$link->getUserProfile()->getDecoratedObject()}{/link}">{$link->getUsername()}</a>{else}{$link->getUsername()}{/if}</span>
 								{@$link->getTime()|time}
@@ -21,15 +20,15 @@
 						</div>
 					</div>
 				</header>
-				
+
 				<div class="messageBody">
 					<div>
 						<div class="messageText">
 							{@$link->getFormattedMessage()}
 						</div>
 					</div>
-					
-					
+
+
 				</div>
 			</div>
 		</section>
