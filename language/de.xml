@@ -14,13 +14,6 @@
 Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[newestMember]}{/link}" class="userLink" data-user-id="{@$stats[newestMember]->userID}">{$stats[newestMember]->username}</a>.]]></item>
 	</category>
 
-	<category name="linklist.links">
-		<item name="linklist.links.list"><![CDATA[Links]]></item>
-		<item name="linklist.links.title"><![CDATA[Titel]]></item>
-		<item name="linklist.links.visits"><![CDATA[Besuche]]></item>
-		<item name="linklist.links.time"><![CDATA[Zeit]]></item>
-	</category>
-
 	<category name="linklist.category">
 		<item name="linklist.category.searchAll"><![CDATA[Alle Kategorien durchsuchen]]></item>
 		<item name="linklist.category.search"><![CDATA[Aktuelle Kategorie durchsuchen]]></item>
@@ -29,6 +22,10 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 	</category>
 
 	<category name="linklist.link">
+		<item name="linklist.link.list"><![CDATA[Links]]></item>
+		<item name="linklist.link.title"><![CDATA[Titel]]></item>
+		<item name="linklist.link.visits"><![CDATA[Besuche]]></item>
+		<item name="linklist.link.time"><![CDATA[Zeit]]></item>
 		<item name="linklist.link.url.illegalURL"><![CDATA[Geben Sie eine korrekte URL ein!]]></item>
 		<item name="linklist.link.log"><![CDATA[Änderungsprotokoll]]></item>
 		<item name="linklist.link.log.link.offline"><![CDATA[Als Offline markiert]]></item>
@@ -80,19 +77,19 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 		<item name="linklist.link.comment.notification.title"><![CDATA[Neuer Kommentar (Link)]]></item>
 		<item name="linklist.link.comment.notification.message"><![CDATA[Hat einen Kommentar zu Ihrem Link „{$link->subject}“ verfasst.]]></item>
 		<item name="linklist.link.comment.notification.mail">
-      <![CDATA[{@$author->username} hat einen Kommentar zu Ihrem Link "{@$link->subject}" verfasst:
+	<![CDATA[{@$author->username} hat einen Kommentar zu Ihrem Link "{@$link->subject}" verfasst:
 {link application='linklist' controller='Link' object=$link encode=false forceFrontend=true}#comments{/link}]]>
 		</item>
 		<item name="linklist.link.commentResponse.notification.title"><![CDATA[Neue Antwort (Link)]]></item>
 		<item name="linklist.link.commentResponse.notification.message"><![CDATA[Hat eine Antwort zu Ihrem Kommentar zum Link „{$link->subject}“ verfasst.]]></item>
 		<item name="linklist.link.commentResponse.notification.mail">
-      <![CDATA[{@$author->username} hat eine Antwort zu Ihrem Kommentar zum Link "{@$link->subject}" verfasst:
+	<![CDATA[{@$author->username} hat eine Antwort zu Ihrem Kommentar zum Link "{@$link->subject}" verfasst:
 {link application='linklist' controller='Link' object=$link encode=false forceFrontend=true}#comments{/link}]]>
 		</item>
 		<item name="linklist.link.commentResponseOwner.notification.title"><![CDATA[Neue Antwort (Link)]]></item>
 		<item name="linklist.link.commentResponseOwner.notification.message"><![CDATA[Hat eine Antwort zum Kommentar von „{$commentAuthor->username}“ zum Link „{$link->subject}“ verfasst.]]></item>
 		<item name="linklist.link.commentResponseOwner.notification.mail">
-      <![CDATA[{@$author->username} hat eine Antwort zum Kommentar von "{@$commentAuthor->username}" zum Link "{@$link->subject}" verfasst:
+	<![CDATA[{@$author->username} hat eine Antwort zum Kommentar von "{@$commentAuthor->username}" zum Link "{@$link->subject}" verfasst:
 {link application='linklist' controller='Link' object=$link encode=false forceFrontend=true}#comments{/link}]]>
 		</item>
 	</category>

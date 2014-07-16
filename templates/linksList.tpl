@@ -16,6 +16,9 @@
 							</ul>
 							<div class="messageHeadline">
 								<h1><a data-link-id="{@$link->linkID}" class="linklistLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a></h1>
+								{if $link->isNew()}
+										<p class="newMessageBadge">{lang}wcf.message.new{/lang}</p>
+								{/if}
 								<p>
 									<span class="username"{if $link->getUserProfile()->userID != 0}<a class="userLink" data-user-id="{$link->userID}" href="{link controller='User' object=$link->getUserProfile()}{/link}">{$link->username}</a>{else}{$link->username}{/if}</span>
 									<a class="permalink" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{@$link->time|time}</a>

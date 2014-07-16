@@ -13,7 +13,7 @@
 		</div>
 	</fieldset>
 	<fieldset>
-		<legend>{lang}cms.news.general{/lang}</legend>
+		<legend>{lang}linklist.link.general{/lang}</legend>
 		<dl class="plain inlineDataList">
 			<dt>{lang}linklist.link.clicks{/lang}</dt>
 			<dd>{$link->clicks}</dd>

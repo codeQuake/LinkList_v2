@@ -6,6 +6,7 @@
 			<controller><![CDATA[linklist\page\CategoryListPage]]></controller>
 			<position>header</position>
 			<permissions>user.linklist.link.canViewCategory</permissions>
+			<classname>linklist\system\menu\page\LinklistPageMenuItemProvider</classname>
 		</pagemenuitem>
 	</import>
 </data>
