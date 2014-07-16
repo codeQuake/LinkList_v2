@@ -79,7 +79,7 @@
 							<div class="messageBody">
 								<div class="linkBox256">
 									<div class="framed">
-										<img src="{$link->getThumb()}" alt="" />
+										{@$link->getImage(250)}
 									</div>
 									<div class="linkTeaser">
 										<strong>{$link->teaser}</strong>

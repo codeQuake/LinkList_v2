@@ -2,7 +2,7 @@
 	<fieldset>
 		<legend>{lang}linklist.link.image{/lang}</legend>
 		<div class="framed">
-			{@$link->getImage(268)}
+			<img src="{@$link->getThumb(268)}" alt ="" />
 		</div>
 	</fieldset>
 	<fieldset>
