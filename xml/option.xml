@@ -118,9 +118,9 @@
 				<optiontype>select</optiontype>
 				<defaultvalue>time</defaultvalue>
 				<selectoptions>
-		<![CDATA[subject:linklist.links.title
-time:linklist.links.time
-visits:linklist.links.visits]]>
+		<![CDATA[subject:linklist.link.title
+time:linklist.link.time
+visits:linklist.link.visits]]>
 				</selectoptions>
 			</option>
 			<option name="linklist_default_sort_order">
