@@ -85,7 +85,6 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 			$this->parameters['attachmentHandler']->updateObjectID($object->linkID);
 		}
 
-
 		// handle categories
 		$editor = new LinkEditor($object);
 		// langID != 0
@@ -410,7 +409,7 @@ class LinkAction extends AbstractDatabaseObjectAction implements IClipboardActio
 
 	public function validateGetLinkPreview() {
 		$this->link = $this->getSingleObject();
-		foreach($this->link->getCategories() as $category) {
+		foreach ($this->link->getCategories() as $category) {
 			if (!$category->getPermission('canViewLink')) throw new PermissionDeniedException();
 		}
 	}

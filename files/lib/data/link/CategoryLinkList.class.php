@@ -6,7 +6,6 @@ use wcf\system\database\util\PreparedStatementConditionBuilder;
 use wcf\system\category\CategoryHandler;
 use wcf\system\WCF;
 
-
 class CategoryLinkList extends ViewableLinkList {
 
 public function __construct(array $categoryIDs) {
