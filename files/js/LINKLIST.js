@@ -1,6 +1,35 @@
 LINKLIST = {};
 LINKLIST.Link = {};
 
+LINKLIST.Link.MarkAllAsRead = Class.extend({
+	_proxy: null,
+
+	init: function () {
+		// initialize proxy
+		this._proxy = new WCF.Action.Proxy({
+			success: $.proxy(this._success, this)
+		});
+		//add clickhandler
+		$('.markAllAsReadButton').click($.proxy(this._click, this));
+	},
+
+	_click: function () {
+		this._proxy.setOption('data', {
+			actionName: 'markAllAsRead',
+			className: 'linklist\\data\\link\\LinkAction'
+		});
+
+		this._proxy.sendRequest();
+	},
+
+	_success: function (data, textStatus, jqXHR) {
+		//hide unread messages
+		$('#mainMenu .active .badge').hide();
+		$('.newMessageBadge').hide();
+		$('.linklistCategory > div > .containerHeadline .badge').hide();
+	}
+});
+
 LINKLIST.Link.Like = WCF.Like.extend({
 
 	_getContainers: function () {

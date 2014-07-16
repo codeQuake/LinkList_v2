@@ -7,7 +7,7 @@
 	<script data-relocate="true">
 		//<![CDATA[
 		$(function() {
-			new Linklist.Link.MarkAllAsRead();
+			new LINKLIST.Link.MarkAllAsRead();
 			});
 		//]]>
 	</script>
