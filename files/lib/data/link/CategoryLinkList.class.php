@@ -15,14 +15,15 @@ public function __construct(array $categoryIDs) {
 				$categoryIDs
 			));
 			$this->getConditionBuilder()->add('link.linkID = link_to_category.linkID');
+			foreach ($categoryIDs as $categoryID) {
+				$category = new LinklistCategory(CategoryHandler::getInstance()->getCategory($categoryID));
+				if (!$category->getPermission('canSeeDeactivatedLink')) $this->getConditionBuilder()->add('link.isDisabled = ?', array(
+					0
+				));
+			}
 		} else
 			$this->getConditionBuilder()->add('1=0');
-		foreach ($categoryIDs as $categoryID) {
-			$category = new LinklistCategory(CategoryHandler::getInstance()->getCategory($categoryID));
-			if (!$category->getPermission('canSeeDeactivatedLink')) $this->getConditionBuilder()->add('link.isDisabled = ?', array(
-				0
-			));
-		}
+
 	}
 
 	public function readObjectIDs() {
