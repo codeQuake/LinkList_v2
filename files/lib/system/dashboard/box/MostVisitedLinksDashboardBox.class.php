@@ -17,7 +17,7 @@ class MostVisitedLinksDashboardBox extends AbstractSidebarDashboardBox {
 
 		$categoryArray = ($page instanceof CategoryPage) ? array($page->categoryID) : array();
 
-		$this->links = new MostVisitedLinkList(array($categoryArray));
+		$this->links = new MostVisitedLinkList($categoryArray);
 		$this->links->readObjects();
 
 		$this->fetched();
