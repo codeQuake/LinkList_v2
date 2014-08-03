@@ -39,7 +39,6 @@
 		<instruction type="eventListener">xml/eventListener.xml</instruction>
 		<instruction type="userGroupOption">xml/userGroupOption.xml</instruction>
 		<instruction type="clipboardAction">xml/clipboardAction.xml</instruction>
-		<instruction type="cronjob">xml/cronjob.xml</instruction>
 		<instruction type="script">acp/install_de.codequake.linklist_2.0.0.php</instruction>
 
 		<!--others -->
