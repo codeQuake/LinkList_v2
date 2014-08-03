@@ -1,4 +1,5 @@
 {include file='documentHeader'}
+
 <head>
 	<title>{lang}linklist.link.log{/lang} - {$link->getTitle}  {PAGE_TITLE|language}</title>
 
@@ -28,7 +29,8 @@
 		</nav>
 	{/hascontent}
 </div>
-	{hascontent}
+
+{hascontent}
 	<div class="tabularBox tabularBoxTitle marginTop">
 		<header>
 			<h2>{lang}linklist.link.log.title{/lang} <span class="badge badgeInverse">{#$items}</span></h2>
@@ -62,7 +64,7 @@
 		</table>
 	</div>
 {hascontentelse}
-<p class="info">{lang}linklist.link.log.noEntries{/lang}</p>
+	<p class="info">{lang}linklist.link.log.noEntries{/lang}</p>
 {/hascontent}
 
 <div class="contentNavigation">

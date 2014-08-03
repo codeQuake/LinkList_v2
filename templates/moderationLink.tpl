@@ -11,8 +11,7 @@
 						{/if}
 
 						<div class="messageHeadline">
-			<h1>
-				<a href="{link application='linklist' controller='Link' object=$link}{/link}">{$link->getTitle()}</a></h1>
+							<h1><a href="{link application='linklist' controller='Link' object=$link}{/link}">{$link->getTitle()}</a></h1>
 							<p>
 								<span class="username">{if $link->getUserProfile()->userID}<a href="{link controller='User' object=$link->getUserProfile()->getDecoratedObject()}{/link}">{$link->getUsername()}</a>{else}{$link->getUsername()}{/if}</span>
 								{@$link->getTime()|time}
@@ -27,8 +26,6 @@
 							{@$link->getFormattedMessage()}
 						</div>
 					</div>
-
-
 				</div>
 			</div>
 		</section>

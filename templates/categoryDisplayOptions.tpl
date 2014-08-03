@@ -1,6 +1,7 @@
 <form id="sidebarContainer" method="get" action="{link application='linklist' controller='Category' object=$category}{/link}">
 	<fieldset>
 		<legend>{lang}linklist.category.displayOptions{/lang}</legend>
+
 		<dl>
 			<dt><label for="sortField">{lang}linklist.category.sortBy{/lang}</label></dt>
 			<dd>
@@ -17,8 +18,9 @@
 			</dd>
 		</dl>
 	</fieldset>
-		<div class="formSubmit">
-			<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
-			{@SID_INPUT_TAG}
-		</div>
+
+	<div class="formSubmit">
+		<input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s" />
+		{@SID_INPUT_TAG}
+	</div>
 </form>

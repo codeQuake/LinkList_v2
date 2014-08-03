@@ -1,12 +1,15 @@
 {capture assign='sidebar'}
 	<fieldset>
 		<legend>{lang}linklist.link.image{/lang}</legend>
+
 		<div class="framed">
 			<img src="{@$link->getThumb(268)}" alt ="" />
 		</div>
 	</fieldset>
+
 	<fieldset>
 		<legend>{lang}linklist.link.author{/lang}</legend>
+
 		<div class="box32">
 			<div class="userAvatar">
 				<a class="framed userLink" data-user-id="{$link->getUserProfile()->userID}" href="{link controller='User' object=$link->getUserProfile()}{/link}">{@$link->getUserProfile()->getAvatar()->getImageTag(24)}</a>
@@ -18,17 +21,22 @@
 			</div>
 		</div>
 	</fieldset>
+
 	<fieldset>
 		<legend>{lang}linklist.link.general{/lang}</legend>
+
 		<dl class="plain inlineDataList">
 			<dt>{lang}linklist.link.clicks{/lang}</dt>
 			<dd>{$link->clicks}</dd>
+
 			<dt>{lang}linklist.link.visits{/lang}</dt>
 			<dd>{$link->visits}</dd>
+
 			<dt>{lang}linklist.link.comments{/lang}</dt>
 			<dd>{@$commentList->countObjects()}</dd>
 		</dl>
 	</fieldset>
+
 	{if $link->getCategories()|count}
 		<fieldset>
 			<legend>{lang}linklist.link.category.categories{/lang}</legend>
@@ -40,6 +48,7 @@
 			</ul>
 		</fieldset>
 	{/if}
+
 	{if $tags|count}
 		<fieldset>
 			<legend>{lang}wcf.tagging.tags{/lang}</legend>
@@ -49,5 +58,6 @@
 			{/foreach}
 		</fieldset>
 	{/if}
+
 	{event name='boxes'}
 {/capture}

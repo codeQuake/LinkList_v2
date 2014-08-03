@@ -16,29 +16,26 @@
 
 		<tbody>
 			{foreach from=$objects item=link}
-					{if $link->isVisible()}
-						<tr id="link{$link->linkID}" class="jsClipboardObject linklistLink"  data-element-id="{@$link->linkID}">
-						  <td class="columnIcon">
-							<span class="icon icon32 icon-link"></span>
-						  </td>
-							<td class="columnText columnSubject">
-								<h3>
-				  {if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
-				  <a data-link-id="{@$link->linkID}" class="linklistLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
-								</h3>
-							</td>
-						  <td class="columnDigits columnVisits">
-								{$link->visits}
-							</td>
-							<td class="columnText columnTime">
-								{$link->time|DateDiff}
-							</td>
+				{if $link->isVisible()}
+					<tr id="link{$link->linkID}" class="jsClipboardObject linklistLink"  data-element-id="{@$link->linkID}">
+						<td class="columnIcon"><span class="icon icon32 icon-link"></span></td>
+						<td class="columnText columnSubject">
+							<h3>
+								{if $link->isOnline == 0}<span class="badge label red">{lang}linklist.link.offline{/lang}</span>{/if}
+								<a data-link-id="{@$link->linkID}" class="linklistLink messageGroupLink framed" href="{link application='linklist' controller='Link' id=$link->linkID title=$link->subject}{/link}">{$link->subject}</a>
+							</h3>
+						</td>
+						<td class="columnDigits columnVisits">
+							{$link->visits}
+						</td>
+						<td class="columnText columnTime">
+							{$link->time|DateDiff}
+						</td>
 
-							{event name='columns'}
-						</tr>
-						{/if}
-					{/foreach}
-
+						{event name='columns'}
+					</tr>
+				{/if}
+			{/foreach}
 		</tbody>
 	</table>
 </div>
