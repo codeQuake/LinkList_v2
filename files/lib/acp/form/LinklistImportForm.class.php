@@ -62,8 +62,6 @@ class LinklistImportForm extends AbstractForm {
 		}
 		foreach ($data['categoryData'] as $categoryData) {
 			// insert categories
-			
-
 			$objectType = CategoryHandler::getInstance()->getObjectTypeByName('de.codequake.linklist.category');
 			// should never ever happen ;)
 			if ($objectType === null) {

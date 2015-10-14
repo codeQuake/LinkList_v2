@@ -29,7 +29,7 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 		if ($request == 0) {
 			// first request
 			$sql = "DELETE FROM	wcf" . WCF_N . "_user_activity_point_event
-            WHERE   objectTypeID = ?";
+					WHERE	objectTypeID = ?";
 			$statement = WCF::getDB()->prepareStatement($sql);
 			$statement->execute(array(
 				$this->objectType->objectTypeID
@@ -37,13 +37,11 @@ class LinkUserActivityPointObjectProcessor implements IUserActivityPointObjectPr
 		}
 		else {
 			// others
-			
-
 			// get linkIDs
-			$sql = "SELECT link.linkID
-                FROM    linklist" . WCF_N . "_link link
-                    AND link.userID IS NOT NULL
-                ORDER BY link.linkID ASC";
+		$sql = "SELECT link.linkID
+				FROM	linklist" . WCF_N . "_link link
+				AND link.userID IS NOT NULL
+				ORDER BY link.linkID ASC";
 			$statement = WCF::getDB()->prepareStatement($sql, $this->limit, ($this->limit * ($request - 1)));
 			$statement->execute();
 			$linkIDs = array();

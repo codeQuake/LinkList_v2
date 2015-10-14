@@ -24,8 +24,7 @@ class ModerationQueueOfflineManager extends AbstractModerationQueueManager {
 
 	public function addModeratedContent($objectType, $objectID, array $additionalData = array()) {
 		if (! $this->isValid($objectType)) throw new SystemException("Object type '" . $objectType . "' is not valid for definition '" . $this->definitionName . "'");
-		$this->addEntry($this->getObjectTypeID($objectType), $objectID, $this->getProcessor($objectType)
-			->getContainerID($objectID), $additionalData);
+		$this->addEntry($this->getObjectTypeID($objectType), $objectID, $this->getProcessor($objectType)->getContainerID($objectID), $additionalData);
 	}
 
 	public function removeModeratedContent($objectType, array $objectIDs) {

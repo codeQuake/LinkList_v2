@@ -116,8 +116,7 @@ class LinkEditForm extends MessageForm {
 				'object' => $categoryItem
 			))));
 		}
-		WCF::getBreadcrumbs()->add(new Breadcrumb($this->link->getCategory()
-			->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
+		WCF::getBreadcrumbs()->add(new Breadcrumb($this->link->getCategory()->getTitle(), LinkHandler::getInstance()->getLink('Category', array(
 			'application' => 'linklist',
 			'object' => $this->link->getCategory()
 		))));

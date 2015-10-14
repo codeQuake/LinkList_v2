@@ -10,8 +10,7 @@ class SearchResultLink extends ViewableLink implements ISearchResultObject {
 	public $link = null;
 
 	public function getFormattedMessage() {
-		return SearchResultTextParser::getInstance()->parse($this->getDecoratedObject()
-			->getFormattedMessage());
+		return SearchResultTextParser::getInstance()->parse($this->getDecoratedObject()->getFormattedMessage());
 	}
 
 	public function getSubject() {
@@ -38,16 +37,13 @@ class SearchResultLink extends ViewableLink implements ISearchResultObject {
 	}
 
 	public function getContainerTitle() {
-		return $this->getLinklistLink()
-			->getCategory()
-			->getTitle();
+		return $this->getLinklistLink()->getCategory()->getTitle();
 	}
 
 	public function getContainerLink() {
 		return LinkHandler::getInstance()->getLink('Category', array(
 			'application' => 'linklist',
-			'object' => $this->getLinklistLink()
-				->getCategory()
+			'object' => $this->getLinklistLink()->getCategory()
 		));
 	}
 
