@@ -43,8 +43,6 @@
 	<header class="boxHeadline labeledHeadline">
             <h1>{$link->getTitle()|language}</h1>
 			<ul class="labelList">
-			{if $link->isOnline == 0 && LINKLIST_ENABLE_CRONCHECK}<li><span class="badge label red">{lang}linklist.link.offline{/lang}</span></li>{/if}
-			
 			{foreach from=$link->getLabels() item=label}
 				<li><span class="label badge{if $label->getClassNames()} {$label->getClassNames()}{/if}">{lang}{$label->label}{/lang}</span></li>
 			{/foreach}

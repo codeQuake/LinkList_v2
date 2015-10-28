@@ -128,11 +128,6 @@ visits:linklist.links.visits]]>
 DESC:wcf.global.sortOrder.descending]]>
 				</selectoptions>
 			</option>
-			<option name="linklist_enable_croncheck">
-				<categoryname>linklist.general.settings</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
 		</options>
 	</import>
 </data>

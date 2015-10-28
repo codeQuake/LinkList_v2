@@ -31,7 +31,6 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 	<category name="linklist.link">
 		<item name="linklist.link.url.illegalURL"><![CDATA[Geben Sie eine korrekte URL ein!]]></item>
 		<item name="linklist.link.log"><![CDATA[Änderungsprotokoll]]></item>
-		<item name="linklist.link.log.link.offline"><![CDATA[Als Offline markiert]]></item>
 		<item name="linklist.link.log.title"><![CDATA[Änderungen an {$link->getTitle()}]]></item>
 		<item name="linklist.link.log.link.trash"><![CDATA[In den Papierkorb verschoben]]></item>
 		<item name="linklist.link.log.link.restore"><![CDATA[Wiederhergestellt]]></item>
@@ -64,7 +63,6 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 		<item name="linklist.link.tabs.link"><![CDATA[Link]]></item>
 		<item name="linklist.link.visit"><![CDATA[Seite besuchen]]></item>
 		<item name="linklist.link.edit"><![CDATA[Link bearbeiten]]></item>
-		<item name="linklist.link.offline"><![CDATA[Offline]]></item>
 		<item name="linklist.link.log"><![CDATA[Änderungsprotokoll]]></item>
 		<item name="linklist.link.linkAdd.data"><![CDATA[Allgemeine Daten]]></item>
 		<item name="linklist.link.linkEdit.data"><![CDATA[Allgemeine Daten]]></item>
@@ -115,19 +113,13 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 		<item name="linklist.acp.category.isMainCategory"><![CDATA[Kategorie zur Hauptkategorie machen]]></item>
 		<item name="linklist.acp.category.isMainCategory.description"><![CDATA[Sperrt zusätzlich die Kategorie für Links]]></item>
 	</category>
-
-	<category name="linklist.link.menu">
-		<item name="linklist.link.menu.show"><![CDATA[Link]]></item>
-		<item name="linklist.link.menu.comment"><![CDATA[Kommentare]]></item>
-	</category>
+	
 	<category name="wcf.like">
 		<item name="wcf.like.objectType.de.codequake.linklist.likeableLink"><![CDATA[Link]]></item>
 	</category>
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.category.linklist.general"><![CDATA[Allgemein]]></item>
 		<item name="wcf.acp.option.category.linklist.general.settings"><![CDATA[Einstellungen]]></item>
-		<item name="wcf.acp.option.linklist_enable_croncheck"><![CDATA[Cronjob aktivieren]]></item>
-		<item name="wcf.acp.option.linklist_enable_croncheck.description"><![CDATA[Aktiviert einen Cronjob, der regelmäßig die Erreichbarkeit aller Links prüft und nicht erreichbare Links markiert.]]></item>
 		<item name="wcf.acp.option.module_linklist_comments"><![CDATA[Kommentarsystem - Linkliste]]></item>
 		<item name="wcf.acp.option.category.linklist"><![CDATA[Linkliste]]></item>
 		<item name="wcf.acp.option.category.linklist.index"><![CDATA[Startseite]]></item>
@@ -226,14 +218,14 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 	</category>
 
 	<category name="wcf.dashboard">
-		<item
-			name="wcf.dashboard.objectType.de.codequake.linklist.CategoryListPage"><![CDATA[Linkliste]]></item>
+		<item name="wcf.dashboard.objectType.de.codequake.linklist.CategoryListPage"><![CDATA[Linkliste]]></item>
 		<item name="wcf.dashboard.objectType.de.codequake.linklist.CategoryPage"><![CDATA[Linkliste: Kategorie]]></item>
 		<item name="wcf.dashboard.box.de.codequake.linklist.latestLinks"><![CDATA[Neuste Links]]></item>
 		<item name="wcf.dashboard.box.de.codequake.linklist.mostVisitedLinks"><![CDATA[Meistbesuchte Links]]></item>
 		<item name="wcf.dashboard.box.de.codequake.linklist.randomLink"><![CDATA[Zufälliger Link]]></item>
 		<item name="wcf.dashboard.box.de.codequake.linklist.tagCloud"><![CDATA[Tag-Cloud]]></item>
 	</category>
+	
 	<category name="wcf.clipboard">
 		<item name="wcf.clipboard.label.de.codequake.linklist.link.marked"><![CDATA[{if $count == 1}Ein Link{else}{#$count} Links{/if} markiert]]></item>
 		<item name="wcf.clipboard.item.de.codequake.linklist.link.enable"><![CDATA[Links aktivieren ({#$count})]]></item>
@@ -241,16 +233,11 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 		<item name="wcf.clipboard.item.de.codequake.linklist.link.trash"><![CDATA[Links in den Papierkorb verschieben ({#$count})]]></item>
 		<item name="wcf.clipboard.item.de.codequake.linklist.link.restore"><![CDATA[Gelöschte Links wiederherstellen ({#$count})]]></item>
 		<item name="wcf.clipboard.item.de.codequake.linklist.link.delete"><![CDATA[Links entgültig löschen ({#$count})]]></item>
-		<item
-			name="wcf.clipboard.item.de.codequake.linklist.link.enable.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich aktivieren?]]></item>
-		<item
-			name="wcf.clipboard.item.de.codequake.linklist.link.disable.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich deaktivieren?]]></item>
-		<item
-			name="wcf.clipboard.item.de.codequake.linklist.link.trash.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich in den Papierkorb verschieben?]]></item>
-		<item
-			name="wcf.clipboard.item.de.codequake.linklist.link.restore.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen gelöschten Link{else} diese {#$count} gelöschten Links{/if} wirklich wiederherstellen?]]></item>
-		<item
-			name="wcf.clipboard.item.de.codequake.linklist.link.delete.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich entgültig löschen?]]></item>
+		<item name="wcf.clipboard.item.de.codequake.linklist.link.enable.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich aktivieren?]]></item>
+		<item name="wcf.clipboard.item.de.codequake.linklist.link.disable.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich deaktivieren?]]></item>
+		<item name="wcf.clipboard.item.de.codequake.linklist.link.trash.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich in den Papierkorb verschieben?]]></item>
+		<item name="wcf.clipboard.item.de.codequake.linklist.link.restore.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen gelöschten Link{else} diese {#$count} gelöschten Links{/if} wirklich wiederherstellen?]]></item>
+		<item name="wcf.clipboard.item.de.codequake.linklist.link.delete.confirmMessage"><![CDATA[Wollen sie {if $count == 1}diesen Link{else} diese {#$count} Links{/if} wirklich entgültig löschen?]]></item>
 	</category>
 
 	<category name="wcf.search">
@@ -263,22 +250,9 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 	</category>
 
 	<category name="wcf.moderation">
-		<item name="wcf.moderation.type.de.codequake.linklist.moderation.offline"><![CDATA[Offline Meldung]]></item>
 		<item name="wcf.moderation.type.de.codequake.linklist.link"><![CDATA[Link]]></item>
-		<item
-			name="wcf.moderation.deletedContent.objectType.de.codequake.linklist.link"><![CDATA[Links]]></item>
+		<item name="wcf.moderation.deletedContent.objectType.de.codequake.linklist.link"><![CDATA[Links]]></item>
 		<item name="wcf.moderation.deletedContent.de.codequake.linklist.link"><![CDATA[Links]]></item>
-
-	</category>
-	<category name="linklist.moderation">
-		<item name="linklist.moderation.offline"><![CDATA[Offline Meldung]]></item>
-		<item name="linklist.moderation.offline.details"><![CDATA[Informationen]]></item>
-		<item name="linklist.moderation.offline.content"><![CDATA[Als "Offline" gemeldeter Inhalt]]></item>
-		<item name="linklist.moderation.offline.setOnline"><![CDATA[Als "Online" markieren]]></item>
-		<item name="linklist.moderation.offline.setOnline.confirmMessage"><![CDATA[Möchten Sie diesen Inhalt wirklich als "Online" markieren? Haben Sie die Erreichbarkeit geprüft?]]></item>
-		<item name="linklist.moderation.offline.removeContent"><![CDATA[Inhalt löschen]]></item>
-		<item name="linklist.moderation.offline.removeContent.confirmMessage"><![CDATA[Möchten Sie diesen Inhalt wirklich löschen?]]></item>
-		<item name="linklist.moderation.offline.removeContent.reason"><![CDATA[Grund der Löschung (optional)]]></item>
 	</category>
 
 	<category name="wcf.acp.group">
@@ -333,12 +307,9 @@ Unser neuestes Mitglied heißt: <a href="{link controller='User' object=$stats[n
 
 	<category name="wcf.user.notification">
 		<item name="wcf.user.notification.de.codequake.linklist"><![CDATA[Linkliste]]></item>
-		<item
-			name="wcf.user.notification.de.codequake.linklist.linkComment.notification.comment"><![CDATA[Neuer Kommentar zu einem Ihrer Links]]></item>
-		<item
-			name="wcf.user.notification.de.codequake.linklist.linkComment.response.notification.commentResponse"><![CDATA[Neue Antwort auf einen Ihrer Kommentare zu einem Link]]></item>
-		<item
-			name="wcf.user.notification.de.codequake.linklist.linkComment.response.notification.commentResponseOwner"><![CDATA[Neue Antwort zu einem Kommentar zu einem Ihrer Links]]></item>
+		<item name="wcf.user.notification.de.codequake.linklist.linkComment.notification.comment"><![CDATA[Neuer Kommentar zu einem Ihrer Links]]></item>
+		<item name="wcf.user.notification.de.codequake.linklist.linkComment.response.notification.commentResponse"><![CDATA[Neue Antwort auf einen Ihrer Kommentare zu einem Link]]></item>
+		<item name="wcf.user.notification.de.codequake.linklist.linkComment.response.notification.commentResponseOwner"><![CDATA[Neue Antwort zu einem Kommentar zu einem Ihrer Links]]></item>
 	</category>
 
 	<category name="wcf.acp.label">
